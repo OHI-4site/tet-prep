@@ -1,4 +1,4 @@
-### Tetiaroa Ocean Health Index: [Name of Goal/Subgoal]
+### Tetiaroa Ocean Health Index: Artisinal Opportunities
 
 This folder describes the methods used to prepare the data layers for the artisanal opportunities goal.
 
@@ -6,7 +6,7 @@ The folders in this file include the metadata, R scripts, and data for each asse
 
 - `v2020` folder contains all raw data, scripts, intermediate outputs, and final outputs for the year 2020 
 
-Click [add link here to the scores/metadata_documentation/ohi-model/goal_descriptions/AO_long.Rmd] to learn more about how the [artisanal opprotunities goal] is calculated
+Click [scores/metadata_documentation/ohi-model/goal_descriptions/AO_long.Rmd] to learn more about how the artisanal opprotunities goal is calculated
 
 
 
