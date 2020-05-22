@@ -1,4 +1,4 @@
-### Tetiaroa Ocean Health Index: [Name of Goal/Scenario Year]
+### Tetiaroa Ocean Health Index: Livelihoods and Economies 2020
 
 #### Data Prep
 
