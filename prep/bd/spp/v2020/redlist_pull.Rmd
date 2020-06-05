@@ -1,0 +1,48 @@
+---
+title: "Tetiaroa RRedlist"
+author: "Maddie Berger"
+date: "6/4/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(rredlist)
+library(tidyverse)
+library(dplyr)
+library(raster)
+library(here)
+source(here('workflow/R/common.R'))
+
+api_file <- file.path(dir_M, 'git-annex/globalprep/spp', 
+                      'api_key_gc.csv')
+api_key <- scan(api_file, what = 'character')
+```
+
+Get US Minor French Polynesia species 
+```{r}
+spp_country_url <- 'http://apiv3.iucnredlist.org/api/v3/country/getspecies/id/%s?token=%s'
+# 
+# /api/v3/country/getspecies/:country?token='YOUR TOKEN'
+countries <- rl_countries(key = api_key)$results
+#UM is United States Minor Outlying Islands country code
+# UM species risks
+spp_um <- rl_sp_country('UM', key = api_key)$result %>%
+  mutate(country_code = "UM") %>%
+  rename("iucn_sid" = "taxonid")
+##PF is French Polynesia country code
+## French Polynesia Species risks
+spp_fp <- rl_sp_country('PF', key = api_key)$result %>%
+  mutate(country_code = "PF") %>%
+  rename("iucn_sid" = "taxonid")
+
+```
+
+Filter out species we want for Tetiaroa:
+```{r}
+
+
+
+
+```
+

@@ -1,0 +1,27 @@
+---
+title: "Shapefile prep"
+output: html_document
+---
+
+###Shapefile downloaded from ESRI, created by David Smith, Readlands Univ. 
+
+https://univredlands.maps.arcgis.com/home/webmap/viewer.html?useExisting=1&layers=335a6b9b0f3248e7bf7d3938dafd62c4&layerId=0
+
+```{r}
+library(tidyverse)
+library(sf)
+library(here)
+library(mapview)
+library(mapedit)
+library(leaflet)
+
+```
+
+Read in the data and check it out
+```{r}
+
+tet_shore <- st_read(dsn = here("spatial/raw_data_"), layer = "shorelines2011")
+
+mapview(tet_shore, zcol = "type") #Appears to be missing some of the lines?
+```
+
