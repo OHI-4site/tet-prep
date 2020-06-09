@@ -35,7 +35,10 @@ spp_um <- rl_sp_country('UM', key = api_key)$result %>%
 ## French Polynesia Species risks
 spp_fp <- rl_sp_country('PF', key = api_key)$result %>%
   mutate(country_code = "PF") %>%
-  rename("iucn_sid" = "taxonid")
+  rename("iucn_sid" = "taxonid") %>% 
+  mutate(
+    scientific_name = str_to_lower(scientific_name)
+  )
 
 ```
 
@@ -43,10 +46,16 @@ Filter out species we want for Tetiaroa:
 ```{r}
 #read in csv with list of tet species
 
-tet_species <- read_csv(here("./prep/bd/spp/v2020/raw_data", "tet_species.csv")) %>% clean_names()
+tet_species <- read_csv(here("./prep/bd/spp/v2020/raw_data", "tet_species.csv"))%>%
+  clean_names() %>% 
+  mutate(
+    scientific_name = str_to_lower(scientific_name)
+  )
 
 tet_species_iucn <- spp_fp %>% 
   filter(scientific_name %in% tet_species$scientific_name)
+
+tet_species_iucn <- inner_join(tet_species_iucn,tet_species, by = "scientific_name") %>%  dplyr::select(iucn_sid, scientific_name,category.x,name,ico)
 
 ```
 
@@ -55,7 +64,69 @@ Check to see if they were all there:
 
 missing_spp <- setdiff(tet_species$scientific_name, tet_species_iucn$scientific_name)
 
-tet_species_missing <- tet_species %>% 
-  filter(scientific_name %in% missing_spp) #are these species just chillin?
+tet_species_missing_fp <- tet_species %>% 
+  filter(scientific_name %in% missing_spp)
+```
+
+Seems like the French Polynesia list is missing some species that are found on Tetiaroa
+https://rdrr.io/cran/rredlist/man/rl_occ_country.html
+
+```{r}
+
+#test hawksbill turtle, which is critically endangered
+
+rl_occ_country("Eretmochelys imbricata", key = api_key) 
+#can see that FP isn't on here, even though the range maps shows it occurs there
+
+
+```
+
+Solution is to filter out these missing species from the overall dataset
+```{r}
+## get a dataframe of all iucn redlist species
+
+out <- rl_sp(all = TRUE, key = api_key)
+
+all_df <- do.call(rbind, lapply(out, "[[", "result")) #creates data frames from each item in the large list in `out` and then binds them
+
+all_df_comp <- all_df %>%
+  dplyr::select(-infra_rank, -infra_name) %>%
+    dplyr::rename(iucn_sid = taxonid, sciname = scientific_name) %>% 
+    setNames(names(.) %>%
+               stringr::str_replace('_name', '')) %>% 
+  mutate(
+    sciname = str_to_lower(sciname)
+  )
+
+
+#filter large df by the missing_spp vector
+
+tet_not_listed <- all_df_comp %>%
+  filter(sciname %in% missing_spp)
+
+#this only has 7 obs, so I think we are still missing some
+
+not_in_iunc <- setdiff(tet_species_missing_fp$scientific_name, tet_not_listed$sciname) #49 in this list
+
+no_record <- tet_species %>% 
+  dplyr::filter(scientific_name %in% not_in_iunc) 
+
+#this seems really unlikely. something might be up with spelling?
+
+
+```
+
+So far, have created the following dfs:
+- `tet_species_iucn` is all the species that matched what was pulled from the IUCN French Polynesia list
+- `tet_species_missing_fp` is all the species that were missing from the IUCN French Polynesia list but were included in Tetiaroa's species list
+- `tet_not_listed` is all the species that were matched using the entire IUCN dataset, but here are only 7 additional ones here
+- `no_record` includes all the species we still can't match. This list is probably a result of differeces in spelling as there are many species on there that should be in the IUCN, like humpback whale, spotted eagle ray, and olive ridley's turtle. 
+
+Join tet_species_iucn and tet_not_listed
+```{r}
+
+tet_species_clean <- tet_species_iucn %>% 
+  dplyr::select(iucn_sid, scientific_name = sciname, category.x= category)
+
 ```
 
