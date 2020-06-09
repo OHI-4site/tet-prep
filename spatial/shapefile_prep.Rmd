@@ -25,3 +25,13 @@ tet_shore <- st_read(dsn = here("spatial/raw_data_"), layer = "shorelines2011")
 mapview(tet_shore, zcol = "type") #Appears to be missing some of the lines?
 ```
 
+Try the other data file that Dave sent
+
+```{r}
+tet_shore_2 <- st_read(dsn = here("spatial/raw_data_"), layer = "shorelines2011_2")
+
+mapview(tet_shore, zcol = "type")
+
+```
+
+Still missing lines - check out what Benoit sends (might be more recent too)
