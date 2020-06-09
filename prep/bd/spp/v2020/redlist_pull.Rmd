@@ -81,7 +81,7 @@ rl_occ_country("Eretmochelys imbricata", key = api_key)
 
 ```
 
-Solution is to filter out these missing species from the overall dataset
+Solution is to filter out all the species
 ```{r}
 ## get a dataframe of all iucn redlist species
 
@@ -101,15 +101,15 @@ all_df_comp <- all_df %>%
 
 #filter large df by the missing_spp vector
 
-tet_not_listed <- all_df_comp %>%
-  filter(sciname %in% missing_spp)
+tet_not_listed <- all_df_comp %>% 
+filter(sciname %in% tet_species$scientific_name)
 
-#this only has 7 obs, so I think we are still missing some
+#this only has 86 obs, improvement from before
 
-not_in_iunc <- setdiff(tet_species_missing_fp$scientific_name, tet_not_listed$sciname) #49 in this list
+not_in_iunc <- setdiff(tet_species$scientific_name, tet_not_listed$sciname) 
 
 no_record <- tet_species %>% 
-  dplyr::filter(scientific_name %in% not_in_iunc) 
+  dplyr::filter(scientific_name %in% not_in_iunc) #49 observations
 
 #this seems really unlikely. something might be up with spelling?
 
