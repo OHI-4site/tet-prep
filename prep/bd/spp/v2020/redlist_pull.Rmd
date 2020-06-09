@@ -12,6 +12,7 @@ library(tidyverse)
 library(dplyr)
 library(raster)
 library(here)
+library(janitor)
 source(here('workflow/R/common.R'))
 
 api_file <- file.path(dir_M, 'git-annex/globalprep/spp', 
@@ -40,9 +41,21 @@ spp_fp <- rl_sp_country('PF', key = api_key)$result %>%
 
 Filter out species we want for Tetiaroa:
 ```{r}
+#read in csv with list of tet species
 
+tet_species <- read_csv(here("./prep/bd/spp/v2020/raw_data", "tet_species.csv")) %>% clean_names()
 
+tet_species_iucn <- spp_fp %>% 
+  filter(scientific_name %in% tet_species$scientific_name)
 
+```
 
+Check to see if they were all there:
+```{r}
+
+missing_spp <- setdiff(tet_species$scientific_name, tet_species_iucn$scientific_name)
+
+tet_species_missing <- tet_species %>% 
+  filter(scientific_name %in% missing_spp) #are these species just chillin?
 ```
 
