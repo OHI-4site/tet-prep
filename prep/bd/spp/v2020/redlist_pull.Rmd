@@ -18,8 +18,12 @@ source(here('workflow/R/common.R'))
 api_file <- file.path(dir_M, 'git-annex/globalprep/spp', 
                       'api_key_gc.csv')
 api_key <- scan(api_file, what = 'character')
-```
 
+'%!in%' <- function(x,y)!('%in%'(x,y)) #define helpful filtering function
+```
+**Summary** Script for initial pull red list categorizations using list from Tetiaroa Society 
+
+##Filtering Redlist by Location (French Polynesia)
 Get US Minor French Polynesia species 
 ```{r}
 spp_country_url <- 'http://apiv3.iucnredlist.org/api/v3/country/getspecies/id/%s?token=%s'
@@ -81,7 +85,9 @@ rl_occ_country("Eretmochelys imbricata", key = api_key)
 
 ```
 
-Solution is to filter out all the species
+##Part 2: Using the entire IUCN dataset
+Decided to start here instead of making a bunch of different datasets and then joining them. Seems simpler. 
+
 ```{r}
 ## get a dataframe of all iucn redlist species
 
@@ -99,9 +105,9 @@ all_df_comp <- all_df %>%
   )
 
 
-#filter large df by the missing_spp vector
+#filter large df by the all the scientific names vector
 
-tet_not_listed <- all_df_comp %>% 
+tet_listed <- all_df_comp %>% 
 filter(sciname %in% tet_species$scientific_name)
 
 #this only has 86 obs, improvement from before
@@ -119,14 +125,36 @@ no_record <- tet_species %>%
 So far, have created the following dfs:
 - `tet_species_iucn` is all the species that matched what was pulled from the IUCN French Polynesia list
 - `tet_species_missing_fp` is all the species that were missing from the IUCN French Polynesia list but were included in Tetiaroa's species list
-- `tet_not_listed` is all the species that were matched using the entire IUCN dataset, but here are only 7 additional ones here
+- `tet_listed` is all the species that were matched using the entire IUCN dataset, which gets us up to 86 - a bunch of duplicates though, need to filter out by range
 - `no_record` includes all the species we still can't match. This list is probably a result of differeces in spelling as there are many species on there that should be in the IUCN, like humpback whale, spotted eagle ray, and olive ridley's turtle. 
 
-Join tet_species_iucn and tet_not_listed
+##Working with `tet_listed` dataset
+
+This dataset needs to be cleaned up and filtered out for the subpopulations we are interested in, since the IUCN category differs for them. 
+
 ```{r}
 
-tet_species_clean <- tet_species_iucn %>% 
-  dplyr::select(iucn_sid, scientific_name = sciname, category.x= category)
+tet_lc <- tet_listed %>% 
+  dplyr::select(iucn_sid, sciname, population, category)
+
+#find the duplicate species
+
+tet_listed_dup <- tet_lc[duplicated(tet_lc$sciname),]
+
+#try by just filtering out the ones with key words in the population columns - these are the versions we want!
+
+test <- tet_lc[grepl("South Pacific", tet_lc$population) | grepl("Hawaiian", tet_lc$population) | grepl("Asia", tet_lc$population)| grepl("East Pacific", tet_lc$population) ,]
+
+#now filter out the duplicated species from the tet_lc dataset, and bind the test data set to it (probably a better way of doing this)
+
+tet_lc_2 <- tet_lc %>% 
+  filter(sciname %!in% tet_listed_dup$sciname)
+
+tet_listed_clean <- bind_rows(tet_lc_2, test)
 
 ```
+
+###Working with `no_record` dataset
+Now we can work on the other batch, the ones that did NOT match. 
+
 
