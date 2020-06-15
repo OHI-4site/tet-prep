@@ -15,7 +15,17 @@ library(mapview)
 library(mapedit)
 library(leaflet)
 library(rgeos)#needed for making a hole but there may be a better way to do this using sf
+library(raster)
 
+
+#file path setup
+
+goal     <- 'lsp'
+scenario <- 'v2020'
+dir_anx       <- file.path(dir_M, 'git-annex/globalprep') 
+dir_goal      <- file.path(here('prep/bd',goal, scenario))
+dir_goal_anx  <- file.path(dir_anx, goal, scenario)#this is to get the wdpa raster
+dir_github    <- '~/github/tet-prep'
 ```
 
 ##Creating polygons representing the motus
@@ -117,5 +127,24 @@ Write out buffer shapefile
 st_write(tet_buffer_3nm, "tet_buffer_3nm.shp")
 
 
+```
+
+Will need a raster version for layer prep (this code is repated in lsp prep, since I think it shows that the raster does not have :
+
+```{r}
+#source wdpa raster
+rast_wdpa <- raster::raster(file.path(dir_goal_anx, 'rast', 'wdpa_2020_moll_500m.tif')) #note: the numbers for this are 2019, does that seem right?
+
+#to convert into raster needs to be in an sp object instead sfc_POLYGON
+tet_buffer_3nm_sp <- as(tet_buffer_3nm,"Spatial")
+
+crop <- crop(rast_wdpa, extent(tet_buffer_3nm_sp), snap="out")
+tet_3nm_rast <- rasterize(tet_buffer_3nm_sp, crop)
+
+#mask wdpa if needed:
+
+wdpa_mask <- mask(x=crop, mask=tet_3nm_rast) #I think the warning you get here tells you that it doesn't have any protected areas/.
+
+plot(tet_3nm_rast) #not sure where these values came from 
 ```
 

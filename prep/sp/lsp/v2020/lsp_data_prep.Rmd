@@ -1,11 +1,11 @@
 ---
-title: 'OHI 2019: Lasting Special Places'
+title: 'OHI Tetiaroa: Lasting Special Places'
 author: "*Compiled on `r date()` by `r Sys.info()['user']`*"
 output:
   html_document:
     highlight: haddock
     includes:
-      in_header: '../../../workflow/templates/ohi_hdr.html'
+      in_header: '../../../workflow/templates/ohi_hdr.html' #this doesn't exist yet
     number_sections: yes
     theme: cerulean
     toc: yes
@@ -99,6 +99,9 @@ zonal_3nm =  file.path(dir_goal, 'int', 'zonal_stats_3nm.csv') #file path for fi
 ### point to the 3nm buffer created in the spatial prep - SHAPEFILE?
 tet_rgn_offshore3nm <- file.path(dir_github, '/spatial/shp/tet_buffer_3nm') 
 
+##global wdpa raster
+rast_wdpa <- raster::raster(file.path(dir_goal_anx, 'rast', 'wdpa_2020_moll_500m.tif'))
+
 # rgn_rast_list <- c(
 #   'zonal_3nm' = file.path(dir_zones, 'rgn_offshore3nm_mol_500mcell.tif'),
 #   'zonal_1km' = file.path(dir_zones, 'rgn_inland1km_mol_500mcell.tif'),
@@ -153,13 +156,6 @@ print(summary(stats_3nm))
 
 ```
 
-### Summary of zonal stats dataframes (1 km inland):
-
-``` {r}
-stats_1km <- read_csv(zonal_files['zonal_1km'])
-print(summary(stats_1km))
-```
-
 ### Summary of zonal stats dataframes (entire EEZ):
 
 ``` {r}
@@ -168,65 +164,54 @@ print(summary(stats_eez))
 ```
 
 ***
+Above not working great - code below shows that the wdpa raster probably does not intersect with the 3nm raster
 
-## Calculate protected area and total area by region
+```{r}
+#source wdpa raster
+rast_wdpa <- raster::raster(file.path(dir_goal_anx, 'rast', 'wdpa_2020_moll_500m.tif')) #note: the numbers for this are 2019, does that seem right?
 
-Grouping by rgn_id, the total number of cells per region is determined by summing cell counts across ALL years, including cells with year == NA (unprotected cells).  We can then determine the protected area for each year by looking at the cumulative sum of cells up to any given year.
+#to convert into raster needs to be in an sp object instead sfc_POLYGON
+tet_buffer_3nm_sp <- as(tet_buffer_3nm,"Spatial")
 
-Since the cells are 500 m on a side, we can easily calculate area by multiplying cell count * 0.25 km^2^ per cell.
+crop <- crop(rast_wdpa, extent(tet_buffer_3nm_sp), snap="out")
+tet_3nm_rast <- rasterize(tet_buffer_3nm_sp, crop)
 
-Finally we can calculate the status of a region for any given year by finding the ratio of protected:total and normalizing by the goal's target of 30% protected area.
+#mask wdpa if needed:
 
+wdpa_mask <- mask(x=crop, mask=tet_3nm_rast) #I think the warning you get here tells you that it doesn't have any protected areas/.
 
-``` {r summarize_zonal_stats, eval = FALSE}
-
-stats_3nm <- read_csv(zonal_files['zonal_3nm'])
-stats_1km <- read_csv(zonal_files['zonal_1km'])
-stats_eez <- read_csv(zonal_files['zonal_eez'])
-
-rgn_eez <- region_data() ##added this
-max_year <- max(c(stats_1km$year, stats_3nm$year, stats_eez$year), na.rm = TRUE)
-
-### Determine total cells per region (n_cells_tot) and then a cumulative
-### total of cells per region
-  
-#region_data() #use this function to call rgns_eez, which is called below in the function "calc_areas()"
-
-calc_areas <- function(stats_df) {
-  area_df <- stats_df %>%
-    group_by(rgn_id) %>%
-    mutate(n_cells_tot = sum(n_cells),
-           a_tot_km2   = n_cells_tot / 4) %>% 
-    filter(!is.na(year) & !is.na(rgn_id)) %>% 
-    mutate(n_cells_cum = cumsum(n_cells),
-            a_prot_km2  = n_cells_cum / 4) %>% 
-    complete(year = 2000:max_year) %>% 
-    ungroup() %>%
-    fill(-year, .direction = 'down') %>% 
-    select(-contains('cell')) %>%
-    distinct() %>%
-    left_join(rgns_eez, by = 'rgn_id') %>%
-    select(rgn_id:rgn_name)
-  
-  return(area_df)
-}
-
-prot_1km <- stats_1km %>%
-  calc_areas()
-
-prot_3nm <- stats_3nm %>%
-  calc_areas()
-
-prot_eez <- stats_eez %>%
-  calc_areas()
-
-write_csv(prot_3nm, file.path(dir_goal, 'int', 'area_protected_3nm.csv'))
-write_csv(prot_1km, file.path(dir_goal, 'int', 'area_protected_1km.csv'))
-write_csv(prot_eez, file.path(dir_goal, 'int', 'area_protected_eez.csv'))
-
+plot(tet_3nm_rast) #not sure where these values came from 
 ```
 
+***
 
+## Calculate region areas 
+
+``` {r calc_rgn_area, eval = FALSE}
+
+#buffered area
+area_3nm <- st_read(file.path(dir_github, 'spatial/shp'), layer = 'tet_buffer_3nm') %>% 
+  mutate(area_m2 = st_area(.),
+         area_km2 = area_m2/1000000) %>% 
+  separate(area_km2, into = c("area_km2", "units"), sep = " ") %>% 
+  dplyr::select(-area_m2, -units)
+
+#motus - these are all protected
+#calculate area
+area_motus <- st_read(file.path(dir_github, 'spatial/shp'), layer = 'tet_motus') %>% 
+  mutate(area_m2 = st_area(.),
+         area_km2 = area_m2/1000000) %>% 
+  separate(area_km2, into = c("area_km2", "units"), sep = " ") %>% 
+  dplyr::select(-area_m2, -units)
+
+#sum to find total
+
+area_motus_num <- as.numeric(area_motus$area_km2)
+
+total_motus <- sum(area_motus_num) #in km 2 
+
+
+```
 
 
 ***
@@ -261,162 +246,3 @@ a_prot_3nm <- write_lsp_layer(prot_3nm, c('year', 'a_prot_3nm'), 'lsp_prot_area_
 a_prot_1km <- write_lsp_layer(prot_1km, c('year', 'a_prot_1km'), 'lsp_prot_area_inland1km')
 
 ```
-
-Some goals require calculation of resilience nearshore (3nm) or entire EEZ.
-``` {r estimate status by year, eval = FALSE}
-
-area_ref = .30 ### 30% of area protected = reference point
-
-resil_3nm <- read_csv(file.path(dir_goal, 'int', 'area_protected_3nm.csv')) %>%
-  mutate(resilience.score = (a_prot_km2 / a_tot_km2) / area_ref,
-         resilience.score = ifelse(resilience.score > 1, 1, resilience.score))
-
-resil_eez <- read_csv(file.path(dir_goal, 'int', 'area_protected_eez.csv')) %>%
-  mutate(resilience.score = (a_prot_km2 / a_tot_km2) / area_ref,
-         resilience.score = ifelse(resilience.score > 1, 1, resilience.score))
-
-## Save resilience scores for 3 nm and EEZ data
-  tmp_3nm <- resil_3nm %>%
-    select(rgn_id, year, resilience.score)
-  write_csv(tmp_3nm, file.path(dir_goal, 'output', "mpa_3nm_resilience.csv"))
-
-  tmp_eez <- resil_eez %>%
-    select(rgn_id, year, resilience.score)
-  write_csv(tmp_eez, file.path(dir_goal, 'output', "mpa_eez_resilience.csv"))
-
-```
-
-***
-
-# Gapfill
-
-There was no gapfilling for these data. Created gapfill files with values of 0.
-
-```{r}
-library(dplyr)
-
-res_eez <- read.csv("output/mpa_eez_resilience.csv")%>%
-  mutate(resilience.score = 0) %>% 
-  rename(gapfilled = resilience.score)
-
-write.csv(res_eez, "output/mpa_eez_resilience_gf.csv", row.names=FALSE)
-
-res_3nm <- read.csv("output/mpa_3nm_resilience.csv")%>%
-  mutate(resilience.score = 0) %>% 
-  rename(gapfilled = resilience.score)
-
-write.csv(res_3nm, "output/mpa_3nm_resilience_gf.csv", row.names=FALSE)
-
-inland <- read.csv("output/lsp_prot_area_inland1km.csv") %>%
-  mutate(a_prot_1km = 0) %>% 
-  rename(gapfilled = a_prot_1km)
-
-write.csv(inland, "output/lsp_prot_area_inland1km_gf.csv", row.names=FALSE)
-
-offshore <- read.csv("output/lsp_prot_area_offshore3nm.csv") %>%
-  mutate(a_prot_3nm = 0)%>% 
-  rename(gapfilled = a_prot_3nm)
-
-write.csv(offshore, "output/lsp_prot_area_offshore3nm_gf.csv", row.names=FALSE)
-```
-
-***
-
-# Data checking
-
-Plot scores for 2020 vs 2019 assessment years
-
-* 2019 AY data goes through March (downloaded on April 1) 2019
-* 2020 AY data goes through March (downloaded on April 1) 2020
-
-``` {r plot_scores_vs_v2016, plotly = TRUE, eval = FALSE}
-
-library(ggplot2)
-#library(plotly)
-
-## Calculates this year and last year's coastal marine protected area ratio (CMPA/Ref-CMPA) for plotting
-status_3nm_new <- read_csv(file.path(dir_goal, 'output', 'lsp_prot_area_offshore3nm.csv')) %>%
-  full_join(read_csv(file.path(dir_goal, 'output', 'rgn_area_offshore3nm.csv')),
-            by = 'rgn_id') %>%
-  mutate(pct_prot_3nm_new = a_prot_3nm / area,
-         status_3nm_new   = pct_prot_3nm_new / 0.3,
-         status_3nm_new   = ifelse(status_3nm_new > 1, 1, status_3nm_new)) %>%
-  filter(year == max(year)) %>%
-  select(rgn_id, pct_prot_3nm_new, status_3nm_new)
-
-status_3nm_old <- read_csv(file.path(dir_goal, '../v2019/output', 'lsp_prot_area_offshore3nm.csv')) %>%
-  full_join(read_csv(file.path(dir_goal, 'output', 'rgn_area_offshore3nm.csv')),
-            by = 'rgn_id') %>%
-  mutate(pct_prot_3nm_old = a_prot_3nm / area,
-         status_3nm_old   = pct_prot_3nm_old / 0.3,
-         status_3nm_old   = ifelse(status_3nm_old > 1, 1, status_3nm_old)) %>%
-  filter(year == max(year)) %>%
-  select(rgn_id, pct_prot_3nm_old, status_3nm_old)
-
-## Calculates this year and last year's coastline protected ratio (CP/Ref-CP) for plotting
-status_1km_new <- read_csv(file.path(dir_goal, 'output', 'lsp_prot_area_inland1km.csv')) %>%
-  full_join(read_csv(file.path(dir_goal, 'output', 'rgn_area_inland1km.csv')),
-            by = 'rgn_id') %>%
-  mutate(pct_prot_1km_new = a_prot_1km / area,
-         status_1km_new   = pct_prot_1km_new / 0.3,
-         status_1km_new   = ifelse(status_1km_new > 1, 1, status_1km_new)) %>%
-  filter(year == max(year)) %>%
-  select(rgn_id, pct_prot_1km_new, status_1km_new)
-
-status_1km_old <- read_csv(file.path(dir_goal, '../v2019/output', 'lsp_prot_area_inland1km.csv')) %>%
-  full_join(read_csv(file.path(dir_goal, 'output', 'rgn_area_inland1km.csv')),
-            by = 'rgn_id') %>%
-  mutate(pct_prot_1km_old = a_prot_1km / area,
-         status_1km_old   = pct_prot_1km_old / 0.3,
-         status_1km_old   = ifelse(status_1km_old > 1, 1, status_1km_old)) %>%
-  filter(year == max(year)) %>%
-  select(rgn_id, pct_prot_1km_old, status_1km_old)
-
-lsp_new_old <- status_3nm_new %>%
-  full_join(status_3nm_old, by = c('rgn_id')) %>%
-  full_join(status_1km_new, by = c('rgn_id')) %>%
-  full_join(status_1km_old, by = c('rgn_id')) %>%
-  mutate(status_old = (status_3nm_old + status_1km_old) / 2,
-         status_new = (status_3nm_new + status_1km_new) / 2) %>%
-  gather(rgn, score_new, contains('new')) %>%
-  gather(rgn_old, score_old, contains('old')) %>% 
-  mutate(rgn = str_replace(rgn, '_new', ''),
-         rgn_old = str_replace(rgn_old, '_old', ''),
-         score_new = round(score_new, 3),
-         score_old = round(score_old, 3)) %>%
-  filter(rgn_id <= 250) %>%
-  filter(rgn == rgn_old) %>%
-  select(-rgn_old) %>%
-  left_join(rgns_eez, by = 'rgn_id') %>%
-  select(rgn_id:rgn_name)
-  
-lsp_status_plot <- ggplot(lsp_new_old, 
-                        aes(x = score_old, y = score_new, key = rgn_name)) +
-  geom_point(alpha = .6) +
-  theme(legend.position = 'none') +
-  geom_abline(slope = 1, intercept = 0, color = 'red') +
-  labs(x = 'LSP status v2019 (data through March 2020)',
-       y = 'LSP status v2020 (data through March 2020)',
-       title = 'Comparing LSP status: 2020 vs 2019') +
-  facet_wrap( ~ rgn)
-
-lsp_status_plot #got rid of ggplotly
-
-ggsave(file.path(dir_goal, 'Figs/plot_v2019_v2020.png'), 
-       plot = lsp_status_plot, height = 4.5, width = 6)
-
-x <- lsp_new_old %>%
-  mutate(diff = score_new - score_old) %>%
-  filter(rgn == 'status' & abs(diff) > 0.05)
-
-write.csv(x, "output/major_changes_2020.csv" ) #added this so I could come back to it without rerunning everything
-```
-
-
-***
-
-``` {r results = 'asis'}
-# prov_wrapup()
-```
-
-
