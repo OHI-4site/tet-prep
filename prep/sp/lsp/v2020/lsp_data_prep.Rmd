@@ -94,12 +94,7 @@ Comparing the global WDPA raster to the 3 nautical miles offshore and 1 km inlan
 
 ``` {r lsp_zonal_stats, eval = FALSE}
 
-zonal_files <- c('zonal_3nm' =  file.path(dir_goal, 'int', 'zonal_stats_3nm.csv'),
-                 'zonal_1km' =  file.path(dir_goal, 'int', 'zonal_stats_1km.csv'),
-                 'zonal_eez' =  file.path(dir_goal, 'int', 'zonal_stats_eez.csv'))
-
-rast_wdpa <- raster::raster(file.path(dir_goal_anx, 'rast', 'wdpa_2020_moll_500m.tif'))
-
+zonal_3nm =  file.path(dir_goal, 'int', 'zonal_stats_3nm.csv') #file path for finished cross tabulation
 
 ### point to the 3nm buffer created in the spatial prep - SHAPEFILE?
 tet_rgn_offshore3nm <- file.path(dir_github, '/spatial/shp/tet_buffer_3nm') 
