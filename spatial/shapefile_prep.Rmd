@@ -42,7 +42,7 @@ Still missing lines - try using `mapedit` to add lines
 
 #try the way I found online with editmap
 
-tet_lines_miss <- mapview(tet_shore_2) %>%
+tet_lines_miss <- mapview(tet_shore) %>%
   editMap("tet_shore_2")
 
 
@@ -70,7 +70,11 @@ tet_motus <- st_cast(st_polygonize(st_union(tet_shore)))
 
 mapview(tet_motus)
 
-#yay this worked! #class is "sfc_polygon" "sfc"
+#yay this worked! class is "sfc_polygon" "sfc"
+
+#transform to Mollweide
+
+tet_motus_xformed <- st_transform(tet_motus, crs = '+proj=moll +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs')
 
 ```
 
@@ -81,6 +85,7 @@ Write out shapefile:
 
 st_write(tet_motus, "tet_motus.shp" ) #moved this to int folder
 
+st_write(tet_motus_xformed, "tet_motus_xformed.shp")
 ```
 
 
@@ -93,7 +98,12 @@ Next step is to create shapefiles representing marine space.
 
 ```{r}
 
+#apply a 3nm buffer, and use union to create on shapefile
 
+tet_ocean <- st_union(st_buffer(tet_motus_xformed, 5556)) #question how to make sure that dist is in the right units?
+
+mapview(tet_ocean)+
+  mapview(tet_motus_xformed, col.regions = "green")
 
 ```
 
