@@ -14,6 +14,7 @@ library(here)
 library(mapview)
 library(mapedit)
 library(leaflet)
+library(rgeos)#needed for making a hole but there may be a better way to do this using sf
 
 ```
 
@@ -83,7 +84,7 @@ Write out shapefile:
 
 ```{r}
 
-st_write(tet_motus, "tet_motus.shp" ) #moved this to int folder
+st_write(tet_motus, "tet_motus.shp" ) #moved this to shp
 
 st_write(tet_motus_xformed, "tet_motus_xformed.shp")
 ```
@@ -100,10 +101,21 @@ Next step is to create shapefiles representing marine space.
 
 #apply a 3nm buffer, and use union to create on shapefile
 
-tet_ocean <- st_union(st_buffer(tet_motus_xformed, 5556)) #question how to make sure that dist is in the right units?
+tet_buffer_3nm <- st_union(st_buffer(tet_motus_xformed, 5556)) 
+  #question how to make sure that dist is in the right units?
 
-mapview(tet_ocean)+
+#tet_ocean <- st_difference(tet_buffer, tet_motus_xformed) #this didn't work, maybe intersection?
+
+
+mapview(tet_buffer)+
   mapview(tet_motus_xformed, col.regions = "green")
+
+```
+
+Write out buffer shapefile
+```{r}
+st_write(tet_buffer_3nm, "tet_buffer_3nm.shp")
+
 
 ```
 
