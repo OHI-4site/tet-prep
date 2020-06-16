@@ -210,6 +210,8 @@ area_motus_num <- as.numeric(area_motus$area_km2)
 
 total_motus <- sum(area_motus_num) #in km 2 
 
+#lagoon
+
 
 ```
 
