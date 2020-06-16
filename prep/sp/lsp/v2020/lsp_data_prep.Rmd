@@ -41,7 +41,6 @@ where:
 
 # Setup
 
-
 ```{r, include=FALSE}
 knitr::opts_chunk$set(eval = FALSE)
 ```
@@ -136,13 +135,6 @@ rgn_rast_list <- rgn_rast_list[!file.exists(zonal_files)]
   
 ### Processing & saving zonal statistics for a single raster 
 x <- lsp_crosstab(rgn_rast_list[1], rast_values = rast_wdpa) #~20 minutes to run #3nm
-y <- lsp_crosstab(rgn_rast_list[2], rast_values = rast_wdpa) #19 minutes to run #1km
-z <- lsp_crosstab(rgn_rast_list[3], rast_values = rast_wdpa) #~1hr minutes to run #eez
-
-## Save these files to the int folder
-write_csv(x, zonal_files_to_run[1])
-write_csv(y, zonal_files_to_run[2])
-write_csv(z, zonal_files_to_run[3])
 
 ```
 

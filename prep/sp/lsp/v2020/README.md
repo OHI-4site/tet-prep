@@ -8,6 +8,6 @@ Click on the layers to see data preparation:
 
 #### Layers Created
 
-- Layer_name [short description]
-- Layer_name [short description]
+- `rgn_area_offshore_3nm`: total area of the motus plus 3nm offshore from each
+- `lsp_prot_area_1km`: total land area of motus, which we know are protected
 
