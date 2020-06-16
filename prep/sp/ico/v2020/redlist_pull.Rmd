@@ -263,6 +263,7 @@ The toolbox wants `rgn_id`, species `sciname`, and extinction risk category for 
 
 - `ico_spp_iucn_status.csv`: rgn_id,sciname,iucn_sid,year,eval_yr,category
 
+Bind scinames, rgn_id vector, and eval_year vector to this dataframe
 ```{r}
 
 ico_spp_iucn_status <- read_csv(file.path(dir_goal, "int/tet_ico_history.csv"))
