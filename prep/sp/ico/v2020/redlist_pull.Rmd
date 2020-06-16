@@ -87,7 +87,10 @@ rl_occ_country("Eretmochelys imbricata", key = api_key)
 
 ##Part 2: Using the entire IUCN dataset, instead of filtering by country
 
-Decided to start here instead of making a bunch of different datasets and then joining them. Seems simpler. 
+Using the IUCN API, we accessed the full IUCN species list at http://apiv3.iucnredlist.org/api/v3/speciescount?token=. With some minor formatting, this list contains the following variables:
+
+iucn_sid | kingdom | phylum | class | order | family | genus | sciname | population | category
+
 
 ```{r}
 ## get a dataframe of all iucn redlist species
@@ -127,11 +130,11 @@ So far, have created the following dfs:
 - `tet_species_iucn_fp` is all the species that matched what was pulled from the IUCN French Polynesia list
 - `tet_species_missing_fp` is all the species that were missing from the IUCN French Polynesia list but were included in Tetiaroa's species list
 - `tet_listed` is all the species that were matched using the entire IUCN dataset, which gets us up to 86 - a bunch of duplicates though, need to filter out by range
-- `no_record` includes all the species we still can't match. This list is probably a result of differeces in spelling as there are many species on there that should be in the IUCN, like humpback whale, spotted eagle ray, and olive ridley's turtle. 
+- `no_record` includes all the species we still can't match. This list is probably a result of differences in spelling as there are many species on there that should be in the IUCN, like humpback whale, spotted eagle ray, and olive ridley's turtle. 
 
-##Working with `tet_listed` dataset
+###Working with `tet_listed` dataset
 
-This dataset needs to be cleaned up and filtered out for the subpopulations we are interested in, since the IUCN category differs for them. 
+This dataset needs to be cleaned up and filtered out for the sub-populations we are interested in, since the IUCN category differs for them. 
 
 ```{r}
 
@@ -205,5 +208,16 @@ tet_ico_all <- bind_rows(tet_listed_ico,missing_ico_clean) %>%
 
 ```
 
+## Historic threat
+
+We accessed the IUCN API to determine past IUCN assessments for each of the identified iconic species: http://apiv3.iucnredlist.org/api/v3/species/history/id/?token=.
+
+Each assessment includes a year and an extinction risk, along with additional information on the assessment.
+
+```{r}
+
+
+
+```
 
 
