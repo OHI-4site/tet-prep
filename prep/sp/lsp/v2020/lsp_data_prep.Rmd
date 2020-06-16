@@ -178,7 +178,7 @@ tet_3nm_rast <- rasterize(tet_buffer_3nm_sp, crop)
 
 #mask wdpa if needed:
 
-wdpa_mask <- mask(x=crop, mask=tet_3nm_rast) #I think the warning you get here tells you that it doesn't have any protected areas/.
+wdpa_mask <- mask(x=crop, mask=tet_3nm_rast) #I think the warning you get here tells you that it doesn't have any protected areas since this is empty.
 
 plot(tet_3nm_rast) #not sure where these values came from 
 ```
@@ -187,15 +187,30 @@ plot(tet_3nm_rast) #not sure where these values came from
 
 ## Calculate region areas 
 
+Total area
 ``` {r calc_rgn_area, eval = FALSE}
 
-#buffered area
-area_3nm <- st_read(file.path(dir_github, 'spatial/shp'), layer = 'tet_buffer_3nm') %>% 
+#buffered area = total area of offshore and onshore we are interested in
+calc_area_3nm <- st_read(file.path(dir_github, 'spatial/shp'), layer = 'tet_buffer_3nm') %>% 
   mutate(area_m2 = st_area(.),
          area_km2 = area_m2/1000000) %>% 
   separate(area_km2, into = c("area_km2", "units"), sep = " ") %>% 
   dplyr::select(-area_m2, -units)
 
+area_3nm <- as.numeric(calc_area_3nm$area_km2)
+
+#create data frame
+
+rgn_area_offshore_3nm <- data.frame(rgn_id = 1, area = area_3nm)
+
+#export to outputs folder
+
+write_csv(rgn_area_offshore_3nm, file.path(dir_github, 'prep/sp/lsp/v2020/output/rgn_area_area_offshore3nm'))
+```
+
+
+Protected area
+``` {r calc_prot_area, eval = FALSE}
 #motus - these are all protected
 #calculate area
 area_motus <- st_read(file.path(dir_github, 'spatial/shp'), layer = 'tet_motus') %>% 
@@ -206,12 +221,19 @@ area_motus <- st_read(file.path(dir_github, 'spatial/shp'), layer = 'tet_motus')
 
 #sum to find total
 
-area_motus_num <- as.numeric(area_motus$area_km2)
+area_motus_tot <- sum(as.numeric(area_motus$area_km2))
 
-total_motus <- sum(area_motus_num) #in km 2 
+#create data frame -not sure when no take zone was est so will just use global range 2000 - 2019
 
-#lagoon
+years <- seq(2000,2019,1)
 
+lsp_prot_area_1km <- data.frame(rgn_id = rep(1, length(years)), 
+                                year = years, 
+                                area = rep(area_motus_tot, length(years))) #missing years
+
+#lagoon - half of this is protected with a no take zone. We'll come back to this
+
+write_csv(lsp_prot_area_1km, file.path(dir_github, 'prep/sp/lsp/v2020/output/lsp_prot_area_1km'))
 
 ```
 
