@@ -50,7 +50,7 @@ Filter out species we want for Tetiaroa:
 ```{r}
 #read in csv with list of tet species
 
-tet_species <- read_csv(here("./prep/bd/spp/v2020/raw_data", "tet_species.csv"))%>%
+tet_species <- read_csv(here("./prep/sp/ico/v2020/raw_data", "tet_species.csv"))%>%
   clean_names() %>% 
   mutate(
     scientific_name = str_to_lower(scientific_name)
@@ -59,7 +59,7 @@ tet_species <- read_csv(here("./prep/bd/spp/v2020/raw_data", "tet_species.csv"))
 tet_species_iucn <- spp_fp %>% 
   filter(scientific_name %in% tet_species$scientific_name)
 
-tet_species_iucn <- inner_join(tet_species_iucn,tet_species, by = "scientific_name") %>%  dplyr::select(iucn_sid, scientific_name,category.x,name,ico)
+tet_species_iucn_fp <- inner_join(tet_species_iucn,tet_species, by = "scientific_name") %>%  dplyr::select(iucn_sid, scientific_name,category.x,name,ico)
 
 ```
 
@@ -85,7 +85,8 @@ rl_occ_country("Eretmochelys imbricata", key = api_key)
 
 ```
 
-##Part 2: Using the entire IUCN dataset
+##Part 2: Using the entire IUCN dataset, instead of filtering by country
+
 Decided to start here instead of making a bunch of different datasets and then joining them. Seems simpler. 
 
 ```{r}
@@ -112,7 +113,7 @@ filter(sciname %in% tet_species$scientific_name)
 
 #this only has 86 obs, improvement from before
 
-not_in_iunc <- setdiff(tet_species$scientific_name, tet_not_listed$sciname) 
+not_in_iunc <- setdiff(tet_species$scientific_name, tet_listed$sciname) 
 
 no_record <- tet_species %>% 
   dplyr::filter(scientific_name %in% not_in_iunc) #49 observations
@@ -123,7 +124,7 @@ no_record <- tet_species %>%
 ```
 
 So far, have created the following dfs:
-- `tet_species_iucn` is all the species that matched what was pulled from the IUCN French Polynesia list
+- `tet_species_iucn_fp` is all the species that matched what was pulled from the IUCN French Polynesia list
 - `tet_species_missing_fp` is all the species that were missing from the IUCN French Polynesia list but were included in Tetiaroa's species list
 - `tet_listed` is all the species that were matched using the entire IUCN dataset, which gets us up to 86 - a bunch of duplicates though, need to filter out by range
 - `no_record` includes all the species we still can't match. This list is probably a result of differeces in spelling as there are many species on there that should be in the IUCN, like humpback whale, spotted eagle ray, and olive ridley's turtle. 
@@ -152,9 +153,57 @@ tet_lc_2 <- tet_lc %>%
 
 tet_listed_clean <- bind_rows(tet_lc_2, test)
 
+#61 matched species
+
+tet_listed_info <- tet_species %>% 
+  dplyr::select(name, sciname = scientific_name)
+
+tet_listed_ico <- inner_join(tet_listed_info, tet_listed_clean, by = "sciname")
+
 ```
 
 ###Working with `no_record` dataset
-Now we can work on the other batch, the ones that did NOT match. 
+
+Now we can work on the other batch, the ones that did NOT match. While 61 iconic species is plenty, there are a few key species we want to add that seem like obvious oversights. These include:  
+
+- **Humpback whale**: iucn spells it "megaptera novaeangliae", which is the same? IUCN id = 132832
+- **Melon headed whale**: misspelled IUCN id = 16564
+- **Olive Ridley sea turtle**: misspelled IUCN id = 11534
+- **Clown fish**: correct spelling, species specific to Tetiaroa not included in IUCN data set
+- **Spotted eagle ray**: spelled "aetobatus narinari", IUCN ID = 39415
+- **Pink whipray**: not found in IUCN data set
+- **Strawberry hermit crab**: spelled correctly, not included
+- **Christmas tree worm**: not included
+
+```{r}
+
+#create vector of the ids we want
+iucn_sid <- c(132832, 16564, 11534, 39415) 
+names <- c("humpback whale", "melon-headed whale", "olive ridley sea turtle", "spotted eagle ray")
+
+miss_info <- data.frame(iucn_sid,names)
+
+#filter entire IUCN dataset, match columns to tet_listed_clean
+missing_ico <- all_df_comp %>% 
+  filter(iucn_sid %in% miss_ids) %>% 
+  dplyr::select(iucn_sid, sciname, population, category)
+
+#join to common names
+
+missing_ico_clean <- inner_join(miss_info,missing_ico, by = "iucn_sid") %>% 
+  dplyr::select(name = names, sciname, iucn_sid, population, category)
+```
+
+Last step is to bind missing iconic species to the listed ones: 
+
+```{r}
+
+tet_ico_all <- bind_rows(tet_listed_ico,missing_ico_clean) %>% 
+  mutate(
+    name = str_to_lower(name)
+  )
+
+```
+
 
 

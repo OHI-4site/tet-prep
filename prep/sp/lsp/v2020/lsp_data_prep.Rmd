@@ -87,7 +87,7 @@ Two output files are required:
 
 ***
 
-## Compute zonal statistics for 3nm offshore motus
+## Compute zonal statistics for 3nm offshore motus - NOTE TO DELETE THIS IF NOT NECESSARY
 
 Comparing the global WDPA raster to the 3 nautical miles offshore and 1 km inland rasters, we can tally the protected area within each region and compare to the total area within each region.  Note each cell is 500 m x 500 m, so area is .25 km^2^, but since we are simply calculating a ratio, this cancels out.
 
