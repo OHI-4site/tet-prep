@@ -1,0 +1,66 @@
+name,sciname,iucn_sid,population,category
+brown booby,sula leucogaster,22696698,NA,LC
+red footed booby,sula sula,22696694,NA,LC
+white common tern,gygis alba,22694821,NA,LC
+great frigate bird,fregata minor,22697733,NA,LC
+lesser frigate bird,fregata ariel,22697738,NA,LC
+bristle thighed curley,numenius tahitiensis,22693182,NA,VU
+pacific reef egret,egretta sacra,22696980,NA,LC
+pacific golden plover,pluvialis fulva,22693735,NA,LC
+wandering tattler,tringa incana,22693305,NA,LC
+spotted pufferfish,arothron meleagris,193662,NA,LC
+peppered moray eel,gymnothorax pictus,195775,NA,LC
+blotch-eye soldier firsh,myripristis murdjan,67871036,NA,LC
+striated surgeonfish,ctenochaetus striatus,178012,NA,LC
+bullethead parrotfish,chlorurus sordidus,190715,NA,LC
+giant squirrelfish,sargocentron spiniferum,67903042,NA,LC
+common parrotfish,scarus psittacus,190736,NA,LC
+moorish idol,zanclus cornutus,69741115,NA,LC
+starry pufferfish,arothron stellatus,193712,NA,LC
+peacock grouper,cephalopholis argus,132781,NA,LC
+lemonpeel angelfish,centropyge flavissima,165878,NA,LC
+threadfin butterfly fish,chaetodon auriga,165631,NA,LC
+racoon butterflyfish,chaetodon lunula,165651,NA,LC
+honeycomb grouper,epinephelus merra,132788,NA,LC
+goldlined emperor,gnathodentex aureolineatus,16719296,NA,LC
+milk fish,chanos chanos,60324,NA,LC
+giant jack,caranx ignobilis,20430651,NA,LC
+orangespine unicornfish,naso lituratus,177950,NA,LC
+bluestreak cleaner wrasse,labroides dimidiatus,187396,NA,LC
+sixbar wrasse,thalassoma hardwicke,187559,NA,LC
+yellowbanded pipefish,corythoichthys flavofasciatus,65364818,NA,LC
+silver squirrelfish,neoniphon argenteus,67871143,NA,LC
+giant moray,gymnothorax javanicus,195741,NA,LC
+blackblotch lizardfish,synodus jaculum,67853451,NA,LC
+helmet gurnard,dactyloptena orientalis,50903234,NA,LC
+yellowstripe goatfish,mulloidichthys flavolineatus,50903119,NA,LC
+barred jack,carangoides ferdau,20429455,NA,LC
+yellow-margined snapper,lutjanus fulvus,194377,NA,LC
+dot-dashed goatfish,parupeneus barberinus,69181941,NA,LC
+pennant bannerfish,heniochus chrysostomus,165640,NA,LC
+slingjaw wrasse,epibulus insidiator,187722,NA,LC
+spotted surgeonfish,acanthurus guttatus,177995,NA,LC
+bluespine unicornfish,naso unicornis,177970,NA,LC
+blacktip reef shark,carcharhinus melanopterus,39375,NA,NT
+lemon shark,negaprion acutidens,42834,Southeast Asia subpopulation,EN
+manta ray,mobula alfredi,195459,NA,VU
+short-finned pilot whale,globicephala macrorhynchus,9249,NA,LC
+rough-toothed dolphin,steno bredanensis,20738,NA,LC
+spinner dolphin,stenella longirostris,20733,NA,LC
+blainville's beaked whale,mesoplodon densirostris,13244,NA,DD
+hawksbill turtle,eretmochelys imbricata,8005,NA,CR
+green turtle,chelonia mydas,16285718,Hawaiian subpopulation,LC
+leatherback turtle,dermochelys coriacea,46967807,East Pacific Ocean subpopulation,CR
+loggerhead turtle,caretta caretta,84156809,South Pacific subpopulation,CR
+coconut crab,birgus latro,2811,NA,DD
+day octopus,octopus cyanea,163055,NA,LC
+clam,tridacna maxima,22138,NA,LR/cd
+lobe coral,porites lobata,133216,NA,NT
+staghorn coral,acropora striata,133291,NA,VU
+knob-horned coral,pocillopora verrucosa,133197,NA,LC
+fire coral,millepora platyphylla,133595,NA,LC
+sea cucumber,holothuria atra,180421,NA,LC
+humpback whale,megaptera novaeangliae,132832,Oceania subpopulation,EN
+melon-headed whale,peponocephala electra,16564,NA,LC
+olive ridley sea turtle,lepidochelys olivacea,11534,NA,VU
+spotted eagle ray,aetobatus narinari,39415,NA,NT
