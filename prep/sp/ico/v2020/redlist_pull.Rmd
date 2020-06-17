@@ -265,11 +265,23 @@ The toolbox wants `rgn_id`, species `sciname`, and extinction risk category for 
 
 Bind scinames, rgn_id vector, and eval_year vector to this dataframe
 ```{r}
+#read in data from int folders
+ico_spp_iucn <- read_csv(file.path(dir_goal, "int/tet_ico_history.csv")) %>%
+  dplyr::select(iucn_sid = name, year = result.year, category = result.code)
 
-ico_spp_iucn_status <- read_csv(file.path(dir_goal, "int/tet_ico_history.csv"))
-  
-ico_spp_iucn_status <- rename(iucn_sid = name, year = result.year, category = result.code) #why isn't this working??
+tet_ico_all <- read_csv(file.path(dir_goal, "int/tet_ico_all.csv")) %>% 
+  dplyr::select(sciname, iucn_sid)
 
+rgn_id <- rep(1, length(ico_spp_iucn_status$iucn_sid))
+eval_year <- rep(2019, length(ico_spp_iucn_status$iucn_sid))
+
+#bind and join them all up
+
+ico_spp_iucn_status <- data.frame(rgn_id,ico_spp_iucn,eval_year) %>% 
+  inner_join(., tet_ico_all, by = "iucn_sid")
+
+#write csv
+write_csv(ico_spp_iucn_status, file.path(dir_goal, "output/ico_spp_iucn_status.csv"))
 
 
 ```
