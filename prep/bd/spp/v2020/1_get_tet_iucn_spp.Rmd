@@ -56,10 +56,11 @@ Read in files that contain all the species ranges and information
 ```{r}
 
 # .csv file that lists all species and the file path to their map
-spp_maps <- read_csv('~/github/spp_risk_dists/_data/spp_marine_maps_2018-1.csv',
+spp_maps <- read_csv('~/github/spp_risk_dists/_data/spp_marine_maps_2019-2.csv',
                      col_types = 'ddciccc')
+
 #file with species information to link to iucn_sid at the end
-spp_info <- read_csv("/home/ohara/git-annex/spp_risk_dists/iucn/spp_info_from_api_2018-1.csv")#is this the right file path or is it in the repo I forked also?
+spp_info <- read_csv("/home/ohara/git-annex/spp_risk_dists/iucn/spp_info_from_api_2019-2.csv")
 
 ```
 
