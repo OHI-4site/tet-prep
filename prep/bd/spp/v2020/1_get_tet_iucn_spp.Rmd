@@ -95,7 +95,7 @@ for(i in seq_along(taxa)) { ### i <- 5
                                         y <- read_csv(f, col_types = 'di') %>%
                                           mutate(iucn_sid = x) %>%
                                           select(-presence)  %>%
-                                          filter(cell_id %in% ne_cells)
+                                          filter(cell_id %in% tet_cells)
                                       } else {
                                         y <- data.frame(cell_id = NA,
                                                         iucn_sid = x, 
@@ -109,12 +109,22 @@ for(i in seq_along(taxa)) { ### i <- 5
     taxa_cells_list[[i]] <- spp_cells
 }
 
-taxa_cells_list[[3]]
+taxa_cells_list[[3]] #was using to just look at a few
 taxa_cells_df <- taxa_cells_list %>%
     bind_rows()
     #filter(!is.na(cell_id))
     # select(iucn_sid) %>%
     # distinct() %>%
     # left_join(spp_info) #these all came out Na, so this df is empty 
+```
+
+Since nothing is coming up in this, check out a few specific range maps that we know should overlap with this region - try humpback whales (next try terrestrial?)
+
+```{r}
+
+humpback_whale <- spp_maps %>% 
+  filter(iucn_sid == 13006)
+
+plot(humpback_whale$dbf_file)
 ```
 
