@@ -5,6 +5,11 @@ date: "6/4/2020"
 output: html_document
 ---
 
+#Summary
+
+Script for initial pull red list categorizations using list from Tetiaroa Society . Thanks to Gage Clawson for helping out with the RRedlist package!
+
+#Set up
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(rredlist)
@@ -39,12 +44,12 @@ dir_github    <- '~/github/tet-prep'
 tet_species <- read_csv(here("./prep/sp/ico/v2020/raw_data", "tet_species.csv"))%>%
   clean_names() %>% 
   mutate(
-    scientific_name = str_to_lower(scientific_name)
+    scientific_name = str_to_lower(scientific_name) #for easier matching, will also do on the redlist df
   )
 ```
-**Summary** Script for initial pull red list categorizations using list from Tetiaroa Society 
 
-##Filtering Redlist by Location (French Polynesia)
+
+##Part 1: Filtering Redlist by Location (French Polynesia)
 Get US Minor French Polynesia species 
 ```{r}
 spp_country_url <- 'http://apiv3.iucnredlist.org/api/v3/country/getspecies/id/%s?token=%s'

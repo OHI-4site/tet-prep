@@ -32,6 +32,9 @@ if (Sys.info()[['sysname']] != 'Linux' & !file.exists(dir_M)){
 ## standard projection for OHI global data
 mollCRS=raster::crs('+proj=moll +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +units=m +no_defs')
 
+## Tetiaroa spatial files
+
+tet_buffer_3nm  <- sf::st_read(dsn = here('/spatial/shp'),layer = 'tet_buffer_3nm', quiet = T) #need to use path.expand because readOGR does not read '~'
 
 ## OHI region files
 

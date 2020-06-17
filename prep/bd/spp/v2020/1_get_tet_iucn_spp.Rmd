@@ -1,0 +1,120 @@
+---
+title: '"Getting IUCN species for tet region"'
+output: html_document
+---
+
+#Summary 
+
+This script compares the shapefile of Tetiaroa and its surrounding waters to the species range map shapefiles from the IUCN to extract all the species in this area. Methods match `1_get_ne_iucn_spp.Rmd` by Jamie Montgomery, OHI Northeast, and also use data and code developed by Casey O'Hara: https://github.com/madelinemberger/spp_risk_dists.
+
+#Set up
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(sf)
+library(raster)
+#library(rfishbase) #included in ne, may not need
+library(rredlist)
+library(taxize)
+library(here)
+
+source(here('workflow/R/common.R'))
+
+#tetiaroa region shape file
+tet_shp <- tet_buffer_3nm
+
+```
+
+#Methods
+
+First step is to get a list of the cell IDs contained in the tet_region
+
+```{r}
+
+#these are global cell ids in raster format pulled from the spp_risk_dists repo.
+cells <- raster("~/github/spp_risk_dists/_spatial/cell_id_rast.tif") #resolution is 10 km - is this too big? the area of this shp is 259 km2
+
+#reproject shapefile to the same crs as the raster, which is WGS84
+
+tet_reproj <- st_transform(tet_shp, crs = "+proj=cea +lon_0=0 +lat_ts=45 +x_0=0 +y_0=0 +ellps=WGS84
++units=m +no_defs")
+
+plot(cells)
+plot(tet_reproj, add = T)
+
+#use extract to get the region ids for just the Tetiaroa area
+
+tet_cells <- raster::extract(cells, tet_reproj) %>% 
+  unlist() #this creates a vector out of the list from extract
+
+```
+
+Read in files that contain all the species ranges and information
+
+```{r}
+
+# .csv file that lists all species and the file path to their map
+spp_maps <- read_csv('~/github/spp_risk_dists/_data/spp_marine_maps_2018-1.csv',
+                     col_types = 'ddciccc')
+#file with species information to link to iucn_sid at the end
+spp_info <- read_csv("/home/ohara/git-annex/spp_risk_dists/iucn/spp_info_from_api_2018-1.csv")#is this the right file path or is it in the repo I forked also?
+
+```
+
+The following forloop goes through each species:  
+- finds it's species path
+- reads in the species .csv that lists all global cells where it is found
+- filters that list to just those in the Northeast
+- returns an aggregated dataframe (`taxa_cells_df`) with all species scientific names, their unique ids (sids), and cellIDs
+
+```{r}
+
+#grab each taxa's folder filepath
+taxa <- spp_maps$dbf_file %>% 
+  unique() %>% 
+  str_replace('\\....$', '')
+
+#create an empty list that is the length of all taxa. We are going to fill this list  
+taxa_cells_list <- vector('list', length = length(taxa))
+
+#for each taxa, grab the species map (raster) and filter to only keep those cells in the northeast.
+for(i in seq_along(taxa)) { ### i <- 5
+    taxon <- taxa[i]
+    print(i)
+    spp_ids_in_taxon <- spp_maps %>%
+      filter(str_detect(dbf_file, taxon)) %>%
+      .$iucn_sid
+    cat(sprintf('processing %s spp in %s...\n', length(spp_ids_in_taxon), taxon)) #help with this, message?
+    
+    spp_cells <- parallel::mclapply(spp_ids_in_taxon, mc.cores = 32,
+                                    FUN = function(x) { ### x <- spp_ids_in_taxon[1]
+                                      f <- file.path('/home/ohara/git-annex/spp_risk_dists/spp_rasters',
+                                                     sprintf('iucn_sid_%s.csv', x))
+                                      if(file.exists(f)) {
+                                        y <- read_csv(f, col_types = 'di') %>%
+                                          mutate(iucn_sid = x) %>%
+                                          select(-presence)  %>%
+                                          filter(cell_id %in% ne_cells)
+                                      } else {
+                                        y <- data.frame(cell_id = NA,
+                                                        iucn_sid = x, 
+                                                        f = f, error = 'file not found')
+                                      }
+                                      return(y)
+                                    }) %>%
+      bind_rows() %>%
+      mutate(spp_gp = taxon)
+    
+    taxa_cells_list[[i]] <- spp_cells
+}
+
+taxa_cells_list[[3]]
+taxa_cells_df <- taxa_cells_list %>%
+    bind_rows()
+    #filter(!is.na(cell_id))
+    # select(iucn_sid) %>%
+    # distinct() %>%
+    # left_join(spp_info) #these all came out Na, so this df is empty 
+```
+
