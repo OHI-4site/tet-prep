@@ -14,7 +14,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 library(sf)
 library(raster)
-#library(rfishbase) #included in ne, may not need
+library(rfishbase) #included in ne, may not need
 library(rredlist)
 library(taxize)
 library(here)
@@ -24,6 +24,13 @@ source(here('workflow/R/common.R'))
 
 #tetiaroa region shape file
 tet_shp <- tet_buffer_3nm
+
+
+# api keys for IUCN 
+
+api_file <- file.path(dir_M, 'git-annex/globalprep/spp', 
+                      'api_key_gc.csv')
+api_key <- scan(api_file, what = 'character')
 
 ```
 
@@ -113,20 +120,64 @@ for(i in seq_along(taxa)) { ### i <- 5
 
 taxa_cells_list[[3]] #was using to just look at a few
 taxa_cells_df <- taxa_cells_list %>%
-    bind_rows() %>%
-    filter(!is.na(cell_id)) %>%
-    select(iucn_sid) %>%
+    bind_rows() %>% 
+    filter(!is.na(cell_id)) %>% 
+    select(iucn_sid) %>% 
     distinct() %>%
     left_join(spp_info) #these all came out Na, so this df is empty 
 ```
 
-Since nothing is coming up in this, check out a few specific range maps that we know should overlap with this region - try humpback whales (next try terrestrial?)
-
+Small note on looking at species maps - use filepath?
 ```{r}
 
 humpback_whale <- spp_maps %>% 
   filter(iucn_sid == 13006)
 
 plot(humpback_whale$dbf_file)
+```
+
+Attach common names
+
+```{r}
+#create list of scintific names of species
+
+scinames <- taxa_cells_df$sciname
+
+#create loop around redlist function rl_search to find common names  
+#create empty data frame that will be filled
+iucn_common_names <- data.frame() 
+
+for(i in 1:length(scinames)){
+  sp <- scinames[i]
+  print(i)
+  if(sp %in% c("Procelsterna cerulea")){ #this one threw some error and no $result was returned from rl_search
+  comm <- NA
+  }else{
+  comm <- rredlist::rl_search(sp, key = api_key )$result$main_common_name
+  }
+  
+  df <- data.frame(sciname = sp,
+                   common = comm)
+  
+  iucn_common_names <- rbind(iucn_common_names, df) %>%
+    mutate(common = as.character(common),
+         sciname = as.character(sciname))
+}
+
+#had to remove blue noddy because it was causing an error
+
+```
+
+Check out the ones we are still missing for common name
+
+```{r}
+
+miss_sp <- sp <- iucn_common_names %>%
+  filter(is.na(common))  %>%
+  select(sciname)
+
+
+fb_list <- species(miss_sp$sciname) %>% #this did not run
+  select(Species, FBname)
 ```
 
