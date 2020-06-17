@@ -18,6 +18,7 @@ library(raster)
 library(rredlist)
 library(taxize)
 library(here)
+library(tidyverse)
 
 source(here('workflow/R/common.R'))
 
@@ -89,7 +90,7 @@ for(i in seq_along(taxa)) { ### i <- 5
     
     spp_cells <- parallel::mclapply(spp_ids_in_taxon, mc.cores = 32,
                                     FUN = function(x) { ### x <- spp_ids_in_taxon[1]
-                                      f <- file.path('/home/ohara/git-annex/spp_risk_dists/spp_rasters',
+                                      f <- file.path('/home/ohara/git-annex/spp_risk_dists/spp_rasters_2019',
                                                      sprintf('iucn_sid_%s.csv', x))
                                       if(file.exists(f)) {
                                         y <- read_csv(f, col_types = 'di') %>%
@@ -111,11 +112,11 @@ for(i in seq_along(taxa)) { ### i <- 5
 
 taxa_cells_list[[3]] #was using to just look at a few
 taxa_cells_df <- taxa_cells_list %>%
-    bind_rows()
-    #filter(!is.na(cell_id))
-    # select(iucn_sid) %>%
-    # distinct() %>%
-    # left_join(spp_info) #these all came out Na, so this df is empty 
+    bind_rows() %>%
+    filter(!is.na(cell_id)) %>%
+    select(iucn_sid) %>%
+    distinct() %>%
+    left_join(spp_info) #these all came out Na, so this df is empty 
 ```
 
 Since nothing is coming up in this, check out a few specific range maps that we know should overlap with this region - try humpback whales (next try terrestrial?)
