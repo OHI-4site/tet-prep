@@ -7,7 +7,7 @@ output: html_document
 
 #Summary
 
-Script for initial pull red list categorizations using list from Tetiaroa Society . Thanks to Gage Clawson for helping out with the RRedlist package!
+Preparing data layer for iconic species, based on list from the Tetiaroa Society website. Thanks to Gage Clawson for helping out with the RRedlist package!
 
 #Set up
 ```{r setup, include=FALSE}
@@ -48,6 +48,7 @@ tet_species <- read_csv(here("./prep/sp/ico/v2020/raw_data", "tet_species.csv"))
   )
 ```
 
+#Method
 
 ##Part 1: Filtering Redlist by Location (French Polynesia)
 Get US Minor French Polynesia species 
@@ -235,8 +236,6 @@ We accessed the IUCN API to determine past IUCN assessments for each of the iden
 Each assessment includes a year and an extinction risk, along with additional information on the assessment.
 
 ```{r}
-#try code from global - Sara said it might not work
-
 
 tet_ico_list <- read_csv(file.path(dir_goal, 'int/tet_ico_all.csv'))
 

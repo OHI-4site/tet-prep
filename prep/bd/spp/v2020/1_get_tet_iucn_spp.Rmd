@@ -10,7 +10,9 @@ This script compares the shapefile of Tetiaroa and its surrounding waters to the
 #Set up
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE,
+                      warning = FALSE,
+                      message = FALSE)
 
 library(sf)
 library(raster)
@@ -133,7 +135,6 @@ Small note on looking at species maps - use filepath?
 humpback_whale <- spp_maps %>% 
   filter(iucn_sid == 13006)
 
-plot(humpback_whale$dbf_file)
 ```
 
 Attach common names
@@ -172,12 +173,100 @@ Check out the ones we are still missing for common name
 
 ```{r}
 
-miss_sp <- sp <- iucn_common_names %>%
-  filter(is.na(common))  %>%
-  select(sciname)
+miss_sp <- iucn_common_names %>%
+  filter(is.na(common))
+
+```
+
+We are still missing `r nrow(filter(iucn_common_names, is.na(common)))`. Use taxize package to try and find these. (note, above is showing up as 8 but there are 17 missing?). 
+
+```{r}
+
+#create vector from missing scinames
+missing_scinames <- iucn_common_names%>%
+  filter(is.na(common)) %>%
+  .$sciname
+
+#loop to pull out the common names from taxize
+
+common_names <- c()
+for(i in 1:length(missing_scinames)){ #i <- 1
+  sp <- missing_scinames[i]
+  comm <- taxize::sci2comm(sp, db = "itis")
+  print(comm)
+ 
+  common_names <- c(common_names, comm)
 
 
-fb_list <- species(miss_sp$sciname) %>% #this did not run
-  select(Species, FBname)
+}
+
+#output is list, turn into dataframe
+
+df <- do.call(rbind,lapply(common_names,data.frame))
+df$sciname <- rownames(df)
+
+```
+
+This only got us blue noddy, not really helpful. Try some exploration
+
+```{r}
+#this is a sea cucumber, does not have a common name in IUCN
+rl_search("Holothuria olivacea", key = api_key )$result$main_common_name
+
+taxize::get_wormsid("Holothuria olivacea")
+
+scinames_explore <- miss_sp %>%
+  separate(sciname, sep = " ", into = c("genus", "family")) %>% 
+  group_by(genus) %>% 
+  summarize(
+    count = length(family)
+  )
+
+
+```
+
+There are only 6 genus' represented in the missing data: 
+- 8 of them are Holothuria, which are sea cucumbers
+- `scinames_explore$genus[1]` are slipper lobsters
+- `scinames_explore$genus[3]` are also sea cucumbers
+- `scinames_explore$genus[4]` mostly deep sea blind lobsters
+- `scinames_explore$genus[5]` these are the noddy's will add in manually below
+- `scinames_explore$genus[6]` more lobsters?
+
+```{r}
+
+spp_names <- iucn_common_names %>% 
+  mutate(common_name = case_when(
+              sciname == "Procelsterna cerulea" ~ "Blue Noddy",
+              TRUE ~ as.character(common)))
+
+#add in the rest of the info 
+
+iucn_spp_info <- taxa_cells_df %>%
+  select(iucn_sid, sciname, population, category) %>% 
+  left_join(., spp_names, by = "sciname") %>% 
+  select(-common)
+
+```
+
+Write out csv to folder `int`
+
+```{r}
+
+#save
+write_csv(iucn_spp_info, "int/1_iucn_spp_in_tet.csv")
+
+```
+
+Last step is to get a list of the maps now that we have the names before moving onto to script 2
+(come back to this since the subpop region is trick)
+```{r}
+
+spp_marine_maps <- read_csv("~/github/spp_risk_dists/_data/spp_marine_maps_2018-1.csv") %>%
+  filter(sciname %in% iucn_spp_info$sciname)
+
+
+write.csv(spp_marine_maps, "data/1_iucn_spp_shp_filepaths.csv")
+
 ```
 
