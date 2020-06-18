@@ -1,0 +1,49 @@
+---
+title: "Rasterize species maps"
+output: html_document
+---
+
+
+#Summary 
+
+Using a set of IUCN species range maps, rasterize each species range map to 1km x 1km raster using `fasterize`.  Use `presence` field from shapefile.
+
+* Subpopulation polygons must be identified and rasterized separately from the parent polygon; this must be done by sciname and subpop fields since the polygon IDs are based upon the parent ID.
+* Regional assessments need not be determined at this stage - the ID numbers match the global ID numbers (including subpops).
+
+# Data source
+
+IUCN Red List: Spatial Data Download
+IUCN: Casey O'Hara via Gina Ralph direct communication
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+
+library(raster)
+library(rgeos)
+library(sf)
+
+
+source(here('workflow/R/common.R'))
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

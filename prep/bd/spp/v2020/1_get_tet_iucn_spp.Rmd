@@ -245,7 +245,8 @@ spp_names <- iucn_common_names %>%
 iucn_spp_info <- taxa_cells_df %>%
   select(iucn_sid, sciname, population, category) %>% 
   left_join(., spp_names, by = "sciname") %>% 
-  select(-common)
+  select(-common) %>% 
+  distinct()
 
 ```
 
@@ -259,14 +260,16 @@ write_csv(iucn_spp_info, "int/1_iucn_spp_in_tet.csv")
 ```
 
 Last step is to get a list of the maps now that we have the names before moving onto to script 2
-(come back to this since the subpop region is trick)
+(come back to this since the subpop region is tricky with this region)
+
+Note: the marine maps df only has 128 rows, meaning we are missing 5 maps
 ```{r}
-
+# only loggerhead sea turtle has subpops so going to filter out the one we want
 spp_marine_maps <- read_csv("~/github/spp_risk_dists/_data/spp_marine_maps_2018-1.csv") %>%
-  filter(sciname %in% iucn_spp_info$sciname)
+  filter(sciname %in% iucn_spp_info$sciname, 
+         subpop %in% c("Pacific South", NA))
 
-
-write.csv(spp_marine_maps, "data/1_iucn_spp_shp_filepaths.csv")
+write.csv(spp_marine_maps, "int/1_iucn_spp_shp_filepaths.csv")
 
 ```
 

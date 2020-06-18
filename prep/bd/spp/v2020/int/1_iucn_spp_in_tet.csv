@@ -1,171 +1,87 @@
 iucn_sid,sciname,population,category,common_name
 194307,Elops hawaiensis,NA,DD,Giant Herring
-194307,Elops hawaiensis,NA,DD,Giant Herring
-3855,Carcharodon carcharias,NA,VU,White Shark
 3855,Carcharodon carcharias,NA,VU,White Shark
 19488,Rhincodon typus,NA,EN,Whale Shark
-19488,Rhincodon typus,NA,EN,Whale Shark
-39337,Pseudocarcharias kamoharai,NA,NT,Crocodile Shark
 39337,Pseudocarcharias kamoharai,NA,NT,Crocodile Shark
 39338,Megachasma pelagios,NA,LC,Megamouth Shark
-39338,Megachasma pelagios,NA,LC,Megamouth Shark
-39339,Alopias vulpinus,NA,VU,Common Thresher
 39339,Alopias vulpinus,NA,VU,Common Thresher
 39341,Isurus oxyrinchus,NA,VU,Shortfin Mako
-39341,Isurus oxyrinchus,NA,VU,Shortfin Mako
-39370,Carcharhinus falciformis,NA,VU,Silky Shark
 39370,Carcharhinus falciformis,NA,VU,Silky Shark
 39374,Carcharhinus longimanus,NA,VU,Oceanic Whitetip Shark
-39374,Carcharhinus longimanus,NA,VU,Oceanic Whitetip Shark
-39378,Galeocerdo cuvier,NA,NT,Tiger Shark
 39378,Galeocerdo cuvier,NA,NT,Tiger Shark
 39381,Prionace glauca,NA,NT,Blue Shark
-39381,Prionace glauca,NA,NT,Blue Shark
-39384,Triaenodon obesus,NA,NT,Whitetip Reef Shark
 39384,Triaenodon obesus,NA,NT,Whitetip Reef Shark
 39385,Sphyrna lewini,NA,EN,Scalloped Hammerhead
-39385,Sphyrna lewini,NA,EN,Scalloped Hammerhead
-39386,Sphyrna mokarran,NA,EN,Great Hammerhead
 39386,Sphyrna mokarran,NA,EN,Great Hammerhead
 39415,Aetobatus narinari,NA,NT,Spotted Eagle Ray
-39415,Aetobatus narinari,NA,NT,Spotted Eagle Ray
-41835,Nebrius ferrugineus,NA,VU,Tawny Nurse Shark
 41835,Nebrius ferrugineus,NA,VU,Tawny Nurse Shark
 60210,Euprotomicrus bispinatus,NA,LC,Pygmy Shark
-60210,Euprotomicrus bispinatus,NA,LC,Pygmy Shark
-60225,Isurus paucus,NA,VU,Longfin Mako
 60225,Isurus paucus,NA,VU,Longfin Mako
 161597,Alopias pelagicus,NA,VU,Pelagic Thresher
-161597,Alopias pelagicus,NA,VU,Pelagic Thresher
-161731,Pteroplatytrygon violacea,NA,LC,Pelagic Stingray
 161731,Pteroplatytrygon violacea,NA,LC,Pelagic Stingray
 195459,Mobula alfredi,NA,VU,Reef Manta Ray
-195459,Mobula alfredi,NA,VU,Reef Manta Ray
-198921,Mobula birostris,NA,VU,Giant Manta Ray
 198921,Mobula birostris,NA,VU,Giant Manta Ray
 42566169,Aetobatus ocellatus,NA,VU,Spotted Eagle Ray
-42566169,Aetobatus ocellatus,NA,VU,Spotted Eagle Ray
-132745,Epinephelus morrhua,NA,LC,Comet Grouper
 132745,Epinephelus morrhua,NA,LC,Comet Grouper
 132772,Hyporthodus octofasciatus,NA,DD,Eightbar Grouper
-132772,Hyporthodus octofasciatus,NA,DD,Eightbar Grouper
-132791,Cephalopholis igarashiensis,NA,DD,Garish Hind
 132791,Cephalopholis igarashiensis,NA,DD,Garish Hind
 185061,Pentacheles snyderi,NA,LC,NA
-185061,Pentacheles snyderi,NA,LC,NA
-185064,Stereomastis auriculata,NA,LC,NA
 185064,Stereomastis auriculata,NA,LC,NA
 185076,Galearctus aurora,NA,LC,NA
-185076,Galearctus aurora,NA,LC,NA
-8551,Feresa attenuata,NA,DD,Pygmy Killer Whale
 8551,Feresa attenuata,NA,DD,Pygmy Killer Whale
 23211,Ziphius cavirostris,NA,LC,Cuvier's Beaked Whale
-23211,Ziphius cavirostris,NA,LC,Cuvier's Beaked Whale
-20731,Stenella coeruleoalba,NA,LC,Striped Dolphin
 20731,Stenella coeruleoalba,NA,LC,Striped Dolphin
 2477,Balaenoptera musculus,NA,EN,Blue Whale
-2477,Balaenoptera musculus,NA,EN,Blue Whale
-2476,Balaenoptera edeni,NA,LC,Bryde's Whale
 2476,Balaenoptera edeni,NA,LC,Bryde's Whale
 15421,Orcinus orca,NA,DD,Killer Whale
-15421,Orcinus orca,NA,DD,Killer Whale
-13006,Megaptera novaeangliae,NA,LC,Humpback Whale
 13006,Megaptera novaeangliae,NA,LC,Humpback Whale
 16564,Peponocephala electra,NA,LC,Melon-headed Whale
-16564,Peponocephala electra,NA,LC,Melon-headed Whale
-22563,Tursiops truncatus,NA,LC,Common Bottlenose Dolphin
 22563,Tursiops truncatus,NA,LC,Common Bottlenose Dolphin
 41755,Physeter macrocephalus,NA,VU,Sperm Whale
-41755,Physeter macrocephalus,NA,VU,Sperm Whale
-13244,Mesoplodon densirostris,NA,DD,Blainville's Beaked Whale
 13244,Mesoplodon densirostris,NA,DD,Blainville's Beaked Whale
 11140,Lagenodelphis hosei,NA,LC,Fraser's Dolphin
-11140,Lagenodelphis hosei,NA,LC,Fraser's Dolphin
-11047,Kogia breviceps,NA,DD,Pygmy Sperm Whale
 11047,Kogia breviceps,NA,DD,Pygmy Sperm Whale
 11048,Kogia sima,NA,DD,Dwarf Sperm Whale
-11048,Kogia sima,NA,DD,Dwarf Sperm Whale
-2474,Balaenoptera acutorostrata,NA,LC,Common Minke Whale
 2474,Balaenoptera acutorostrata,NA,LC,Common Minke Whale
 9461,Grampus griseus,NA,LC,Risso's Dolphin
-9461,Grampus griseus,NA,LC,Risso's Dolphin
-20729,Stenella attenuata,NA,LC,Pantropical Spotted Dolphin
 20729,Stenella attenuata,NA,LC,Pantropical Spotted Dolphin
 20733,Stenella longirostris,NA,DD,Spinner Dolphin
-20733,Stenella longirostris,NA,DD,Spinner Dolphin
-9249,Globicephala macrorhynchus,NA,DD,Short-finned Pilot Whale
 9249,Globicephala macrorhynchus,NA,DD,Short-finned Pilot Whale
 2475,Balaenoptera borealis,NA,EN,Sei Whale
-2475,Balaenoptera borealis,NA,EN,Sei Whale
-20738,Steno bredanensis,NA,LC,Rough-toothed Dolphin
 20738,Steno bredanensis,NA,LC,Rough-toothed Dolphin
 13246,Mesoplodon ginkgodens,NA,DD,Ginkgo-toothed Beaked Whale
-13246,Mesoplodon ginkgodens,NA,DD,Ginkgo-toothed Beaked Whale
-190193,Sphoeroides pachygaster,NA,LC,Blunthead Puffer
 190193,Sphoeroides pachygaster,NA,LC,Blunthead Puffer
 166947,Lagocephalus sceleratus,NA,LC,Silver-cheeked Toadfish
-166947,Lagocephalus sceleratus,NA,LC,Silver-cheeked Toadfish
-190464,Lagocephalus lagocephalus,NA,LC,Oceanic Puffer
 190464,Lagocephalus lagocephalus,NA,LC,Oceanic Puffer
 193705,Canthigaster rivulata,NA,LC,Brown-lined Puffer
-193705,Canthigaster rivulata,NA,LC,Brown-lined Puffer
-176738,Hydrophis platurus,NA,LC,Yellow-bellied Sea Snake
 176738,Hydrophis platurus,NA,LC,Yellow-bellied Sea Snake
 8005,Eretmochelys imbricata,NA,CR,Hawksbill Turtle
-8005,Eretmochelys imbricata,NA,CR,Hawksbill Turtle
-4615,Chelonia mydas,NA,EN,Green Turtle
 4615,Chelonia mydas,NA,EN,Green Turtle
 84156809,Caretta caretta,South Pacific subpopulation,CR,Loggerhead Turtle
-84156809,Caretta caretta,South Pacific subpopulation,CR,Loggerhead Turtle
-180315,Holothuria glandifera,NA,DD,NA
 180315,Holothuria glandifera,NA,DD,NA
 180337,Actinopyga mauritiana,NA,VU,Surf Redfish
-180337,Actinopyga mauritiana,NA,VU,Surf Redfish
-180236,Holothuria olivacea,NA,DD,NA
 180236,Holothuria olivacea,NA,DD,NA
 180265,Actinopyga miliaris,NA,VU,Harry Blackfish
-180265,Actinopyga miliaris,NA,VU,Harry Blackfish
-180226,Holothuria erinaceaus,NA,LC,NA
 180226,Holothuria erinaceaus,NA,LC,NA
 180446,Holothuria stocki,NA,DD,NA
-180446,Holothuria stocki,NA,DD,NA
-19720058,Mesothuria multipora,NA,DD,NA
 19720058,Mesothuria multipora,NA,DD,NA
 21856,Thunnus alalunga,NA,NT,Albacore Tuna
-21856,Thunnus alalunga,NA,NT,Albacore Tuna
-21857,Thunnus albacares,NA,NT,Yellowfin Tuna
 21857,Thunnus albacares,NA,NT,Yellowfin Tuna
 21859,Thunnus obesus,NA,VU,Bigeye Tuna
-21859,Thunnus obesus,NA,VU,Bigeye Tuna
-170314,Makaira nigricans,NA,VU,Blue Marlin
 170314,Makaira nigricans,NA,VU,Blue Marlin
 170315,Tetrapturus angustirostris,NA,DD,Shortbill Spearfish
-170315,Tetrapturus angustirostris,NA,DD,Shortbill Spearfish
-23148,Xiphias gladius,NA,LC,Swordfish
 23148,Xiphias gladius,NA,LC,Swordfish
 170341,Thunnus orientalis,NA,VU,Pacific Bluefin Tuna
-170341,Thunnus orientalis,NA,VU,Pacific Bluefin Tuna
-170336,Euthynnus affinis,NA,LC,Kawakawa
 170336,Euthynnus affinis,NA,LC,Kawakawa
 170338,Istiophorus platypterus,NA,LC,Sailfish
-170338,Istiophorus platypterus,NA,LC,Sailfish
-170309,Kajikia audax,NA,NT,Striped Marlin
 170309,Kajikia audax,NA,NT,Striped Marlin
 170310,Katsuwonus pelamis,NA,LC,Skipjack Tuna
-170310,Katsuwonus pelamis,NA,LC,Skipjack Tuna
-170312,Istiompax indica,NA,DD,Black Marlin
 170312,Istiompax indica,NA,DD,Black Marlin
 22698465,Fregetta grallaria,NA,LC,White-bellied Storm-petrel
-22698465,Fregetta grallaria,NA,LC,White-bellied Storm-petrel
-22698459,Fregetta tropica,NA,LC,Black-bellied Storm-petrel
 22698459,Fregetta tropica,NA,LC,Black-bellied Storm-petrel
 22698393,Thalassarche eremita,NA,VU,Chatham Albatross
-22698393,Thalassarche eremita,NA,VU,Chatham Albatross
-22698436,Oceanites oceanicus,NA,LC,Wilson's Storm-petrel
 22698436,Oceanites oceanicus,NA,LC,Wilson's Storm-petrel
 22698471,Nesofregetta fuliginosa,NA,EN,Polynesian Storm-petrel
-22698471,Nesofregetta fuliginosa,NA,EN,Polynesian Storm-petrel
-22698453,Pelagodroma marina,NA,LC,White-faced Storm-petrel
 22698453,Pelagodroma marina,NA,LC,White-faced Storm-petrel
 22727746,Procelsterna cerulea,NA,LC,Blue Noddy
 22697925,Pseudobulweria rostrata,NA,NT,Tahiti Petrel
