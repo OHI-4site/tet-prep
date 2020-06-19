@@ -73,7 +73,7 @@ So its just a little box right now - create an ocean raster at 1km res with only
 
 ```{r}
 
-r <- fasterize(tet_shp, ocean_ras, field = "rgn_id")
+r <- fasterize(tet_shp_sp, ocean_ras, field = "rgn_id")
 
 
 
