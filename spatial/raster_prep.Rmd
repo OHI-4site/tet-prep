@@ -8,7 +8,7 @@ Creating base rasters for data prep
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
-library(dplyr)
+library(tidyverse)
 library(sf)
 library(raster)
 library(fasterize)
@@ -20,11 +20,11 @@ source(here('workflow/R/common.R'))
 p4s_wgs84 <- '+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0'
 p4s_nad83 <- '+proj=longlat +ellps=GRS80 +datum=NAD83 +no_defs +towgs84=0,0,0'
 us_alb    <- raster::crs("+proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=37.5 +lon_0=-96 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs") 
-
+# azim_eq    <- raster::crs("+proj=laea +lat_1=29.5 +lat_2=45.5 +lat_0=37.5 +lon_0=-96 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs")
 
 #extents for region of interests - need these for cropping?
 
-wgs_ext <- raster::extent(-149.67, -149.46,-17.10,-16.92) #I have no idea if this is right Only use this when cropping, then reprojecting to albers, and then crop again using the ne_ext
+wgs_ext <- raster::extent(-149.67, -149.46,-17.10,-16.92)
 #ne_ext <- raster::extent(1750000, 2550000,300000,1200000) #this is for us_albers projection only
 
 #shapefiles
@@ -37,7 +37,7 @@ tet_shp_sp <- tet_shp %>%
 
 land <- tet_motus %>% 
   st_transform(crs = p4s_wgs84) %>% 
-  as(., "Spatial")#this natural one is World_Azimuthal_Equidistant whatever that is
+  as(., "Spatial") #this natural one is World_Azimuthal_Equidistant whatever that is
 
 plot(wgs_ext)
 plot(tet_shp, add = T)
@@ -52,18 +52,20 @@ Create a base raster clipped to the extent
 r <- raster(crs = p4s_wgs84, wgs_ext, res = 1000)
 r[r] <- 1
 plot(r)
-plot(tet_shp, add = T)
+plot(tet_shp_sp)
 
 ```
 
 Mask out land to create ocean raster
 ```{r}
 
-all_ras <- mask(r, tet_shp_sp) # not working
+all_ras <- mask(r, tet_shp_sp) #this comes out empty?
+
+all_ras_d <- crop(r, tet_shp_sp) #this does not
 
 ocean_ras <- mask(r, land, inverse = T) #not really working either
 
-plot(ocean_ras)
+plot(all_ras_d)
 plot(land, add = T)
 ```
 
