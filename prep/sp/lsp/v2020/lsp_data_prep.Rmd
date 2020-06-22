@@ -248,12 +248,12 @@ prot_1km <- read_csv(file.path(dir_goal, 'int', 'area_protected_1km.csv')) %>%
   rename(area = a_tot_km2,
          a_prot_1km = a_prot_km2)
 
-write_lsp_layer <- function(df, layers, layername) {
-  df1 <- df[ , c('rgn_id', layers)] %>%
-    filter(rgn_id <= 250) %>%
-    distinct()
-  write_csv(df1, file.path(dir_goal, 'output', paste0(layername, '.csv')))
-}
+# write_lsp_layer <- function(df, layers, layername) {
+#   df1 <- df[ , c('rgn_id', layers)] %>%
+#     filter(rgn_id <= 250) %>%
+#     distinct()
+#   write_csv(df1, file.path(dir_goal, 'output', paste0(layername, '.csv')))
+# }
 
 a_tot_3nm <- write_lsp_layer(prot_3nm, 'area', 'rgn_area_offshore3nm')
 a_tot_1km <- write_lsp_layer(prot_1km, 'area', 'rgn_area_inland1km')
@@ -267,13 +267,39 @@ a_prot_1km <- write_lsp_layer(prot_1km, c('year', 'a_prot_1km'), 'lsp_prot_area_
 
 Above code useful if we end up wanting to be more precise in our scoring, but without the exact boundaries of the lagoon we cannot be totally accurate. For now, create a layer that assigns scores to our three "regions" (lagoon, land and open ocean) based on what we know from conversations with Frank and Neil. 
 
-- lagoon: half of it is protected as a no take zone
-- land: all of it is protected in that is a private island 
-- ocean: as far as we know, there are no reserves that intersect wih the area that is 3nm outside the islands 
+1. land: all of it is protected in that is a private island 
+2. lagoon: half of it is protected as a no take zone
+3. ocean: as far as we know, there are no reserves that intersect wih the area that is 3nm outside the islands 
 
 ```{r}
 
+year <- seq(2000,2019,1)
 
+rgn_1 <- data.frame(
+  rgn_id = rep(1, length(year)),
+  year = year,
+  status = rep(1, length(year))
+)
+
+rgn_2 <- data.frame(
+  rgn_id = rep(2, length(year)),
+  year = year,
+  status = rep(0.5, length(year))
+)
+
+rgn_3 <- data.frame(
+  rgn_id = rep(3, length(year)),
+  year = year,
+  status = rep(0, length(year))
+)
+
+#bind them all together
+
+lsp_status_scores <- bind_rows(rgn_1,rgn_2,rgn_3)
+
+#write to output folder 
+
+write_csv(lsp_status_scores, file.path(dir_goal, "/output/lsp_status.csv"))
 
 ```
 
