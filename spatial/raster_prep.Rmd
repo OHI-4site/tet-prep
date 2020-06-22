@@ -8,7 +8,7 @@ Creating base rasters for data prep
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
-library(tidyverse)
+#library(tidyverse) #not working idk why
 library(sf)
 library(raster)
 library(fasterize)
@@ -36,10 +36,10 @@ wgs_ext <- raster::extent(-149.67, -149.46,-17.10,-16.92)
 #shapefiles
 
 tet_shp <- tet_buffer_3nm %>% 
-  st_transform(crs = p4s_wgs84)  #otherwise wont work in mask function
+  st_transform(crs = p4s_wgs84)  
 
 tet_shp_sp <- tet_shp %>%
-  as(.,"Spatial")
+  as(.,"Spatial") #otherwise wont work in mask function
 
 land <- tet_motus %>% 
   st_transform(crs = p4s_wgs84) %>% 
@@ -48,7 +48,7 @@ land <- tet_motus %>%
 plot(wgs_ext)
 plot(tet_shp, add = T)
 
-mapview(tet_shp)
+mapview(tet_shp) #to find lat lon for extent
 ```
 
 Create a base raster clipped to the extent
@@ -58,7 +58,7 @@ Create a base raster clipped to the extent
 r <- raster(crs = p4s_wgs84, wgs_ext, res = 1000)
 r[r] <- 1
 plot(r)
-plot(tet_shp_sp, add = T) #so this isn't showing up
+plot(tet_shp, add = T) #so this isn't showing up
 
 ```
 
