@@ -262,3 +262,18 @@ a_prot_3nm <- write_lsp_layer(prot_3nm, c('year', 'a_prot_3nm'), 'lsp_prot_area_
 a_prot_1km <- write_lsp_layer(prot_1km, c('year', 'a_prot_1km'), 'lsp_prot_area_inland1km')
 
 ```
+
+## Creating layer with scores
+
+Above code useful if we end up wanting to be more precise in our scoring, but without the exact boundaries of the lagoon we cannot be totally accurate. For now, create a layer that assigns scores to our three "regions" (lagoon, land and open ocean) based on what we know from conversations with Frank and Neil. 
+
+- lagoon: half of it is protected as a no take zone
+- land: all of it is protected in that is a private island 
+- ocean: as far as we know, there are no reserves that intersect wih the area that is 3nm outside the islands 
+
+```{r}
+
+
+
+```
+
