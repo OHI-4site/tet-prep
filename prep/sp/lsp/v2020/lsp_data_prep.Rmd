@@ -61,7 +61,7 @@ source(here('workflow/R/common.R'))
 goal     <- 'lsp'
 scenario <- 'v2020'
 dir_anx       <- file.path(dir_M, 'git-annex/globalprep') 
-dir_goal      <- file.path(here('prep/bd',goal, scenario))
+dir_goal      <- file.path(here('prep/sp',goal, scenario))
 dir_goal_anx  <- file.path(dir_anx, goal, scenario)
 dir_github    <- '~/github/tet-prep'
 
@@ -299,7 +299,7 @@ lsp_status_scores <- bind_rows(rgn_1,rgn_2,rgn_3)
 
 #write to output folder 
 
-write_csv(lsp_status_scores, file.path(dir_goal, "/output/lsp_status.csv"))
+write_csv(lsp_status_scores, file.path(dir_goal, "output/lsp_status.csv"))
 
 ```
 
