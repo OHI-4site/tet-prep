@@ -71,13 +71,23 @@ plot(ocean_ras)
 plot(land, add = T) #this is still not working
 ```
 
-So its just a little box right now - create an ocean raster at 1km res with only the rgns, the cell values = rgn_id
-
+Use fasterize - this is creating the same thing as above with just a different function
 ```{r}
 
-r <- fasterize(tet_shp, r, field = "rgn_id")
+ras <- fasterize(tet_shp, r)
 
+ras_2 <- fasterize(tet_shp, ocean_ras)
 
+#both these work but not sure how its different than the mask?
+
+```
+
+Write out both rasters
+```{r}
+
+writeRaster(ocean_ras, filename = "~/github/tet-prep/spatial/rasters/ocean_ras.tif", overwrite = T)
+
+writeRaster(all_ras, filename = "~/github/tet-prep/spatial/rasters/all_ras.tif", overwrite = T)
 
 ```
 
