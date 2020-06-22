@@ -38,6 +38,11 @@ tet_buffer_3nm  <- sf::st_read(dsn = here('/spatial/shp'),layer = 'tet_buffer_3n
 
 tet_motus  <- sf::st_read(dsn = here('/spatial/shp'),layer = 'tet_motus', quiet = T)
 
+## Tetiaroa rasters
+
+tet_ocean_rast <- raster::raster('~/github/tet-prep/spatial/rasters/ocean_ras.tif')
+
+tet_buffer_rast <- raster::raster('~/github/tet-prep/spatial/rasters/all_ras.tif')
 
 
 
@@ -46,8 +51,7 @@ tet_motus  <- sf::st_read(dsn = here('/spatial/shp'),layer = 'tet_motus', quiet 
 
 
 
-
-## OHI region files
+################ OHI Global Region Files ########################
 
 ### Shapefile:
 ## OHI eez, antarctica, and high seas regions
