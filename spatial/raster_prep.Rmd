@@ -37,8 +37,8 @@ azim_ext <- raster::extent(-6156061, -6136000,-4607084,-4588580) #this is for eq
 tet_shp <- tet_buffer_3nm %>% 
   st_transform(crs = azim_eq)  
 
-tet_shp_sp <- tet_shp %>%
-  as(.,"Spatial") #otherwise wont work in mask function
+# tet_shp_sp <- tet_shp %>%
+#   as(.,"Spatial") #if you need sp object
 
 land <- tet_motus %>% 
   st_transform(crs = azim_eq)
