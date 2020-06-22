@@ -25,27 +25,26 @@ pkgs <- c("sf", "raster", "fasterize")
 #projections and crs
 p4s_wgs84 <- '+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0'
 p4s_nad83 <- '+proj=longlat +ellps=GRS80 +datum=NAD83 +no_defs +towgs84=0,0,0'
-us_alb    <- raster::crs("+proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=37.5 +lon_0=-96 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs") 
-# azim_eq    <- raster::crs("+proj=laea +lat_1=29.5 +lat_2=45.5 +lat_0=37.5 +lon_0=-96 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs")
+azim_eq    <- raster::crs("+proj=laea +lat_1=29.5 +lat_2=45.5 +lat_0=37.5 +lon_0=-96 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs")
 
 #extents for region of interests - need these for cropping?
 
 wgs_ext <- raster::extent(-149.67, -149.46,-17.10,-16.92)
-#ne_ext <- raster::extent(1750000, 2550000,300000,1200000) #this is for us_albers projection only
+azim_ext <- raster::extent(-6156061, -6136000,-4607084,-4588580) #this is for equal area projection only
 
 #shapefiles
 
 tet_shp <- tet_buffer_3nm %>% 
-  st_transform(crs = p4s_wgs84)  
+  st_transform(crs = azim_eq)  
 
 tet_shp_sp <- tet_shp %>%
   as(.,"Spatial") #otherwise wont work in mask function
 
 land <- tet_motus %>% 
-  st_transform(crs = p4s_wgs84) %>% 
-  as(., "Spatial") #this natural one is World_Azimuthal_Equidistant whatever that is
+  st_transform(crs = azim_eq)
+  # as(., "Spatial") #this natural one is World_Azimuthal_Equidistant whatever that is
 
-plot(wgs_ext)
+plot(azim_ext)
 plot(tet_shp, add = T)
 
 mapview(tet_shp) #to find lat lon for extent
@@ -54,25 +53,22 @@ mapview(tet_shp) #to find lat lon for extent
 Create a base raster clipped to the extent
 ```{r}
 
-#create a base raster with 1000x1000, crs = wgs84 and tet extent defined above
-r <- raster(crs = p4s_wgs84, wgs_ext, res = 1000)
+#create a base raster with 100x100, crs = wgs84 and tet extent defined above
+r <- raster(crs = azim_eq, azim_ext, res = 100)
 r[r] <- 1
 plot(r)
-plot(tet_shp, add = T) #so this isn't showing up
-
+plot(tet_shp, add = T) #working now
 ```
 
 Mask out land to create ocean raster
 ```{r}
 
-all_ras <- mask(r, tet_shp_sp) #this comes out empty?
+all_ras <- mask(r, tet_shp) #this is working now
 
-all_ras_d <- crop(r, tet_shp_sp) #this does not, but its a square
+ocean_ras <- mask(r, land, inverse = T) #working
 
-ocean_ras <- mask(r, land, inverse = T) #not really working either
-
-plot(all_ras_d)
-plot(land, add = T) #this is not working either
+plot(ocean_ras)
+plot(land, add = T) #this is still not working
 ```
 
 So its just a little box right now - create an ocean raster at 1km res with only the rgns, the cell values = rgn_id
