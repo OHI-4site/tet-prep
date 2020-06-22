@@ -67,19 +67,19 @@ Mask out land to create ocean raster
 
 all_ras <- mask(r, tet_shp_sp) #this comes out empty?
 
-all_ras_d <- crop(r, tet_shp_sp) #this does not
+all_ras_d <- crop(r, tet_shp_sp) #this does not, but its a square
 
 ocean_ras <- mask(r, land, inverse = T) #not really working either
 
 plot(all_ras_d)
-plot(land, add = T)
+plot(land, add = T) #this is not working either
 ```
 
 So its just a little box right now - create an ocean raster at 1km res with only the rgns, the cell values = rgn_id
 
 ```{r}
 
-r <- fasterize(tet_shp_sp, all_ras_d, field = "rgn_id")
+r <- fasterize(tet_shp_sp, r, field = "rgn_id")
 
 
 
