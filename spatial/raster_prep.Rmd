@@ -13,8 +13,13 @@ library(sf)
 library(raster)
 library(fasterize)
 library(mapview)
+library(utils)
 
 source(here('workflow/R/common.R'))
+
+#for updating spatial 
+
+pkgs <- c("sf", "raster", "fasterize")
 
 #projections
 p4s_wgs84 <- '+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0'
