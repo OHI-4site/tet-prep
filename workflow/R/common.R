@@ -40,12 +40,15 @@ tet_motus  <- sf::st_read(dsn = here('/spatial/shp'),layer = 'tet_motus', quiet 
 
 ## Tetiaroa rasters
 
-tet_ocean_rast <- raster::raster('~/github/tet-prep/spatial/rasters/ocean_ras.tif')
+#at 100 m res
+tet_ocean_rast_100 <- raster::raster('~/github/tet-prep/spatial/rasters/ocean_ras_100.tif')
 
-tet_buffer_rast <- raster::raster('~/github/tet-prep/spatial/rasters/all_ras.tif')
+tet_buffer_rast_100 <- raster::raster('~/github/tet-prep/spatial/rasters/all_ras_100.tif')
 
+#at 1000 m res
+tet_ocean_rast_1k <- raster::raster('~/github/tet-prep/spatial/rasters/ocean_ras_1k.tif')
 
-
+tet_buffer_rast_1k <- raster::raster('~/github/tet-prep/spatial/rasters/all_ras_1k.tif')
 
 
 

@@ -2,7 +2,9 @@
 title: "Creating master rasters"
 output: html_document
 ---
-Creating base rasters for data prep 
+##Creating base rasters for data prep 
+
+Rasters of both the entire buffered area as well as just the ocean area were created for at 100m and 1000 m resolution (4 rasters total). Saved to `rasters` folder and also added to `common.R` script in workflow. 
 
 
 ```{r setup, include=FALSE}
@@ -50,6 +52,8 @@ plot(tet_shp, add = T)
 mapview(tet_shp) #to find lat lon for extent
 ```
 
+## 100 meter resoltion   
+
 Create a base raster clipped to the extent
 ```{r}
 
@@ -63,9 +67,9 @@ plot(tet_shp, add = T) #working now
 Mask out land to create ocean raster
 ```{r}
 
-all_ras <- mask(r, tet_shp) #this is working now
+all_ras_100 <- mask(r, tet_shp) #this is working now
 
-ocean_ras <- mask(r, land, inverse = T) #working
+ocean_ras_100 <- mask(r, land, inverse = T) #working
 
 plot(ocean_ras)
 plot(land, add = T) #this is still not working
@@ -85,9 +89,36 @@ ras_2 <- fasterize(tet_shp, ocean_ras)
 Write out both rasters
 ```{r}
 
-writeRaster(ocean_ras, filename = "~/github/tet-prep/spatial/rasters/ocean_ras.tif", overwrite = T)
+writeRaster(ocean_ras_100, filename = "~/github/tet-prep/spatial/rasters/ocean_ras_100.tif", overwrite = T)
 
-writeRaster(all_ras, filename = "~/github/tet-prep/spatial/rasters/all_ras.tif", overwrite = T)
+writeRaster(all_ras_100, filename = "~/github/tet-prep/spatial/rasters/all_ras_100.tif", overwrite = T)
+
+```
+
+### 1000 m resolution
+
+```{r}
+
+#create a base raster with 100x100, crs = wgs84 and tet extent defined above
+r <- raster(crs = azim_eq, azim_ext, res = 1000)
+r[r] <- 1
+plot(r)
+plot(tet_shp, add = T) #working now
+
+#use mask to get area of the shape files
+
+all_ras_1k <- mask(r, tet_shp) #this is working now
+
+ocean_ras_1k <- mask(r, land, inverse = T) #working
+
+plot(ocean_ras_1k)
+plot(land, add = T) #can see this is not as high resolution
+
+#looks ok write them out
+
+writeRaster(ocean_ras_1k, filename = "~/github/tet-prep/spatial/rasters/ocean_ras_1k.tif", overwrite = T)
+
+writeRaster(all_ras_1k, filename = "~/github/tet-prep/spatial/rasters/all_ras_1k.tif", overwrite = T)
 
 ```
 
