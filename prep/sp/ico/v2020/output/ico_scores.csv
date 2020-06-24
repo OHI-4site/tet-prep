@@ -118,14 +118,14 @@ rgn_id,iucn_sid,year,category,eval_year,sciname,stat_score
 1,177995,2012,LC,2019,acanthurus guttatus,1
 1,177970,2012,LC,2019,naso unicornis,1
 1,39375,2009,NT,2019,carcharhinus melanopterus,0.8
-1,39375,2000,LR/nt,2019,carcharhinus melanopterus,NA
+1,39375,2000,LR/nt,2019,carcharhinus melanopterus,0.8
 1,42834,2003,EN,2019,negaprion acutidens,0.4
 1,195459,2019,VU,2019,mobula alfredi,0.6
 1,195459,2011,VU,2019,mobula alfredi,0.6
 1,9249,2018,LC,2019,globicephala macrorhynchus,1
 1,9249,2011,DD,2019,globicephala macrorhynchus,NA
 1,9249,2008,DD,2019,globicephala macrorhynchus,NA
-1,9249,1996,LR/cd,2019,globicephala macrorhynchus,1
+1,9249,1996,LR/cd,2019,globicephala macrorhynchus,0.9
 1,9249,1994,K,2019,globicephala macrorhynchus,NA
 1,20738,2019,LC,2019,steno bredanensis,1
 1,20738,2012,LC,2019,steno bredanensis,1
@@ -135,7 +135,7 @@ rgn_id,iucn_sid,year,category,eval_year,sciname,stat_score
 1,20733,2018,LC,2019,stenella longirostris,1
 1,20733,2012,DD,2019,stenella longirostris,NA
 1,20733,2008,DD,2019,stenella longirostris,NA
-1,20733,1996,LR/cd,2019,stenella longirostris,1
+1,20733,1996,LR/cd,2019,stenella longirostris,0.9
 1,13244,2008,DD,2019,mesoplodon densirostris,NA
 1,13244,1996,DD,2019,mesoplodon densirostris,NA
 1,13244,1994,K,2019,mesoplodon densirostris,NA
@@ -157,7 +157,7 @@ rgn_id,iucn_sid,year,category,eval_year,sciname,stat_score
 1,2811,1986,R,2019,birgus latro,NA
 1,2811,1983,R,2019,birgus latro,NA
 1,163055,2018,LC,2019,octopus cyanea,1
-1,22138,1996,LR/cd,2019,tridacna maxima,1
+1,22138,1996,LR/cd,2019,tridacna maxima,0.9
 1,22138,1994,K,2019,tridacna maxima,NA
 1,22138,1990,K,2019,tridacna maxima,NA
 1,22138,1988,K,2019,tridacna maxima,NA

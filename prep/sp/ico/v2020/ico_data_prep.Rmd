@@ -313,11 +313,12 @@ pop_cat <- data.frame(category = c("LC", "NT", "VU", "EN", "CR", "EX", "T", "CD"
 
 tet_ico_stat_sco <- left_join(tet_ico_list, pop_cat, by = "category") %>%
   mutate(stat_score = case_when(
-    category %in% c("LR/lc", "LR/cd") ~ 1.0,
-    TRUE ~ stat_score)) %>%
+    category %in% c("LR/lc") ~ 1.0,
+    category %in% c("LR/nt") ~ 0.8,
+    category %in% c("LR/cd") ~ 0.9,
+    TRUE ~ stat_score)) %>% 
   dplyr::select(-risk_score)
 
-#question - what do we do about low risk conservation dependent? rare?
 
 ```
 
@@ -325,7 +326,7 @@ Write final scores output
 
 ```{r}
 
-write_csv(tet_ico_stat_sco, file.path(dir_goal, "output/ico_scores.csv"))
+write_csv(tet_ico_stat_sco, file.path(dir_goal, "output/ico_scores.csv"), append = FALSE)
 
 ```
 
