@@ -394,7 +394,8 @@ taxa <- spp_maps$dbf_file %>%
 taxa_cells_list <- vector('list', length = length(taxa))
 
 #for each taxa, grab the species map (raster) and filter to only keep those cells in the northeast.
-for(i in seq_along(taxa)) {i <- 5
+for(i in seq_along(taxa)) {
+  #i <- 5]
     taxon <- taxa[i]
     print(i)
     spp_ids_in_taxon <- spp_maps %>%
@@ -402,14 +403,14 @@ for(i in seq_along(taxa)) {i <- 5
       .$iucn_sid
     cat(sprintf('processing %s spp in %s...\n', length(spp_ids_in_taxon), taxon)) #help with this, message?
     
-    spp_cells <- parallel::mclapply(spp_ids_in_taxon, mc.cores = 32,
+    spp_cells <- lapply(spp_ids_in_taxon,
                                     FUN = function(x) { ### x <- spp_ids_in_taxon[1]
                                       f <- file.path('/home/ohara/git-annex/spp_risk_dists/spp_rasters_2019',
                                                      sprintf('iucn_sid_%s.csv', x))
                                       if(file.exists(f)) {
                                         y <- read_csv(f, col_types = 'di') %>%
                                           mutate(iucn_sid = x) %>%
-                                          select(-presence)  %>%
+                                          dplyr::select(-presence)  %>%
                                           filter(cell_id %in% fp_cells)
                                       } else {
                                         y <- data.frame(cell_id = NA,
@@ -423,5 +424,19 @@ for(i in seq_along(taxa)) {i <- 5
     
     taxa_cells_list[[i]] <- spp_cells
 }
+
+taxa_cells_df_fp <- taxa_cells_list %>%
+    bind_rows() %>% 
+    filter(!is.na(cell_id)) %>% 
+    dplyr::select(iucn_sid) %>% 
+    distinct() %>%
+    left_join(spp_info) #these all came out Na, so this df is empty 
+```
+
+Ok so I get 763 species for all of FP, which is A LOT more. Sara's list was ~400 somethings so shouldn't expect to have a majority of these, but 113 still seems low. 
+
+Next step: strategy to work through?
+```{r}
+
 ```
 

@@ -317,10 +317,28 @@ tet_ico_stat_sco <- left_join(tet_ico_list, pop_cat, by = "category") %>%
     category %in% c("LR/nt") ~ 0.8,
     category %in% c("LR/cd") ~ 0.9,
     TRUE ~ stat_score)) %>% 
-  dplyr::select(-risk_score)
-
+  dplyr::select(-risk_score) %>% 
+  filter(year > 1999)
 
 ```
+
+##Backfilling missing years
+```{r}
+#create empty years?
+tet_ico_full <- tet_ico_stat_sco %>%
+  dplyr::select(-sciname, -eval_year) %>%  
+  mutate(eval_yr = year) %>% 
+  arrange(iucn_sid, year) %>% 
+  complete(year = full_seq(year, 1), nesting(iucn_sid)) %>% 
+  group_by(iucn_sid) %>% 
+  fill(category, stat_score, eval_yr, rgn_id) %>%  ## fills all the way to latest year
+  ungroup()
+
+#create
+#comname,sciname,ico_gl,ico_rgn_id,iucn_sid,subpop,cat
+
+```
+
 
 Write final scores output
 

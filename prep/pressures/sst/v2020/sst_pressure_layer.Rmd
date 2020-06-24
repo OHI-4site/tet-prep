@@ -1,0 +1,49 @@
+---
+title: "sst_pressures_layer"
+output: html_document
+---
+
+#Summary
+
+For OHI Global Assessments, we calculated a climatology from 1982-2017 per cell using weekly data from CorTAD. We then calculated the number of times a given cell's weekly SST was greater than the climatological mean for that week (an anomaly: greater than mean + one standard deviation) and summed the number of weekly anomalies in a single year. The maximum value a cell could have is 52 which would mean that cell had anomalous SST temperatures for each week of the year.
+
+To account for annual variation, we look at Sea Surface Temperature anomalies in 5 year periods, so the maximum value possible per cell is 260 anomalous weeks. To rescale the values from 0 to 1 we set a reference point. Previously, the reference point for SST has just been the maximum difference in anomalous weeks between the most recent time period and a historical reference period (1985-1989).
+
+**Tetiaroa** - need to decide on a reference point
+
+***
+
+# Data
+
+**Source**: The [Coral Reef Temperature Anomaly Database Version 6 (CoRTAD)](https://data.nodc.noaa.gov/cgi-bin/iso?id=gov.noaa.nodc:0175483)  
+**Downloaded**: August 21, 2018  
+**Description**:  Sea Surface Temperature Anomalies (Kelvin)  
+**Native data resolution**: 4km^2^    
+**Time range**: 1982 - 2017  
+**Format**:  NetCDF  
+
+***
+#Set Up
+``` {r setup, echo = FALSE, message = FALSE, warning = FALSE, results = "hide"}
+knitr::opts_chunk$set(fig.width = 8, fig.height = 6, fig.path = 'figs/', message = FALSE, warning = FALSE)
+
+library(raster)
+library(doParallel)
+library(foreach)
+
+source(here('workflow/R/common.R'))
+```
+
+#Analysis
+## Global data layers
+
+We're going to use the global data that was processed for OHI 2018. This data is held on a server at NCEAS.
+
+Each of these rasters is the number of positive weekly anomalies each year.
+
+```{r global_data}
+sst_global_files <- list.files(file.path(dir_M,'git-annex/globalprep/prs_sst/v2018/int'), pattern = 'annual_pos_anomalies', full.names=T)
+plot(raster(sst_global_files[36]),col=cols,main = "Sea Surface Temperature 2017",box=F,axes=F,
+     legend.args=list(text='Anomalous Weeks', side=4, font=2, line=2.5, cex=0.8))
+```
+
