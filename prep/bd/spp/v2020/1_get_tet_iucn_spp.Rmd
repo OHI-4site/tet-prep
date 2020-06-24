@@ -394,7 +394,7 @@ taxa <- spp_maps$dbf_file %>%
 taxa_cells_list <- vector('list', length = length(taxa))
 
 #for each taxa, grab the species map (raster) and filter to only keep those cells in the northeast.
-for(i in seq_along(taxa)) { ### i <- 5
+for(i in seq_along(taxa)) {i <- 5
     taxon <- taxa[i]
     print(i)
     spp_ids_in_taxon <- spp_maps %>%
