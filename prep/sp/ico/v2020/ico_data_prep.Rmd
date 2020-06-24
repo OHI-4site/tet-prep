@@ -267,7 +267,7 @@ The toolbox wants `rgn_id`, species `sciname`, and extinction risk category for 
 
 - `ico_spp_iucn_status.csv`: rgn_id,sciname,iucn_sid,year,eval_yr,category
 
-Bind scinames, rgn_id vector, and eval_year vector to this dataframe
+Bind scinames, rgn_id vector, and eval_year vector to this data frame
 ```{r}
 #read in data from int folders
 ico_spp_iucn <- read_csv(file.path(dir_goal, "int/tet_ico_history.csv")) %>%
@@ -277,7 +277,7 @@ tet_ico_all <- read_csv(file.path(dir_goal, "int/tet_ico_all.csv")) %>%
   dplyr::select(sciname, iucn_sid)
 
 rgn_id <- rep(1, length(ico_spp_iucn$iucn_sid))
-eval_year <- rep(2019, length(ico_spp_iucn$iucn_sid))
+eval_year <- rep(2020, length(ico_spp_iucn$iucn_sid))
 
 #bind and join them all up
 
@@ -317,34 +317,32 @@ tet_ico_stat_sco <- left_join(tet_ico_list, pop_cat, by = "category") %>%
     category %in% c("LR/nt") ~ 0.8,
     category %in% c("LR/cd") ~ 0.9,
     TRUE ~ stat_score)) %>% 
-  dplyr::select(-risk_score) %>% 
-  filter(year > 1999)
+  dplyr::select(-risk_score)
 
 ```
 
 ##Backfilling missing years
 ```{r}
-#create empty years?
+#this gap fills based on the earliest assessment for that species
 tet_ico_full <- tet_ico_stat_sco %>%
   dplyr::select(-sciname, -eval_year) %>%  
   mutate(eval_yr = year) %>% 
   arrange(iucn_sid, year) %>% 
   complete(year = full_seq(year, 1), nesting(iucn_sid)) %>% 
   group_by(iucn_sid) %>% 
-  fill(category, stat_score, eval_yr, rgn_id) %>%  ## fills all the way to latest year
-  ungroup()
-
-#create
-#comname,sciname,ico_gl,ico_rgn_id,iucn_sid,subpop,cat
+  fill(category, stat_score, eval_yr, rgn_id, .direction = "downup") %>%  ## fills all the way to latest year
+  ungroup() %>% 
+  filter(year > 1999)
 
 ```
 
+May need to add a gapfilling file, which would just indicate which years were gapfilled and which were not. 
 
 Write final scores output
 
 ```{r}
 
-write_csv(tet_ico_stat_sco, file.path(dir_goal, "output/ico_scores.csv"), append = FALSE)
+write_csv(tet_ico_full, file.path(dir_goal, "output/ico_scores.csv"), append = FALSE)
 
 ```
 
