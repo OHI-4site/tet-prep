@@ -300,16 +300,24 @@ So far we've found the conservation status for these species, now calculate scor
 
 tet_ico_list <- read_csv(here("/prep/sp/ico/v2020/output", "ico_spp_iucn_list.csv"))
 
-#create data frame with scores
+#create data frame with scores and add column with inverse of risk score (this is status score)
 
 pop_cat <- data.frame(category = c("LC", "NT", "VU", "EN", "CR", "EX", "T", "CD", "NE", "DD"), 
-                      cat_score = c(   0,  0.2,  0.4,  0.6,  0.8,  1.0, 0.6,  0.3,   NA,  NA),
-                      stringsAsFactors = FALSE)
+                      risk_score = c(   0,  0.2,  0.4,  0.6,  0.8,  1.0, 0.6,  0.3,   NA,  NA),
+                      stringsAsFactors = FALSE) %>% 
+  mutate(
+    stat_score = 1 - risk_score
+  )
 
 #join the scores data to the list data
 
-tet_ico_stat_sco <- left_join(tet_ico_list, pop_cat, by = "category")
+tet_ico_stat_sco <- left_join(tet_ico_list, pop_cat, by = "category") %>%
+  mutate(stat_score = case_when(
+    category %in% c("LR/lc", "LR/cd") ~ 1.0,
+    TRUE ~ stat_score)) %>%
+  dplyr::select(-risk_score)
 
+#question - what do we do about low risk conservation dependent? rare?
 
 ```
 
