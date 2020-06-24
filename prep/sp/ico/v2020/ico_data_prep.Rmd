@@ -296,23 +296,30 @@ So far we've found the conservation status for these species, now calculate scor
 
 ```{r}
 
-#read in list 
+#read in listfor all years 
 
-tet_ico_list <- read_csv(here("/prep/sp/ico/v2020/int", "tet_ico_all.csv"))
+tet_ico_list <- read_csv(here("/prep/sp/ico/v2020/output", "ico_spp_iucn_list.csv"))
 
 #create data frame with scores
 
-pop_cat <- data.frame(cat       = c("LC", "NT", "VU", "EN", "CR", "EX", "T", "CD", "NE", "DD"), 
+pop_cat <- data.frame(category = c("LC", "NT", "VU", "EN", "CR", "EX", "T", "CD", "NE", "DD"), 
                       cat_score = c(   0,  0.2,  0.4,  0.6,  0.8,  1.0, 0.6,  0.3,   NA,  NA),
                       stringsAsFactors = FALSE)
 
 #join the scores data to the list data
 
+tet_ico_stat_sco <- left_join(tet_ico_list, pop_cat, by = "category")
 
 
 ```
 
+Write final scores output
 
+```{r}
+
+write_csv(tet_ico_stat_sco, file.path(dir_goal, "output/ico_scores.csv"))
+
+```
 
 
 
