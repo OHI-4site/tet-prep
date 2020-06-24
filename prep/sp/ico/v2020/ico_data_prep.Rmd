@@ -258,7 +258,7 @@ df <- as.data.frame(out)
 }
 
 #write out this data frame to int folder
-write_csv(tet_ico_hist_all, file.path(dir_goal,'int/tet_ico_history.csv'))
+write_csv(tet_ico_history, file.path(dir_goal,'int/tet_ico_history.csv'))
 ```
 
 #Export final data layers to output
@@ -276,8 +276,8 @@ ico_spp_iucn <- read_csv(file.path(dir_goal, "int/tet_ico_history.csv")) %>%
 tet_ico_all <- read_csv(file.path(dir_goal, "int/tet_ico_all.csv")) %>% 
   dplyr::select(sciname, iucn_sid)
 
-rgn_id <- rep(1, length(ico_spp_iucn_status$iucn_sid))
-eval_year <- rep(2019, length(ico_spp_iucn_status$iucn_sid))
+rgn_id <- rep(1, length(ico_spp_iucn$iucn_sid))
+eval_year <- rep(2019, length(ico_spp_iucn$iucn_sid))
 
 #bind and join them all up
 
@@ -285,11 +285,32 @@ ico_spp_iucn_status <- data.frame(rgn_id,ico_spp_iucn,eval_year) %>%
   inner_join(., tet_ico_all, by = "iucn_sid")
 
 #write csv
-write_csv(ico_spp_iucn_status, file.path(dir_goal, "output/ico_spp_iucn_status.csv"))
+write_csv(ico_spp_iucn_status, file.path(dir_goal, "output/ico_spp_iucn_list.csv"))
 
 
 ```
 
+##Calculating status scores
+
+So far we've found the conservation status for these species, now calculate score. In global this is done in the tool box but we'll do it in prep here. I've saved both layers in outputs. 
+
+```{r}
+
+#read in list 
+
+tet_ico_list <- read_csv(here("/prep/sp/ico/v2020/int", "tet_ico_all.csv"))
+
+#create data frame with scores
+
+pop_cat <- data.frame(cat       = c("LC", "NT", "VU", "EN", "CR", "EX", "T", "CD", "NE", "DD"), 
+                      cat_score = c(   0,  0.2,  0.4,  0.6,  0.8,  1.0, 0.6,  0.3,   NA,  NA),
+                      stringsAsFactors = FALSE)
+
+#join the scores data to the list data
+
+
+
+```
 
 
 
