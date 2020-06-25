@@ -197,7 +197,7 @@ rgn_area_offshore_3nm <- data.frame(rgn_id = 1, area = area_3nm)
 
 #export to outputs folder
 
-write_csv(rgn_area_offshore_3nm, file.path(dir_github, 'prep/sp/lsp/v2020/output/rgn_area_area_offshore3nm'))
+write_csv(rgn_area_offshore_3nm, file.path(dir_github, 'prep/sp/lsp/v2020/output/rgn__area_offshore3nm'), append = FALSE)
 ```
 
 
@@ -299,7 +299,24 @@ lsp_status_scores <- bind_rows(rgn_1,rgn_2,rgn_3)
 
 #write to output folder 
 
-write_csv(lsp_status_scores, file.path(dir_goal, "output/lsp_status.csv"))
+write_csv(lsp_status_scores, file.path(dir_goal, "output/lsp_status_all.csv"))
+
+```
+
+Now make a single layer with information combined into average. This is where the weighting can be adjusted if needed, ie if we decide the lagoon is more important than the land. This should also be adjusted if we want to change the years. Right now, overall score is 0.5 since that is the average of the all three subregions.
+
+Note: fix notation, its kind of confusing right now. 
+
+```{r}
+
+
+lsp_status_avg <- data.frame(
+  rgn_id = rep(1,length(year)),
+  year = year,
+  status = rep(0.5, length(year))
+)
+
+write_csv(lsp_status_avg, file.path(dir_goal, "output/lsp_status_avg.csv"))
 
 ```
 
