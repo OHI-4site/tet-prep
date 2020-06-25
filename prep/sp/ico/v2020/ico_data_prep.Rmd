@@ -323,16 +323,18 @@ tet_ico_stat_sco <- left_join(tet_ico_list, pop_cat, by = "category") %>%
 
 ##Backfilling missing years
 ```{r}
+
 #this gap fills based on the earliest assessment for that species
 tet_ico_full <- tet_ico_stat_sco %>%
-  dplyr::select(-sciname, -eval_year) %>%  
+  dplyr::select(-eval_year) %>%  
   mutate(eval_yr = year) %>% 
   arrange(iucn_sid, year) %>% 
   complete(year = full_seq(year, 1), nesting(iucn_sid)) %>% 
   group_by(iucn_sid) %>% 
-  fill(category, stat_score, eval_yr, rgn_id, .direction = "downup") %>%  ## fills all the way to latest year
+  fill(sciname, category, stat_score, eval_yr, rgn_id, .direction = "downup") %>%  ## fills all the way to latest year
   ungroup() %>% 
-  filter(year > 1999)
+  filter(year > 2013) %>% 
+  dplyr::select(rgn_id, year, sciname, status = stat_score)
 
 ```
 
@@ -341,9 +343,11 @@ May need to add a gapfilling file, which would just indicate which years were ga
 Write final scores output
 
 ```{r}
-
+#write to outputs folder
 write_csv(tet_ico_full, file.path(dir_goal, "output/ico_scores.csv"), append = FALSE)
 
+#write to tool box
+write.csv(tet_ico_full %>% dplyr::select(region_id = rgn_id, year, sciname, status), file = "~/github/tet-scores/region/layers/ico_status.csv", row.names = FALSE)
 ```
 
 
