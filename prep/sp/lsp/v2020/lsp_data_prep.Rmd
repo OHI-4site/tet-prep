@@ -273,7 +273,7 @@ Above code useful if we end up wanting to be more precise in our scoring, but wi
 
 ```{r}
 
-year <- seq(2000,2020,1)
+year <- seq(2014,2020,1)
 
 #create land layer
 land_status <- data.frame(
@@ -282,7 +282,7 @@ land_status <- data.frame(
   status = rep(1, length(year))
 )
 
-write.csv(land_status %>% select(region_id = rgn_id, year, status), file = "~/github/tet-scores/region/layers/lsp_land_status.csv", append = FALSE)
+write.csv(land_status %>% select(region_id = rgn_id, year, status), file = "~/github/tet-scores/region/layers/lsp_land_status.csv", row.names = FALSE)
 
 #create lagoon layer
 lagoon_status <- data.frame(
@@ -291,7 +291,7 @@ lagoon_status <- data.frame(
   status = rep(0.5, length(year))
 )
 
-write.csv(lagoon_status %>% select(region_id = rgn_id, year, status), file = "~/github/tet-scores/region/layers/lsp_lagoon_status.csv")
+write.csv(lagoon_status %>% select(region_id = rgn_id, year, status), file = "~/github/tet-scores/region/layers/lsp_lagoon_status.csv", row.names = FALSE)
 
 #create offshore layer
 offshore_status <- data.frame(
@@ -300,7 +300,7 @@ offshore_status <- data.frame(
   status = rep(0, length(year))
 )
 
-write.csv(offshore_status %>% select(region_id = rgn_id, year, status), file = "~/github/tet-scores/region/layers/lsp_offshore_status.csv", append = FALSE)
+write.csv(offshore_status %>% select(region_id = rgn_id, year, status), file = "~/github/tet-scores/region/layers/lsp_offshore_status.csv", row.names = FALSE)
 ```
 
 
