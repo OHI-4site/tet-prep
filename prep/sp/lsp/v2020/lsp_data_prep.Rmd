@@ -273,7 +273,7 @@ Above code useful if we end up wanting to be more precise in our scoring, but wi
 
 ```{r}
 
-year <- seq(2000,2019,1)
+year <- seq(2000,2020,1)
 
 rgn_1 <- data.frame(
   rgn_id = rep(1, length(year)),
@@ -314,7 +314,8 @@ lsp_status_avg <- data.frame(
   rgn_id = rep(1,length(year)),
   year = year,
   status = rep(0.5, length(year))
-)
+) %>% 
+  filter(year > 2013)
 
 write_csv(lsp_status_avg, file.path(dir_goal, "output/lsp_status_avg.csv"))
 
