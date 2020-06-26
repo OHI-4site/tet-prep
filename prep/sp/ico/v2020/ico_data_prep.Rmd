@@ -296,7 +296,7 @@ So far we've found the conservation status for these species, now calculate scor
 
 ```{r}
 
-#read in listfor all years 
+#read in list for all years 
 
 tet_ico_list <- read_csv(here("/prep/sp/ico/v2020/output", "ico_spp_iucn_list.csv"))
 
@@ -337,6 +337,19 @@ tet_ico_full <- tet_ico_stat_sco %>%
   dplyr::select(rgn_id, year, sciname, status = stat_score)
 
 ```
+
+Adding common names - step one is to read in the spp int file, because we already did that there
+
+```{r}
+
+common_names <- read_csv(here("/prep/bd/spp/v2020/int", "1_iucn_spp_in_tet.csv")) %>% 
+  dplyr::select(sciname, common_name)
+
+
+
+```
+
+
 
 May need to add a gapfilling file, which would just indicate which years were gapfilled and which were not. 
 
