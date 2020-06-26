@@ -1,0 +1,164 @@
+name,sciname,iucn_sid,population,category
+white common tern,gygis alba,22694821,NA,LC
+bristle thighed curley,numenius tahitiensis,22693182,NA,VU
+pacific reef egret,egretta sacra,22696980,NA,LC
+pacific golden plover,pluvialis fulva,22693735,NA,LC
+wandering tattler,tringa incana,22693305,NA,LC
+spotted pufferfish,arothron meleagris,193662,NA,LC
+peppered moray eel,gymnothorax pictus,195775,NA,LC
+blotch-eye soldier firsh,myripristis murdjan,67871036,NA,LC
+striated surgeonfish,ctenochaetus striatus,178012,NA,LC
+bullethead parrotfish,chlorurus sordidus,190715,NA,LC
+giant squirrelfish,sargocentron spiniferum,67903042,NA,LC
+common parrotfish,scarus psittacus,190736,NA,LC
+moorish idol,zanclus cornutus,69741115,NA,LC
+starry pufferfish,arothron stellatus,193712,NA,LC
+peacock grouper,cephalopholis argus,132781,NA,LC
+lemonpeel angelfish,centropyge flavissima,165878,NA,LC
+threadfin butterfly fish,chaetodon auriga,165631,NA,LC
+racoon butterflyfish,chaetodon lunula,165651,NA,LC
+honeycomb grouper,epinephelus merra,132788,NA,LC
+goldlined emperor,gnathodentex aureolineatus,16719296,NA,LC
+milk fish,chanos chanos,60324,NA,LC
+giant jack,caranx ignobilis,20430651,NA,LC
+orangespine unicornfish,naso lituratus,177950,NA,LC
+bluestreak cleaner wrasse,labroides dimidiatus,187396,NA,LC
+sixbar wrasse,thalassoma hardwicke,187559,NA,LC
+yellowbanded pipefish,corythoichthys flavofasciatus,65364818,NA,LC
+silver squirrelfish,neoniphon argenteus,67871143,NA,LC
+giant moray,gymnothorax javanicus,195741,NA,LC
+blackblotch lizardfish,synodus jaculum,67853451,NA,LC
+helmet gurnard,dactyloptena orientalis,50903234,NA,LC
+yellowstripe goatfish,mulloidichthys flavolineatus,50903119,NA,LC
+barred jack,carangoides ferdau,20429455,NA,LC
+yellow-margined snapper,lutjanus fulvus,194377,NA,LC
+dot-dashed goatfish,parupeneus barberinus,69181941,NA,LC
+pennant bannerfish,heniochus chrysostomus,165640,NA,LC
+slingjaw wrasse,epibulus insidiator,187722,NA,LC
+spotted surgeonfish,acanthurus guttatus,177995,NA,LC
+bluespine unicornfish,naso unicornis,177970,NA,LC
+blacktip reef shark,carcharhinus melanopterus,39375,NA,NT
+lemon shark,negaprion acutidens,42834,Southeast Asia subpopulation,EN
+leatherback turtle,dermochelys coriacea,46967807,East Pacific Ocean subpopulation,CR
+coconut crab,birgus latro,2811,NA,DD
+day octopus,octopus cyanea,163055,NA,LC
+clam,tridacna maxima,22138,NA,LR/cd
+lobe coral,porites lobata,133216,NA,NT
+staghorn coral,acropora striata,133291,NA,VU
+knob-horned coral,pocillopora verrucosa,133197,NA,LC
+fire coral,millepora platyphylla,133595,NA,LC
+sea cucumber,holothuria atra,180421,NA,LC
+olive ridley sea turtle,lepidochelys olivacea,11534,NA,VU
+giant herring,elops hawaiensis,194307,NA,DD
+white shark,carcharodon carcharias,3855,NA,VU
+whale shark,rhincodon typus,19488,NA,EN
+crocodile shark,pseudocarcharias kamoharai,39337,NA,NT
+megamouth shark,megachasma pelagios,39338,NA,LC
+common thresher,alopias vulpinus,39339,NA,VU
+shortfin mako,isurus oxyrinchus,39341,NA,VU
+silky shark,carcharhinus falciformis,39370,NA,VU
+oceanic whitetip shark,carcharhinus longimanus,39374,NA,VU
+tiger shark,galeocerdo cuvier,39378,NA,NT
+blue shark,prionace glauca,39381,NA,NT
+whitetip reef shark,triaenodon obesus,39384,NA,NT
+scalloped hammerhead,sphyrna lewini,39385,NA,EN
+great hammerhead,sphyrna mokarran,39386,NA,EN
+spotted eagle ray,aetobatus narinari,39415,NA,NT
+tawny nurse shark,nebrius ferrugineus,41835,NA,VU
+pygmy shark,euprotomicrus bispinatus,60210,NA,LC
+longfin mako,isurus paucus,60225,NA,VU
+pelagic thresher,alopias pelagicus,161597,NA,VU
+pelagic stingray,pteroplatytrygon violacea,161731,NA,LC
+reef manta ray,mobula alfredi,195459,NA,VU
+giant manta ray,mobula birostris,198921,NA,VU
+spotted eagle ray,aetobatus ocellatus,42566169,NA,VU
+comet grouper,epinephelus morrhua,132745,NA,LC
+eightbar grouper,hyporthodus octofasciatus,132772,NA,DD
+garish hind,cephalopholis igarashiensis,132791,NA,DD
+NA,pentacheles snyderi,185061,NA,LC
+NA,stereomastis auriculata,185064,NA,LC
+NA,galearctus aurora,185076,NA,LC
+pygmy killer whale,feresa attenuata,8551,NA,DD
+cuvier's beaked whale,ziphius cavirostris,23211,NA,LC
+striped dolphin,stenella coeruleoalba,20731,NA,LC
+blue whale,balaenoptera musculus,2477,NA,EN
+bryde's whale,balaenoptera edeni,2476,NA,LC
+killer whale,orcinus orca,15421,NA,DD
+humpback whale,megaptera novaeangliae,13006,NA,LC
+melon-headed whale,peponocephala electra,16564,NA,LC
+common bottlenose dolphin,tursiops truncatus,22563,NA,LC
+sperm whale,physeter macrocephalus,41755,NA,VU
+blainville's beaked whale,mesoplodon densirostris,13244,NA,DD
+fraser's dolphin,lagenodelphis hosei,11140,NA,LC
+pygmy sperm whale,kogia breviceps,11047,NA,DD
+dwarf sperm whale,kogia sima,11048,NA,DD
+common minke whale,balaenoptera acutorostrata,2474,NA,LC
+risso's dolphin,grampus griseus,9461,NA,LC
+pantropical spotted dolphin,stenella attenuata,20729,NA,LC
+spinner dolphin,stenella longirostris,20733,NA,DD
+short-finned pilot whale,globicephala macrorhynchus,9249,NA,DD
+sei whale,balaenoptera borealis,2475,NA,EN
+rough-toothed dolphin,steno bredanensis,20738,NA,LC
+ginkgo-toothed beaked whale,mesoplodon ginkgodens,13246,NA,DD
+blunthead puffer,sphoeroides pachygaster,190193,NA,LC
+silver-cheeked toadfish,lagocephalus sceleratus,166947,NA,LC
+oceanic puffer,lagocephalus lagocephalus,190464,NA,LC
+brown-lined puffer,canthigaster rivulata,193705,NA,LC
+yellow-bellied sea snake,hydrophis platurus,176738,NA,LC
+hawksbill turtle,eretmochelys imbricata,8005,NA,CR
+green turtle,chelonia mydas,4615,NA,EN
+loggerhead turtle,caretta caretta,84156809,South Pacific subpopulation,CR
+NA,holothuria glandifera,180315,NA,DD
+surf redfish,actinopyga mauritiana,180337,NA,VU
+NA,holothuria olivacea,180236,NA,DD
+harry blackfish,actinopyga miliaris,180265,NA,VU
+NA,holothuria erinaceaus,180226,NA,LC
+NA,holothuria stocki,180446,NA,DD
+NA,mesothuria multipora,19720058,NA,DD
+albacore tuna,thunnus alalunga,21856,NA,NT
+yellowfin tuna,thunnus albacares,21857,NA,NT
+bigeye tuna,thunnus obesus,21859,NA,VU
+blue marlin,makaira nigricans,170314,NA,VU
+shortbill spearfish,tetrapturus angustirostris,170315,NA,DD
+swordfish,xiphias gladius,23148,NA,LC
+pacific bluefin tuna,thunnus orientalis,170341,NA,VU
+kawakawa,euthynnus affinis,170336,NA,LC
+sailfish,istiophorus platypterus,170338,NA,LC
+striped marlin,kajikia audax,170309,NA,NT
+skipjack tuna,katsuwonus pelamis,170310,NA,LC
+black marlin,istiompax indica,170312,NA,DD
+white-bellied storm-petrel,fregetta grallaria,22698465,NA,LC
+black-bellied storm-petrel,fregetta tropica,22698459,NA,LC
+chatham albatross,thalassarche eremita,22698393,NA,VU
+wilson's storm-petrel,oceanites oceanicus,22698436,NA,LC
+polynesian storm-petrel,nesofregetta fuliginosa,22698471,NA,EN
+white-faced storm-petrel,pelagodroma marina,22698453,NA,LC
+blue noddy,procelsterna cerulea,22727746,NA,LC
+tahiti petrel,pseudobulweria rostrata,22697925,NA,NT
+kermadec petrel,pterodroma neglecta,22698027,NA,LC
+phoenix petrel,pterodroma alba,22698001,NA,EN
+white-necked petrel,pterodroma cervicalis,22697957,NA,VU
+herald petrel,pterodroma heraldica,22698012,NA,LC
+tropical shearwater,puffinus bailloni,22734070,NA,LC
+christmas shearwater,puffinus nativitatis,22698222,NA,LC
+henderson petrel,pterodroma atrata,22728442,NA,EN
+black petrel,procellaria parkinsoni,22698150,NA,VU
+cook's petrel,pterodroma cookii,22697975,NA,VU
+mottled petrel,pterodroma inexpectata,22697963,NA,NT
+black-winged petrel,pterodroma nigripennis,22697954,NA,LC
+white-winged petrel,pterodroma leucoptera,22697970,NA,VU
+murphy's petrel,pterodroma ultima,22698039,NA,NT
+masked booby,sula dactylatra,22736173,NA,LC
+brown booby,sula leucogaster,22696698,NA,LC
+red-footed booby,sula sula,22696694,NA,LC
+buller's shearwater,ardenna bulleri,22698182,NA,VU
+collared petrel,pterodroma brevipes,22697987,NA,VU
+red-tailed tropicbird,phaethon rubricauda,22696641,NA,LC
+brown noddy,anous stolidus,22694794,NA,LC
+black noddy,anous minutus,22694799,NA,LC
+lesser frigatebird,fregata ariel,22697738,NA,LC
+white-tailed tropicbird,phaethon lepturus,22696645,NA,LC
+sooty tern,onychoprion fuscatus,22694740,NA,LC
+wedge-tailed shearwater,ardenna pacifica,22698175,NA,LC
+short-tailed shearwater,ardenna tenuirostris,22698216,NA,LC
+great frigatebird,fregata minor,22697733,NA,LC

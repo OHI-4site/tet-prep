@@ -342,10 +342,16 @@ Adding common names - step one is to read in the spp int file, because we alread
 
 ```{r}
 
-common_names <- read_csv(here("/prep/bd/spp/v2020/int", "1_iucn_spp_in_tet.csv")) %>% 
-  dplyr::select(sciname, common_name)
+common_names <- read_csv(here("/prep/bd/spp/v2020/int", "2_spp_ico_iucn.csv")) %>% 
+  dplyr::select(sciname, name) %>% 
+  mutate(
+    sciname = str_to_lower(sciname),
+    name = str_to_lower(name)
+  )
 
+#join to tet_ico_full
 
+ico_scores <- left_join(tet_ico_full, common_names, by = "sciname")
 
 ```
 
@@ -356,11 +362,11 @@ May need to add a gapfilling file, which would just indicate which years were ga
 Write final scores output
 
 ```{r}
-#write to outputs folder
-write_csv(tet_ico_full, file.path(dir_goal, "output/ico_scores.csv"), append = FALSE)
+#write to outputs folder -full version
+write_csv(ico_scores, file.path(dir_goal, "output/ico_scores.csv"), append = FALSE)
 
 #write to tool box
-write.csv(tet_ico_full %>% dplyr::select(region_id = rgn_id, year, sciname, status), file = "~/github/tet-scores/region/layers/ico_status.csv", row.names = FALSE)
+write.csv(ico_scores %>% dplyr::select(region_id = rgn_id, year, name, status), file = "~/github/tet-scores/region/layers/ico_status.csv", row.names = FALSE)
 ```
 
 

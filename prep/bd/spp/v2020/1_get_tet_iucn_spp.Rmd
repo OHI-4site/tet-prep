@@ -24,6 +24,14 @@ library(tidyverse)
 
 source(here('workflow/R/common.R'))
 
+#file paths
+goal     <- 'spp'
+scenario <- 'v2020'
+dir_anx       <- file.path(dir_M, 'git-annex/globalprep') 
+dir_goal      <- file.path(here('prep/bd',goal, scenario))
+dir_goal_anx  <- file.path(dir_anx, goal, scenario)
+dir_github    <- '~/github/tet-prep'
+
 #tetiaroa region shape file
 tet_shp <- tet_buffer_3nm
 
@@ -311,10 +319,13 @@ Filter the ico list for the missing ones and bind to the iucn list
 
 ```{r}
 
-iucn_all <- ico_sp %>% 
+spp_all <- ico_sp %>% 
   filter(sciname %in% ico_not_sp) %>% 
   bind_rows(., spp_sp) #create new dataframe with all the species
 
+#write this out 
+
+write_csv(spp_all, file.path(dir_goal, "/int/2_spp_ico_iucn.csv"))
 
 ```
 
