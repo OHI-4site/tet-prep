@@ -338,7 +338,7 @@ tet_ico_full <- tet_ico_stat_sco %>%
 
 ```
 
-Adding common names - step one is to read in the spp int file, because we already did that there
+Adding common names and 2020 - step one is to read in the spp int file, because we already did that there
 
 ```{r}
 
@@ -351,7 +351,15 @@ common_names <- read_csv(here("/prep/bd/spp/v2020/int", "2_spp_ico_iucn.csv")) %
 
 #join to tet_ico_full
 
-ico_scores <- left_join(tet_ico_full, common_names, by = "sciname")
+status_19 <- left_join(tet_ico_full, common_names, by = "sciname")
+
+#add 2020 data
+ico_scores <- status_19 %>% 
+  filter(year == 2019) %>% 
+  mutate(
+    year = 2020
+  ) %>% 
+  bind_rows(.,ico_scores)
 
 ```
 
