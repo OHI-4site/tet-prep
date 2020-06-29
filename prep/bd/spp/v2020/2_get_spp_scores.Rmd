@@ -124,7 +124,7 @@ spp_trend_scores <- iucn_trends %>%
   filter(!is.na(trend)) #filter out three where trend was unknown
 ```
 
-##Visualize# Visualize
+##Visualize
 
 ```{r}
 spp_trends_plot <- spp_trend_scores %>%
@@ -139,3 +139,16 @@ ggplot(spp_trends_plot, aes(x = trend, y = count)) +
 
 #over half of them are unknown
 ```
+
+##Save
+```{r}
+
+spp_trends <- spp_trend_scores %>%
+  mutate(year = 2020) %>%   #have to add a year for the toolbox - should this be 2020
+  dplyr::select(sciname, score, year)
+
+write.csv(spp_trends, file = "~/github/tet-scores/region/layers/spp_trend.csv", row.names = F)  #save to toolbox
+
+
+```
+
