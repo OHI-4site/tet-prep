@@ -67,10 +67,14 @@ spp_status <- left_join(spp_list, pop_cat, by = "category") %>%
     #category %in% c("LR/lc") ~ 1.0, #this one isn't showing up? double check 
    # category %in% c("LR/nt") ~ 0.8,
     category %in% c("LR/cd") ~ 0.9,
-    TRUE ~ stat_score)) %>% 
+    TRUE ~ stat_score),
+   year = 2020) %>% 
   dplyr::select(-risk_score)
 
 #double check that this is what the layer should look like 
+
+write.csv(spp_status, file = "~/github/tet-scores/region/layers/spp_status.csv", row.names = F)
+
 ```
 
 #Trend
@@ -138,6 +142,7 @@ ggplot(spp_trends_plot, aes(x = trend, y = count)) +
   theme_bw()
 
 #over half of them are unknown
+
 ```
 
 ##Save
