@@ -20,11 +20,7 @@ library(raster)
 
 #file path setup
 
-goal     <- 'lsp'
-scenario <- 'v2020'
-dir_anx       <- file.path(dir_M, 'git-annex/globalprep') 
-dir_goal      <- file.path(here('prep/bd',goal, scenario))
-dir_goal_anx  <- file.path(dir_anx, goal, scenario)#this is to get the wdpa raster
+
 dir_github    <- '~/github/tet-prep'
 ```
 
@@ -104,9 +100,11 @@ st_write(tet_motus_xformed, "tet_motus_xformed.shp")
 
 Next step is to create shapefiles representing marine space. 
 
-1. lagoon area
+1. lagoon area (not done yet, only if needed)
 2. 3 nautical miles in all directions from the outside of the motus
-
+3. 50 nautical miles in all direction from the outside of the motus - this layer is just for extracting species because our list with 3nm was really short
+  
+Create 3nm buffer
 ```{r}
 
 #apply a 3nm buffer, and use union to create on shapefile
@@ -117,34 +115,34 @@ tet_buffer_3nm <- st_union(st_buffer(tet_motus_xformed, 5556))
 #tet_ocean <- st_difference(tet_buffer, tet_motus_xformed) #this didn't work, maybe intersection?
 
 
-mapview(tet_buffer)+
+mapview(tet_buffer_3nm)+
   mapview(tet_motus_xformed, col.regions = "green")
 
 ```
 
-Write out buffer shapefile
+Write out 3nm buffer shapefile
 ```{r}
 st_write(tet_buffer_3nm, "tet_buffer_3nm.shp")
 
 
 ```
 
-Will need a raster version for layer prep (this code is repated in lsp prep, since I think it shows that the raster does not have :
-
+Create 50nm buffer
 ```{r}
-#source wdpa raster
-rast_wdpa <- raster::raster(file.path(dir_goal_anx, 'rast', 'wdpa_2020_moll_500m.tif')) #note: the numbers for this are 2019, does that seem right?
 
-#to convert into raster needs to be in an sp object instead sfc_POLYGON
-tet_buffer_3nm_sp <- as(tet_buffer_3nm,"Spatial")
+tet_buffer_50nm <- st_union(st_buffer(tet_motus_xformed, 92600))
 
-crop <- crop(rast_wdpa, extent(tet_buffer_3nm_sp), snap="out")
-tet_3nm_rast <- rasterize(tet_buffer_3nm_sp, crop)
 
-#mask wdpa if needed:
+mapview(tet_buffer_50nm)+
+    mapview(tet_motus_xformed, col.regions = "green")
 
-wdpa_mask <- mask(x=crop, mask=tet_3nm_rast) #I think the warning you get here tells you that it doesn't have any protected areas/.
 
-plot(tet_3nm_rast) #not sure where these values came from 
+```
+
+Write out 50nm buffer
+```{r}
+
+st_write(tet_buffer_50nm,"tet_buffer_3nm.shp")
+
 ```
 
