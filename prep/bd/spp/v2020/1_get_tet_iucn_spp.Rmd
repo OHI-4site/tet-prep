@@ -299,6 +299,53 @@ write.csv(spp_marine_maps, "int/1_iucn_spp_shp_filepaths_50.csv")
 
 ```
 
+
+Double check the ICO list - most should be included now
+
+1. Get files needed 
+```{r}
+
+#read in ico species list
+
+ico_sp <- read_csv(here("/prep/sp/ico/v2020/int", "tet_ico_all.csv"))
+
+spp_sp <- read_csv(here("/prep/bd/spp/v2020/int","1_iucn_spp_in_tet_50.csv")) %>% 
+  mutate(
+    sciname = str_to_lower(sciname),
+    name = str_to_lower(common)
+  ) %>% 
+  dplyr::select(-common, name, sciname, iucn_sid, population, category)
+
+```
+
+We can detect any differences using `setdiff()`?
+
+```{r}
+#this is a list of whats in ico but NOT in spp - this is what we need to add
+
+ico_not_sp <- setdiff(ico_sp$sciname, spp_sp$sciname) 
+
+#this is a list of whats in spp but NOT ICO, just as a reference
+setdiff(spp_sp$sciname, ico_sp$sciname) 
+
+```
+
+So still missing 21 - need to add these back in 
+
+Filter the ico list for the missing ones and bind to the iucn list
+
+```{r}
+
+spp_all <- ico_sp %>% 
+  filter(sciname %in% ico_not_sp) %>% 
+  bind_rows(., spp_sp) #create new dataframe with all the species
+
+#write this out 
+
+write_csv(spp_all, file.path(dir_goal, "/int/2_spp_ico_iucn_50.csv"))
+
+```
+
 ***
 This code is no longer needed now that we expanded the buffer
 

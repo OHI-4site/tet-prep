@@ -1,0 +1,658 @@
+name,sciname,iucn_sid,population,category
+pacific golden plover,pluvialis fulva,22693735,NA,LC
+peppered moray eel,gymnothorax pictus,195775,NA,LC
+blotch-eye soldier firsh,myripristis murdjan,67871036,NA,LC
+bullethead parrotfish,chlorurus sordidus,190715,NA,LC
+giant squirrelfish,sargocentron spiniferum,67903042,NA,LC
+moorish idol,zanclus cornutus,69741115,NA,LC
+goldlined emperor,gnathodentex aureolineatus,16719296,NA,LC
+milk fish,chanos chanos,60324,NA,LC
+giant jack,caranx ignobilis,20430651,NA,LC
+silver squirrelfish,neoniphon argenteus,67871143,NA,LC
+giant moray,gymnothorax javanicus,195741,NA,LC
+blackblotch lizardfish,synodus jaculum,67853451,NA,LC
+helmet gurnard,dactyloptena orientalis,50903234,NA,LC
+yellowstripe goatfish,mulloidichthys flavolineatus,50903119,NA,LC
+barred jack,carangoides ferdau,20429455,NA,LC
+yellow-margined snapper,lutjanus fulvus,194377,NA,LC
+dot-dashed goatfish,parupeneus barberinus,69181941,NA,LC
+blacktip reef shark,carcharhinus melanopterus,39375,NA,NT
+leatherback turtle,dermochelys coriacea,46967807,East Pacific Ocean subpopulation,CR
+coconut crab,birgus latro,2811,NA,DD
+day octopus,octopus cyanea,163055,NA,LC
+clam,tridacna maxima,22138,NA,LR/cd
+olive ridley sea turtle,lepidochelys olivacea,11534,NA,VU
+twospined angelfish,centropyge bispinosa,165871,NA,LC
+lemonpeel angelfish,centropyge flavissima,165878,NA,LC
+multicolor angelfish,centropyge multicolor,165896,NA,LC
+yellow angelfish,centropyge heraldi,165848,NA,LC
+royal angelfish,pygoplites diacanthus,165885,NA,LC
+ornate angelfish,genicanthus bellus,165864,NA,LC
+blackedged angelfish,genicanthus watanabei,165872,NA,LC
+hawaiian flame angelfish,centropyge fisheri,165828,NA,LC
+emperor angelfish,pomacanthus imperator,165862,NA,LC
+barred angelfish,paracentropyge multifasciata,165852,NA,LC
+flame angel,centropyge loricula,155308,NA,LC
+giant herring,elops hawaiensis,194307,NA,DD
+NA,albula argentea,194298,NA,DD
+saddle-back butterflyfish,chaetodon ephippium,165681,NA,LC
+dusky butterflyfish,chaetodon flavirostris,165688,NA,LC
+threadfin butterflyfish,chaetodon auriga,165631,NA,LC
+decorated butterflyfish,chaetodon semeion,165725,NA,LC
+lined butterflyfish,chaetodon lineolatus,165669,NA,LC
+speckled butterflyfish,chaetodon citrinellus,165668,NA,LC
+triangulate butterflyfish,chaetodon trifascialis,165712,NA,NT
+neonbanded butterflyfish,chaetodon quadrimaculatus,165678,NA,LC
+unicorn pennant coralfish,heniochus monoceros,165650,NA,LC
+black long-nosed butterflyfish,forcipiger longirostris,165667,NA,LC
+thompson's butterflyfish,hemitaurichthys thompsoni,154788,NA,LC
+threeband pennantfish,heniochus chrysostomus,165640,NA,LC
+bluelashed butterflyfish,chaetodon bennetti,165686,NA,DD
+brushytoothed butterflyfish,hemitaurichthys polylepis,165672,NA,LC
+redstriped butterflyfish,chaetodon lunula,165651,NA,LC
+ornate butterflyfish,chaetodon ornatissimus,165641,NA,LC
+reticulated butterflyfish,chaetodon reticulatus,165713,NA,DD
+orangebar butterflyfish,chaetodon mertensii,165615,NA,LC
+tahitian butterflyfish,chaetodon trichrous,165679,NA,LC
+pacific pinstriped butterflyfish,chaetodon lunulatus,165704,NA,LC
+hunchbacked coralfish,heniochus varius,165652,NA,LC
+pacific double-saddled butterflyfish,chaetodon ulietensis,165665,NA,LC
+big long-nosed butterflyfish,forcipiger flavissimus,165716,NA,LC
+teardrop butterfly fish,chaetodon unimaculatus,165714,NA,LC
+raffle's butterflyfish,chaetodon rafflesii,165680,NA,LC
+criss-cross butterflyfish,chaetodon vagabundus,165630,NA,LC
+pennant coral fish,heniochus acuminatus,165626,NA,LC
+dot-and-dash butterflyfish,chaetodon pelewensis,165653,NA,LC
+pygmy shark,euprotomicrus bispinatus,60210,NA,LC
+scalloped hammerhead,sphyrna lewini,39385,NA,EN
+grey reef shark,carcharhinus amblyrhynchos,39365,NA,NT
+blue shark,prionace glauca,39381,NA,NT
+sharptooth lemon shark,negaprion acutidens,41836,NA,VU
+pelagic thresher,alopias pelagicus,161597,NA,VU
+spotted eagle ray,aetobatus narinari,39415,NA,NT
+bull shark,carcharhinus leucas,39372,NA,NT
+white shark,carcharodon carcharias,3855,NA,VU
+spotted eagle ray,aetobatus ocellatus,42566169,NA,VU
+whitetip reef shark,triaenodon obesus,39384,NA,NT
+common thresher,alopias vulpinus,39339,NA,VU
+tawny nurse shark,nebrius ferrugineus,41835,NA,VU
+longtail butterfly ray,gymnura poecilura,60117,NA,NT
+great hammerhead,sphyrna mokarran,39386,NA,EN
+longfin mako,isurus paucus,60225,NA,EN
+crocodile shark,pseudocarcharias kamoharai,39337,NA,LC
+tiger shark,galeocerdo cuvier,39378,NA,NT
+pelagic stingray,pteroplatytrygon violacea,161731,NA,LC
+megamouth shark,megachasma pelagios,39338,NA,LC
+shortfin mako,isurus oxyrinchus,39341,NA,EN
+reef manta ray,mobula alfredi,195459,NA,VU
+silvertip shark,carcharhinus albimarginatus,161526,NA,VU
+blacktip shark,carcharhinus limbatus,3851,NA,NT
+silky shark,carcharhinus falciformis,39370,NA,VU
+galapagos shark,carcharhinus galapagensis,41736,NA,NT
+giant manta ray,mobula birostris,198921,NA,VU
+whale shark,rhincodon typus,19488,NA,EN
+oceanic whitetip shark,carcharhinus longimanus,39374,NA,VU
+buccaneer anchovy,encrasicholina punctifer,75155303,NA,LC
+NA,praealticus caesius,48342229,NA,LC
+seale's blenny,entomacrodus sealei,48342326,NA,LC
+picture rockskipper,blenniella gibbifrons,48342422,NA,LC
+orange-spotted blenny,blenniella chrysospilos,48342115,NA,LC
+white-spotted triplefin,enneapterygius triserialis,178963,NA,LC
+blacktail triplefin,enneapterygius nigricauda,179062,NA,LC
+dusky spotted blenny,cirripectes fuscoguttatus,48342117,NA,LC
+black blenny,atrosalarias fuscus,48342246,NA,LC
+wavyline rockskipper,entomacrodus decussatus,48342389,NA,LC
+cleaner mimic,aspidontus taeniatus,48342346,NA,LC
+NA,atrosalarias holomelas,48342444,NA,LC
+dussumier's blenny,aspidontus dussumieri,48342525,NA,LC
+banded fringe blenny,cirripectes variolosus,48342402,NA,LC
+blackbelly triplefin,enneapterygius fuscoventer,178913,NA,LC
+pacific blue-spotted blenny,blenniella caudolineata,48342489,NA,LC
+black blenny,enchelyurus ater,48342160,NA,LC
+bartail blenny,entomacrodus caudofasciatus,48342521,NA,LC
+thomas' triplefin,norfolkia thomasi,179043,NA,LC
+umpire triplefin,enneapterygius rhabdotus,178889,NA,LC
+high hat triplefin,enneapterygius tutuilae,178932,NA,LC
+little hooded triplefin,helcogramma chica,179109,NA,LC
+NA,cirripectes jenningsi,48342306,NA,LC
+blue-dashed rockskipper,blenniella paula,48342126,NA,LC
+reef margin blenny,entomacrodus thalassinus,48342265,NA,LC
+leaping rockskipper,alticus arnoldorum,48321090,NA,LC
+seychelles blenny,stanulus seychellensis,48342292,NA,LC
+smoothlipped blenny,istiblennius edentulus,46079801,NA,LC
+leopard blenny,exallias brevis,48342137,NA,LC
+pyramid triplefin,enneapterygius pyramis,178957,NA,LC
+zebra blenny,cirripectes quagga,48342428,NA,LC
+black-lined blenny,istiblennius lineatus,48342321,NA,LC
+bluestriped fangblenny,plagiotremus rhinorhynchos,48342477,NA,LC
+piano fangblenny,plagiotremus tapeinosoma,48342366,NA,LC
+blackspotted rockskipper,entomacrodus striatus,48342213,NA,LC
+bearded sabretooth blenny,petroscirtes xestus,48342309,NA,LC
+NA,conus planorbis,192811,NA,LC
+NA,conus miles,192634,NA,LC
+NA,conus coronatus,192636,NA,LC
+flea cone,conus pulicarius,192506,NA,LC
+NA,conus lividus,192844,NA,LC
+NA,conus pertusus,192879,NA,LC
+NA,conus ebraeus,192611,NA,LC
+NA,conus auricomus,192815,NA,LC
+NA,conus acutangulus,192704,NA,LC
+bubble cone,conus bullatus,192297,NA,LC
+NA,conus sanguinolentus,192296,NA,LC
+NA,conus muriculatus,192327,NA,LC
+NA,conus bandanus,192587,NA,LC
+NA,conus circumcisus,192829,NA,LC
+NA,conus coffeae,192754,NA,LC
+NA,conus mitratus,192567,NA,LC
+NA,conus varius,192694,NA,LC
+NA,conus legatus,192843,NA,LC
+NA,conus tulipa,192789,NA,LC
+NA,conus vexillum,192778,NA,LC
+NA,conus quercinus,192812,NA,LC
+NA,conus armadillo,192447,NA,LC
+NA,conus obscurus,192424,NA,LC
+NA,conus eburneus,192700,NA,LC
+NA,conus aureus,192413,NA,LC
+NA,conus rattus,192428,NA,LC
+NA,conus retifer,192521,NA,LC
+NA,conus imperialis,192593,NA,LC
+NA,conus striatus,192321,NA,LC
+NA,conus canonicus,192737,NA,LC
+NA,conus textile,192316,NA,LC
+NA,conus catus,192367,NA,LC
+NA,conus nussatella,192318,NA,LC
+NA,conus generalis,192460,NA,LC
+NA,conus glans,192722,NA,LC
+NA,conus moreleti,192564,NA,LC
+yellow pacific cone,conus flavidus,192562,NA,LC
+NA,conus tessulatus,192743,NA,LC
+NA,conus tenuistriatus,192648,NA,LC
+NA,conus episcopatus,192664,NA,LC
+frigid cone,conus frigidus,192419,NA,LC
+sponsal cone,conus sponsalis,192674,NA,LC
+NA,conus virgo,192853,NA,LC
+cylindrical cone,conus cylindraceus,192793,NA,LC
+false virgin cone,conus emaciatus,192342,NA,LC
+NA,conus distans,192305,NA,LC
+NA,conus litteratus,192719,NA,LC
+NA,conus terebra,192586,NA,LC
+sand-dusted cone,conus arenatus,192870,NA,LC
+NA,conus aulicus,192563,NA,LC
+NA,conus geographus,192772,NA,LC
+NA,conus ferrugineus,192538,NA,LC
+NA,conus litoglyphus,192378,NA,LC
+NA,conus magnificus,192573,NA,LC
+NA,conus adamsonii,192848,NA,LC
+NA,conus chaldaeus,192580,NA,LC
+NA,conus leopardus,192386,NA,LC
+NA,goniopora somaliensis,133378,NA,LC
+NA,leptastrea transversa,133652,NA,LC
+NA,montipora verrilli,133305,NA,DD
+NA,leptoseris mycetoseroides,133351,NA,LC
+NA,leptoseris scabra,133091,NA,LC
+NA,montipora informis,133066,NA,LC
+NA,pavona cactus,133558,NA,VU
+NA,acropora retusa,133115,NA,VU
+NA,acropora tenuis,133020,NA,NT
+NA,favia pallida,132936,NA,LC
+NA,acropora clathrata,133207,NA,LC
+NA,turbinaria frondens,133146,NA,LC
+NA,pavona frondifera,133242,NA,LC
+NA,acropora cytherea,133313,NA,LC
+NA,acropora rambleri,132966,NA,DD
+NA,podabacia crustacea,133158,NA,LC
+NA,fungia moluccensis,133437,NA,LC
+NA,astreopora myriophthalma,133292,NA,LC
+NA,montipora australiensis,133443,NA,VU
+NA,leptoria phrygia,132980,NA,NT
+NA,alveopora allingi,133332,NA,VU
+NA,acropora inermis,133273,NA,DD
+NA,barabattoia laddi,133383,NA,VU
+NA,psammocora nierstraszi,133094,NA,LC
+NA,acropora nana,133698,NA,NT
+NA,acropora samoensis,132998,NA,LC
+NA,pachyseris speciosa,133410,NA,LC
+NA,favia stelligera,133593,NA,NT
+smooth cauliflower coral,stylophora pistillata,133685,NA,NT
+NA,acropora speciosa,133338,NA,VU
+NA,plerogyra sinuosa,133258,NA,NT
+NA,goniastrea australensis,132883,NA,LC
+NA,acropora glauca,133550,NA,NT
+NA,acropora abrotanoides,133649,NA,LC
+NA,favia rotumana,133029,NA,LC
+NA,porites vaughani,133016,NA,LC
+NA,pavona varians,133398,NA,LC
+NA,psammocora haimeana,133406,NA,LC
+NA,echinophyllia aspera,133172,NA,LC
+NA,montipora angulata,132866,NA,VU
+NA,acropora austera,133160,NA,NT
+NA,pavona maldivensis,132911,NA,LC
+NA,montipora venosa,133635,NA,NT
+finger coral,acropora humilis,132992,NA,NT
+NA,turbinaria reniformis,133697,NA,VU
+NA,echinopora lamellosa,133088,NA,LC
+head coral,favia favus,133569,NA,LC
+NA,montipora floweri,133186,NA,LC
+NA,acropora tortuosa,133252,NA,LC
+NA,psammocora superficialis,133502,NA,LC
+NA,acropora lutkeni,133303,NA,NT
+NA,montipora spumosa,133556,NA,LC
+NA,acropora striata,133291,NA,VU
+NA,acropora latistella,133120,NA,LC
+NA,merulina ampliata,133337,NA,LC
+NA,montipora lobulata,133117,NA,VU
+NA,stylocoeniella armata,133548,NA,LC
+NA,madracis kirbyi,133380,NA,LC
+NA,favites complanata,132979,NA,NT
+NA,montipora turgescens,133298,NA,LC
+NA,acropora nasuta,133239,NA,NT
+NA,favites russelli,133343,NA,NT
+NA,acropora elseyi,133010,NA,LC
+NA,acropora gemmifera,133324,NA,LC
+NA,montipora danae,133451,NA,LC
+NA,fungia scutaria,133201,NA,LC
+NA,porites lutea,133082,NA,LC
+NA,montipora effusa,133031,NA,NT
+NA,platygyra pini,133440,NA,LC
+NA,fungia tenuis,133215,NA,LC
+NA,montipora aequituberculata,133314,NA,LC
+NA,astreopora randalli,133485,NA,LC
+NA,mycedium elephantotus,133559,NA,LC
+NA,acropora valida,133293,NA,LC
+NA,cyphastrea chalcidicum,133325,NA,LC
+NA,porites latistella,133546,NA,LC
+NA,barabattoia amicorum,133084,NA,LC
+NA,porites arnaudi,133187,NA,LC
+NA,pocillopora woodjonesi,132923,NA,LC
+NA,montipora caliculata,133220,NA,VU
+NA,fungia sinensis,133299,NA,LC
+brush coral,acropora hyacinthus,133479,NA,NT
+NA,acropora vaughani,133025,NA,VU
+elongate mushroom coral,fungia paumotensis,133673,NA,LC
+NA,acropora sarmentosa,133271,NA,LC
+NA,pocillopora eydouxi,133407,NA,NT
+NA,pavona clavus,133240,NA,LC
+NA,porites lobata,133216,NA,NT
+NA,echinophyllia echinata,133058,NA,LC
+NA,favia matthaii,133616,NA,NT
+thin birdsnest coral,seriatopora hystrix,133390,NA,LC
+NA,acropora granulosa,132948,NA,NT
+NA,fungia repanda,132986,NA,LC
+staghorn coral,acropora formosa,133644,NA,NT
+NA,leptoseris solida,132903,NA,LC
+NA,cyphastrea microphthalma,133648,NA,LC
+NA,ctenactis echinata,133148,NA,LC
+NA,fungia horrida,133423,NA,LC
+firecoral,millepora platyphylla,133595,NA,LC
+largebrain root coral,lobophyllia hemprichii,133419,NA,LC
+common mushroom coral,fungia fungites,133503,NA,NT
+NA,porites lichen,133023,NA,LC
+NA,pavona duerdeni,133702,NA,LC
+NA,acropora horrida,133319,NA,VU
+NA,montipora verrucosa,133646,NA,LC
+NA,favia speciosa,133210,NA,LC
+NA,scolymia vitiensis,133157,NA,NT
+NA,porites murrayensis,133105,NA,NT
+NA,acropora nobilis,133266,NA,LC
+NA,goniopora stutchburyi,133615,NA,LC
+NA,porites solida,133613,NA,LC
+NA,acropora paniculata,132972,NA,VU
+NA,leptoseris incrustans,133539,NA,VU
+NA,acropora longicyathus,132988,NA,LC
+NA,ctenactis crassa,133110,NA,LC
+NA,fungia scruposa,133308,NA,LC
+NA,montipora foveolata,133438,NA,NT
+NA,coscinaraea exesa,133176,NA,LC
+NA,herpolitha limax,133538,NA,LC
+NA,acropora microphthalma,133021,NA,LC
+NA,montipora millepora,133015,NA,LC
+NA,hydnophora microconos,133458,NA,NT
+cauliflower coral,pocillopora damicornis,133222,NA,LC
+brain coral,platygyra daedalea,133468,NA,LC
+NA,turbinaria mesenterina,133633,NA,VU
+NA,fungia concinna,133418,NA,LC
+NA,echinopora gemmacea,132987,NA,LC
+NA,leptastrea bottae,132983,NA,NT
+NA,goniastrea aspera,133452,NA,LC
+NA,platygyra sinensis,133068,NA,LC
+NA,alveopora spongiosa,133482,NA,NT
+NA,sandalolitha dentata,133587,NA,LC
+distorted mushroom coral,fungia distorta,133371,NA,LC
+NA,coscinaraea columna,133428,NA,LC
+NA,montipora tuberculosa,133345,NA,LC
+NA,montipora hoffmeisteri,133700,NA,LC
+NA,acropora robusta,133248,NA,LC
+NA,montipora hispida,133238,NA,LC
+NA,goniastrea pectinata,133414,NA,LC
+NA,favites flexuosa,133244,NA,NT
+NA,leptastrea purpurea,133090,NA,LC
+NA,fungia granulosa,133183,NA,LC
+NA,gardineroseris planulata,132917,NA,LC
+NA,acropora globiceps,133387,NA,VU
+NA,psammocora profundacella,133570,NA,LC
+NA,montipora efflorescens,133175,NA,NT
+NA,pocillopora elegans,133099,NA,VU
+NA,acropora secale,132888,NA,NT
+NA,favites abdita,133290,NA,NT
+NA,acropora carduus,132933,NA,NT
+NA,pavona explanulata,133382,NA,LC
+NA,psammocora contigua,133208,NA,NT
+NA,fungia scabra,133179,NA,LC
+NA,porites australiensis,133277,NA,LC
+NA,alveopora verrilliana,133156,NA,VU
+NA,cyphastrea serailia,133167,NA,LC
+NA,acropora loripes,132976,NA,NT
+NA,psammocora digitata,133043,NA,NT
+NA,montipora foliosa,133071,NA,NT
+cactus coral,pavona decussata,133041,NA,VU
+NA,acropora digitifera,133250,NA,NT
+NA,psammocora explanulata,133589,NA,LC
+NA,galaxea fascicularis,133662,NA,NT
+NA,leptoseris hawaiiensis,132885,NA,LC
+brain root coral,lobophyllia corymbosa,133551,NA,LC
+rasp coral,pocillopora verrucosa,133197,NA,LC
+NA,acropora pulchra,133033,NA,LC
+NA,goniopora minor,133607,NA,NT
+NA,acanthastrea echinata,133246,NA,LC
+NA,plesiastrea versipora,133284,NA,LC
+NA,pavona bipartita,133360,NA,VU
+NA,fungia costulata,132864,NA,LC
+NA,pocillopora capitata,132958,NA,LC
+NA,montastrea curta,132922,NA,LC
+NA,acropora monticulosa,133315,NA,NT
+NA,stylocoeniella guentheri,133049,NA,LC
+NA,pocillopora ligulata,133045,NA,LC
+yellow-banded sergeant-major,abudefduf sordidus,188467,NA,LC
+yellow-speckled chromis,chromis alpha,154760,NA,LC
+five-banded sergeant-major,abudefduf vaigiensis,188609,NA,LC
+seven-banded sergeant-major,abudefduf septemfasciatus,188453,NA,LC
+scissortail sergeant,abudefduf sexfasciatus,188557,NA,LC
+camouflage grouper,epinephelus polyphekadion,61339,NA,VU
+leopard hind,cephalopholis leopardus,132737,NA,LC
+blacksaddled coral grouper,plectropomus laevis,64412,NA,LC
+greasy grouper,epinephelus tauvina,132758,NA,DD
+eightbar grouper,hyporthodus octofasciatus,132772,NA,LC
+garish hind,cephalopholis igarashiensis,132791,NA,LC
+peacock grouper,cephalopholis argus,132781,NA,LC
+harlequin hind,cephalopholis polleni,132805,NA,LC
+strawberry hind,cephalopholis spiloparaea,132825,NA,LC
+white speckled rockcod,epinephelus hexagonatus,132778,NA,LC
+honeycomb grouper,epinephelus merra,132788,NA,LC
+golden hind,cephalopholis aurantia,132725,NA,LC
+masked grouper,gracila albomarginata,132800,NA,LC
+darkfin hind,cephalopholis urodeta,132783,NA,LC
+comet grouper,epinephelus morrhua,132745,NA,LC
+one-blotch grouper,epinephelus melanostigma,132746,NA,LC
+giant grouper,epinephelus lanceolatus,7858,NA,DD
+golden grouper,saloptia powelli,132816,NA,LC
+blacktip grouper,epinephelus fasciatus,132817,NA,LC
+surge grouper,epinephelus socialis,132731,NA,LC
+yellow-edged lyretail,variola louti,132738,NA,LC
+six-blotch hind,cephalopholis sexmaculata,132741,NA,LC
+reticulate grouper,epinephelus tuamotuensis,64407,NA,LC
+bullseye reef lobster,enoplometopus holthuisi,185024,NA,DD
+longlegged spiny lobster,panulirus longipes,170066,NA,LC
+NA,enoplometopus gracilipes,185005,NA,DD
+royal spanish lobster,arctides regalis,170063,NA,LC
+NA,pentacheles snyderi,185061,NA,LC
+sculptured mitten lobster,parribacus antarcticus,170071,NA,LC
+white-whiskered coral crayfish,panulirus femoristriga,170031,NA,LC
+NA,stereomastis auriculata,185064,NA,LC
+NA,galearctus aurora,185076,NA,LC
+NA,stereomastis suhmi,185036,NA,LC
+melon-headed whale,peponocephala electra,16564,NA,LC
+rough-toothed dolphin,steno bredanensis,20738,NA,LC
+pygmy sperm whale,kogia breviceps,11047,NA,DD
+striped dolphin,stenella coeruleoalba,20731,NA,LC
+antarctic minke whale,balaenoptera bonaerensis,2480,NA,NT
+ginkgo-toothed beaked whale,mesoplodon ginkgodens,13246,NA,DD
+cuvier's beaked whale,ziphius cavirostris,23211,NA,LC
+killer whale,orcinus orca,15421,NA,DD
+sperm whale,physeter macrocephalus,41755,NA,VU
+common bottlenose dolphin,tursiops truncatus,22563,NA,LC
+bryde's whale,balaenoptera edeni,2476,NA,LC
+dwarf sperm whale,kogia sima,11048,NA,DD
+blainville's beaked whale,mesoplodon densirostris,13244,NA,DD
+spinner dolphin,stenella longirostris,20733,NA,LC
+short-finned pilot whale,globicephala macrorhynchus,9249,NA,LC
+humpback whale,megaptera novaeangliae,13006,NA,LC
+sei whale,balaenoptera borealis,2475,NA,EN
+risso's dolphin,grampus griseus,9461,NA,LC
+blue whale,balaenoptera musculus,2477,NA,EN
+fraser's dolphin,lagenodelphis hosei,11140,NA,LC
+common minke whale,balaenoptera acutorostrata,2474,NA,LC
+false killer whale,pseudorca crassidens,18596,NA,NT
+pygmy killer whale,feresa attenuata,8551,NA,LC
+pantropical spotted dolphin,stenella attenuata,20729,NA,LC
+blunthead puffer,sphoeroides pachygaster,190193,NA,LC
+brown-lined puffer,canthigaster rivulata,193705,NA,LC
+honeycomb toby,canthigaster janthinoptera,193766,NA,LC
+spider-eye puffer,canthigaster amboinensis,193675,NA,LC
+spotted sharpnose,canthigaster solandri,193775,NA,LC
+oceanic puffer,lagocephalus lagocephalus,190464,NA,LC
+silver-cheeked toadfish,lagocephalus sceleratus,166947,NA,LC
+valentini's sharpnose puffer,canthigaster valentini,193796,NA,LC
+bennett's sharpnose puffer,canthigaster bennetti,193656,NA,LC
+white-spotted puffer,arothron hispidus,193699,NA,LC
+stellate puffer,arothron stellatus,193712,NA,LC
+guineafowl puffer,arothron meleagris,193662,NA,LC
+hawksbill turtle,eretmochelys imbricata,8005,NA,CR
+loggerhead turtle,caretta caretta,84156809,South Pacific subpopulation,CR
+yellow-bellied sea snake,hydrophis platurus,176738,NA,LC
+green turtle,chelonia mydas,4615,NA,EN
+white thread fish,holothuria leucospilota,180375,NA,LC
+greenfish,stichopus chloronotus,180477,NA,LC
+NA,holothuria fuscogilva,200715,NA,VU
+NA,holothuria hilla,180235,NA,LC
+NA,stichopus monotuberculatus,180367,NA,DD
+NA,holothuria pervicax,180525,NA,LC
+NA,holothuria difficilis,180246,NA,LC
+selenka's sea cucumber,stichopus horrens,180488,NA,DD
+NA,holothuria flavomaculata,180483,NA,LC
+surf redfish,actinopyga mauritiana,180337,NA,VU
+NA,mesothuria multipora,19720058,NA,DD
+amberfish,thelenota anax,180324,NA,DD
+NA,holothuria turriscelsa,180499,NA,LC
+NA,holothuria pardalis,180286,NA,LC
+NA,holothuria discrepans,180500,NA,DD
+black teatfish,holothuria whitmaei,180440,NA,EN
+NA,holothuria olivacea,180236,NA,DD
+NA,holothuria glandifera,180315,NA,DD
+bottleneck sea cucumber,holothuria impatiens,180512,NA,DD
+pinkfish,holothuria edulis,180400,NA,LC
+NA,holothuria hawaiiensis,180451,NA,LC
+NA,holothuria fuscocinerea,180494,NA,LC
+brown sandfish,bohadschia vitiensis,180352,NA,DD
+NA,holothuria stocki,180446,NA,DD
+brownspotted sandfish,bohadschia similis,180386,NA,DD
+leopardfish,bohadschia argus,180541,NA,LC
+blackspotted sea cucumber,pearsonothuria graeffei,180248,NA,LC
+lollyfish,holothuria atra,180421,NA,LC
+harry blackfish,actinopyga miliaris,180265,NA,VU
+NA,holothuria erinaceaus,180226,NA,LC
+NA,actinopyga varians,19708732,NA,DD
+NA,holothuria verrucosa,180231,NA,LC
+NA,holothuria arenicola,180437,NA,DD
+paddle grass,halophila decipiens,173352,NA,LC
+two-spot bristletooth,ctenochaetus binotatus,177955,NA,LC
+orange spine surgeonfish,naso lituratus,177950,NA,LC
+blackstreak surgeonfish,acanthurus nigricauda,178017,NA,LC
+bluespine unicornfish,naso unicornis,177970,NA,LC
+longnose tang,zebrasoma rostratum,178001,NA,DD
+palefin unicornfish,naso brevirostris,177990,NA,LC
+hawaiian bristletooth,ctenochaetus hawaiiensis,178014,NA,LC
+convict surgeonfish,acanthurus triostegus,177965,NA,LC
+yellowfin surgeonfish,acanthurus xanthopterus,177989,NA,LC
+humpback unicornfish,naso brachycentron,177983,NA,LC
+whitemargin unicornfish,naso annulatus,177988,NA,LC
+lined surgeonfish,acanthurus lineatus,177993,NA,LC
+bignose unicornfish,naso vlamingii,155120,NA,LC
+whitespotted surgeonfish,acanthurus guttatus,177995,NA,LC
+blue-spotted bristletooth,ctenochaetus marginatus,177964,NA,LC
+thompson's surgeonfish,acanthurus thompsoni,178008,NA,LC
+golden rim surgeonfish,acanthurus nigricans,177969,NA,LC
+mimic surgeonfish,acanthurus pyroferus,178022,NA,LC
+orange band surgeonfish,acanthurus olivaceus,177991,NA,LC
+whitebar surgeonfish,acanthurus leucopareius,178011,NA,LC
+sailfin tang,zebrasoma veliferum,178010,NA,LC
+gray unicornfish,naso caesius,178013,NA,LC
+brushtail tang,zebrasoma scopas,178005,NA,LC
+achilles tang,acanthurus achilles,177960,NA,LC
+ringtail surgeonfish,acanthurus blochii,177971,NA,LC
+whitetail bristletooth,ctenochaetus flavicauda,178018,NA,LC
+brown surgeonfish,acanthurus nigrofuscus,178019,NA,LC
+sleek unicornfish,naso hexacanthus,178002,NA,LC
+elongate surgeonfish,acanthurus mata,177967,NA,LC
+dropoff surgeonfish,acanthurus nubilus,177961,NA,LC
+striped bristletooth,ctenochaetus striatus,178012,NA,LC
+banded pipefish,dunckerocampus dactyliophorus,6814,NA,DD
+red cornetfish,fistularia petimba,16781113,NA,LC
+bluespotted cornetfish,fistularia commersonii,18257780,NA,LC
+opossum pipefish,microphis brachyurus,181547,NA,LC
+bluestripe pipefish,doryrhamphus excisus,183214,NA,LC
+flat-nosed pipefish,microphis argulus,196441,NA,LC
+sculptured pipefish,choeroichthys sculptus,65364553,NA,LC
+network pipefish,corythoichthys flavofasciatus,65364818,NA,LC
+black-breasted pipefish,corythoichthys nigripectus,65365012,NA,LC
+lord howe pipefish,cosmocampus howensis,65365838,NA,LC
+chinese trumpetfish,aulostomus chinensis,65134886,NA,LC
+pygmy pipefish,micrognathus brevirostris,65370525,NA,LC
+myers' pipefish,minyichthys myersi,65371194,NA,LC
+short dragonfish,eurypegasus draconis,8407,NA,LC
+dogtooth tuna,gymnosarda unicolor,170342,NA,LC
+skipjack tuna,katsuwonus pelamis,170310,NA,LC
+kawakawa,euthynnus affinis,170336,NA,LC
+pacific bluefin tuna,thunnus orientalis,170341,NA,VU
+yellowfin tuna,thunnus albacares,21857,NA,NT
+blue marlin,makaira nigricans,170314,NA,VU
+shortbill spearfish,tetrapturus angustirostris,170315,NA,DD
+albacore tuna,thunnus alalunga,21856,NA,NT
+swordfish,xiphias gladius,23148,NA,LC
+striped marlin,kajikia audax,170309,NA,NT
+bigeye tuna,thunnus obesus,21859,NA,VU
+sailfish,istiophorus platypterus,170338,NA,LC
+black marlin,istiompax indica,170312,NA,DD
+tripletail wrasse,cheilinus trilobatus,154623,NA,LC
+white-spotted wrasse,anampses melanurus,155146,NA,LC
+dusky wrasse,halichoeres marginatus,187382,NA,LC
+white-dotted maori wrasse,cheilinus chlorourus,187384,NA,LC
+yellow-banded possum wrasse,wetmorella nigropinnata,187407,NA,LC
+red-spot razor wrasse,iniistius pentadactylus,187411,NA,LC
+african clown wrasse,coris gaimard,187436,NA,LC
+olive-scribbled wrasse,novaculichthys taeniourus,187441,NA,LC
+exquisite wrasse,cirrhilabrus exquisitus,187461,NA,DD
+six-line wrasse,pseudocheilinus hexataenia,187477,NA,LC
+bluntheaded wrasse,thalassoma amblycephalum,187490,NA,LC
+finescale razorfish,cymolutes torquatus,187530,NA,LC
+six-banded wrasse,thalassoma hardwicke,187559,NA,LC
+polynesian slender wrasse,pseudojuloides atavai,187586,NA,DD
+rust-banded wrasse,pseudocoris aurantiofasciata,187642,NA,LC
+checkerboard wrasse,halichoeres hortulanus,187673,NA,LC
+whiteband maori wrasse,oxycheilinus unifasciatus,187674,NA,LC
+yellow-brown wrasse,thalassoma lutescens,187685,NA,LC
+thin-line maori wrasse,oxycheilinus arenatus,187718,NA,LC
+sling-jaw wrasse,epibulus insidiator,187722,NA,LC
+five striped surge wrasse,thalassoma quinquevittatum,187733,NA,LC
+NA,oxycheilinus lineatus,187737,NA,LC
+four-lined wrasse,pseudocheilinus tetrataenia,187740,NA,LC
+NA,labropsis polynesica,187743,NA,LC
+purple wrasse,thalassoma purpureum,187746,NA,LC
+yellowstriped hogfish,polylepion russelli,187777,NA,LC
+carolines parrotfish,calotomus carolinus,190688,NA,LC
+bicolor parrotfish,cetoscarus ocellatus,190691,NA,LC
+globehead parrotfish,scarus globiceps,190694,NA,LC
+filament-finned parrotfish,scarus altipinnis,190726,NA,LC
+steephead parrotfish,chlorurus microrhinos,190728,NA,LC
+common parrotfish,scarus psittacus,190736,NA,LC
+dusky parrotfish,scarus niger,190740,NA,LC
+forsten's parrotfish,scarus forsteni,190747,NA,LC
+blue banded parrotfish,scarus pyrrostethus,190749,NA,LC
+blue parrotfish,scarus oviceps,154960,NA,LC
+yellowband parrotfish,scarus schlegeli,155290,NA,LC
+white-barred pink wrasse,pseudocheilinus ocellatus,155314,NA,LC
+barred thicklip wrasse,hemigymnus fasciatus,187373,NA,LC
+sharp-nosed rainbowfish,cheilio inermis,187383,NA,LC
+blue-streak cleaner wrasse,labroides dimidiatus,187396,NA,LC
+red-spot rainbowfish,stethojulis bandanensis,187424,NA,LC
+pearl-spotted wrasse,halichoeres margaritaceus,187443,NA,LC
+three-spot wrasse,halichoeres trimaculatus,187474,NA,LC
+silver-streaked rainbowfish,stethojulis strigiventer,187489,NA,LC
+turncoat hogfish,bodianus axillaris,187516,NA,LC
+twospot maori wrasse,oxycheilinus bimaculatus,187523,NA,LC
+purple club-nosed wrasse,gomphosus varius,187536,NA,LC
+whitebanded sharpnose wrasse,wetmorella albofasciata,187556,NA,LC
+ocellated wrasse,halichoeres melasmapomus,187564,NA,LC
+scott's wrasse,cirrhilabrus scottorum,187599,NA,LC
+eightstripe wrasse,pseudocheilinus octotaenia,187621,NA,LC
+long blue-lined wrasse,pseudojuloides cerasinus,187626,NA,DD
+point-head maori wrasse,cheilinus oxycephalus,187649,NA,LC
+disappearing wrasse,pseudocheilinus evanidus,187658,NA,LC
+knife razorfish,cymolutes praetextatus,187681,NA,LC
+blackspotted wrasse,macropharyngodon meleagris,187692,NA,LC
+narrow-banded rainbowfish,hologymnosus annulatus,187698,NA,LC
+NA,halichoeres claudia,187699,NA,LC
+indianfish blue razorfish,iniistius pavo,187705,NA,LC
+green-blocked wrasse,thalassoma trilobatum,187707,NA,LC
+chisel-tooth wrasse,pseudodax moluccanus,187713,NA,LC
+lyre-tail hogfish,bodianus anthioides,187715,NA,LC
+bluespotted wrasse,anampses caeruleopunctatus,187716,NA,LC
+spotted wrasse,anampses meleagrides,187723,NA,LC
+redlip cleaner wrasse,labroides rubrolabiatus,187755,NA,LC
+two-colour cleaner wrasse,labroides bicolor,187767,NA,LC
+halstead's razorfish,xyrichtys halsteadi,187782,NA,LC
+yellowbreasted wrasse,anampses twistii,187784,NA,LC
+false clownwrasse,coris aygula,187802,NA,LC
+tricolour parrotfish,scarus tricolor,190704,NA,LC
+bullethead parrotfish,chlorurus spilurus,190727,NA,LC
+ember parrotfish,scarus rubroviolaceus,190731,NA,LC
+pacific longnose parrotfish,hipposcarus longiceps,190745,NA,LC
+bridled parrotfish,scarus frenatus,190755,NA,LC
+marbled parrotfish,leptoscarus vaigiensis,190756,NA,LC
+tan-faced parrotfish,chlorurus frontalis,190762,NA,LC
+swamp harrier,circus approximans,22695363,NA,LC
+pacific reef-egret,egretta sacra,22696980,NA,LC
+white-bellied storm-petrel,fregetta grallaria,22698465,NA,LC
+black-bellied storm-petrel,fregetta tropica,22698459,NA,LC
+chatham albatross,thalassarche eremita,22698393,NA,VU
+common white tern,gygis alba,22694821,NA,LC
+wilson's storm-petrel,oceanites oceanicus,22698436,NA,LC
+polynesian storm-petrel,nesofregetta fuliginosa,22698471,NA,EN
+bristle-thighed curlew,numenius tahitiensis,22693182,NA,VU
+grey-backed tern,onychoprion lunatus,22694722,NA,LC
+white-faced storm-petrel,pelagodroma marina,22698453,NA,LC
+blue noddy,anous ceruleus,22727746,NA,LC
+tahiti petrel,pseudobulweria rostrata,22697925,NA,NT
+kermadec petrel,pterodroma neglecta,22698027,NA,LC
+phoenix petrel,pterodroma alba,22698001,NA,EN
+white-necked petrel,pterodroma cervicalis,22697957,NA,VU
+herald petrel,pterodroma heraldica,22698012,NA,LC
+tropical shearwater,puffinus bailloni,22734070,NA,LC
+christmas shearwater,puffinus nativitatis,22698222,NA,LC
+greater crested tern,thalasseus bergii,22694571,NA,LC
+wandering tattler,tringa incana,22693305,NA,LC
+spotless crake,zapornia tabuensis,22692705,NA,LC
+henderson petrel,pterodroma atrata,22728442,NA,EN
+tahiti swallow,hirundo tahitica,104006414,NA,LC
+black petrel,procellaria parkinsoni,22698150,NA,VU
+cook's petrel,pterodroma cookii,22697975,NA,VU
+mottled petrel,pterodroma inexpectata,22697963,NA,NT
+black-winged petrel,pterodroma nigripennis,22697954,NA,LC
+white-winged petrel,pterodroma leucoptera,22697970,NA,VU
+murphy's petrel,pterodroma ultima,22698039,NA,NT
+masked booby,sula dactylatra,22736173,NA,LC
+brown booby,sula leucogaster,22696698,NA,LC
+red-footed booby,sula sula,22696694,NA,LC
+buller's shearwater,ardenna bulleri,22698182,NA,VU
+collared petrel,pterodroma brevipes,22697987,NA,VU
+red-tailed tropicbird,phaethon rubricauda,22696641,NA,LC
+pacific black duck,anas superciliosa,22680217,NA,LC
+brown noddy,anous stolidus,22694794,NA,LC
+black noddy,anous minutus,22694799,NA,LC
+ruddy turnstone,arenaria interpres,22693336,NA,LC
+green-backed heron,butorides striata,22728182,NA,LC
+lesser frigatebird,fregata ariel,22697738,NA,LC
+white-tailed tropicbird,phaethon lepturus,22696645,NA,LC
+wedge-tailed shearwater,ardenna pacifica,22698175,NA,LC
+short-tailed shearwater,ardenna tenuirostris,22698216,NA,LC
+great frigatebird,fregata minor,22697733,NA,LC
+sooty tern,onychoprion fuscatus,22694740,NA,LC
