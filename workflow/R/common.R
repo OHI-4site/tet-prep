@@ -38,6 +38,8 @@ tet_buffer_3nm  <- sf::st_read(dsn = here('/spatial/shp'),layer = 'tet_buffer_3n
 
 tet_motus  <- sf::st_read(dsn = here('/spatial/shp'),layer = 'tet_motus', quiet = T)
 
+tet_buffer_50nm <- sf::st_read(dsn = here('/spatial/shp'),layer = 'tet_buffer_50nm', quiet = T)
+
 ## Tetiaroa rasters
 
 #at 100 m res

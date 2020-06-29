@@ -142,7 +142,7 @@ mapview(tet_buffer_50nm)+
 Write out 50nm buffer
 ```{r}
 
-st_write(tet_buffer_50nm,"tet_buffer_3nm.shp")
+st_write(tet_buffer_50nm,"tet_buffer_50nm.shp")
 
 ```
 
