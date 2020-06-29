@@ -35,6 +35,7 @@ dir_github    <- '~/github/tet-prep'
 #tetiaroa region shape file
 tet_shp <- tet_buffer_3nm
 
+tet_shp_50 <- tet_buffer_50nm
 
 # api keys for IUCN 
 
@@ -58,13 +59,19 @@ cells <- raster("~/github/spp_risk_dists/_spatial/cell_id_rast.tif") #resolution
 tet_reproj <- st_transform(tet_shp, crs = "+proj=cea +lon_0=0 +lat_ts=45 +x_0=0 +y_0=0 +ellps=WGS84
 +units=m +no_defs")
 
+tet_reproj_50 <- st_transform(tet_shp_50, crs = "+proj=cea +lon_0=0 +lat_ts=45 +x_0=0 +y_0=0 +ellps=WGS84
++units=m +no_defs")
+
 plot(cells)
-plot(tet_reproj, add = T)
+plot(tet_reproj_50, add = T)
 
 #use extract to get the region ids for just the Tetiaroa area
 
 tet_cells <- raster::extract(cells, tet_reproj) %>% 
   unlist() #this creates a vector out of the list from extract
+
+tet_cells_50 <- raster::extract(cells, tet_reproj_50) %>% 
+  unlist()
 
 ```
 
@@ -97,6 +104,7 @@ taxa <- spp_maps$dbf_file %>%
 #create an empty list that is the length of all taxa. We are going to fill this list  
 taxa_cells_list <- vector('list', length = length(taxa))
 
+taxa_cells_list_50 <- vector('list', length = length(taxa))
 #for each taxa, grab the species map (raster) and filter to only keep those cells in the northeast.
 for(i in seq_along(taxa)) { ### i <- 5
     taxon <- taxa[i]
@@ -106,15 +114,15 @@ for(i in seq_along(taxa)) { ### i <- 5
       .$iucn_sid
     cat(sprintf('processing %s spp in %s...\n', length(spp_ids_in_taxon), taxon)) #help with this, message?
     
-    spp_cells <- parallel::mclapply(spp_ids_in_taxon, mc.cores = 32,
+    spp_cells <- lapply(spp_ids_in_taxon,
                                     FUN = function(x) { ### x <- spp_ids_in_taxon[1]
                                       f <- file.path('/home/ohara/git-annex/spp_risk_dists/spp_rasters_2019',
                                                      sprintf('iucn_sid_%s.csv', x))
                                       if(file.exists(f)) {
                                         y <- read_csv(f, col_types = 'di') %>%
                                           mutate(iucn_sid = x) %>%
-                                          select(-presence)  %>%
-                                          filter(cell_id %in% tet_cells)
+                                          dplyr::select(-presence)  %>%
+                                          filter(cell_id %in% tet_cells_50)
                                       } else {
                                         y <- data.frame(cell_id = NA,
                                                         iucn_sid = x, 
@@ -125,16 +133,16 @@ for(i in seq_along(taxa)) { ### i <- 5
       bind_rows() %>%
       mutate(spp_gp = taxon)
     
-    taxa_cells_list[[i]] <- spp_cells
+    taxa_cells_list_50[[i]] <- spp_cells
 }
 
 taxa_cells_list[[3]] #was using to just look at a few
-taxa_cells_df <- taxa_cells_list %>%
+taxa_cells_df_50 <- taxa_cells_list_50 %>%
     bind_rows() %>% 
     filter(!is.na(cell_id)) %>% 
-    select(iucn_sid) %>% 
+    dplyr::select(iucn_sid) %>% 
     distinct() %>%
-    left_join(spp_info) #these all came out Na, so this df is empty 
+    left_join(spp_info)  
 ```
 
 Small note on looking at species maps - use filepath?
@@ -150,11 +158,11 @@ Attach common names
 ```{r}
 #create list of scintific names of species
 
-scinames <- taxa_cells_df$sciname
+scinames <- taxa_cells_df_50$sciname
 
 #create loop around redlist function rl_search to find common names  
 #create empty data frame that will be filled
-iucn_common_names <- data.frame() 
+iucn_common_names_50 <- data.frame() 
 
 for(i in 1:length(scinames)){
   sp <- scinames[i]
@@ -168,7 +176,7 @@ for(i in 1:length(scinames)){
   df <- data.frame(sciname = sp,
                    common = comm)
   
-  iucn_common_names <- rbind(iucn_common_names, df) %>%
+  iucn_common_names_50 <- rbind(iucn_common_names_50, df) %>%
     mutate(common = as.character(common),
          sciname = as.character(sciname))
 }
@@ -181,25 +189,27 @@ Check out the ones we are still missing for common name
 
 ```{r}
 
-miss_sp <- iucn_common_names %>%
+miss_sp_50 <- iucn_common_names_50 %>%
   filter(is.na(common))
+
+#for 50nm there are 241 missing
 
 ```
 
-We are still missing `r nrow(filter(iucn_common_names, is.na(common)))`. Use taxize package to try and find these. (note, above is showing up as 8 but there are 17 missing?). 
+We are still missing `r nrow(filter(iucn_common_names_50, is.na(common)))`. Use taxize package to try and find these.
 
 ```{r}
 
 #create vector from missing scinames
-missing_scinames <- iucn_common_names%>%
+missing_scinames_50 <- iucn_common_names_50%>%
   filter(is.na(common)) %>%
   .$sciname
 
 #loop to pull out the common names from taxize
 
 common_names <- c()
-for(i in 1:length(missing_scinames)){ #i <- 1
-  sp <- missing_scinames[i]
+for(i in 1:length(missing_scinames_50)){ #i <- 1
+  sp <- missing_scinames_50[i]
   comm <- taxize::sci2comm(sp, db = "itis")
   print(comm)
  
@@ -210,7 +220,7 @@ for(i in 1:length(missing_scinames)){ #i <- 1
 
 #output is list, turn into dataframe
 
-df <- do.call(rbind,lapply(common_names,data.frame))
+df <- do.call(rbind,lapply(common_names,data.frame)) #this isn't running for me
 df$sciname <- rownames(df)
 
 ```
@@ -256,6 +266,11 @@ iucn_spp_info <- taxa_cells_df %>%
   select(-common) %>% 
   distinct()
 
+iucn_spp_info_50 <- taxa_cells_df_50 %>% 
+  dplyr::select(iucn_sid, sciname, population, category) %>% 
+  left_join(., iucn_common_names_50, by = 'sciname') %>% 
+  distinct()
+
 ```
 
 Write out csv to folder `int`
@@ -264,6 +279,9 @@ Write out csv to folder `int`
 
 #save
 write_csv(iucn_spp_info, "int/1_iucn_spp_in_tet.csv")
+
+#using 50 nm buffer
+write_csv(iucn_spp_info_50, "int/1_iucn_spp_in_tet_50.csv")
 
 ```
 
@@ -274,12 +292,15 @@ Note: the marine maps df only has 128 rows, meaning we are missing 5 maps
 ```{r}
 # only loggerhead sea turtle has subpops so going to filter out the one we want
 spp_marine_maps <- read_csv("~/github/spp_risk_dists/_data/spp_marine_maps_2018-1.csv") %>%
-  filter(sciname %in% iucn_spp_info$sciname, 
+  filter(sciname %in% iucn_spp_info_50$sciname, 
          subpop %in% c("Pacific South", NA))
 
-write.csv(spp_marine_maps, "int/1_iucn_spp_shp_filepaths.csv")
+write.csv(spp_marine_maps, "int/1_iucn_spp_shp_filepaths_50.csv")
 
 ```
+
+***
+This code is no longer needed now that we expanded the buffer
 
 ##Adding coral 
 
