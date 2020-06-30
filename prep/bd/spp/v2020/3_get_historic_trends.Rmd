@@ -199,5 +199,41 @@ trend_df_2 <- tet_pop_trends %>%
   dplyr::select(sciname,  pop_trend, trend_score, trend_source) %>%
   distinct() ## this is our final trend data set
 
+
+write_csv(trend_df_2, file.path(dir_goal, "int/spp_hist_trends.csv"))
+```
+
+Last step is to fill in the ones that have a pop_trend but were NA in the loop, meaning they probably only had one observation.
+
+```{r}
+
+tet_pop_trends <- read_csv(here::here("/prep/bd/spp/v2020/int", "3_iucn_population_trends.csv")) %>%
+  dplyr::rename(pop_trend = trend)
+
+trends <- read_csv(here::here("prep/bd/spp/v2020/int", "spp_hist_trends.csv"))
+
+lm_trends <- trends %>% 
+  filter(!is.na(trend_score))
+
+#filter out the ones that have a pop_trend but no calc_trend
+
+all_trends <- trends %>% 
+  filter(is.na(trend_score)) %>%
+  mutate(
+    trend_score = case_when(
+      pop_trend %in% "Stable" ~ 0,
+      TRUE ~ trend_score
+    ),
+    trend_source = "iucn"
+  ) %>% 
+  bind_rows(., lm_trends) #yay
+
+
+#write out final trend scores to output and to toolbox
+
+write_csv(all_trends, file.path(dir_goal, "output/spp_trends.csv"))
+
+write.csv(all_trends, file = "~/github/tet-scores/region/layers/spp_trend.csv", row.names = F)
+
 ```
 
