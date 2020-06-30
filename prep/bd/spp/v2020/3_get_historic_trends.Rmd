@@ -60,7 +60,7 @@ dir_github    <- '~/github/tet-prep'
 
 ## Method 
 
-#read in data - use what I already had from `2
+read in data - use what I already had from `2_get_spp_scores.csv`
 ```{r}
 ## Load packages and other important things
 tet_pop_trends <- read_csv(here::here("/prep/bd/spp/v2020/int", "3_iucn_population_trends.csv"))
@@ -69,11 +69,9 @@ tet_species_vec <- tet_pop_trends$sciname
 ```
 
 
-
 ``` {r}
 ## get past assessments with rl_history
 hist <- list()
-
 
 
 ## This for loop breaks sometimes, so just re run it and itll continue where it left off (because of the if statement I added)
@@ -94,6 +92,9 @@ hist[[i]] <- spp_hist_temp2
 
 spp_hist <- ldply(hist, rbind)
 
+#write out csv so you can run loop later   
+
+write_csv(spp_hist, file.path(dir_goal, "int/spp_history.csv"))
 ```
 
 
@@ -122,22 +123,8 @@ spp_past_df1 <- spp_past_df %>%
 
 ```
 
-## get narratives -- not necessary since you’ve already done this
-#   narr <- list()
-#
-#
-# for(i in species_list){
-#   spp_narr_temp <- rl_narrative(id = i, key = api_key) # get a species poptrend
-#
-# spp_narr_temp2 <- data.frame(cbind(id = spp_narr_temp$name, spp_narr_temp$result)) %>% #combine into one dataset
-#   dplyr::select(iucn_sid = id, pop_trend = populationtrend)
-#
-# narr[[i]] <- spp_narr_temp2
-# }
-#
-#   spp_narr <- ldply(narr, rbind)
 
-Create data frames for modelling 
+Create data frames for modeling 
 
 - `cat_trend` binds our historic pull to the trend, so contains all info for all years
 - `lm_trend` filters out only ones that have enough info to create a linear model on 
@@ -201,7 +188,7 @@ trend <- trend_2 %>%
   dplyr::select(sciname, calc_trend) %>%
   distinct()
 
-trend_df <- tet_pop_trends %>%
+trend_df_2 <- tet_pop_trends %>%
   left_join(spp_past_df1, by = c('sciname')) %>%
   distinct() %>%
   left_join(trend, by = c('sciname')) %>%
