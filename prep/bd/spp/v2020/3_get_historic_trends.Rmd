@@ -16,27 +16,41 @@ library(tidyverse)
 library(dplyr)
 library(rgdal)
 library(raster)
+library(sf)
 library(here)
 library(ggridges)
 library(ggplot2)
 library(stringr)
 library(plyr)
 
-source(here('workflow/R/common.R'))
+source(here::here('workflow/R/common.R'))
+
+#### functions (add to common R when you get this to work)
 
 "%!in%" <- function(x,y)!('%in%'(x,y))
+
+cat_msg <- function(x, ...) { 
+  if(is.null(knitr:::.knitEnv$input.dir)) {    ### not in knitr environment, so use cat()    
+  cat(x, ..., '\n')  } 
+  else {    ### in knitr env, so use message()    
+  message(x, ...)  }  
+  return(invisible(NULL))
+  
+  }
 
 #### api keys for rredlist
 
 api_file <- file.path(dir_M, 'git-annex/globalprep/spp', 
                       'api_key_gc.csv')
-api_key <- scan(api_file, what = 'character')    
+api_key <- scan(api_file, what = 'character')  
+
+api_version <- '2020-1'
 
 ## file paths 
 goal     <- 'spp'
 scenario <- 'v2020'
 dir_anx       <- file.path(dir_M, 'git-annex/globalprep') 
-dir_goal      <- file.path(here('prep/bd',goal, scenario))
+dir_goal      <- file.path(here::here('prep/bd',goal, scenario))
 dir_goal_anx  <- file.path(dir_anx, goal, scenario)
 dir_github    <- '~/github/tet-prep'
 
@@ -59,9 +73,10 @@ tet_species_vec <- tet_pop_trends$sciname
 ``` {r}
 ## get past assessments with rl_history
 hist <- list()
+
+
+
 ## This for loop breaks sometimes, so just re run it and itll continue where it left off (because of the if statement I added)
-
-
 for(i in tet_species_vec){
 #i = “Sula leucogaster”
 if(i %!in% names(hist)){
@@ -72,25 +87,41 @@ hist[[i]] <- spp_hist_temp2
 } else {
     cat_msg("File of API species history exists in list, skipping this: \n", i)
 }
+
 }
 
+#get the list into a df
 
 spp_hist <- ldply(hist, rbind)
-    cat_lookup <- read_csv(file.path(dir_setup, "raw", "risk_code_lookup.csv")) # read in the category look up so that old category naming conventions will match todays. This is in ohiprep_v2020/globalprep/spp/v2020/setup/raw folder
-    spp_past_df <- spp_hist %>%
-    left_join(cat_lookup, by = c(‘code’, ‘category’)) %>%
+
+```
+
+
+Join to categories 
+``` {r}
+
+
+cat_lookup <- read_csv(file.path(dir_goal, "risk_code_lookup.csv")) # read in the category look up so that old category naming conventions will match todays. This is in ohiprep_v2020/globalprep/spp/v2020/setup/raw folder
+    
+spp_past_df <- spp_hist %>%
+    left_join(cat_lookup, by = c('code', 'category')) %>%
     dplyr::rename(
            old_cat  = code,
            cat_txt  = category,
            cat_ts   = code_current) #rename stuff and get scores
-pop_cat <- data.frame(cat_ts       = c(“LC”, “NT”, “VU”, “EN”, “CR”, “EX”, “NE”, “DD”),
+
+pop_cat <- data.frame(cat_ts       = c('LC', 'NT', 'VU', 'EN', 'CR', 'EX', 'NE', 'DD'),
                         cat_ts_score = c( 0.0,  0.2,  0.4,  0.6,  0.8,  1.0,  NA,   NA)) ## define scores again
-  spp_past_df1 <- spp_past_df %>%
-    left_join(pop_cat, by = ‘cat_ts’) %>%
+
+spp_past_df1 <- spp_past_df %>%
+    left_join(pop_cat, by = 'cat_ts') %>%
     filter(!is.na(cat_ts_score) & !is.na(year)) %>%
     arrange(sciname, year) %>%
     dplyr::select(sciname, year, cat_ts, cat_ts_score) %>%
-    mutate(iucn_version = api_version)
+    mutate(iucn_version = api_version) #this tells you what year it is pulling from 
+
+```
+
 ## get narratives -- not necessary since you’ve already done this
 #   narr <- list()
 #
@@ -105,51 +136,81 @@ pop_cat <- data.frame(cat_ts       = c(“LC”, “NT”, “VU”, “EN”, �
 # }
 #
 #   spp_narr <- ldply(narr, rbind)
-tet_pop_trends <- read_csv(“raw_test/3_iucn_population_trends.csv”) %>%
+
+Create data frames for modelling 
+
+- `cat_trend` binds our historic pull to the trend, so contains all info for all years
+- `lm_trend` filters out only ones that have enough info to create a linear model on 
+
+``` {r}
+tet_pop_trends <- read_csv(here::here("/prep/bd/spp/v2020/int", "3_iucn_population_trends.csv")) %>%
   dplyr::rename(pop_trend = trend) ## read in population trends grabbed from IUCN
+
 cat_trend <- tet_pop_trends %>%
-  left_join(spp_past_df1, by = “sciname”) %>%
+  left_join(spp_past_df1, by = "sciname") %>%
    group_by(sciname) %>%
   dplyr::mutate(n_assess = n()) %>%
   ungroup()
-cat_trend$year <- as.numeric(cat_trend$year)
+cat_trend$year <- as.numeric(cat_trend$year) #this df has ALL THE INFO
+
 lm_trend <- cat_trend %>%
-  filter(n_assess >= 2) %>%
+  filter(n_assess >= 2) %>% #only include ones with enough assessments
   group_by(sciname) %>%
-  do(calc_trend = lm(cat_ts_score ~ year, data = .)[[‘coefficients’]][[‘year’]]) %>%
+  do(calc_trend = lm(cat_ts_score ~ year, data = .)[['coefficients']][['year']]) %>%
   mutate(calc_trend = as.numeric(calc_trend)) %>%
   mutate(calc_trend = round(calc_trend, 5)) ## Run a linear regression to get trend based on historical assessments
+```
+
+Compare IUCN trend to what we found with model
+``` {r}
 trend <- cat_trend %>%
   dplyr::filter(n_assess > 1) %>%
   dplyr::group_by(sciname) %>%
-  dplyr::summarize(years  = paste(year, collapse = ‘, ‘),
-            cat_ts = paste(cat_ts, collapse = ‘, ‘),
-            scores = paste(cat_ts_score, collapse = ‘, ’),
+  dplyr::summarize(years  = paste(year, collapse = ', '),
+            cat_ts = paste(cat_ts, collapse = ', '),
+            scores = paste(cat_ts_score, collapse = ', '),
             pop_trend_desc = first(pop_trend)) %>%
   ungroup() %>%
-  left_join(lm_trend, by = c(‘sciname’))
+  left_join(lm_trend, by = c('sciname'))
+
 trend_2 <- trend %>%
   filter(!is.na(pop_trend_desc)) %>%
-  mutate(pop_trend = case_when(pop_trend_desc == ‘Decreasing’ ~ -1,
-                               pop_trend_desc == ‘Increasing’ ~  1,
-                               pop_trend_desc == ‘Stable’     ~  0,
-                               TRUE                           ~ NA_real_))
+  mutate(pop_trend = case_when(pop_trend_desc == 'Decreasing' ~ -1,
+                               pop_trend_desc == 'Increasing' ~  1,
+                               pop_trend_desc == 'Stable'     ~  0,
+                               TRUE                           ~ NA_real_)
+         )
+
+```
+
+Next model: taking `calc_trend` and modeling it on the IUCN population trend 
+
+``` {r}  
   ### NOTE: here we’re coding the trend in *population* not risk. This tells us the regression coeffs based on the population trends grabbed from iucn (increasing, decreasing, unknown)
+
 trend_regr <- lm(calc_trend ~ pop_trend, data = trend_2)
 trend_coeffs <- summary(trend_regr)
+```
+
+``` {r}
 ### manual values from linear regression:
-slope <- trend_coeffs$coefficients[1] %>% round(5)
-trend_score_lookup <- c(‘Decreasing’ = -slope, ‘stable’ = 0, ‘Increasing’ = slope)
+slope <- trend_coeffs$coefficients[1] %>% round(5) #grabs slope from model
+trend_score_lookup <- c('Decreasing' = -slope, 'stable' = 0, 'Increasing' = slope) #this is for gapfilling if the model didn't find anything
+
 trend <- trend_2 %>%
   dplyr::select(sciname, calc_trend) %>%
   distinct()
+
 trend_df <- tet_pop_trends %>%
-  left_join(spp_past_df1, by = c(‘sciname’)) %>%
+  left_join(spp_past_df1, by = c('sciname')) %>%
   distinct() %>%
-  left_join(trend, by = c(‘sciname’)) %>%
+  left_join(trend, by = c('sciname')) %>%
   mutate(trend_score  = ifelse(is.na(calc_trend), trend_score_lookup[pop_trend], calc_trend),
-         trend_source = case_when(!is.na(calc_trend)  ~ ‘lm’,
-                                  !is.na(trend_score) ~ ‘regr’,
+         trend_source = case_when(!is.na(calc_trend)  ~ 'lm',
+                                  !is.na(trend_score) ~ 'regr',
                                   TRUE ~ NA_character_)) %>%
   dplyr::select(sciname,  pop_trend, trend_score, trend_source) %>%
-  distinct() ## this is our final trend data se
+  distinct() ## this is our final trend data set
+
+```
+
