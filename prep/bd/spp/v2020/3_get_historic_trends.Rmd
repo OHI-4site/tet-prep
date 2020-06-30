@@ -1,0 +1,112 @@
+---
+title: "Trends using rl_history"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(rredlist)
+
+api_file <- file.path(dir_M, 'git-annex/globalprep/spp', 
+                      'api_key_gc.csv')
+api_key <- scan(api_file, what = 'character')    
+```
+
+## Summary 
+
+Script based on code developed by Gage Clawson to try and calculate species trend using historical assessments and trend models. 
+
+```{r}
+
+## get past assessments with rl_history
+species_list <- c(22694927, 12392)
+hist <- list()
+for(i in species_list){
+spp_hist_temp <- rl_history(id = i, key = api_key) # get a species history
+spp_hist_temp2 <- data.frame(cbind(id = spp_hist_temp$name, spp_hist_temp$result)) #combine into one dataset 
+hist[[i]] <- spp_hist_temp2
+}  
+library(plyr)
+spp_hist <- ldply(hist, rbind)
+    cat_lookup <- read_csv(file.path(dir_setup, 'raw', 'risk_code_lookup.csv')) # read in the category look up so that old category naming conventions will match todays. This is in ohiprep_v2020/globalprep/spp/v2020/setup/raw folder
+    spp_past_df <- spp_hist %>%
+    left_join(cat_lookup, by = c('code', 'category')) %>%
+    dplyr::rename(iucn_sid = id,
+           old_cat  = code,
+           cat_txt  = category,
+           cat_ts   = code_current) #rename stuff and get scores 
+pop_cat <- data.frame(cat_ts       = c("LC", "NT", "VU", "EN", "CR", "EX", "NE", "DD"), 
+                        cat_ts_score = c( 0.0,  0.2,  0.4,  0.6,  0.8,  1.0,  NA,   NA)) ## define scores again
+  spp_past_df1 <- spp_past_df %>% 
+    left_join(pop_cat, by = 'cat_ts') %>%
+    filter(!is.na(cat_ts_score) & !is.na(year)) %>%
+    arrange(iucn_sid, year) %>%
+    dplyr::select(iucn_sid, year, cat_ts, cat_ts_score) %>%
+    mutate(iucn_version = api_version)
+## get narratives 
+  narr <- list()
+for(i in species_list){
+  spp_narr_temp <- rl_narrative(id = i, key = api_key) # get a species poptrend 
+spp_narr_temp2 <- data.frame(cbind(id = spp_narr_temp$name, spp_narr_temp$result)) %>% #combine into one dataset 
+  dplyr::select(iucn_sid = id, pop_trend = populationtrend)
+narr[[i]] <- spp_narr_temp2
+}
+  spp_narr <- ldply(narr, rbind)
+cat_trend <- spp_narr %>%
+  left_join(spp_past_df1, by = "iucn_sid") %>%
+   group_by(iucn_sid) %>%
+  dplyr::mutate(n_assess = n()) %>%
+  ungroup()
+cat_trend$year <- as.numeric(cat_trend$year)
+lm_trend <- cat_trend %>%
+  filter(n_assess >= 2) %>%
+  group_by(iucn_sid) %>%
+  do(calc_trend = lm(cat_ts_score ~ year, data = .)[['coefficients']][['year']]) %>%
+  mutate(calc_trend = as.numeric(calc_trend)) %>%
+  mutate(calc_trend = round(calc_trend, 5))
+trend <- cat_trend %>%
+  dplyr::filter(n_assess > 1) %>%
+  dplyr::group_by(iucn_sid) %>%
+  dplyr::summarize(years  = paste(year, collapse = ', '),
+            cat_ts = paste(cat_ts, collapse = ', '),
+            scores = paste(cat_ts_score, collapse = ', '),
+            pop_trend_desc = first(pop_trend)) %>%
+  ungroup() %>%
+  left_join(lm_trend, by = c('iucn_sid'))
+trend_2 <- trend %>%
+  filter(!is.na(pop_trend_desc)) %>%
+  mutate(pop_trend = case_when(pop_trend_desc == 'decreasing' ~ -1,
+                               pop_trend_desc == 'increasing' ~  1,
+                               pop_trend_desc == 'stable'     ~  0,
+                               TRUE                           ~ NA_real_))
+  ### NOTE: here we're coding the trend in *population* not risk.
+trend_regr <- lm(calc_trend ~ pop_trend, data = trend_2)
+trend_coeffs <- summary(trend_regr)
+### manual values from linear regression:
+slope <- trend_coeffs$coefficients[1] %>% round(5)
+trend_score_lookup <- c('decreasing' = -slope, 'stable' = 0, 'increasing' = slope)
+trend <- trend_2 %>%
+  dplyr::select(iucn_sid, calc_trend) %>%
+  distinct()
+trend_df <- spp_narr %>%
+  left_join(spp_past_df1, by = c('iucn_sid')) %>%
+  distinct() %>%
+  left_join(trend, by = c('iucn_sid')) %>%
+  mutate(trend_score  = ifelse(is.na(calc_trend), trend_score_lookup[pop_trend], calc_trend),
+         trend_source = case_when(!is.na(calc_trend)  ~ 'lm', 
+                                  !is.na(trend_score) ~ 'regr',
+                                  TRUE ~ NA_character_)) %>%
+  dplyr::select(iucn_sid,  pop_trend, trend_score, trend_source) %>%
+  distinct()
+
+
+
+
+
+
+
+
+```
+
