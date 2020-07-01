@@ -94,7 +94,7 @@ The following forloop goes through each species:
 - filters that list to just those in the Northeast
 - returns an aggregated dataframe (`taxa_cells_df`) with all species scientific names, their unique ids (sids), and cellIDs
 
-```{r}
+```{r, message = FALSE}
 
 #grab each taxa's folder filepath
 taxa <- spp_maps$dbf_file %>% 

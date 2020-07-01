@@ -113,7 +113,7 @@ write.csv(df_iucn, "3_iucn_population_trends.csv")
 Now, score the trend based on what was pulled from rl_search
 ```{r}
 
-iucn_trends <- read_csv(here("prep/bd/spp/v2020/int", "3_iucn_population_trends.csv"))
+iucn_trends <- read_csv(here::here("prep/bd/spp/v2020/int", "3_iucn_population_trends.csv"))
 
 #score table
 pop_trend_score <- data.frame(trend = c("Increasing", "Decreasing", "Stable", "Unknown"),
@@ -191,7 +191,7 @@ spp_class <- inner_join(spp_list, all_df_comp, by = "sciname")
 
 ```
 
-Now need to filter out the subpopulations (which is annoying)
+Now need to filter out the sub-populations that I want, since their conservation status is different
 
 ```{r}
 
@@ -213,3 +213,6 @@ write.csv(spp_status_final, file.path("~/github/tet-scores/region/layers/spp_sta
 write.csv(spp_status_final, file.path(dir_goal,"output","spp_status.csv"), row.names = F)
 ```
 
+Final trends layer is created in the last script `3_get_historic_trends.Rmd`. 
+
+***
