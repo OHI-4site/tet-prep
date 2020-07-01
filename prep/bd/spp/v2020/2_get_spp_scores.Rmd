@@ -17,13 +17,13 @@ knitr::opts_chunk$set(echo = TRUE,
 library(rredlist)
 library(here)
 library(tidyverse)
-source(here('workflow/R/common.R'))
+#source(here::here('workflow/R/common.R'))
 
 #file paths
 goal     <- 'spp'
 scenario <- 'v2020'
 dir_anx       <- file.path(dir_M, 'git-annex/globalprep') 
-dir_goal      <- file.path(here('prep/bd',goal, scenario))
+dir_goal      <- file.path(here::here('prep/bd',goal, scenario))
 dir_goal_anx  <- file.path(dir_anx, goal, scenario)
 dir_github    <- '~/github/tet-prep'
 
@@ -42,7 +42,7 @@ Read in species list
 
 ```{r}
 
-spp_list <- read_csv(here("/prep/bd/spp/v2020/int", "2_spp_ico_iucn_50.csv")) %>%
+spp_list <- read_csv(here::here("/prep/bd/spp/v2020/int", "2_spp_ico_iucn_50.csv")) %>%
       dplyr::select(name, sciname, iucn_sid, category) %>%
       distinct()
 
@@ -73,7 +73,8 @@ spp_status <- left_join(spp_list, pop_cat, by = "category") %>%
 
 #double check that this is what the layer should look like 
 
-write.csv(spp_status, file = "~/github/tet-scores/region/layers/spp_status.csv", row.names = F)
+write.csv(spp_status, file.path(dir_goal,"int","3_iucn_status_scores.csv"), row.names = F)
+#write.csv(spp_status, file = "~/github/tet-scores/region/layers/spp_status.csv", row.names = F)
 
 ```
 
@@ -155,5 +156,60 @@ spp_trends <- spp_trend_scores %>%
 write.csv(spp_trends, file = "~/github/tet-scores/region/layers/spp_trend.csv", row.names = F)  #save to toolbox
 
 
+
+```
+
+#Averaging by class
+
+To get a more representative score, we are going to average each score over class. This will avoid a class that has a lot of species but may not be that important, ie cone snails, from dominating the score. The averaging will be done in the toolbox, however here we'll add the class and then export that to the toolbox. 
+
+```{r}
+#get full list of species with taxonomic groups
+out <- rl_sp(all = TRUE, key = api_key)
+
+all_df <- do.call(rbind, lapply(out, "[[", "result")) #creates data frames from each item in the large list in `out` and then binds them
+
+all_df_comp <- all_df %>%
+  dplyr::select(-infra_rank, -infra_name) %>%
+    dplyr::rename(iucn_sid = taxonid, sciname = scientific_name, class = class_name) %>% 
+    setNames(names(.) %>%
+               stringr::str_replace('_name', '')) %>% 
+  mutate(
+    sciname = str_to_lower(sciname),
+    class = str_to_lower(class)
+  ) %>% 
+dplyr::select(class,sciname,population, category)
+
+#read in our full spp_list - this is the 50 one
+
+spp_list <- read_csv(file.path(dir_goal,"int","3_iucn_status_scores.csv"))
+
+#filter large df by the all the scientific names vector
+
+spp_class <- inner_join(spp_list, all_df_comp, by = "sciname")
+
+
+```
+
+Now need to filter out the subpopulations (which is annoying)
+
+```{r}
+
+subpops <- spp_class %>% 
+  filter(!is.na(population))
+subpops_nm <- unique(subpops$sciname) #16 subpops, only 6 we want the rest can be NA
+
+test <- spp_class[grepl("South Pacific", spp_class$population) | grepl("Hawaiian", spp_class$population) | grepl("Asia", spp_class$population)| grepl("East Pacific", spp_class$population) | grepl("Indo-west", spp_class$population) | grepl("Oceania", spp_class$population),]
+
+spp_status_final <- spp_class %>% filter(is.na(population)) %>% 
+  filter(sciname %!in% test$sciname) %>% 
+  bind_rows(., test) %>% 
+  dplyr::select(name,class,sciname,category = category.x, stat_score, year)
+
+#write spp_stats to outputs and toolbox
+
+write.csv(spp_status_final, file.path("~/github/tet-scores/region/layers/spp_status.csv"), row.names = F)
+
+write.csv(spp_status_final, file.path(dir_goal,"output","spp_status.csv"), row.names = F)
 ```
 
