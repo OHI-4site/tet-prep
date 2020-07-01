@@ -34,11 +34,11 @@ mollCRS=raster::crs('+proj=moll +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +units=m +no
 
 ## Tetiaroa spatial files
 
-tet_buffer_3nm  <- sf::st_read(dsn = here('/spatial/shp'),layer = 'tet_buffer_3nm', quiet = T) #need to use path.expand because readOGR does not read '~'
+tet_buffer_3nm  <- sf::st_read(dsn = here::here('/spatial/shp'),layer = 'tet_buffer_3nm', quiet = T) #need to use path.expand because readOGR does not read '~'
 
-tet_motus  <- sf::st_read(dsn = here('/spatial/shp'),layer = 'tet_motus', quiet = T)
+tet_motus  <- sf::st_read(dsn = here::here('/spatial/shp'),layer = 'tet_motus', quiet = T)
 
-tet_buffer_50nm <- sf::st_read(dsn = here('/spatial/shp'),layer = 'tet_buffer_50nm', quiet = T)
+tet_buffer_50nm <- sf::st_read(dsn = here::here('/spatial/shp'),layer = 'tet_buffer_50nm', quiet = T)
 
 ## Tetiaroa rasters
 
