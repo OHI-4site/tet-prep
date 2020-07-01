@@ -215,6 +215,9 @@ trends <- read_csv(here::here("prep/bd/spp/v2020/int", "spp_hist_trends.csv"))
 lm_trends <- trends %>% 
   filter(!is.na(trend_score))
 
+#quickly add class
+class_df <- read_csv(file.path(dir_goal, "int", "class_df.csv"))
+
 #filter out the ones that have a pop_trend but no calc_trend
 
 all_trends <- trends %>% 
@@ -226,7 +229,8 @@ all_trends <- trends %>%
     ),
     trend_source = "iucn"
   ) %>% 
-  bind_rows(., lm_trends) #yay
+  bind_rows(., lm_trends) %>% 
+  inner_join(., class_df, by = "sciname")#yay
 
 
 #write out final trend scores to output and to toolbox
