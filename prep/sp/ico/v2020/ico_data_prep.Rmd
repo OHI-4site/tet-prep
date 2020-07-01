@@ -41,7 +41,7 @@ dir_github    <- '~/github/tet-prep'
 
 ##### read in raw data ######
 
-tet_species <- read_csv(here("./prep/sp/ico/v2020/raw_data", "tet_species.csv"))%>%
+tet_species <- read_csv(here::here("./prep/sp/ico/v2020/raw_data", "tet_species.csv"))%>%
   clean_names() %>% 
   mutate(
     scientific_name = str_to_lower(scientific_name) #for easier matching, will also do on the redlist df
