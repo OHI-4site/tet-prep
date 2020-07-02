@@ -218,7 +218,7 @@ lm_trends <- trends %>%
 #quickly add class
 class_df <- read_csv(file.path(dir_goal, "int", "class_df.csv"))
 
-#filter out the ones that have a pop_trend but no calc_trend
+#filter out the ones that have a pop_trend but no calc_trend, then re add with new score
 
 all_trends <- trends %>% 
   filter(is.na(trend_score)) %>%
