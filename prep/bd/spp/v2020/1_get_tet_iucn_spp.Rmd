@@ -346,5 +346,31 @@ write_csv(spp_all, file.path(dir_goal, "/int/2_spp_ico_iucn_50.csv"))
 
 ```
 
+
+Get differences between 50nm pull and 3nm pull
+Post meeting deliverable - difference between 3 nm and 50 nm
+
+```{r}
+
+#read in he data sets
+
+tet_3nm <- read_csv(file.path(dir_goal, "int", "2_spp_ico_iucn.csv"))
+
+tet_50nm <- read_csv(file.path(dir_goal, "int", "2_spp_ico_iucn_50.csv"))
+
+
+first <- setdiff(tet_3nm$sciname, tet_50nm$sciname)
+
+second <- setdiff(tet_50nm$sciname, tet_3nm$sciname)
+
+tet_additional <- tet_50nm %>%
+  filter(sciname %in% second)
+
+write_csv(tet_additional, file.path(dir_goal, "int", "difference_3_50.csv"))
+  
+  
+
+```
+
 ***
 

@@ -203,8 +203,9 @@ test <- spp_class[grepl("South Pacific", spp_class$population) | grepl("Hawaiian
 
 spp_status_final <- spp_class %>% filter(is.na(population)) %>% 
   filter(sciname %!in% test$sciname) %>% 
-  bind_rows(., test) %>% 
-  dplyr::select(name,class,sciname,category = category.x, stat_score, year)
+  bind_rows(., test) %>%
+  mutate(region_id = 1) %>% 
+  dplyr::select(region_id,common = name,class,sciname,category = category.x, status = stat_score, year)
 
 #write spp_stats to outputs and toolbox
 

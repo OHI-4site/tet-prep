@@ -230,7 +230,9 @@ all_trends <- trends %>%
     trend_source = "iucn"
   ) %>% 
   bind_rows(., lm_trends) %>% 
-  inner_join(., class_df, by = "sciname")#yay
+  inner_join(., class_df, by = "sciname") %>% 
+  mutate(
+    region_id = 1)#yay
 
 
 #write out final trend scores to output and to toolbox
