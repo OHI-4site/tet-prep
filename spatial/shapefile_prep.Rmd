@@ -146,3 +146,47 @@ st_write(tet_buffer_50nm,"tet_buffer_50nm.shp")
 
 ```
 
+##Adding info to shapefiles
+
+Motu names 
+```{r}
+
+tet_motus  <- sf::st_read(dsn = here::here('/spatial/shp'),layer = 'tet_motus_xformed', quiet = T)
+
+#plot with fid - why are there so many
+
+mapview(tet_motus, zcol = "FID")
+
+tet_motus_label <- tet_motus %>%
+  mutate(
+    FID = as.character(FID)
+  ) %>% 
+  mutate(
+    name = case_when(
+      FID %in% "60" ~ "Tauini",
+      FID %in% "61" ~ "Tiaraunu",
+      FID %in% "41" ~ "Ahuroa",
+      FID %in% "43" ~ "Horoatera",
+      FID %in% "57" ~ "Rimatuu",
+      FID %in% "58" ~ "Tahuna Rahi",
+      FID %in% c("0","2") ~ "Aie",
+      FID %in% "59" ~ "Tahuna Iti",
+      FID %in% "55" ~ "Reiono",
+      FID %in% "54" ~ "Onetahi",
+      FID %in% "53" ~ "Honuea",
+      FID %in% c("42", "52") ~ "Hiraanae"
+    )
+  )
+
+#what are all the other ones?
+
+tet_motus_final <- tet_motus_label %>% 
+  filter(!is.na(name))
+
+mapview(tet_motus_final, zcol = "name") # don't need these
+
+#write out final 
+
+st_write(tet_motus_final,"tet_motus_names.shp")
+```
+
