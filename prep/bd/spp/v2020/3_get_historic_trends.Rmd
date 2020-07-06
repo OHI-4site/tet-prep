@@ -232,14 +232,16 @@ all_trends <- trends %>%
   bind_rows(., lm_trends) %>% 
   inner_join(., class_df, by = "sciname") %>% 
   mutate(
-    region_id = 1)#yay
+    region_id = 1, 
+    year = 2020
+    )#yay
 
 
 #write out final trend scores to output and to toolbox
 
 write_csv(all_trends, file.path(dir_goal, "output/spp_trends.csv"))
 
-write.csv(all_trends %>% dplyr::select(sciname, class, trend = trend_score, trend_source), file = "~/github/tet-scores/region/layers/spp_trend.csv", row.names = F)
+write.csv(all_trends %>% dplyr::select(region_id, sciname, class, trend = trend_score, trend_source, year), file = "~/github/tet-scores/region/layers/spp_trend.csv", row.names = F)
 
 ```
 
