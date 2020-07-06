@@ -1,10 +1,10 @@
 
 ## spatial libraries
 
-#library(sp)
-#library(rgdal)
-#library(sf)
-#library(raster)
+library(sp)
+library(rgdal)
+library(sf)
+library(raster)
 
 cat("This file makes it easier to process data for the OHI global assessment\n",
     "by creating the following objects:\n\n",
@@ -36,7 +36,7 @@ mollCRS=raster::crs('+proj=moll +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +units=m +no
 
 tet_buffer_3nm  <- sf::st_read(dsn = here::here('/spatial/shp'),layer = 'tet_buffer_3nm', quiet = T) #need to use path.expand because readOGR does not read '~'
 
-tet_motus  <- sf::st_read(dsn = here::here('/spatial/shp'),layer = 'tet_motus', quiet = T)
+tet_motus  <- sf::st_read(dsn = here::here('/spatial/shp'),layer = 'tet_motus_names', quiet = T)
 
 tet_buffer_50nm <- sf::st_read(dsn = here::here('/spatial/shp'),layer = 'tet_buffer_50nm', quiet = T)
 
