@@ -1,0 +1,14 @@
+---
+title: "le_data_prep"
+output: html_document
+---
+#Summary 
+
+This markdown is the intital data prep for the livelihoods and economy goal. 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+
