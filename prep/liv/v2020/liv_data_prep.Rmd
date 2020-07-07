@@ -4,11 +4,72 @@ output: html_document
 ---
 #Summary 
 
-This markdown is the intital data prep for the livelihoods and economy goal. 
+This markdown is the initial data prep for the livelihoods and economy goal. Using the 2018 and 2019 Tetiaroa Society reports as well initial planning documents indicating priority projects and their costs, we will assess the ideal budget to complete the CASUP priority projects, and how much progress has been made towards it. 
+
+Priorities for the CASUP are
+1)	Rat eradication and invasive species control in order to allow bird, plant, and invertebrate populations to rebound. 
+2)	Detailed surveys of biota and cultural sites along with the creation of precise maps using LIDAR and ground-based GPS.
+3)	Development of an education program with local school children and the construction of a Cultural Center for this program. 
+4)	Creation of a database as the foundation of the Island Digital Ecosystem Avatar for Tetiaroa. 
+
+
+#Set up
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(here)
+library(janitor)
+
+source(here('workflow/R/common.R'))
+
+
+# file paths 
+goal     <- 'liv'
+scenario <- 'v2020'
+dir_anx       <- file.path(dir_M, 'git-annex/globalprep') 
+dir_goal      <- file.path(here('prep',goal, scenario))
+dir_goal_anx  <- file.path(dir_anx, goal, scenario)
+dir_github    <- '~/github/tet-prep'
+
 ```
 
-## R Markdown
+#Method
+
+For now, we are simply going to divide the sum of the CASUP priority projects over 3 years, and then measure how close the TS_income total has come to that amount. 
+```{r}
+#read in the data
+
+funding <- read_csv(file.path(dir_goal, "raw_data_","CASUP_data_18_19.csv")) %>% 
+  clean_names()
+
+#sum priority project costs
+
+summary <- funding %>%
+  dplyr::select(item, cost_usd,category,year) %>% 
+  group_by(category, year) %>%
+  summarize(income = sum(cost_usd)) #find sum of each category in each year
+
+#calculate scores
+  
+score <- bind_cols((ref_2016 <- summary[1,3] %>% mutate(ref_2016 = income/3)), 
+                   (income_18 <- summary[4,3]), 
+                   (income_19 <- summary[5,3])) %>%
+  clean_names() %>% 
+  mutate(
+    status_18 = income_3/ref_2016,
+    status_19 = income_4/ref_2016
+  )
+
+#create status df
+
+liv_status <- data_frame(
+  region_id = rep(1, 2),
+  year = c(2018,2019),
+  status = c(score$status_18, score$status_19)
+)
+
+```
+
 
 
