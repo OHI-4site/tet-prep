@@ -32,6 +32,7 @@ library(doParallel)
 library(foreach)
 
 source(here('workflow/R/common.R'))
+
 ```
 
 # Analysis
@@ -165,6 +166,69 @@ foreach(file = sst_aggs) %dopar%{
 #note, this was getting hung up on the last one (2013-2017) so I just added it manually to the folder
 ```
 
+## Pressure over time
+
+Using the reference point, visualize change over time
+```{r gif_local_rescale, eval = F}
+
+#grab the rescaled rasters and turn them into a brick, then fix names for plotting
+
+resc      <- lapply(list.files(file.path(dir_anx, 'prs_sst/output/sst_rescale'), full.names=T), raster) %>%
+                      brick()
+
+names(resc) <- paste0("Years_",(substr(names(resc),13,21)))
+gsub(".", "-", names(resc), fixed = TRUE)
+
+#create a gif of valyes over time
+
+saveGIF({
+  for(i in 1:nlayers(resc)){
+      # don't forget to fix the zlimits
+      plot(resc[[i]], zlim=c(0,1), axes=F, col=cols,
+           main=names(resc[[i]]),
+           legend.args=list(text='Anomalous Weeks', side=4, font=2, line=2.5, cex=0.8))
+      
+  }
+}, movie.name = 'sst_rescale.gif')
+
+```
+
+<img src="sst_rescale.gif"/>
+
+#Results
+
+Now we just need to find mean score
+
+```{r pressure_score, eval = F}
+
+# read in rescaled files
+pressure_stack <- lapply(list.files(file.path(dir_anx, 'prs_sst/output/sst_rescale'),full.names=T), raster) %>%
+  brick()
+
+#gets the mean in each year, so average of all the cell values (question, does this need to be the ocean? using the 100 ocean)
+tet_stats <- zonal(pressure_stack,  tet_ocean_rast_100, fun="mean", na.rm=TRUE, progress="text") %>%
+                  data.frame() %>% 
+  clean_names()
+
+#now it just needs to be turned into a long data frame
+ 
+sst_data <- pivot_longer(tet_stats, cols = sst_rescale_1982_1986:sst_rescale_2013_2017 , names_to = "years", values_to = "pressure_score") %>% 
+  mutate(
+    year = as.numeric(substr(years, 18,21))
+  ) %>% 
+  dplyr::select(region_id = zone, year, pressure_score)
+  
+
+```
+
+# Save to toolbox and output
+
+```{r save}
+
+write.csv(sst_data, file.path(dir_github, "prep/pressures/sst/v2020/output/sst_data.csv"))
+
+
+```
 
 
 ***
