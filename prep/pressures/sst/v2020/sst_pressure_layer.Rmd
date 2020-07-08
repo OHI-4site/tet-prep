@@ -44,6 +44,7 @@ Each of these rasters is the number of positive weekly anomalies each year.
 ```{r global_data}
 sst_global_files <- list.files(file.path(dir_M,'git-annex/globalprep/prs_sst/v2018/int'), pattern = 'annual_pos_anomalies', full.names=T)
 
+
 annomalies <- sst_global_files[[36]]
 
 plot(raster("/home/shares/ohi/git-annex/globalprep/prs_sst/v2018/int/annual_pos_anomalies_sd_1985.tif"), main = "Sea Surface Temperature 2017", box=F,axes=F,
@@ -54,17 +55,24 @@ plot(raster("/home/shares/ohi/git-annex/globalprep/prs_sst/v2018/int/annual_pos_
 
 ```{r crop_to_tet, eval = F}
 
-#Jamie uses the doParallel package which allows parallel processes to run at the sametime, helping speed up loops. You need to "register" this backend function using the code below, specifying # of cores
+#Jamie uses the doParallel package which allows parallel processes to run at the same time, helping speed up loops. You need to "register" this backend function using the code below, specifying # of cores
 
 registerDoParallel(10)
 
+#loop below kept breaking without a file.exists() test
+
 foreach(f = sst_global_files) %dopar% {
-  #f = sst_global_files[[35]]
+  #f = sst_global_files[35]
+  
+  if(!file.exists(paste0(dir_anx,'/prs_sst/output/sst_annual_anoms/annual_anoms_', substr(basename(f), 25, 28),'.tif'))){
+  
  raster(f)%>%                     #raster the file
     crop(wgs_ext)%>%               #crop to the WGS extent 
     projectRaster(tet_ocean_rast_100)%>%
-    mask(tet_ocean_rast_100, filename = paste0(file.path(dir_anx),'/prs_sst/output/sst_annual_anoms/annual_anoms_', substr(basename(f), 25, 28),'.tif'), overwrite = T)
-    
+    mask(tet_ocean_rast_100, filename = paste0(file.path(dir_anx),'/prs_sst/output/sst_annual_anoms/annual_anoms_', substr(basename(f), 25, 28),'.tif'), overwrite = F)
+    }else{
+    message('Raster exists')
+  }
 }
 
 #plot(raster(file.path(dir_anx, 'prs_sst/output/sst_annual_anoms/annual_anoms_2017.tif')),col=cols, axes=F, main = "Sea Surface Temperature 2017",
@@ -73,7 +81,8 @@ foreach(f = sst_global_files) %dopar% {
 
 
 ```
-
+Note: this is not working quite the way it should, only able to do the following years: 
+-
 
 ## Visualize change over time
 
@@ -119,14 +128,43 @@ for(i in 1982:2013){
   yrs <- c(i, i+1, i+2, i+3, i+4) #group 5 years
   s <- raster::stack(l[substr(l,100,103) %in% yrs]) %>% 
     sum(.)
-  #writeRaster(s, filename = paste0(dir_anx, '/prs_sst/output/sst_5yr_anom_sums/sum_anoms_', min(yrs), '-', max(yrs), '.tif'), overwrite=T)
+  
+  writeRaster(s, filename = paste0(dir_anx, '/prs_sst/output/sst_5yr_anom_sums/sum_anoms_', min(yrs), '-', max(yrs), '.tif'), overwrite=T)
 }
 
 
-l[1] #grab the numbers that correspond to the file names that have the years in them 
 
-l[substr(l,100,103) %in% yrs]
 ```
+
+## Rescale
+
+To account for annual variation, we look at Sea Surface Temperature anomalies in 5 year periods, so the maximum value possible per cell is 260 anomalous weeks. To rescale the values from 0 to 1 we need to set a reference point. Previously, the reference point for SST has just been the maximum difference in anomalous weeks between the most recent time period and a historical reference period (1985-1989).
+
+From NorthEast: This time we have decided to use a reference point that represents a regime shift. Once a given cell is anomalous for more than 50% of a five-year period, it has shifted into a new regime. All cells that have a value greater than 130 weeks (51% of a 5 year time period) are assigned a 1. The rest of the cells are scaled to this reference point by dividing by 130.
+
+```{r rescale, eval = F}
+
+sst_aggs <- list.files(file.path(dir_anx, 'prs_sst/output/sst_5yr_anom_sums'), full.names=T) 
+
+
+resc_func <- function(x){
+ x <- sst_aggs[32]
+  #get the year from the file for naming the output raster
+  yrs <- substr(x, 98, 106)
+ 
+  #if a cell value is greater than or equal to the reference point (130 weeks), we assign a value of 1, otherwise it is divided by the reference point
+  raster(x)%>%
+  calc(., fun=function(x){ifelse(x < 0, 0, ifelse(x > 130, 1, x/130))},
+         filename = paste0(dir_anx, '/prs_sst/output/sst_rescale/sst_rescale_', yrs, '.tif'), overwrite=T)
+}
+
+foreach(file = sst_aggs) %dopar%{
+  resc_func(file)
+}
+
+#note, this was getting hung up on the last one (2013-2017) so I just added it manually to the folder
+```
+
 
 
 ***
