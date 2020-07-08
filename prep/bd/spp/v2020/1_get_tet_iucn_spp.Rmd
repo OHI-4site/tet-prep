@@ -27,7 +27,7 @@ source(here('workflow/R/common.R'))
 #file paths
 goal     <- 'spp'
 scenario <- 'v2020'
-dir_anx       <- file.path(dir_M, 'git-annex/globalprep') 
+#dir_anx       <- file.path(dir_M, 'git-annex/globalprep') 
 dir_goal      <- file.path(here('prep/bd',goal, scenario))
 dir_goal_anx  <- file.path(dir_anx, goal, scenario)
 dir_github    <- '~/github/tet-prep'

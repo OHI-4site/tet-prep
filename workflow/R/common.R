@@ -5,6 +5,7 @@ library(sp)
 library(rgdal)
 library(sf)
 library(raster)
+library(RColorBrewer)
 
 cat("This file makes it easier to process data for the OHI global assessment\n",
     "by creating the following objects:\n\n",
@@ -23,6 +24,8 @@ dir_M             <- c('Windows' = '//mazu.nceas.ucsb.edu/ohi',
                        'Darwin'  = '/Volumes/ohi',    ### connect (cmd-K) to smb://mazu/ohi
                        'Linux'   = '/home/shares/ohi')[[ Sys.info()[['sysname']] ]]
 
+dir_anx       <- file.path(dir_M, 'git-annex/foursite/tetiaroa/dataprep') 
+
 # warning if Mazu directory doesn't exist
 if (Sys.info()[['sysname']] != 'Linux' & !file.exists(dir_M)){
   warning(sprintf("The Mazu directory dir_M set in src/R/common.R does not exist. Do you need to mount Mazu: %s?", dir_M))
@@ -31,6 +34,11 @@ if (Sys.info()[['sysname']] != 'Linux' & !file.exists(dir_M)){
 
 ## standard projection for OHI global data
 mollCRS=raster::crs('+proj=moll +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +units=m +no_defs')
+
+# spatial extents for the Tetiaroa region
+
+wgs_ext <- raster::extent(-149.67, -149.46,-17.10,-16.92)
+azim_ext <- raster::extent(-6156061, -6136000,-4607084,-4588580) #this is for equal area projection only
 
 ## Tetiaroa spatial files
 
@@ -53,6 +61,10 @@ tet_ocean_rast_1k <- raster::raster('~/github/tet-prep/spatial/rasters/ocean_ras
 tet_buffer_rast_1k <- raster::raster('~/github/tet-prep/spatial/rasters/all_ras_1k.tif')
 
 
+#other stuff
+
+### Define spectral color scheme for plotting maps
+cols      = rev(colorRampPalette(brewer.pal(9, 'Spectral'))(255)) # rainbow color scheme
 
 
 

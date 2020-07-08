@@ -23,7 +23,7 @@ To account for annual variation, we look at Sea Surface Temperature anomalies in
 **Format**:  NetCDF  
 
 ***
-#Set Up
+# Set Up
 ``` {r setup, echo = FALSE, message = FALSE, warning = FALSE, results = "hide"}
 knitr::opts_chunk$set(fig.width = 8, fig.height = 6, fig.path = 'figs/', message = FALSE, warning = FALSE)
 
@@ -34,7 +34,7 @@ library(foreach)
 source(here('workflow/R/common.R'))
 ```
 
-#Analysis
+# Analysis
 ## Global data layers
 
 We're going to use the global data that was processed for OHI 2018. This data is held on a server at NCEAS.
@@ -43,7 +43,95 @@ Each of these rasters is the number of positive weekly anomalies each year.
 
 ```{r global_data}
 sst_global_files <- list.files(file.path(dir_M,'git-annex/globalprep/prs_sst/v2018/int'), pattern = 'annual_pos_anomalies', full.names=T)
-plot(raster(sst_global_files[36]),col=cols,main = "Sea Surface Temperature 2017",box=F,axes=F,
-     legend.args=list(text='Anomalous Weeks', side=4, font=2, line=2.5, cex=0.8))
+
+annomalies <- sst_global_files[[36]]
+
+plot(raster("/home/shares/ohi/git-annex/globalprep/prs_sst/v2018/int/annual_pos_anomalies_sd_1985.tif"), main = "Sea Surface Temperature 2017", box=F,axes=F,
+     legend.args=list(text='Anomalous Weeks', side=4, font=2, line=2.5, cex=0.8)) #note: got rid of cols = cols 
 ```
 
+## Crop to the Tetiaroa region
+
+```{r crop_to_tet, eval = F}
+
+#Jamie uses the doParallel package which allows parallel processes to run at the sametime, helping speed up loops. You need to "register" this backend function using the code below, specifying # of cores
+
+registerDoParallel(10)
+
+foreach(f = sst_global_files) %dopar% {
+  #f = sst_global_files[[35]]
+ raster(f)%>%                     #raster the file
+    crop(wgs_ext)%>%               #crop to the WGS extent 
+    projectRaster(tet_ocean_rast_100)%>%
+    mask(tet_ocean_rast_100, filename = paste0(file.path(dir_anx),'/prs_sst/output/sst_annual_anoms/annual_anoms_', substr(basename(f), 25, 28),'.tif'), overwrite = T)
+    
+}
+
+#plot(raster(file.path(dir_anx, 'prs_sst/output/sst_annual_anoms/annual_anoms_2017.tif')),col=cols, axes=F, main = "Sea Surface Temperature 2017",
+     #legend.args=list(text='Anomalous Weeks', side=4, font=2, line=2.5, cex=0.8))
+
+
+
+```
+
+
+## Visualize change over time
+
+This is something Jamie had in northeast, cool way to create animation showing change by creating a GIF
+
+```{r gif1, eval = F}
+
+#rasterize each file in the list of files and then create a brick of rasters
+
+s <- lapply(list.files(file.path(dir_anx, 'prs_sst/output/sst_annual_anoms'), full.names=T), raster) %>%
+  brick()
+
+names(s) <- paste0("Years_",(substr(names(s), 14, 17))) #rename each layer for plotting
+gsub(".", "-", names(s), fixed = TRUE)                #replace the . with a -
+
+library(animation)
+
+#have not run this yet
+saveGIF({
+  for(i in 1:nlayers(s)){
+      # don't forget to fix the zlimits
+      plot(s[[i]], zlim=c(0,52), axes=F, col=cols,
+           main=names(s[[i]]),
+           legend.args=list(text='Anomalous Weeks', side=4, font=2, line=2.5, cex=0.8))
+      
+  }
+}, movie.name = 'sst_annual_anoms.gif')
+```
+
+<img src="sst_annual_anoms.gif"/>
+
+## Five year aggregates
+
+Calculating total anomalous weeks for each 5 year period from 1982 - 2017
+
+```{r five-year, eval=F}
+
+l <- list.files(file.path(dir_anx, 'prs_sst/output/sst_annual_anoms'), full.names = T)
+
+for(i in 1982:2013){ 
+  i = 2005
+  
+  yrs <- c(i, i+1, i+2, i+3, i+4) #group 5 years
+  s <- raster::stack(l[substr(l,100,103) %in% yrs]) %>% 
+    sum(.)
+  #writeRaster(s, filename = paste0(dir_anx, '/prs_sst/output/sst_5yr_anom_sums/sum_anoms_', min(yrs), '-', max(yrs), '.tif'), overwrite=T)
+}
+
+
+l[1] #grab the numbers that correspond to the file names that have the years in them 
+
+l[substr(l,100,103) %in% yrs]
+```
+
+
+***
+
+## Citations
+Saha, Korak; Zhao, Xuepeng; Zhang, Huai-min; Casey, Kenneth S.; Zhang, Dexin; Zhang, Yongsheng; Baker-Yeboah, Sheekela; Relph, John M.; Krishnan, Ajay; Ryan, Thomas (2018). The Coral Reef Temperature Anomaly Database (CoRTAD) Version 6 - Global, 4 km Sea Surface Temperature and Related Thermal Stress Metrics for 1982 to 2017. NOAA National Centers for Environmental Information. Dataset. https://doi.org/10.25921/ffw7-cs39. Accessed: August 21, 2018/
+
+Selig, E.R., K.S. Casey, and J.F. Bruno (2010), New insights into global patterns of ocean temperature anomalies: implications for coral reef health and management, Global Ecology and Biogeography, DOI: 10.1111/j.1466-8238.2009.00522.x.
