@@ -1,0 +1,145 @@
+---
+title: "global coral distributions"
+author: "Gage Clawson"
+date: "7/9/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Summary
+
+This script generates the extent of coral for each Tetiaroa.  
+
+***
+## Data Source 
+
+**Downloaded**: 07/25/2019
+
+**Description**:  
+Global Distribution of Coral Reefs
+https://data.unep-wcmc.org/datasets/1
+Reported at spatial cell scale. 
+
+This dataset shows the global distribution of coral reefs in tropical and subtropical regions. It is the most comprehensive global dataset of warm-water coral reefs to date, acting as a foundation baseline map for future, more detailed, work. This dataset was compiled from a number of sources by UNEP World Conservation Monitoring Centre (UNEP-WCMC) and the WorldFish Centre, in collaboration with WRI (World Resources Institute) and TNC (The Nature Conservancy). Data sources include the Millennium Coral Reef Mapping Project (IMaRS-USF and IRD 2005, IMaRS-USF 2005) and the World Atlas of Coral Reefs (Spalding et al. 2001).
+
+**Time range**: 1954-2018
+
+
+***
+# Methods
+Reclassify the coral extent data into a mask of 1 or NA, and then compute zonal statistics for the count of cells within Tetiaroa that have coral and then convert into km2.
+
+
+## Setup
+``` {r setup, echo = FALSE, message = FALSE, warning = FALSE}
+library(readr)      # for read_csv()
+library(raster)
+library(here)
+library(sf)
+library(fasterize)
+library(tidyverse)
+
+source(file.path('~/github/ohiprep_v2020/workflow/R/common.R'))
+
+goal     <- 'globalprep/hab_coral/v2019'
+dir_git  <- file.path('~/github/ohiprep_v2019', goal)
+dir_wcmc <- file.path(file.path(dir_M, 'git-annex/globalprep/_raw_data/wcmc_coral'))
+ohi_rasters() # call the region zones raster
+```
+
+```{r, echo = FALSE, eval = FALSE}
+
+v4_coral_pts <- sf::st_read(dsn = file.path(dir_wcmc, "14_001_WCMC008_CoralReefs2018_v4/01_Data"), layer = "WCMC008_CoralReef2018_Pt_v4")
+
+v4_coral_py <- sf::st_read(dsn = file.path(dir_wcmc, "14_001_WCMC008_CoralReefs2018_v4/01_Data"), layer = "WCMC008_CoralReef2018_Py_v4")
+
+v4_coral_metadata <- sf::st_read(dsn = file.path(dir_wcmc, "14_001_WCMC008_CoralReefs2018_v4/01_Data"), layer = "Metadata_CoralReefs")
+
+
+```
+
+**Convert seagrass shapefiles into same CRS as our region zones raster**
+```{r, echo = FALSE, eval = FALSE}
+
+moll_crs <- crs(zones, asText = TRUE)
+
+v4_coral_pts_moll <- st_transform(v4_coral_pts, crs = moll_crs) #project points shapefile to match zones crs
+
+
+crs(v4_coral_pts_moll) #check to see it worked
+
+v4_coral_py_moll <- st_transform(v4_coral_py, crs = moll_crs)
+
+
+## Tetiaroa extent
+azim_eq    <- raster::crs("+proj=laea +lat_1=29.5 +lat_2=45.5 +lat_0=37.5 +lon_0=-96 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs")
+azim_ext <- raster::extent(-6156061, -6136000,-4607084,-4588580) #this is for equal area projection only
+plot(azim_ext)
+
+global_py <- v4_coral_py_moll %>%
+  st_transform(crs = azim_eq)  
+
+tet_py <- st_crop(global_py, azim_ext)
+
+summary(tet)
+plot(tet[21])
+colnames(tet)
+
+tet_py_1 <- st_cast(tet_py$geometry, "MULTIPOLYGON") 
+
+st_geometry(tet_py) <- tet_py_1 # fix all geometries to be consistent
+
+plot(tet_py[21])
+
+global_pt_eq <- v4_coral_pts_moll %>%
+  st_transform(crs = azim_eq)
+tet_pt <- st_crop(global_pt_eq, azim_ext) ## nothing in the points data. Will only work with polygons then...
+
+
+tet_rast <- raster::raster("../../../../spatial/rasters/ocean_ras_100.tif")
+plot(tet_rast)
+```
+
+**Fasterize/rasterize: Where there is coral assign a value of 1 and NA otherwise**
+```{r}
+#### fasterize the polygons to our 3nm raster
+fasterize_tet_py <- fasterize::fasterize(tet_py, raster = tet_rast, 
+                                     field = NULL)
+plot(fasterize_tet_py)
+#### check to see if all points are NA and 1 for polygon raster
+check_values_py <- getValues(fasterize_tet_py)
+sum(check_values_py == 1, na.rm = TRUE)
+# 2565
+sum(is.na(check_values_py))
+# 34620
+unique(check_values_py)
+# NA 1
+```
+
+**Calculate zonal stats with 3nm raster and fasterized Palmyra polygons. Convert to km^2**
+```{r, echo = FALSE, eval = FALSE}
+zonal_sums <- raster::zonal(fasterize_tet_py, 
+                                     tet_rast,
+                                     fun = "sum",
+                                     na.rm = TRUE) #sum all coral cells for each ohi zone
+
+zonal_sums_df <- data.frame(zonal_sums)
+
+my_raster_res <- res(fasterize_tet_py)
+
+my_raster_res ## 100 100
+# 100 m to km = 0.1 km sized cells
+
+zonal_sums_km2 <- zonal_sums_df %>%
+  mutate(year = 2002, habitat = "coral",
+         km2 = (0.1**2*sum)) %>% #one cell is equal to ~0.1 km
+  dplyr::rename("rgn_id" = "zone") %>%
+  dplyr::select(-sum)
+
+## this shows 24.6 km2 compared to calculated GIS area in the raw data of 2294.982 km2...
+
+sum(tet_py$GIS_AREA_K)
+```
