@@ -212,7 +212,7 @@ tet_stats <- zonal(pressure_stack,  tet_ocean_rast_100, fun="mean", na.rm=TRUE, 
 
 #now it just needs to be turned into a long data frame
  
-sst_data <- pivot_longer(tet_stats, cols = sst_rescale_1982_1986:sst_rescale_2013_2017 , names_to = "years", values_to = "pressure_score") %>% 
+sst_data <- pivot_longer(tet_stats, cols = sst_rescale_1982_1986:sst_rescale_2015_2019 , names_to = "years", values_to = "pressure_score") %>% 
   mutate(
     year = as.numeric(substr(years, 18,21))
   ) %>% 
