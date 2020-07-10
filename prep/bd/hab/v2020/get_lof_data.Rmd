@@ -12,28 +12,26 @@ This script pulls more up to date coral data from the Living Oceans Foundation F
 knitr::opts_chunk$set(echo = TRUE)
 
 library(tidyverse)
+library(pdftables)
 
+source(here('workflow/R/common.R'))
 
+#file paths
+goal     <- 'hab'
+scenario <- 'v2020'
+#dir_anx       <- file.path(dir_M, 'git-annex/globalprep') 
+dir_goal      <- file.path(here('prep/bd',goal, scenario))
+#dir_goal_anx  <- file.path(dir_anx, goal, scenario)
+dir_github    <- '~/github/tet-prep'
 
 pdf_api <- "yclryli65jdy"
 ```
 
-## R Markdown
+Use pdftables to convert the data on page 21 of the pdf
+```{r}
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+convert_pdf(file.path(dir_goal,"_raw_data/LOF_fp_habtable_2017.pdf"), "fp_tabtable.csv", api_key = pdf_api)
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
 ```
 
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+This did not work. 
