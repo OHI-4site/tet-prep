@@ -84,9 +84,9 @@ global_py <- v4_coral_py_moll %>%
 
 tet_py <- st_crop(global_py, azim_ext)
 
-summary(tet)
-plot(tet[21])
-colnames(tet)
+summary(tet_py)
+plot(tet_py[21])
+colnames(tet_py)
 
 tet_py_1 <- st_cast(tet_py$geometry, "MULTIPOLYGON") 
 
@@ -132,10 +132,13 @@ my_raster_res <- res(fasterize_tet_py)
 
 my_raster_res ## 100 100
 # 100 m to km = 0.1 km sized cells
+crs(fasterize_tet_py) ## units in m 
+a <- area(fasterize_tet_py, na.rm = TRUE)
+cell_size <- data.frame(area = a[!is.na(a)]) # each cell is 10000 m2? which means each cell is 0.01 km2  
 
 zonal_sums_km2 <- zonal_sums_df %>%
   mutate(year = 2002, habitat = "coral",
-         km2 = (0.1**2*sum)) %>% #one cell is equal to ~0.1 km
+         km2 = (0.01*sum)) %>% #one cell is equal to ~0.01 km
   dplyr::rename("rgn_id" = "zone") %>%
   dplyr::select(-sum)
 
@@ -143,3 +146,4 @@ zonal_sums_km2 <- zonal_sums_df %>%
 
 sum(tet_py$GIS_AREA_K)
 ```
+
