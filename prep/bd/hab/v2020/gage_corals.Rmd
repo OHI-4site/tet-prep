@@ -5,10 +5,6 @@ date: "7/9/2020"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
 # Summary
 
 This script generates the extent of coral for each Tetiaroa.  
@@ -64,14 +60,14 @@ v4_coral_metadata <- sf::st_read(dsn = file.path(dir_wcmc, "14_001_WCMC008_Coral
 **Convert coral shapefiles into same CRS as our region zones raster**
 ```{r, echo = FALSE, eval = FALSE}
 
-moll_crs <- crs(zones, asText = TRUE)
-
-v4_coral_pts_moll <- st_transform(v4_coral_pts, crs = moll_crs) #project points shapefile to match zones crs
-
-
-crs(v4_coral_pts_moll) #check to see it worked
-
-v4_coral_py_moll <- st_transform(v4_coral_py, crs = moll_crs)
+# moll_crs <- crs(zones, asText = TRUE)
+# 
+# v4_coral_pts_moll <- st_transform(v4_coral_pts, crs = moll_crs) #project points shapefile to match zones crs
+# 
+# 
+# crs(v4_coral_pts_moll) #check to see it worked
+# 
+# v4_coral_py_moll <- st_transform(v4_coral_py, crs = moll_crs)
 
 
 ## Tetiaroa extent
@@ -79,13 +75,13 @@ azim_eq    <- raster::crs("+proj=laea +lat_1=29.5 +lat_2=45.5 +lat_0=37.5 +lon_0
 azim_ext <- raster::extent(-6156061, -6136000,-4607084,-4588580) #this is for equal area projection only
 plot(azim_ext)
 
-global_py <- v4_coral_py_moll %>%
+global_py <- v4_coral_py %>%
   st_transform(crs = azim_eq)  
 
 tet_py <- st_crop(global_py, azim_ext)
 
 summary(tet_py)
-plot(tet_py[21])
+plot(tet_py[21]) #why 21?
 colnames(tet_py)
 
 tet_py_1 <- st_cast(tet_py$geometry, "MULTIPOLYGON") 
@@ -94,9 +90,9 @@ st_geometry(tet_py) <- tet_py_1 # fix all geometries to be consistent
 
 plot(tet_py[21])
 
-global_pt_eq <- v4_coral_pts_moll %>%
-  st_transform(crs = azim_eq)
-tet_pt <- st_crop(global_pt_eq, azim_ext) ## nothing in the points data. Will only work with polygons then...
+# global_pt_eq <- v4_coral_pts %>%
+#   st_transform(crs = azim_eq)
+# tet_pt <- st_crop(global_pt_eq, azim_ext) ## nothing in the points data. Will only work with polygons then...
 
 
 tet_rast <- raster::raster("../../../../spatial/rasters/ocean_ras_100.tif")
@@ -119,7 +115,7 @@ unique(check_values_py)
 # NA 1
 ```
 
-**Calculate zonal stats with 3nm raster and fasterized Palmyra polygons. Convert to km^2**
+**Calculate zonal stats with 3nm raster and fasterized Tetiaroa polygons. Convert to km^2**
 ```{r, echo = FALSE, eval = FALSE}
 zonal_sums <- raster::zonal(fasterize_tet_py, 
                                      tet_rast,
@@ -137,13 +133,18 @@ a <- area(fasterize_tet_py, na.rm = TRUE)
 cell_size <- data.frame(area = a[!is.na(a)]) # each cell is 10000 m2? which means each cell is 0.01 km2  
 
 zonal_sums_km2 <- zonal_sums_df %>%
-  mutate(year = 2002, habitat = "coral",
+  mutate(year = 2002, 
+         habitat = "coral",
          km2 = (0.01*sum)) %>% #one cell is equal to ~0.01 km
-  dplyr::rename("rgn_id" = "zone") %>%
+  dplyr::rename("region_id" = "zone") %>%
   dplyr::select(-sum)
 
 ## this shows 24.6 km2 compared to calculated GIS area in the raw data of 2294.982 km2...
 
 sum(tet_py$GIS_AREA_K)
+
+#write this to int folder
+
+write_csv(zonal_sums_km2, file.path(dir_goal, "int", "cor_area_2002.csv"))
 ```
 
