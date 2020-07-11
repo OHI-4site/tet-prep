@@ -44,8 +44,8 @@ library(tidyverse)
 
 source(file.path('~/github/ohiprep_v2020/workflow/R/common.R'))
 
-goal     <- 'globalprep/hab_coral/v2019'
-dir_git  <- file.path('~/github/ohiprep_v2019', goal)
+#goal     <- 'globalprep/hab_coral/v2019'
+#dir_git  <- file.path('~/github/ohiprep_v2019', goal)
 dir_wcmc <- file.path(file.path(dir_M, 'git-annex/globalprep/_raw_data/wcmc_coral'))
 ohi_rasters() # call the region zones raster
 ```
@@ -61,7 +61,7 @@ v4_coral_metadata <- sf::st_read(dsn = file.path(dir_wcmc, "14_001_WCMC008_Coral
 
 ```
 
-**Convert seagrass shapefiles into same CRS as our region zones raster**
+**Convert coral shapefiles into same CRS as our region zones raster**
 ```{r, echo = FALSE, eval = FALSE}
 
 moll_crs <- crs(zones, asText = TRUE)
