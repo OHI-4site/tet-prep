@@ -1,5 +1,5 @@
 rgn_id,year,sciname,status,name
-1,2014,birgus latro,NA,coconut crab
+1,2014,birgus latro,0.4,coconut crab
 1,2014,eretmochelys imbricata,0.19999999999999996,hawksbill turtle
 1,2014,globicephala macrorhynchus,0.9,short-finned pilot whale
 1,2014,lepidochelys olivacea,0.6,olive ridley sea turtle
@@ -64,7 +64,7 @@ rgn_id,year,sciname,status,name
 1,2014,parupeneus barberinus,1,dot-dashed goatfish
 1,2014,zanclus cornutus,1,moorish idol
 1,2014,caretta caretta,0.19999999999999996,loggerhead turtle
-1,2015,birgus latro,NA,coconut crab
+1,2015,birgus latro,0.4,coconut crab
 1,2015,eretmochelys imbricata,0.19999999999999996,hawksbill turtle
 1,2015,globicephala macrorhynchus,0.9,short-finned pilot whale
 1,2015,lepidochelys olivacea,0.6,olive ridley sea turtle
@@ -129,7 +129,7 @@ rgn_id,year,sciname,status,name
 1,2015,parupeneus barberinus,1,dot-dashed goatfish
 1,2015,zanclus cornutus,1,moorish idol
 1,2015,caretta caretta,0.19999999999999996,loggerhead turtle
-1,2016,birgus latro,NA,coconut crab
+1,2016,birgus latro,0.4,coconut crab
 1,2016,eretmochelys imbricata,0.19999999999999996,hawksbill turtle
 1,2016,globicephala macrorhynchus,0.9,short-finned pilot whale
 1,2016,lepidochelys olivacea,0.6,olive ridley sea turtle
@@ -194,7 +194,7 @@ rgn_id,year,sciname,status,name
 1,2016,parupeneus barberinus,1,dot-dashed goatfish
 1,2016,zanclus cornutus,1,moorish idol
 1,2016,caretta caretta,0.19999999999999996,loggerhead turtle
-1,2017,birgus latro,NA,coconut crab
+1,2017,birgus latro,0.4,coconut crab
 1,2017,eretmochelys imbricata,0.19999999999999996,hawksbill turtle
 1,2017,globicephala macrorhynchus,0.9,short-finned pilot whale
 1,2017,lepidochelys olivacea,0.6,olive ridley sea turtle
@@ -259,7 +259,7 @@ rgn_id,year,sciname,status,name
 1,2017,parupeneus barberinus,1,dot-dashed goatfish
 1,2017,zanclus cornutus,1,moorish idol
 1,2017,caretta caretta,0.19999999999999996,loggerhead turtle
-1,2018,birgus latro,NA,coconut crab
+1,2018,birgus latro,0.4,coconut crab
 1,2018,eretmochelys imbricata,0.19999999999999996,hawksbill turtle
 1,2018,globicephala macrorhynchus,1,short-finned pilot whale
 1,2018,lepidochelys olivacea,0.6,olive ridley sea turtle
@@ -324,7 +324,7 @@ rgn_id,year,sciname,status,name
 1,2018,parupeneus barberinus,1,dot-dashed goatfish
 1,2018,zanclus cornutus,1,moorish idol
 1,2018,caretta caretta,0.19999999999999996,loggerhead turtle
-1,2019,birgus latro,NA,coconut crab
+1,2019,birgus latro,0.4,coconut crab
 1,2019,eretmochelys imbricata,0.19999999999999996,hawksbill turtle
 1,2019,globicephala macrorhynchus,1,short-finned pilot whale
 1,2019,lepidochelys olivacea,0.6,olive ridley sea turtle
@@ -389,3 +389,68 @@ rgn_id,year,sciname,status,name
 1,2019,parupeneus barberinus,1,dot-dashed goatfish
 1,2019,zanclus cornutus,1,moorish idol
 1,2019,caretta caretta,0.19999999999999996,loggerhead turtle
+1,2020,birgus latro,0.4,coconut crab
+1,2020,eretmochelys imbricata,0.19999999999999996,hawksbill turtle
+1,2020,globicephala macrorhynchus,1,short-finned pilot whale
+1,2020,lepidochelys olivacea,0.6,olive ridley sea turtle
+1,2020,mesoplodon densirostris,NA,blainville's beaked whale
+1,2020,peponocephala electra,1,melon-headed whale
+1,2020,stenella longirostris,1,spinner dolphin
+1,2020,steno bredanensis,1,rough-toothed dolphin
+1,2020,tridacna maxima,0.9,clam
+1,2020,carcharhinus melanopterus,0.8,blacktip reef shark
+1,2020,aetobatus narinari,0.8,spotted eagle ray
+1,2020,negaprion acutidens,0.4,lemon shark
+1,2020,chanos chanos,1,milk fish
+1,2020,cephalopholis argus,1,peacock grouper
+1,2020,epinephelus merra,1,honeycomb grouper
+1,2020,megaptera novaeangliae,0.4,humpback whale
+1,2020,pocillopora verrucosa,1,knob-horned coral
+1,2020,porites lobata,0.8,lobe coral
+1,2020,acropora striata,0.6,staghorn coral
+1,2020,millepora platyphylla,1,fire coral
+1,2020,octopus cyanea,1,day octopus
+1,2020,chaetodon auriga,1,threadfin butterfly fish
+1,2020,heniochus chrysostomus,1,pennant bannerfish
+1,2020,chaetodon lunula,1,racoon butterflyfish
+1,2020,centropyge flavissima,1,lemonpeel angelfish
+1,2020,naso lituratus,1,orangespine unicornfish
+1,2020,naso unicornis,1,bluespine unicornfish
+1,2020,acanthurus guttatus,1,spotted surgeonfish
+1,2020,ctenochaetus striatus,1,striated surgeonfish
+1,2020,holothuria atra,1,sea cucumber
+1,2020,labroides dimidiatus,1,bluestreak cleaner wrasse
+1,2020,thalassoma hardwicke,1,sixbar wrasse
+1,2020,epibulus insidiator,1,slingjaw wrasse
+1,2020,chlorurus sordidus,1,bullethead parrotfish
+1,2020,scarus psittacus,1,common parrotfish
+1,2020,arothron meleagris,1,spotted pufferfish
+1,2020,arothron stellatus,1,starry pufferfish
+1,2020,lutjanus fulvus,1,yellow-margined snapper
+1,2020,mobula alfredi,0.6,reef manta ray
+1,2020,gymnothorax javanicus,1,giant moray
+1,2020,gymnothorax pictus,1,peppered moray eel
+1,2020,chelonia mydas,1,green turtle
+1,2020,gnathodentex aureolineatus,1,goldlined emperor
+1,2020,carangoides ferdau,1,barred jack
+1,2020,caranx ignobilis,1,giant jack
+1,2020,numenius tahitiensis,0.6,bristle thighed curley
+1,2020,tringa incana,1,wandering tattler
+1,2020,pluvialis fulva,1,pacific golden plover
+1,2020,gygis alba,1,white common tern
+1,2020,sula sula,1,red-footed booby
+1,2020,sula leucogaster,1,brown booby
+1,2020,egretta sacra,1,pacific reef egret
+1,2020,fregata minor,1,great frigatebird
+1,2020,fregata ariel,1,lesser frigatebird
+1,2020,dermochelys coriacea,0.19999999999999996,leatherback turtle
+1,2020,mulloidichthys flavolineatus,1,yellowstripe goatfish
+1,2020,dactyloptena orientalis,1,helmet gurnard
+1,2020,corythoichthys flavofasciatus,1,yellowbanded pipefish
+1,2020,synodus jaculum,1,blackblotch lizardfish
+1,2020,myripristis murdjan,1,blotch-eye soldier firsh
+1,2020,neoniphon argenteus,1,silver squirrelfish
+1,2020,sargocentron spiniferum,1,giant squirrelfish
+1,2020,parupeneus barberinus,1,dot-dashed goatfish
+1,2020,zanclus cornutus,1,moorish idol
+1,2020,caretta caretta,0.19999999999999996,loggerhead turtle
