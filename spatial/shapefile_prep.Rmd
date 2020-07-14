@@ -210,6 +210,5 @@ Write out final motu with names, correct CRS (azim) and area calculations
 
 st_write(tet_motus_final, file.path(here("/spatial/shp/tet_motus_area.shp")))
 
-
 ```
 

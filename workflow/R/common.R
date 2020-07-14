@@ -68,6 +68,28 @@ tet_buffer_rast_1k <- raster::raster('~/github/tet-prep/spatial/rasters/all_ras_
 ### Define spectral color scheme for plotting maps
 cols      = rev(colorRampPalette(brewer.pal(9, 'Spectral'))(255)) # rainbow color scheme
 
+### helpful function 
+"%!in%" <- function(x,y)!('%in%'(x,y))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ################ OHI Global Region Files ########################

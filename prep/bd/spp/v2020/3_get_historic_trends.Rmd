@@ -25,7 +25,7 @@ library(plyr)
 
 source(here::here('workflow/R/common.R'))
 
-#### functions (add to common R when you get this to work)
+#### functions
 
 "%!in%" <- function(x,y)!('%in%'(x,y))
 
