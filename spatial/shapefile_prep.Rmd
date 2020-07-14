@@ -3,7 +3,7 @@ title: "Shapefile prep"
 output: html_document
 ---
 
-**Shapefile downloaded from ESRI, created by David Smith, Readlands Univ.** 
+**Shapefile downloaded from ESRI, created by David Smith, Redlands Univ.** 
 
 https://univredlands.maps.arcgis.com/home/webmap/viewer.html?useExisting=1&layers=335a6b9b0f3248e7bf7d3938dafd62c4&layerId=0
 
@@ -177,31 +177,20 @@ tet_motus_label <- tet_motus %>%
       FID %in% c("42", "52") ~ "Hiraanae"
     )
   )
+motu_names <- data.frame(
+  name = c("Rimatuu", "Onetahi", "Tahuna Iti", "Reiono", "Tahuna Rahi", "Aie", "Horoatera", "Tiaraunu", "Honuea", "Tauvine", "Hiraanae", "Ahuroa"),
+  abb = c("RIM", "ONE", "TAI", "REI", "TAR","AIE","HOR","TIA","HON","TAU","HIR","AHU")
+)
 
 #what are all the other ones?
 
 tet_motus_final <- tet_motus_label %>% 
-  filter(!is.na(name))
+  filter(!is.na(name)) %>% 
+  inner_join(.,motu_names, by = "name")
 
 mapview(tet_motus_final, zcol = "name") # don't need these
 
 #write out final 
 
-st_write(tet_motus_final,"tet_motus_names.shp")
+st_write(tet_motus_final, file.path(here("/spatial/shp/tet_motus_names.shp")))
 ```
-
-## Creating motus with vegetation information
-
-From documents contained in the dropbox (CASUP Vegetation and Flora, tet_habitats)
-
-```{r}
-
-tet_motus_noinfo  <- sf::st_read(dsn = here::here('/spatial/shp'),layer = 'tet_motus_names', quiet = T)
-
-
-motu_names <- data.frame(
-  name = c("Rimatuu", "Onetahi", "Tahuna Iti", "Reiono", "Tahuna Rahi", "Aie", "Horoatera", "Tiaraunu", "Honuea", "Tauvine", "Hiraanae", "Ahuroa"),
-  abb = c("RIM", "ONE", "TAI", "REI", "TAR","AIE","HOR","TIA","HON","TAU","HIR","AHU")
-)
-```
-

@@ -1,0 +1,38 @@
+---
+title: "land_vegetation_prep"
+output: html_document
+---
+# Summary
+
+This script calculates the land habitat score. While for now it is only based on limited information from CASUP planning documents, I will create a framework to easily include morea accurate spatial data with the distributions of each habitat.
+
+For now, we will calculate the scores using the following assumptions:
+- any version of coco forest are not healthy habitat and should be counted as zero
+- since we do not know how much of each motu the coco forests takes up, we will give motus with coco forest a zero
+- all other habitats listed in the `tet_habitats.csv` are counted as native, and will be a 1
+- because Aie, Tahuna Rahu and Tahuna Iti were all referred to as "prinsinte" in `CASUP_vegetation_and_flora_JYM_2015.docx`, these will get 1s
+
+Each motu will receive a score, and then then scores will be averaged weighted by area of the motu. 
+
+#Set up
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+
+library(tidyverse)
+library(sf)
+library(here)
+
+source(here('workflow/R/common.R'))
+
+#file paths
+goal     <- 'hab'
+scenario <- 'v2020'
+dir_goal      <- file.path(here('prep/bd',goal, scenario))
+dir_goal_anx  <- file.path(dir_anx, goal, scenario)
+dir_github    <- '~/github/tet-prep'
+
+
+
+```
+
