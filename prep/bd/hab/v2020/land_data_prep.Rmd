@@ -117,5 +117,13 @@ land_hab_status <- data.frame(
   year = 2020
 )
 
+#write out this draft version to int folder for now
+
+write_csv(land_hab_status, file.path(dir_goal, "int/land_hab_status_draft.csv"))
 ```
 
+Draft score for land habitat, 2020 is the number in the score column in `land_hab_status` data frame. 
+
+## Using spatial extent data
+
+If we had data showing the extent of each vegetation type, we could instead use a method assessing area covered by native habitat versus coconut habitat. 
