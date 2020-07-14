@@ -190,3 +190,18 @@ mapview(tet_motus_final, zcol = "name") # don't need these
 st_write(tet_motus_final,"tet_motus_names.shp")
 ```
 
+## Creating motus with vegetation information
+
+From documents contained in the dropbox (CASUP Vegetation and Flora, tet_habitats)
+
+```{r}
+
+tet_motus_noinfo  <- sf::st_read(dsn = here::here('/spatial/shp'),layer = 'tet_motus_names', quiet = T)
+
+
+motu_names <- data.frame(
+  name = c("Rimatuu", "Onetahi", "Tahuna Iti", "Reiono", "Tahuna Rahi", "Aie", "Horoatera", "Tiaraunu", "Honuea", "Tauvine", "Hiraanae", "Ahuroa"),
+  abb = c("RIM", "ONE", "TAI", "REI", "TAR","AIE","HOR","TIA","HON","TAU","HIR","AHU")
+)
+```
+
