@@ -82,7 +82,7 @@ mapview(tet_motus)
 #transform to Mollweide
 
 tet_motus_xformed <- st_transform(tet_motus, crs = '+proj=moll +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs')
-
+mapview(tet_motus_xformed)
 ```
 
 Write out shapefile:
@@ -151,7 +151,7 @@ st_write(tet_buffer_50nm,"tet_buffer_50nm.shp")
 Motu names 
 ```{r}
 
-tet_motus  <- sf::st_read(dsn = here::here('/spatial/shp'),layer = 'tet_motus_xformed', quiet = T)
+tet_motus  <- sf::st_read(dsn = here::here('/spatial/shp'),layer = 'tet_motus', quiet = T)
 
 #plot with fid - why are there so many
 
@@ -163,7 +163,7 @@ tet_motus_label <- tet_motus %>%
   ) %>% 
   mutate(
     name = case_when(
-      FID %in% "60" ~ "Tauini",
+      FID %in% "60" ~ "Tauvine",
       FID %in% "61" ~ "Tiaraunu",
       FID %in% "41" ~ "Ahuroa",
       FID %in% "43" ~ "Horoatera",
@@ -182,15 +182,34 @@ motu_names <- data.frame(
   abb = c("RIM", "ONE", "TAI", "REI", "TAR","AIE","HOR","TIA","HON","TAU","HIR","AHU")
 )
 
+
+
 #what are all the other ones?
 
 tet_motus_final <- tet_motus_label %>% 
-  filter(!is.na(name)) %>% 
-  inner_join(.,motu_names, by = "name")
+  filter(!is.na(name)) %>% #filter out tiny strange ones
+  inner_join(.,motu_names, by = "name") %>%  # add abbreviations
+  st_transform(crs = azim_eq) %>% #transform to equidistant
+  mutate(
+    area_km2 = st_area(.)/1000000 #find the area
+  ) %>% 
+  mutate(
+    area_km2 = as.numeric(area_km2) # i guess this worked
+  )
 
 mapview(tet_motus_final, zcol = "name") # don't need these
 
+
+```
+
+
+Write out final motu with names, correct CRS (azim) and area calculations
+```{r}
+
 #write out final 
 
-st_write(tet_motus_final, file.path(here("/spatial/shp/tet_motus_names.shp")))
+st_write(tet_motus_final, file.path(here("/spatial/shp/tet_motus_area.shp")))
+
+
 ```
+

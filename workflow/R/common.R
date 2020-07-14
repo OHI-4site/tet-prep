@@ -32,8 +32,10 @@ if (Sys.info()[['sysname']] != 'Linux' & !file.exists(dir_M)){
 }
 
 
-## standard projection for OHI global data
+## equal area projections - Tet we are using Azimuthal Equidistant
 mollCRS=raster::crs('+proj=moll +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +units=m +no_defs')
+
+azim_eq    <- raster::crs("+proj=laea +lat_1=29.5 +lat_2=45.5 +lat_0=37.5 +lon_0=-96 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs")
 
 # spatial extents for the Tetiaroa region
 
@@ -44,7 +46,7 @@ azim_ext <- raster::extent(-6156061, -6136000,-4607084,-4588580) #this is for eq
 
 tet_buffer_3nm  <- sf::st_read(dsn = here::here('/spatial/shp'),layer = 'tet_buffer_3nm', quiet = T) #need to use path.expand because readOGR does not read '~'
 
-tet_motus  <- sf::st_read(dsn = here::here('/spatial/shp'),layer = 'tet_motus_names', quiet = T)
+tet_motus  <- sf::st_read(dsn = here::here('/spatial/shp'),layer = 'tet_motus_area', quiet = T)
 
 tet_buffer_50nm <- sf::st_read(dsn = here::here('/spatial/shp'),layer = 'tet_buffer_50nm', quiet = T)
 
