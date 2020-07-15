@@ -62,3 +62,10 @@ tet_is_score <- tet_is %>%
 
 ```
 
+Write this draft layer to int folder for now
+```{r}
+
+write_csv(tet_is_score, file.path(dir_goal,"int/is_status_draft.csv"))
+
+```
+

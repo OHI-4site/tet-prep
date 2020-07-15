@@ -96,24 +96,32 @@ Next step is to find the total area and the proportion each motu is of that tota
 ```{r}
 
 
+# hab_stat <- tet_hab_score %>% 
+#   mutate(
+#     tot_area = sum(area_km2)
+#   ) %>% 
+#   mutate(
+#     area_prop = area_km2/tot_area
+#   ) %>% 
+#   mutate(
+#     score = as.numeric(score),
+#     weight_sco = score*area_prop
+#   ) %>%
+#   summarise(
+#     score = mean(weight_sco) #this seems really low?
+#   )
+
+## or 
+
 hab_stat <- tet_hab_score %>% 
   mutate(
-    tot_area = sum(area_km2)
-  ) %>% 
-  mutate(
-    area_prop = area_km2/tot_area
-  ) %>% 
-  mutate(
     score = as.numeric(score),
-    weight_sco = score*area_prop
-  ) %>%
-  summarise(
-    score = mean(weight_sco) #this seems really low?
+    weighted_score = weighted.mean(score, area_km2)
   )
 
 land_hab_status <- data.frame(
   hab_type = "land",
-  status = hab_stat$score,
+  status = unique(hab_stat$weighted_score),
   year = 2020
 )
 
