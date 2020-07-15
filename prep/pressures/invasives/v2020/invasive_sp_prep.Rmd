@@ -27,3 +27,38 @@ dir_github    <- '~/github/tet-prep'
 
 ```
 
+Read in data - this represents the best of my knowledge based on documents in the drop box Frank sent over. This version does not have the birds because I did not feel there was enough information on them to determine their extent and the damage they cause (ie are they really a pressure?)
+
+```{r}
+
+tet_is <- read_csv(file.path(dir_goal,"_raw_data/tet_invasives.csv")) %>% 
+  clean_names() %>% 
+  dplyr::select(name = motu, r_rattus = rats, r_exulans = rats_1, mosquitos,biting_midges, ants, total_invasives)
+
+
+```
+
+To score, we will divide the total invasive sum by the total possible number to normalize to a 0-1 
+
+```{r}
+
+tet_is_score <- tet_is %>% 
+  mutate(
+    score = total_invasives/5
+  ) %>%
+  dplyr::select(name,score) %>% 
+  inner_join(.,tet_motus, by = "name") %>% 
+  mutate(
+    weighted_sco = weighted.mean(score,area_km2)
+  ) %>% 
+  summarize(
+    status = unique(weighted_sco)
+  )%>% 
+  mutate(
+    year = 2020,
+    region_id = 1
+  )
+
+
+```
+
