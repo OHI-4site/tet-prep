@@ -5,7 +5,7 @@ output: html_document
 
 #Summary 
 
-For the invasive species pressure layer, we will take a very simple approach based on where invasive species exist. We know from the documentation provided by the Tetiaroa Society that there are 5 main invasive species groups they are trying to eradicate: rats, mosquitos, biting flies, ants, and two introduced birds. We know which motus these have been successfully eliminated off of, so we can quantify which areas have which species. So a perfect score would be an area with 0 invasive species, and the lowest score would be an area with all the invasive species. Scores will be assigned by motu and then weighted by area of the motu. 
+For the invasive species pressure layer, we will take a very simple approach based on where invasive species exist. We know from the documentation provided by the Tetiaroa Society that there are 5 main invasive species groups they are trying to eradicate: rats, mosquito, biting flies, ants, and two introduced birds. We know which motus these have been successfully eliminated off of, so we can quantify which areas have which species. So a perfect score would be an area with 0 invasive species, and the lowest score would be an area with all the invasive species. Scores will be assigned by motu and then weighted by area of the motu. 
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
