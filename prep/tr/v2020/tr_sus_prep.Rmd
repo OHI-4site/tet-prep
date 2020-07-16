@@ -1,0 +1,43 @@
+---
+title: "Tourism sustainability"
+author: Madeline Berger
+output: html_document
+---
+
+#Summary 
+
+This script calculates a score for tourism sustainability of [The Brando](https://thebrando.com/) resort, the eco-resort on Onetahi. Data for this goal are descriptive sustainability metrics that I gathered from SA Beachcomber's 2019 sustainability report. Most of them are just in percentages (i.e. 80% energy provided by solar).
+
+The Brando has already achieved far more in terms of sustainability than most resorts, so setting a reference point is tricky. They were the first resort building to receive LEED Platinum certification, and already have a very low impact. We could just assume that being at 100% sustainable, ie no footprint, is a goal. But it does not seem totally feasible, unless that is something the Brando thinks they can achieve. We have yet to hear back from representatives there, and can update the reference point with any feedback. For now, I'll rely on guidance from existing green certification programs. 
+
+There are a handful of green / eco / sustainable tourism certifications out there, but one that provides a helpful framework is the [Green Destinations](https://greendestinations.org/green-destinations-standard/) certification. This certification has 100 criteria that can be grouped into 6 main themes: 
+
+1. Destination Management
+2. Nature and Scenery 
+3. Environment and Climate
+4. Culture and Tradition
+5. Social Well-being
+6. Business and Hospitality
+
+[EcoTourism Australia](https://www.ecotourism.org.au/our-certification-programs/eco-destination-certification/) considers any place that has met 80% of the requirements in this standard a "nature destination", a place that has met 90% as "ecotourism destination" and one that meets 100% as officially Green Destination Certified. 
+
+For now I'll use this framework to group the statistics I have into categories. 3 main categories we can start with are: 
+- Energy use
+- Waste & Recycling 
+- Water management
+
+#Set up 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+#Methods
+```{r}
+
+
+
+
+```
+
