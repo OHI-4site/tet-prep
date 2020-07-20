@@ -1,0 +1,102 @@
+---
+title: "lsp_data_prep_old"
+output: html_document
+---
+## Summary
+
+This document contains the code for LSP I originally used, incase they prefer this method. Saving separately to clean up repo. Right now, the layers in the toolbox correspond to these.  
+
+## Setup
+
+```{r setup, echo = FALSE, message = FALSE, warning = FALSE}
+
+knitr::opts_chunk$set(fig.width = 6, fig.height = 4, fig.path = 'Figs/',
+                      echo = FALSE, message = FALSE, warning = FALSE, eval=FALSE)
+
+library(raster)
+library(sf)
+library(tidyverse)
+library(here)
+
+source(here('workflow/R/common.R'))
+
+goal     <- 'lsp'
+scenario <- 'v2020'
+dir_goal      <- file.path(here('prep/sp',goal, scenario))
+dir_goal_anx  <- file.path(dir_anx, goal, scenario)
+dir_github    <- '~/github/tet-prep'
+
+
+```
+
+# Creating layer with scores
+
+For now, create a layer that assigns scores to our three "regions" (lagoon, land and open ocean) based on what we know from conversations with Frank and Neil. 
+
+1. land: all of it is protected in that is a private island 
+2. lagoon: half of it is protected as a no take zone
+3. ocean: as far as we know, there are no reserves that intersect wih the area that is 3nm outside the islands 
+
+```{r}
+
+year <- seq(2014,2020,1)
+
+#create land layer
+land_status <- data.frame(
+  rgn_id = rep(1, length(year)),
+  year = year,
+  status = rep(1, length(year))
+)
+
+write.csv(land_status %>% select(region_id = rgn_id, year, status), file = "~/github/tet-scores/region/layers/lsp_land_status.csv", row.names = FALSE)
+
+#create lagoon layer
+lagoon_status <- data.frame(
+  rgn_id = rep(2, length(year)),
+  year = year,
+  status = rep(0.5, length(year))
+)
+
+write.csv(lagoon_status %>% select(region_id = rgn_id, year, status), file = "~/github/tet-scores/region/layers/lsp_lagoon_status.csv", row.names = FALSE)
+
+#create offshore layer
+offshore_status <- data.frame(
+  rgn_id = rep(3, length(year)),
+  year = year,
+  status = rep(0, length(year))
+)
+
+write.csv(offshore_status %>% select(region_id = rgn_id, year, status), file = "~/github/tet-scores/region/layers/lsp_offshore_status.csv", row.names = FALSE)
+```
+
+
+``` {r}
+
+#bind them all together - if we want it
+
+lsp_status_scores <- bind_rows(rgn_1,rgn_2,rgn_3)
+
+#write to output folder 
+
+write_csv(lsp_status_scores, file.path(dir_goal, "output/lsp_status_all.csv"))
+
+```
+
+Now make a single layer with information combined into average. This is where the weighting can be adjusted if needed, ie if we decide the lagoon is more important than the land. This should also be adjusted if we want to change the years. Right now, overall score is 0.5 since that is the average of the all three subregions. 
+
+
+Note: fix notation, its kind of confusing right now. Also, for now this step will be in the toolbox.
+
+```{r}
+
+
+lsp_status_avg <- data.frame(
+  rgn_id = rep(1,length(year)),
+  year = year,
+  status = rep(0.5, length(year))
+) %>% 
+  filter(year > 2013)
+
+write_csv(lsp_status_avg, file.path(dir_goal, "output/lsp_status_avg.csv"))
+
+```
