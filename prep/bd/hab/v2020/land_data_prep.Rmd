@@ -4,7 +4,7 @@ output: html_document
 ---
 # Summary
 
-This script calculates the land habitat score. While for now it is only based on limited information from CASUP planning documents, I will create a framework to easily include morea accurate spatial data with the distributions of each habitat.
+This script calculates the land habitat score. While for now it is only based on limited information from CASUP planning documents, I will create a framework to easily include more accurate spatial data with the distributions of each habitat.
 
 For now, we will calculate the scores using the following assumptions:
 - any version of coco forest are not healthy habitat and should be counted as zero
@@ -68,8 +68,8 @@ need_score <- tet_motus %>%
 
 The ones left are: 
 - Onetahi: this motu has the hotel on it, and we don't have it included in the vegetation map. Based on the map Benoit Stoll sent us a link to, we can see that the motu is mostly X. 
-- Ahuroa: this is a tiny motu (the fourth smallest). We don't have details for it, but is is right next to Tauvine, so we'll assume it has a similar vegetation make up 
 - Tauvine: only shows up in Pemphis thicket, will get a score of 1 since this is a native land cover type
+- Ahuroa: this is a tiny motu (the fourth smallest). We don't have details for it, but is is right next to Tauvine, so we'll assume it has a similar vegetation make up and get the same score
 - Reiono: this motu has the most diversity - for now, give it a 0.5
 - Honuea: only has cadium marsh, and pandanus forest, both of which are native habitats. Score of 1. 
 
@@ -91,27 +91,10 @@ tet_hab_score <- tet_motus %>%
 
 ```
 
-Next step is to find the total area and the proportion each motu is of that total. That proportion will be the weight applied to that motus score. 
+Next step is to use the areas of the motus to weight the average score. That proportion will be the weight applied to that motus score. 
 
 ```{r}
 
-
-# hab_stat <- tet_hab_score %>% 
-#   mutate(
-#     tot_area = sum(area_km2)
-#   ) %>% 
-#   mutate(
-#     area_prop = area_km2/tot_area
-#   ) %>% 
-#   mutate(
-#     score = as.numeric(score),
-#     weight_sco = score*area_prop
-#   ) %>%
-#   summarise(
-#     score = mean(weight_sco) #this seems really low?
-#   )
-
-## or 
 
 hab_stat <- tet_hab_score %>% 
   mutate(
