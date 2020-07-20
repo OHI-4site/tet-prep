@@ -15,9 +15,9 @@ output:
     toc: yes
 ---
 
-# Summary
+## Summary
 
-From Halpern et al. 2012 supplemental info: 
+The methods for global are as follows, from Halpern et al. 2012 supplemental info: 
 
 > The ‘Lasting Special Places’ sub-goal focuses instead on those geographic locations that hold particular value for aesthetic, spiritual, cultural, recreational or existence reasons57. This sub-goal is particularly hard to quantify. Ideally one would survey every community around the world to determine the top list of special places, and then assess how those locations are faring relative to a desired state (e.g., protected or well managed). The reality is that such lists do not exist. Instead, we assume areas that are protected represent these special places (i.e. the effort to protect them suggests they are important places).
 
@@ -35,16 +35,36 @@ where:
 * ${Area_{MPA_{ref}}}$ = Reference value for marine protected area within offshore 3 nm buffer
 * $Ref$ = 30% of total area within buffer zone is protected
 
+Because Tetiaroa is such a small area, we will deviate slightly from these methods. First, instead of just calculating protected area within 1km of the shore, we will treat all land areas as coastal land on Tetiaroa, since most motus (individual islands) are not wider than 1 km anyway. Second, instead of created a buffer of 3nm and treating that as all one area, we will split up the marine area into two categories: lagoon area, and the area extending outwards 3nm from each motu ("offshore"). 
+
+Lastly, we will adjust what we define as "area protected", expressed in terms of stakeholder engagement and number of parties involved in management, in addition to actual protected areas established. This is because we do not think that just because the island is private, it is truly protected in the same way a protected area would be. While it is unlikely that the company that owns Tetiaroa would develop it further, they have full ability to do it, or sell to another party that would. From FourSite's point of view, and taking into account the Tetiaroa's Society's long term goal of making Tetiaroa a nature sanctuary, this still poses a threat. Therefore, we 
+
+Below are the three main areas, with the corresponding ownership / management information: 
+
+| Area | Ownership / Management |
+| :---- | :----------- |
+| All motus | SA Frangiapini |
+| Onetahi & Honuea | SA Frangiapini and Beachcomber | 
+| Lagoon | FP Government, Tetiaroa Society |
+| 3nm offshore | FP Government|
+
+
+All three will be weighted evenly, unless discussions with Four site suggest something else. 
+
+
+
+Two output files are created: 
+
+ * total area for offshore 3 nm and inland 1 km
+ * protected area for offshore 3 nm and inland 1 km
+
+ * rgn_area_offshore3nm with the following columns: rgn_id, area ($km^2$)   
+ * lsp_prot_area_offshore3nm with the following columns: rgn_id, year, a_prot_3nm ($km^2$)
 
 
 ***
 
-# Setup
-
-```{r, include=FALSE}
-knitr::opts_chunk$set(eval = FALSE)
-```
-
+## Setup
 
 ```{r setup, echo = FALSE, message = FALSE, warning = FALSE}
 
@@ -60,7 +80,6 @@ source(here('workflow/R/common.R'))
 
 goal     <- 'lsp'
 scenario <- 'v2020'
-dir_anx       <- file.path(dir_M, 'git-annex/globalprep') 
 dir_goal      <- file.path(here('prep/sp',goal, scenario))
 dir_goal_anx  <- file.path(dir_anx, goal, scenario)
 dir_github    <- '~/github/tet-prep'
@@ -68,97 +87,11 @@ dir_github    <- '~/github/tet-prep'
 
 ```
 
-# Methods
+## Methods
 
-There are three main areas that can be protected:
-- land area of the motus
-- the lagoon
-- 3nm offshore
+First, we'll check the WDPA raster and make sure there aren't any MPAs that fall within our 3nm buffer. 
 
-All three will be weighted evenly, unless discussions with 4site suggest something else. Tetiaroa is a private island, so all of the land will be considered 100% protected, meaning the 1 km onshore protected areas will receive a score of 1. We know the lagoon is 50% protected, so that will receive a score of 0.5. What we need to determine is if there are any known protected areas in the 3nm buffer area. 
-
-Two output files are required: 
-
- * total area for offshore 3 nm and inland 1 km
- * protected area for offshore 3 nm and inland 1 km
-
- * rgn_area_offshore3nm with the following columns: rgn_id, area ($km^2$)   
- * lsp_prot_area_offshore3nm with the following columns: rgn_id, year, a_prot_3nm ($km^2$)
-
-***
-
-## Compute zonal statistics for 3nm offshore motus - NOTE TO DELETE THIS IF NOT NECESSARY
-
-Comparing the global WDPA raster to the 3 nautical miles offshore and 1 km inland rasters, we can tally the protected area within each region and compare to the total area within each region.  Note each cell is 500 m x 500 m, so area is .25 km^2^, but since we are simply calculating a ratio, this cancels out.
-
-``` {r lsp_zonal_stats, eval = FALSE}
-
-zonal_3nm =  file.path(dir_goal, 'int', 'zonal_stats_3nm.csv') #file path for finished cross tabulation
-
-### point to the 3nm buffer created in the spatial prep - SHAPEFILE?
-tet_rgn_offshore3nm <- file.path(dir_github, '/spatial/shp/tet_buffer_3nm') 
-
-##global wdpa raster
-rast_wdpa <- raster::raster(file.path(dir_goal_anx, 'rast', 'wdpa_2020_moll_500m.tif'))
-
-# rgn_rast_list <- c(
-#   'zonal_3nm' = file.path(dir_zones, 'rgn_offshore3nm_mol_500mcell.tif'),
-#   'zonal_1km' = file.path(dir_zones, 'rgn_inland1km_mol_500mcell.tif'),
-#   'zonal_eez' = file.path(dir_zones, 'rgn_eez_mol_500mcell.tif'))
-
-### Remove all files in `int` if it's the first time working through this data prep for this assessment
-### Filters out finished zonal files: if zonal files don't exist yet, they will be created (comment out to recalculate)
-zonal_files_to_run <- zonal_files[!file.exists(zonal_files)]
-rgn_rast_list <- rgn_rast_list[!file.exists(zonal_files)]
-
-
-  ### NOTE: The crosstab function returns this warning - does it affect the
-  ### outcomes, or does the function coerce the correct outcome?
-      # Warning message:
-      # In FUN(X[[i]], ...) : integer overflow - use sum(as.numeric(.))
-  ### zonal() wouldn't work since we want to track the frequency of each
-  ### year value within each rgn_id value.
-  
-  lsp_crosstab <- function(rgn_rast_file, rast_values) {
-    rgn_rast <- raster::raster(rgn_rast_file) #turns shapefile into raster?
-    message('Cross tabulating ', rgn_rast_file)
-    rast_df <- raster::crosstab(rast_values, rgn_rast, useNA = TRUE, progress = 'text') %>%
-      as.data.frame() %>%
-      setNames(c('year', 'rgn_id', 'n_cells')) %>%
-      mutate(year   = as.integer(as.character(year)),
-             rgn_id = as.integer(as.character(rgn_id))) %>%
-      arrange(rgn_id, year)
-  
-    return(rast_df)
-  }
-  
-  
-### Processing & saving zonal statistics for a single raster 
-x <- lsp_crosstab(rgn_rast_list[1], rast_values = rast_wdpa) #~20 minutes to run #3nm
-
-```
-
-Once the WDPA raster is cross-tabulated against the OHI region rasters (both 3 nm offshore and 1 km inland) we have the number of protected cells, identified by year of protection, within each region.  NA values are unprotected cells.
-
-### Summary of zonal stats dataframes (3 nm offshore):
-
-``` {r, eval = FALSE}
-stats_3nm <- read_csv(zonal_files['zonal_3nm'])
-print(summary(stats_3nm))
-
-```
-
-### Summary of zonal stats dataframes (entire EEZ):
-
-``` {r}
-stats_eez <- read_csv(zonal_files['zonal_eez'])
-print(summary(stats_eez))
-```
-
-***
-Above not working great - code below shows that the wdpa raster probably does not intersect with the 3nm raster
-
-```{r}
+```{r, include=FALSE}
 #source wdpa raster
 rast_wdpa <- raster::raster(file.path(dir_goal_anx, 'rast', 'wdpa_2020_moll_500m.tif')) #note: the numbers for this are 2019, does that seem right?
 

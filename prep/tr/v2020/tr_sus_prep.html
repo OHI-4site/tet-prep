@@ -371,8 +371,8 @@ summary {
 <div id="summary" class="section level2">
 <h2>Summary</h2>
 <p>This script calculates a score for tourism sustainability of <a href="https://thebrando.com/">The Brando</a> resort, the eco-resort on Onetahi. Data for this goal are descriptive sustainability metrics that I gathered from SA Beachcomber’s 2019 sustainability report. Most of them are just in percentages (i.e. 80% energy provided by solar).</p>
-<p>We did inquire about actual data from the Brando, contacting Alban Perret (sustainability manager). He was not able to share any data at this time, as The Brando has had to push their sustainability work to 2021. Alban said to reach out again in Q2 2021 for an update. His contact information is: <a href="mailto:aperret@pbsc.pf" class="email">aperret@pbsc.pf</a></p>
-<p>The Brando has already achieved far more in terms of sustainability than most resorts, so setting a reference point is tricky. They were the first resort building to receive LEED Platinum certification, and already have a very low impact. We’ll assume that being at 100% sustainable, i.e. no footprint, is a goal. While it does not seem totally feasible, the 2019 sustainability report outlines the following broad goal, which supports this reference points:</p>
+<p>We did inquire about actual data from The Brando, contacting Alban Perret (sustainability manager). He was not able to share any data at this time, as The Brando has had to push their sustainability work to 2021. Alban said to reach out again in Q2 2021 for an update. His contact information is: <a href="mailto:aperret@pbsc.pf" class="email">aperret@pbsc.pf</a></p>
+<p>The Brando has already achieved far more in terms of sustainability than most resorts, so setting a reference point is tricky. They were the first resort building to receive LEED Platinum certification, and already have a very low impact. We’ll assume that being at 100% sustainable, i.e. no footprint, is a goal. While it does not seem totally feasible, the 2019 sustainability report outlines the following broad goal, which supports this reference point:</p>
 <blockquote>
 <p>“Decrease carbon footprint of human activity on the island, working towards zero impact”</p>
 </blockquote>
@@ -392,13 +392,79 @@ summary {
 <li>Waste &amp; Recycling</li>
 <li>Water management</li>
 </ul>
-<p>It would also be interesting to include something about food sustainability, but may have to get creative.</p>
+<p>It would also be interesting to include something about food sustainability, but will leave that out for now.</p>
+<p>Below are the three main areas, with the corresponding ownership / management information:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Area</th>
+<th align="left">Ownership</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">All motus</td>
+<td align="left">SA Frangiapini</td>
+</tr>
+<tr class="even">
+<td align="left">Onetahi &amp; Honuea</td>
+<td align="left">SA Frangiapini and Beachcomber</td>
+</tr>
+<tr class="odd">
+<td align="left">Lagoon</td>
+<td align="left">FP Government, Tetiaroa Society</td>
+</tr>
+<tr class="even">
+<td align="left">3nm offshore</td>
+<td align="left">FP Government</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="set-up" class="section level2">
 <h2>Set up</h2>
 </div>
 <div id="methods" class="section level2">
 <h2>Methods</h2>
+<p>For this goal, we will simply score each sustainability category in terms of how close it is to 100% sustainable, or zero impact. If a category has multiple metrics, those will be averaged to get the category score. We will then average the three category scores to get the final score.</p>
+<pre class="r"><code>#energy - only use the amount of total energy that is produced via renewable efforts, the air conditioning stat isn&#39;t helpful without knowing how much air conditioning makes up of all energy usage (although its probably a lot) 
+
+energy_score &lt;- brando_stats %&gt;% 
+  filter(category == &quot;energy&quot;) %&gt;% 
+  filter(percent == 0.7) %&gt;% 
+  dplyr::select(category, units, score = percent)
+
+
+#waste - average the three waste scores, since each are a different type of waste
+
+waste_score &lt;- brando_stats %&gt;% 
+  filter(category == &quot;waste&quot;) %&gt;% 
+  summarize(
+    score = mean(percent)
+  ) %&gt;% 
+  mutate(
+    category = &quot;waste&quot;,
+    units = &quot;waste management&quot;
+  )
+
+
+# water - what percent of water used by the resort is sourced from rainwater, desal or other non-freshwater sources 
+
+water_score &lt;- brando_stats %&gt;% 
+  filter(category == &quot;water&quot;) %&gt;% 
+  filter(percent == 1) %&gt;% 
+  dplyr::select(category, units, score = percent)</code></pre>
+<p>Bind the dfs together and find the average, creating status layer</p>
+<pre class="r"><code>tr_scores &lt;- bind_rows(energy_score, waste_score, water_score) %&gt;% 
+  summarize(
+    status = mean(score)
+  ) %&gt;% 
+  mutate(
+    region_id = 1,
+    year = 2020
+  )</code></pre>
+<p>For now, save this to the int folder (once we finalize it, save to outputs and toolbox)</p>
+<pre class="r"><code>write_csv(tr_scores, file.path(dir_goal, &quot;int/tr_status_draft.csv&quot;))</code></pre>
 </div>
 
 
