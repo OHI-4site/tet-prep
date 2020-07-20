@@ -35,31 +35,26 @@ where:
 * ${Area_{MPA_{ref}}}$ = Reference value for marine protected area within offshore 3 nm buffer
 * $Ref$ = 30% of total area within buffer zone is protected
 
-Because Tetiaroa is such a small area, we will deviate slightly from these methods. First, instead of just calculating protected area within 1km of the shore, we will treat all land areas as coastal land on Tetiaroa, since most motus (individual islands) are not wider than 1 km anyway. Second, instead of created a buffer of 3nm and treating that as all one area, we will split up the marine area into two categories: lagoon area, and the area extending outwards 3nm from each motu ("offshore"). 
+*** 
 
-Lastly, we will adjust what we define as "area protected", expressed in terms of stakeholder engagement and number of parties involved in management, in addition to actual protected areas established. This is because we do not think that just because the island is private, it is truly protected in the same way a protected area would be. While it is unlikely that the company that owns Tetiaroa would develop it further, they have full ability to do it, or sell to another party that would. From FourSite's point of view, and taking into account the Tetiaroa's Society's long term goal of making Tetiaroa a nature sanctuary, this still poses a threat. Therefore, we 
+Because Tetiaroa is such a small area, we will deviate slightly from these methods. First, instead of just calculating protected area within 1km of the shore, we will treat all land areas as coastal land on Tetiaroa, since most motus (individual islands) are not wider than 1 km anyway. Second, instead of creating a buffer of 3nm and treating that as all offshore, we will split up the marine area into two categories: the lagoon area, and the area extending outwards 3nm from each motu ("offshore"). 
+
+Lastly, we will adjust what we define as "area protected", expressed in terms of stakeholder engagement and number of parties involved in management, in addition to actual protected areas established. This is because we do not think that privately owned areas are truly protected in the same way an offcial, recognized protected area would be. While it is unlikely that the company that owns Tetiaroa (Marlon Brando's trust) would develop it further, they have the full ability to do so, or sell to another party that would. From FourSite's point of view, and taking into account the Tetiaroa's Society's long term goal of making Tetiaroa a nature sanctuary, this still poses a threat that we want to incorporate into the overall score.
 
 Below are the three main areas, with the corresponding ownership / management information: 
 
 | Area | Ownership / Management |
 | :---- | :----------- |
-| All motus | SA Frangiapini |
-| Onetahi & Honuea | SA Frangiapini and Beachcomber | 
+| All motus | SA Frangipani |
+| Onetahi & Honuea | SA Frangipani and Beachcomber (TBSA) | 
 | Lagoon | FP Government, Tetiaroa Society |
 | 3nm offshore | FP Government|
 
+The highest protection that exists spans half the lagoon and is considered a protected "no-take zone", which is enforced by rangers employed with the Tetiaroa Society. It is unclear if the government recognizes this area as protected, and recognizes the authority of the Tetiaroa Society rangers in enforcing it. But it is effective in deterring fishing and other harmful activities (see Tetiaroa Society funding report, 2019), so we can consider this area fully protected. 
 
-All three will be weighted evenly, unless discussions with Four site suggest something else. 
+The land areas of Tetiaroa are split into areas owned soley by the S.A. Frangipani (Marlon Brando's trust), and motus that are owned by SA Frangipani but leased to TBSA, the developer of The Brando Resort. The development of the resort, while damaging in some ways, allowed for the creation of the Tetiaroa Society. TBSA's 2019 sustainability report also provides evidence than preservation and protection are a priority for this stakeholder. Therefore, we'll score these areas slightly higher than the land areas that are only controlled by one party. The reasoning is that there are fewer people involved in the management decisions for areas with only one owner or manager , putting them at a slightly higher risk of being developed or not well protected. 
 
-
-
-Two output files are created: 
-
- * total area for offshore 3 nm and inland 1 km
- * protected area for offshore 3 nm and inland 1 km
-
- * rgn_area_offshore3nm with the following columns: rgn_id, area ($km^2$)   
- * lsp_prot_area_offshore3nm with the following columns: rgn_id, year, a_prot_3nm ($km^2$)
+Lastly, we'll consider any areas that are still under the public domain of the French Polynesian government as having no protection, which will get a score of 0. 
 
 
 ***
@@ -89,30 +84,29 @@ dir_github    <- '~/github/tet-prep'
 
 ## Methods
 
-First, we'll check the WDPA raster and make sure there aren't any MPAs that fall within our 3nm buffer. 
+### Check for overlapping MPAs
+
+First, we'll check the WDPA raster and make sure there aren't any MPAs that fall within our 3nm buffer. Since these all came out as NA, we can conclude there aren't any MPAs in the offshore area. 
 
 ```{r, include=FALSE}
 #source wdpa raster
-rast_wdpa <- raster::raster(file.path(dir_goal_anx, 'rast', 'wdpa_2020_moll_500m.tif')) #note: the numbers for this are 2019, does that seem right?
+rast_wdpa <- raster::raster(file.path(dir_M, 'git-annex/globalprep/lsp/v2020/rast/wdpa_2020_moll_500m.tif')) #note: the numbers for this are 2019, does that seem right?
 
 #to convert into raster needs to be in an sp object instead sfc_POLYGON
 tet_buffer_3nm_sp <- as(tet_buffer_3nm,"Spatial")
 
 crop <- crop(rast_wdpa, extent(tet_buffer_3nm_sp), snap="out")
-tet_3nm_rast <- rasterize(tet_buffer_3nm_sp, crop)
 
-#mask wdpa if needed:
+plot(crop)
 
-wdpa_mask <- mask(x=crop, mask=tet_3nm_rast) #I think the warning you get here tells you that it doesn't have any protected areas since this is empty.
-
-plot(tet_3nm_rast) #not sure where these values came from 
+#this comes out empty, probably not any MPAs in this region 
 ```
 
 ***
 
-## Calculate region areas 
+### Calculate region areas 
 
-Total area
+First, we'll calculate the total area of our buffer, and then subtract the areas of the motus and the no-take zone, which we know is 8869 acres in size
 ``` {r calc_rgn_area, eval = FALSE}
 
 #buffered area = total area of offshore and onshore we are interested in
@@ -124,42 +118,92 @@ calc_area_3nm <- st_read(file.path(dir_github, 'spatial/shp'), layer = 'tet_buff
 
 area_3nm <- as.numeric(calc_area_3nm$area_km2)
 
-#create data frame
-
-rgn_area_offshore_3nm <- data.frame(rgn_id = 1, area = area_3nm)
+total_tet_area <- data.frame(
+  region = "total",
+  year = 2020,
+  area_km2 = area_3nm
+)
 
 #export to outputs folder
 
-write_csv(rgn_area_offshore_3nm, file.path(dir_github, 'prep/sp/lsp/v2020/output/rgn__area_offshore3nm'), append = FALSE)
+write_csv(total_tet_area, file.path(dir_goal, 'int/total_tet_area.csv'), append = FALSE)
 ```
 
 
-Protected area
+Finding the area of the motus and of the lagoon
 ``` {r calc_prot_area, eval = FALSE}
-#motus - these are all protected
+#motus - some have one stakeholder, while others have more than one.
 #calculate area
-area_motus <- st_read(file.path(dir_github, 'spatial/shp'), layer = 'tet_motus') %>% 
-  mutate(area_m2 = st_area(.),
-         area_km2 = area_m2/1000000) %>% 
-  separate(area_km2, into = c("area_km2", "units"), sep = " ") %>% 
-  dplyr::select(-area_m2, -units)
+area_motus <- st_read(file.path(dir_github, 'spatial/shp'), layer = 'tet_motus_area') %>% 
+  dplyr::select(region = name, area_km2) %>% 
+  st_set_geometry(.,NULL) %>% 
+  mutate(
+    year = 2020
+  )
 
-#sum to find total
 
-area_motus_tot <- sum(as.numeric(area_motus$area_km2))
+#lagoon - half of this is protected with a no take zone.
+#convert acres into kilometers squared
 
-#create data frame -not sure when no take zone was est so will just use global range 2000 - 2019
+no_take_area_km <- 0.00404686*8869
 
-years <- seq(2000,2019,1)
+no_take_df <- data.frame(
+  region = "No take zone",
+  area_km2 = no_take_area_km,
+  year = 2020
+)
 
-lsp_prot_area_1km <- data.frame(rgn_id = rep(1, length(years)), 
-                                year = years, 
-                                area = rep(area_motus_tot, length(years))) #missing years
+#create df with the motus and the no take zone, which we'll subtract from the total to get the offshore 
 
-#lagoon - half of this is protected with a no take zone. We'll come back to this
+prot_areas_total <- bind_rows(area_motus, no_take_df) %>% 
+  summarize(
+    total_area_km = sum(area_km2)
+  )
 
-write_csv(lsp_prot_area_1km, file.path(dir_github, 'prep/sp/lsp/v2020/output/lsp_prot_area_1km'))
+#now subtract this total from the total to get the offshore area NOT protected, and combine that all into a df
 
+non_prot_areas <- total_tet_area[1,3] - prot_areas_total[1,1]
+
+all_regions_df <- data.frame(
+  region = "No protection",
+  area_km2 = non_prot_areas,
+  year = 2020
+) %>% 
+  bind_rows(no_take_df, area_motus)
+
+write_csv(all_regions_df, file.path(dir_goal, 'int/all_regions_area.csv'))
+
+```
+
+### Assign scores
+
+Next step is to assign scores from 0 - 1 for each area in the data frame. This step is somewhat arbitrary, and could use input from FourSite to refine. For now, we will score the areas as follows: 
+
+* Areas that are considered public domain and only have one management party will get a 0
+* Areas that are protected with enforcement and have multiple stakeholders will get 1 
+* Areas that are not protected, but have multiple stakeholders will get 0.7
+* Areas that are not protected, but only have one stakeholder will get 0.5
+
+We will assign these scores to each corresponding zone, and then fine the average score weighted by area. 
+
+```{r}
+
+all_regions <- read_csv(file.path(dir_goal,"int/all_regions_area.csv")) %>% 
+  mutate(
+    status = case_when(
+      region %in% "No take zone" ~ 1,
+      region %in% "No protection" ~ 0,
+      region %in% c("Onetahi", "Honuea") ~ 0.7,
+      TRUE ~ 0.5
+    )
+  )
+
+lsp_status <- all_regions %>% 
+  summarize(
+    status = weighted.mean(status,area_km2)
+  )
+
+#this is super low, consider also making one for just half the lagoon and leaving out the offshore stuff
 ```
 
 
