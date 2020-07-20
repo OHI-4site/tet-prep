@@ -34,18 +34,6 @@ For now I'll just use this framework to group the statistics I have into categor
 
 It would also be interesting to include something about food sustainability, but will leave that out for now. 
 
-
-Below are the three main areas, with the corresponding ownership / management information: 
-
-
-
-| Area | Ownership |
-| :---- | :----------- |
-| All motus | SA Frangiapini |
-| Onetahi & Honuea | SA Frangiapini and Beachcomber | 
-| Lagoon | FP Government, Tetiaroa Society |
-| 3nm offshore | FP Government|
-
 ## Set up 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
