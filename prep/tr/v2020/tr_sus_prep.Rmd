@@ -4,11 +4,16 @@ author: Madeline Berger
 output: html_document
 ---
 
-#Summary 
+## Summary 
 
 This script calculates a score for tourism sustainability of [The Brando](https://thebrando.com/) resort, the eco-resort on Onetahi. Data for this goal are descriptive sustainability metrics that I gathered from SA Beachcomber's 2019 sustainability report. Most of them are just in percentages (i.e. 80% energy provided by solar).
 
-The Brando has already achieved far more in terms of sustainability than most resorts, so setting a reference point is tricky. They were the first resort building to receive LEED Platinum certification, and already have a very low impact. We could just assume that being at 100% sustainable, ie no footprint, is a goal. But it does not seem totally feasible, unless that is something the Brando thinks they can achieve. We have yet to hear back from representatives there, and can update the reference point with any feedback. For now, I'll rely on guidance from existing green certification programs. 
+We did inquire about actual data from The Brando, contacting Alban Perret (sustainability manager). He was not able to share any data at this time, as The Brando has had to push their sustainability work to 2021. Alban said to reach out again in Q2 2021 for an update. His contact information is: aperret@pbsc.pf
+
+The Brando has already achieved far more in terms of sustainability than most resorts, so setting a reference point is tricky. They were the first resort building to receive LEED Platinum certification, and already have a very low impact. We'll assume that being at 100% sustainable, i.e. no footprint, is a goal. While it does not seem totally feasible, the 2019 sustainability report outlines the following broad goal, which supports this reference point: 
+
+>"Decrease carbon footprint of human activity on the island, working towards zero impact"
+
 
 There are a handful of green / eco / sustainable tourism certifications out there, but one that provides a helpful framework is the [Green Destinations](https://greendestinations.org/green-destinations-standard/) certification. This certification has 100 criteria that can be grouped into 6 main themes: 
 
@@ -21,22 +26,92 @@ There are a handful of green / eco / sustainable tourism certifications out ther
 
 [EcoTourism Australia](https://www.ecotourism.org.au/our-certification-programs/eco-destination-certification/) considers any place that has met 80% of the requirements in this standard a "nature destination", a place that has met 90% as "ecotourism destination" and one that meets 100% as officially Green Destination Certified. 
 
-For now I'll use this framework to group the statistics I have into categories. 3 main categories we can start with are: 
-- Energy use
-- Waste & Recycling 
-- Water management
+For now I'll just use this framework to group the statistics I have into categories. 3 main categories we can start with are:  
 
-#Set up 
+* Energy use
+* Waste & Recycling
+* Water management
+
+It would also be interesting to include something about food sustainability, but will leave that out for now. 
+
+## Set up 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(janitor)
+library(here)
+
+source(here('workflow/R/common.R'))
+
+
+##file paths
+
+goal     <- 'tr'
+scenario <- 'v2020'
+dir_goal      <- file.path(here('prep',goal, scenario))
+dir_github    <- '~/github/tet-prep'
+
+brando_stats <- read_csv(file.path(dir_goal,"_raw_data/tr_stats_beachcomber.csv"))
 ```
 
 
+## Methods
 
-#Methods
+For this goal, we will simply score each sustainability category in terms of how close it is to 100% sustainable, or zero impact. If a category has multiple metrics, those will be averaged to get the category score. We will then average the three category scores to get the final score. 
+
 ```{r}
 
+#energy - only use the amount of total energy that is produced via renewable efforts, the air conditioning stat isn't helpful without knowing how much air conditioning makes up of all energy usage (although its probably a lot) 
 
+energy_score <- brando_stats %>% 
+  filter(category == "energy") %>% 
+  filter(percent == 0.7) %>% 
+  dplyr::select(category, units, score = percent)
+
+
+#waste - average the three waste scores, since each are a different type of waste
+
+waste_score <- brando_stats %>% 
+  filter(category == "waste") %>% 
+  summarize(
+    score = mean(percent)
+  ) %>% 
+  mutate(
+    category = "waste",
+    units = "waste management"
+  )
+
+
+# water - what percent of water used by the resort is sourced from rainwater, desal or other non-freshwater sources 
+
+water_score <- brando_stats %>% 
+  filter(category == "water") %>% 
+  filter(percent == 1) %>% 
+  dplyr::select(category, units, score = percent)
+
+```
+
+Bind the dfs together and find the average, creating status layer 
+
+```{r}
+
+tr_scores <- bind_rows(energy_score, waste_score, water_score) %>% 
+  summarize(
+    status = mean(score)
+  ) %>% 
+  mutate(
+    region_id = 1,
+    year = 2020
+  )
+
+```
+
+For now, save this to the int folder (once we finalize it, save to outputs and toolbox)
+
+```{r}
+
+write_csv(tr_scores, file.path(dir_goal, "int/tr_status_draft.csv"))
 
 
 ```

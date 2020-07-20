@@ -1,0 +1,9 @@
+category ,units,percent,notes
+energy,solar energy ,0.7,*this includes all energy
+energy,renewable air conditioning energy ,0.8,*SWAC (not usable)
+waste,wastewater recycling,1,
+waste,food waste composted,1,
+waste,material recycled,0.72,
+water,water production for consumption,1,
+water,daily water production by desal,"30,000",exceeds needs of resort by 90%
+food,locally grown ingredients,0.65,
