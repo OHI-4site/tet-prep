@@ -5,13 +5,9 @@ output:
   html_document:
     highlight: haddock
     includes:
-      in_header: '../../../workflow/templates/ohi_hdr.html' #this doesn't exist yet
+      #in_header: 'Home/github/tet-prep/workflow/templates/ohi_hdr.html' 
     number_sections: yes
     theme: cerulean
-    toc: yes
-  pdf_document:
-    toc: yes
-  word_document:
     toc: yes
 ---
 
@@ -64,7 +60,7 @@ Lastly, we'll consider any areas that are still under the public domain of the F
 ```{r setup, echo = FALSE, message = FALSE, warning = FALSE}
 
 knitr::opts_chunk$set(fig.width = 6, fig.height = 4, fig.path = 'Figs/',
-                      echo = FALSE, message = FALSE, warning = FALSE, eval=FALSE)
+                      message = FALSE, warning = FALSE, eval=FALSE)
 
 library(raster)
 library(sf)
@@ -201,7 +197,12 @@ all_regions <- read_csv(file.path(dir_goal,"int/all_regions_area.csv")) %>%
 lsp_status <- all_regions %>% 
   summarize(
     status = weighted.mean(status,area_km2)
-  )
+  ) #0.149
+
+lsp_status_noweight <- all_regions %>% 
+  summarize(
+    status = mean(status)
+  ) #0.525
 
 #this is super low, consider also making one for just half the lagoon and leaving out the offshore stuff
 ```
