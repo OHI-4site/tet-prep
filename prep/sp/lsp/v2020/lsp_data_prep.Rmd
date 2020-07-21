@@ -46,7 +46,7 @@ Below are the three main areas, with the corresponding ownership / management in
 | Lagoon | FP Government, Tetiaroa Society |
 | 3nm offshore | FP Government|
 
-The highest protection that exists spans half the lagoon and is considered a protected "no-take zone", which is enforced by rangers employed with the Tetiaroa Society. It is unclear if the government recognizes this area as protected, and recognizes the authority of the Tetiaroa Society rangers in enforcing it. But it is effective in deterring fishing and other harmful activities (see Tetiaroa Society funding report, 2019), so we can consider this area fully protected. 
+The highest protection that exists spans half the lagoon and is considered a protected "no-take zone", which is enforced by rangers employed with the Tetiaroa Society. According to the Tetiaroa Society's [sustainable use plan](https://www.tetiaroasociety.org/sites/default/files/research-docs/Tetiaroa-CASUP.pdf), this area is recognized by the Ministry for Natural Resources as of June 2014. Therefore we can consider this area fully protected. 
 
 The land areas of Tetiaroa are split into areas owned soley by the S.A. Frangipani (Marlon Brando's trust), and motus that are owned by SA Frangipani but leased to TBSA, the developer of The Brando Resort. The development of the resort, while damaging in some ways, allowed for the creation of the Tetiaroa Society. TBSA's 2019 sustainability report also provides evidence than preservation and protection are a priority for this stakeholder. Therefore, we'll score these areas slightly higher than the land areas that are only controlled by one party. The reasoning is that there are fewer people involved in the management decisions for areas with only one owner or manager , putting them at a slightly higher risk of being developed or not well protected. 
 
@@ -193,7 +193,7 @@ all_regions <- read_csv(file.path(dir_goal,"int/all_regions_area.csv")) %>%
       TRUE ~ 0.5
     )
   )
-
+#note: these calculations will be done in the toolbox, but doing them here now so we can see what the scores would be
 lsp_status <- all_regions %>% 
   summarize(
     status = weighted.mean(status,area_km2)
@@ -212,32 +212,25 @@ lsp_status_noweight <- all_regions %>%
 
 ## Write out layers
 
-From the protected area files, write out the individual layers ready for the Toolbox[TM]. 
+From the protected area file created, write out the individual layers ready for the Toolbox[TM]. These need to include years (2014 - 2020). Since they resort started construction in 2009, and the island was purchased in 1967, most of the ownership can remain the same. The no take zone was established in 2014 so that has not changed either, although if we decide to extend the trend calculation beyond 5 years than it would change.
 
-* total area for offshore 3 nm and inland 1 km
-* protected area for offshore 3 nm and inland 1 km
+* areas of each zone and its score for years 2014 - 2020
 
 ``` {r write_layers, eval = FALSE}
 
-prot_3nm <- read_csv(file.path(dir_goal, 'int', 'area_protected_3nm.csv')) %>%
-  rename(area = a_tot_km2,
-         a_prot_3nm = a_prot_km2)
-prot_1km <- read_csv(file.path(dir_goal, 'int', 'area_protected_1km.csv')) %>%
-  rename(area = a_tot_km2,
-         a_prot_1km = a_prot_km2)
+years = rep(seq(2014,2020,1), 16) %>% 
+  sort()
 
-# write_lsp_layer <- function(df, layers, layername) {
-#   df1 <- df[ , c('rgn_id', layers)] %>%
-#     filter(rgn_id <= 250) %>%
-#     distinct()
-#   write_csv(df1, file.path(dir_goal, 'output', paste0(layername, '.csv')))
-# }
 
-a_tot_3nm <- write_lsp_layer(prot_3nm, 'area', 'rgn_area_offshore3nm')
-a_tot_1km <- write_lsp_layer(prot_1km, 'area', 'rgn_area_inland1km')
+lsp_status_final <- data.frame(
+    region_id = 1,
+    zone = rep(all_regions$region, length(years)),
+    area = rep(all_regions$area_km2, length(years)),
+    status = rep(all_regions$status, length(years)),
+    year = years
+    )
 
-a_prot_3nm <- write_lsp_layer(prot_3nm, c('year', 'a_prot_3nm'), 'lsp_prot_area_offshore3nm')
-a_prot_1km <- write_lsp_layer(prot_1km, c('year', 'a_prot_1km'), 'lsp_prot_area_inland1km')
+write_csv(lsp_status_final, file.path(dir_goal, "output/lsp_status_mgmt.csv"))
 
 ```
 
