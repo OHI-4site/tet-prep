@@ -1,658 +1,658 @@
-"name","class","sciname","category","stat_score","year"
-"pacific golden plover","aves","pluvialis fulva","LC",1,2020
-"peppered moray eel","actinopterygii","gymnothorax pictus","LC",1,2020
-"blotch-eye soldier firsh","actinopterygii","myripristis murdjan","LC",1,2020
-"bullethead parrotfish","actinopterygii","chlorurus sordidus","LC",1,2020
-"giant squirrelfish","actinopterygii","sargocentron spiniferum","LC",1,2020
-"moorish idol","actinopterygii","zanclus cornutus","LC",1,2020
-"goldlined emperor","actinopterygii","gnathodentex aureolineatus","LC",1,2020
-"milk fish","actinopterygii","chanos chanos","LC",1,2020
-"giant jack","actinopterygii","caranx ignobilis","LC",1,2020
-"silver squirrelfish","actinopterygii","neoniphon argenteus","LC",1,2020
-"giant moray","actinopterygii","gymnothorax javanicus","LC",1,2020
-"blackblotch lizardfish","actinopterygii","synodus jaculum","LC",1,2020
-"helmet gurnard","actinopterygii","dactyloptena orientalis","LC",1,2020
-"yellowstripe goatfish","actinopterygii","mulloidichthys flavolineatus","LC",1,2020
-"barred jack","actinopterygii","carangoides ferdau","LC",1,2020
-"yellow-margined snapper","actinopterygii","lutjanus fulvus","LC",1,2020
-"dot-dashed goatfish","actinopterygii","parupeneus barberinus","LC",1,2020
-"blacktip reef shark","chondrichthyes","carcharhinus melanopterus","NT",0.8,2020
-"coconut crab","malacostraca","birgus latro","DD",NA,2020
-"day octopus","cephalopoda","octopus cyanea","LC",1,2020
-"clam","bivalvia","tridacna maxima","LR/cd",0.9,2020
-"olive ridley sea turtle","reptilia","lepidochelys olivacea","VU",0.6,2020
-"twospined angelfish","actinopterygii","centropyge bispinosa","LC",1,2020
-"lemonpeel angelfish","actinopterygii","centropyge flavissima","LC",1,2020
-"multicolor angelfish","actinopterygii","centropyge multicolor","LC",1,2020
-"yellow angelfish","actinopterygii","centropyge heraldi","LC",1,2020
-"royal angelfish","actinopterygii","pygoplites diacanthus","LC",1,2020
-"ornate angelfish","actinopterygii","genicanthus bellus","LC",1,2020
-"blackedged angelfish","actinopterygii","genicanthus watanabei","LC",1,2020
-"hawaiian flame angelfish","actinopterygii","centropyge fisheri","LC",1,2020
-"emperor angelfish","actinopterygii","pomacanthus imperator","LC",1,2020
-"barred angelfish","actinopterygii","paracentropyge multifasciata","LC",1,2020
-"flame angel","actinopterygii","centropyge loricula","LC",1,2020
-"giant herring","actinopterygii","elops hawaiensis","DD",NA,2020
-NA,"actinopterygii","albula argentea","DD",NA,2020
-"saddle-back butterflyfish","actinopterygii","chaetodon ephippium","LC",1,2020
-"dusky butterflyfish","actinopterygii","chaetodon flavirostris","LC",1,2020
-"threadfin butterflyfish","actinopterygii","chaetodon auriga","LC",1,2020
-"decorated butterflyfish","actinopterygii","chaetodon semeion","LC",1,2020
-"lined butterflyfish","actinopterygii","chaetodon lineolatus","LC",1,2020
-"speckled butterflyfish","actinopterygii","chaetodon citrinellus","LC",1,2020
-"triangulate butterflyfish","actinopterygii","chaetodon trifascialis","NT",0.8,2020
-"neonbanded butterflyfish","actinopterygii","chaetodon quadrimaculatus","LC",1,2020
-"unicorn pennant coralfish","actinopterygii","heniochus monoceros","LC",1,2020
-"black long-nosed butterflyfish","actinopterygii","forcipiger longirostris","LC",1,2020
-"thompson's butterflyfish","actinopterygii","hemitaurichthys thompsoni","LC",1,2020
-"threeband pennantfish","actinopterygii","heniochus chrysostomus","LC",1,2020
-"bluelashed butterflyfish","actinopterygii","chaetodon bennetti","DD",NA,2020
-"brushytoothed butterflyfish","actinopterygii","hemitaurichthys polylepis","LC",1,2020
-"redstriped butterflyfish","actinopterygii","chaetodon lunula","LC",1,2020
-"ornate butterflyfish","actinopterygii","chaetodon ornatissimus","LC",1,2020
-"reticulated butterflyfish","actinopterygii","chaetodon reticulatus","DD",NA,2020
-"orangebar butterflyfish","actinopterygii","chaetodon mertensii","LC",1,2020
-"tahitian butterflyfish","actinopterygii","chaetodon trichrous","LC",1,2020
-"pacific pinstriped butterflyfish","actinopterygii","chaetodon lunulatus","LC",1,2020
-"hunchbacked coralfish","actinopterygii","heniochus varius","LC",1,2020
-"pacific double-saddled butterflyfish","actinopterygii","chaetodon ulietensis","LC",1,2020
-"big long-nosed butterflyfish","actinopterygii","forcipiger flavissimus","LC",1,2020
-"teardrop butterfly fish","actinopterygii","chaetodon unimaculatus","LC",1,2020
-"raffle's butterflyfish","actinopterygii","chaetodon rafflesii","LC",1,2020
-"criss-cross butterflyfish","actinopterygii","chaetodon vagabundus","LC",1,2020
-"pennant coral fish","actinopterygii","heniochus acuminatus","LC",1,2020
-"dot-and-dash butterflyfish","actinopterygii","chaetodon pelewensis","LC",1,2020
-"pygmy shark","chondrichthyes","euprotomicrus bispinatus","LC",1,2020
-"scalloped hammerhead","chondrichthyes","sphyrna lewini","EN",0.4,2020
-"grey reef shark","chondrichthyes","carcharhinus amblyrhynchos","NT",0.8,2020
-"blue shark","chondrichthyes","prionace glauca","NT",0.8,2020
-"pelagic thresher","chondrichthyes","alopias pelagicus","VU",0.6,2020
-"spotted eagle ray","chondrichthyes","aetobatus narinari","NT",0.8,2020
-"bull shark","chondrichthyes","carcharhinus leucas","NT",0.8,2020
-"white shark","chondrichthyes","carcharodon carcharias","VU",0.6,2020
-"spotted eagle ray","chondrichthyes","aetobatus ocellatus","VU",0.6,2020
-"whitetip reef shark","chondrichthyes","triaenodon obesus","NT",0.8,2020
-"common thresher","chondrichthyes","alopias vulpinus","VU",0.6,2020
-"tawny nurse shark","chondrichthyes","nebrius ferrugineus","VU",0.6,2020
-"longtail butterfly ray","chondrichthyes","gymnura poecilura","NT",0.8,2020
-"great hammerhead","chondrichthyes","sphyrna mokarran","EN",0.4,2020
-"longfin mako","chondrichthyes","isurus paucus","EN",0.4,2020
-"crocodile shark","chondrichthyes","pseudocarcharias kamoharai","LC",1,2020
-"tiger shark","chondrichthyes","galeocerdo cuvier","NT",0.8,2020
-"pelagic stingray","chondrichthyes","pteroplatytrygon violacea","LC",1,2020
-"megamouth shark","chondrichthyes","megachasma pelagios","LC",1,2020
-"reef manta ray","chondrichthyes","mobula alfredi","VU",0.6,2020
-"silvertip shark","chondrichthyes","carcharhinus albimarginatus","VU",0.6,2020
-"blacktip shark","chondrichthyes","carcharhinus limbatus","NT",0.8,2020
-"silky shark","chondrichthyes","carcharhinus falciformis","VU",0.6,2020
-"galapagos shark","chondrichthyes","carcharhinus galapagensis","NT",0.8,2020
-"giant manta ray","chondrichthyes","mobula birostris","VU",0.6,2020
-"whale shark","chondrichthyes","rhincodon typus","EN",0.4,2020
-"oceanic whitetip shark","chondrichthyes","carcharhinus longimanus","VU",0.6,2020
-"buccaneer anchovy","actinopterygii","encrasicholina punctifer","LC",1,2020
-NA,"actinopterygii","praealticus caesius","LC",1,2020
-"seale's blenny","actinopterygii","entomacrodus sealei","LC",1,2020
-"picture rockskipper","actinopterygii","blenniella gibbifrons","LC",1,2020
-"orange-spotted blenny","actinopterygii","blenniella chrysospilos","LC",1,2020
-"white-spotted triplefin","actinopterygii","enneapterygius triserialis","LC",1,2020
-"blacktail triplefin","actinopterygii","enneapterygius nigricauda","LC",1,2020
-"dusky spotted blenny","actinopterygii","cirripectes fuscoguttatus","LC",1,2020
-"black blenny","actinopterygii","atrosalarias fuscus","LC",1,2020
-"wavyline rockskipper","actinopterygii","entomacrodus decussatus","LC",1,2020
-"cleaner mimic","actinopterygii","aspidontus taeniatus","LC",1,2020
-NA,"actinopterygii","atrosalarias holomelas","LC",1,2020
-"dussumier's blenny","actinopterygii","aspidontus dussumieri","LC",1,2020
-"banded fringe blenny","actinopterygii","cirripectes variolosus","LC",1,2020
-"blackbelly triplefin","actinopterygii","enneapterygius fuscoventer","LC",1,2020
-"pacific blue-spotted blenny","actinopterygii","blenniella caudolineata","LC",1,2020
-"black blenny","actinopterygii","enchelyurus ater","LC",1,2020
-"bartail blenny","actinopterygii","entomacrodus caudofasciatus","LC",1,2020
-"thomas' triplefin","actinopterygii","norfolkia thomasi","LC",1,2020
-"umpire triplefin","actinopterygii","enneapterygius rhabdotus","LC",1,2020
-"high hat triplefin","actinopterygii","enneapterygius tutuilae","LC",1,2020
-"little hooded triplefin","actinopterygii","helcogramma chica","LC",1,2020
-NA,"actinopterygii","cirripectes jenningsi","LC",1,2020
-"blue-dashed rockskipper","actinopterygii","blenniella paula","LC",1,2020
-"reef margin blenny","actinopterygii","entomacrodus thalassinus","LC",1,2020
-"leaping rockskipper","actinopterygii","alticus arnoldorum","LC",1,2020
-"seychelles blenny","actinopterygii","stanulus seychellensis","LC",1,2020
-"smoothlipped blenny","actinopterygii","istiblennius edentulus","LC",1,2020
-"leopard blenny","actinopterygii","exallias brevis","LC",1,2020
-"pyramid triplefin","actinopterygii","enneapterygius pyramis","LC",1,2020
-"zebra blenny","actinopterygii","cirripectes quagga","LC",1,2020
-"black-lined blenny","actinopterygii","istiblennius lineatus","LC",1,2020
-"bluestriped fangblenny","actinopterygii","plagiotremus rhinorhynchos","LC",1,2020
-"piano fangblenny","actinopterygii","plagiotremus tapeinosoma","LC",1,2020
-"blackspotted rockskipper","actinopterygii","entomacrodus striatus","LC",1,2020
-"bearded sabretooth blenny","actinopterygii","petroscirtes xestus","LC",1,2020
-NA,"gastropoda","conus planorbis","LC",1,2020
-NA,"gastropoda","conus miles","LC",1,2020
-NA,"gastropoda","conus coronatus","LC",1,2020
-"flea cone","gastropoda","conus pulicarius","LC",1,2020
-NA,"gastropoda","conus lividus","LC",1,2020
-NA,"gastropoda","conus pertusus","LC",1,2020
-NA,"gastropoda","conus ebraeus","LC",1,2020
-NA,"gastropoda","conus auricomus","LC",1,2020
-NA,"gastropoda","conus acutangulus","LC",1,2020
-"bubble cone","gastropoda","conus bullatus","LC",1,2020
-NA,"gastropoda","conus sanguinolentus","LC",1,2020
-NA,"gastropoda","conus muriculatus","LC",1,2020
-NA,"gastropoda","conus bandanus","LC",1,2020
-NA,"gastropoda","conus circumcisus","LC",1,2020
-NA,"gastropoda","conus coffeae","LC",1,2020
-NA,"gastropoda","conus mitratus","LC",1,2020
-NA,"gastropoda","conus varius","LC",1,2020
-NA,"gastropoda","conus legatus","LC",1,2020
-NA,"gastropoda","conus tulipa","LC",1,2020
-NA,"gastropoda","conus vexillum","LC",1,2020
-NA,"gastropoda","conus quercinus","LC",1,2020
-NA,"gastropoda","conus armadillo","LC",1,2020
-NA,"gastropoda","conus obscurus","LC",1,2020
-NA,"gastropoda","conus eburneus","LC",1,2020
-NA,"gastropoda","conus aureus","LC",1,2020
-NA,"gastropoda","conus rattus","LC",1,2020
-NA,"gastropoda","conus retifer","LC",1,2020
-NA,"gastropoda","conus imperialis","LC",1,2020
-NA,"gastropoda","conus striatus","LC",1,2020
-NA,"gastropoda","conus canonicus","LC",1,2020
-NA,"gastropoda","conus textile","LC",1,2020
-NA,"gastropoda","conus catus","LC",1,2020
-NA,"gastropoda","conus nussatella","LC",1,2020
-NA,"gastropoda","conus generalis","LC",1,2020
-NA,"gastropoda","conus glans","LC",1,2020
-NA,"gastropoda","conus moreleti","LC",1,2020
-"yellow pacific cone","gastropoda","conus flavidus","LC",1,2020
-NA,"gastropoda","conus tessulatus","LC",1,2020
-NA,"gastropoda","conus tenuistriatus","LC",1,2020
-NA,"gastropoda","conus episcopatus","LC",1,2020
-"frigid cone","gastropoda","conus frigidus","LC",1,2020
-"sponsal cone","gastropoda","conus sponsalis","LC",1,2020
-NA,"gastropoda","conus virgo","LC",1,2020
-"cylindrical cone","gastropoda","conus cylindraceus","LC",1,2020
-"false virgin cone","gastropoda","conus emaciatus","LC",1,2020
-NA,"gastropoda","conus distans","LC",1,2020
-NA,"gastropoda","conus litteratus","LC",1,2020
-NA,"gastropoda","conus terebra","LC",1,2020
-"sand-dusted cone","gastropoda","conus arenatus","LC",1,2020
-NA,"gastropoda","conus aulicus","LC",1,2020
-NA,"gastropoda","conus geographus","LC",1,2020
-NA,"gastropoda","conus ferrugineus","LC",1,2020
-NA,"gastropoda","conus litoglyphus","LC",1,2020
-NA,"gastropoda","conus magnificus","LC",1,2020
-NA,"gastropoda","conus adamsonii","LC",1,2020
-NA,"gastropoda","conus chaldaeus","LC",1,2020
-NA,"gastropoda","conus leopardus","LC",1,2020
-NA,"anthozoa","goniopora somaliensis","LC",1,2020
-NA,"anthozoa","leptastrea transversa","LC",1,2020
-NA,"anthozoa","montipora verrilli","DD",NA,2020
-NA,"anthozoa","leptoseris mycetoseroides","LC",1,2020
-NA,"anthozoa","leptoseris scabra","LC",1,2020
-NA,"anthozoa","montipora informis","LC",1,2020
-NA,"anthozoa","pavona cactus","VU",0.6,2020
-NA,"anthozoa","acropora retusa","VU",0.6,2020
-NA,"anthozoa","acropora tenuis","NT",0.8,2020
-NA,"anthozoa","favia pallida","LC",1,2020
-NA,"anthozoa","acropora clathrata","LC",1,2020
-NA,"anthozoa","turbinaria frondens","LC",1,2020
-NA,"anthozoa","pavona frondifera","LC",1,2020
-NA,"anthozoa","acropora cytherea","LC",1,2020
-NA,"anthozoa","acropora rambleri","DD",NA,2020
-NA,"anthozoa","podabacia crustacea","LC",1,2020
-NA,"anthozoa","fungia moluccensis","LC",1,2020
-NA,"anthozoa","astreopora myriophthalma","LC",1,2020
-NA,"anthozoa","montipora australiensis","VU",0.6,2020
-NA,"anthozoa","leptoria phrygia","NT",0.8,2020
-NA,"anthozoa","alveopora allingi","VU",0.6,2020
-NA,"anthozoa","acropora inermis","DD",NA,2020
-NA,"anthozoa","barabattoia laddi","VU",0.6,2020
-NA,"anthozoa","psammocora nierstraszi","LC",1,2020
-NA,"anthozoa","acropora nana","NT",0.8,2020
-NA,"anthozoa","acropora samoensis","LC",1,2020
-NA,"anthozoa","pachyseris speciosa","LC",1,2020
-NA,"anthozoa","favia stelligera","NT",0.8,2020
-"smooth cauliflower coral","anthozoa","stylophora pistillata","NT",0.8,2020
-NA,"anthozoa","acropora speciosa","VU",0.6,2020
-NA,"anthozoa","plerogyra sinuosa","NT",0.8,2020
-NA,"anthozoa","goniastrea australensis","LC",1,2020
-NA,"anthozoa","acropora glauca","NT",0.8,2020
-NA,"anthozoa","acropora abrotanoides","LC",1,2020
-NA,"anthozoa","favia rotumana","LC",1,2020
-NA,"anthozoa","porites vaughani","LC",1,2020
-NA,"anthozoa","pavona varians","LC",1,2020
-NA,"anthozoa","psammocora haimeana","LC",1,2020
-NA,"anthozoa","echinophyllia aspera","LC",1,2020
-NA,"anthozoa","montipora angulata","VU",0.6,2020
-NA,"anthozoa","acropora austera","NT",0.8,2020
-NA,"anthozoa","pavona maldivensis","LC",1,2020
-NA,"anthozoa","montipora venosa","NT",0.8,2020
-"finger coral","anthozoa","acropora humilis","NT",0.8,2020
-NA,"anthozoa","turbinaria reniformis","VU",0.6,2020
-NA,"anthozoa","echinopora lamellosa","LC",1,2020
-"head coral","anthozoa","favia favus","LC",1,2020
-NA,"anthozoa","montipora floweri","LC",1,2020
-NA,"anthozoa","acropora tortuosa","LC",1,2020
-NA,"anthozoa","psammocora superficialis","LC",1,2020
-NA,"anthozoa","acropora lutkeni","NT",0.8,2020
-NA,"anthozoa","montipora spumosa","LC",1,2020
-NA,"anthozoa","acropora striata","VU",0.6,2020
-NA,"anthozoa","acropora latistella","LC",1,2020
-NA,"anthozoa","merulina ampliata","LC",1,2020
-NA,"anthozoa","montipora lobulata","VU",0.6,2020
-NA,"anthozoa","stylocoeniella armata","LC",1,2020
-NA,"anthozoa","madracis kirbyi","LC",1,2020
-NA,"anthozoa","favites complanata","NT",0.8,2020
-NA,"anthozoa","montipora turgescens","LC",1,2020
-NA,"anthozoa","acropora nasuta","NT",0.8,2020
-NA,"anthozoa","favites russelli","NT",0.8,2020
-NA,"anthozoa","acropora elseyi","LC",1,2020
-NA,"anthozoa","acropora gemmifera","LC",1,2020
-NA,"anthozoa","montipora danae","LC",1,2020
-NA,"anthozoa","fungia scutaria","LC",1,2020
-NA,"anthozoa","porites lutea","LC",1,2020
-NA,"anthozoa","montipora effusa","NT",0.8,2020
-NA,"anthozoa","platygyra pini","LC",1,2020
-NA,"anthozoa","fungia tenuis","LC",1,2020
-NA,"anthozoa","montipora aequituberculata","LC",1,2020
-NA,"anthozoa","astreopora randalli","LC",1,2020
-NA,"anthozoa","mycedium elephantotus","LC",1,2020
-NA,"anthozoa","acropora valida","LC",1,2020
-NA,"anthozoa","cyphastrea chalcidicum","LC",1,2020
-NA,"anthozoa","porites latistella","LC",1,2020
-NA,"anthozoa","barabattoia amicorum","LC",1,2020
-NA,"anthozoa","porites arnaudi","LC",1,2020
-NA,"anthozoa","pocillopora woodjonesi","LC",1,2020
-NA,"anthozoa","montipora caliculata","VU",0.6,2020
-NA,"anthozoa","fungia sinensis","LC",1,2020
-"brush coral","anthozoa","acropora hyacinthus","NT",0.8,2020
-NA,"anthozoa","acropora vaughani","VU",0.6,2020
-"elongate mushroom coral","anthozoa","fungia paumotensis","LC",1,2020
-NA,"anthozoa","acropora sarmentosa","LC",1,2020
-NA,"anthozoa","pocillopora eydouxi","NT",0.8,2020
-NA,"anthozoa","pavona clavus","LC",1,2020
-NA,"anthozoa","porites lobata","NT",0.8,2020
-NA,"anthozoa","echinophyllia echinata","LC",1,2020
-NA,"anthozoa","favia matthaii","NT",0.8,2020
-"thin birdsnest coral","anthozoa","seriatopora hystrix","LC",1,2020
-NA,"anthozoa","acropora granulosa","NT",0.8,2020
-NA,"anthozoa","fungia repanda","LC",1,2020
-"staghorn coral","anthozoa","acropora formosa","NT",0.8,2020
-NA,"anthozoa","leptoseris solida","LC",1,2020
-NA,"anthozoa","cyphastrea microphthalma","LC",1,2020
-NA,"anthozoa","ctenactis echinata","LC",1,2020
-NA,"anthozoa","fungia horrida","LC",1,2020
-"firecoral","hydrozoa","millepora platyphylla","LC",1,2020
-"largebrain root coral","anthozoa","lobophyllia hemprichii","LC",1,2020
-"common mushroom coral","anthozoa","fungia fungites","NT",0.8,2020
-NA,"anthozoa","porites lichen","LC",1,2020
-NA,"anthozoa","pavona duerdeni","LC",1,2020
-NA,"anthozoa","acropora horrida","VU",0.6,2020
-NA,"anthozoa","montipora verrucosa","LC",1,2020
-NA,"anthozoa","favia speciosa","LC",1,2020
-NA,"anthozoa","scolymia vitiensis","NT",0.8,2020
-NA,"anthozoa","porites murrayensis","NT",0.8,2020
-NA,"anthozoa","acropora nobilis","LC",1,2020
-NA,"anthozoa","goniopora stutchburyi","LC",1,2020
-NA,"anthozoa","porites solida","LC",1,2020
-NA,"anthozoa","acropora paniculata","VU",0.6,2020
-NA,"anthozoa","leptoseris incrustans","VU",0.6,2020
-NA,"anthozoa","acropora longicyathus","LC",1,2020
-NA,"anthozoa","ctenactis crassa","LC",1,2020
-NA,"anthozoa","fungia scruposa","LC",1,2020
-NA,"anthozoa","montipora foveolata","NT",0.8,2020
-NA,"anthozoa","coscinaraea exesa","LC",1,2020
-NA,"anthozoa","herpolitha limax","LC",1,2020
-NA,"anthozoa","acropora microphthalma","LC",1,2020
-NA,"anthozoa","montipora millepora","LC",1,2020
-NA,"anthozoa","hydnophora microconos","NT",0.8,2020
-"cauliflower coral","anthozoa","pocillopora damicornis","LC",1,2020
-"brain coral","anthozoa","platygyra daedalea","LC",1,2020
-NA,"anthozoa","turbinaria mesenterina","VU",0.6,2020
-NA,"anthozoa","fungia concinna","LC",1,2020
-NA,"anthozoa","echinopora gemmacea","LC",1,2020
-NA,"anthozoa","leptastrea bottae","NT",0.8,2020
-NA,"anthozoa","goniastrea aspera","LC",1,2020
-NA,"anthozoa","platygyra sinensis","LC",1,2020
-NA,"anthozoa","alveopora spongiosa","NT",0.8,2020
-NA,"anthozoa","sandalolitha dentata","LC",1,2020
-"distorted mushroom coral","anthozoa","fungia distorta","LC",1,2020
-NA,"anthozoa","coscinaraea columna","LC",1,2020
-NA,"anthozoa","montipora tuberculosa","LC",1,2020
-NA,"anthozoa","montipora hoffmeisteri","LC",1,2020
-NA,"anthozoa","acropora robusta","LC",1,2020
-NA,"anthozoa","montipora hispida","LC",1,2020
-NA,"anthozoa","goniastrea pectinata","LC",1,2020
-NA,"anthozoa","favites flexuosa","NT",0.8,2020
-NA,"anthozoa","leptastrea purpurea","LC",1,2020
-NA,"anthozoa","fungia granulosa","LC",1,2020
-NA,"anthozoa","gardineroseris planulata","LC",1,2020
-NA,"anthozoa","acropora globiceps","VU",0.6,2020
-NA,"anthozoa","psammocora profundacella","LC",1,2020
-NA,"anthozoa","montipora efflorescens","NT",0.8,2020
-NA,"anthozoa","pocillopora elegans","VU",0.6,2020
-NA,"anthozoa","acropora secale","NT",0.8,2020
-NA,"anthozoa","favites abdita","NT",0.8,2020
-NA,"anthozoa","acropora carduus","NT",0.8,2020
-NA,"anthozoa","pavona explanulata","LC",1,2020
-NA,"anthozoa","psammocora contigua","NT",0.8,2020
-NA,"anthozoa","fungia scabra","LC",1,2020
-NA,"anthozoa","porites australiensis","LC",1,2020
-NA,"anthozoa","alveopora verrilliana","VU",0.6,2020
-NA,"anthozoa","cyphastrea serailia","LC",1,2020
-NA,"anthozoa","acropora loripes","NT",0.8,2020
-NA,"anthozoa","psammocora digitata","NT",0.8,2020
-NA,"anthozoa","montipora foliosa","NT",0.8,2020
-"cactus coral","anthozoa","pavona decussata","VU",0.6,2020
-NA,"anthozoa","acropora digitifera","NT",0.8,2020
-NA,"anthozoa","psammocora explanulata","LC",1,2020
-NA,"anthozoa","galaxea fascicularis","NT",0.8,2020
-NA,"anthozoa","leptoseris hawaiiensis","LC",1,2020
-"brain root coral","anthozoa","lobophyllia corymbosa","LC",1,2020
-"rasp coral","anthozoa","pocillopora verrucosa","LC",1,2020
-NA,"anthozoa","acropora pulchra","LC",1,2020
-NA,"anthozoa","goniopora minor","NT",0.8,2020
-NA,"anthozoa","acanthastrea echinata","LC",1,2020
-NA,"anthozoa","plesiastrea versipora","LC",1,2020
-NA,"anthozoa","pavona bipartita","VU",0.6,2020
-NA,"anthozoa","fungia costulata","LC",1,2020
-NA,"anthozoa","pocillopora capitata","LC",1,2020
-NA,"anthozoa","montastrea curta","LC",1,2020
-NA,"anthozoa","acropora monticulosa","NT",0.8,2020
-NA,"anthozoa","stylocoeniella guentheri","LC",1,2020
-NA,"anthozoa","pocillopora ligulata","LC",1,2020
-"yellow-banded sergeant-major","actinopterygii","abudefduf sordidus","LC",1,2020
-"yellow-speckled chromis","actinopterygii","chromis alpha","LC",1,2020
-"five-banded sergeant-major","actinopterygii","abudefduf vaigiensis","LC",1,2020
-"seven-banded sergeant-major","actinopterygii","abudefduf septemfasciatus","LC",1,2020
-"scissortail sergeant","actinopterygii","abudefduf sexfasciatus","LC",1,2020
-"camouflage grouper","actinopterygii","epinephelus polyphekadion","VU",0.6,2020
-"leopard hind","actinopterygii","cephalopholis leopardus","LC",1,2020
-"blacksaddled coral grouper","actinopterygii","plectropomus laevis","LC",1,2020
-"greasy grouper","actinopterygii","epinephelus tauvina","DD",NA,2020
-"eightbar grouper","actinopterygii","hyporthodus octofasciatus","LC",1,2020
-"garish hind","actinopterygii","cephalopholis igarashiensis","LC",1,2020
-"peacock grouper","actinopterygii","cephalopholis argus","LC",1,2020
-"harlequin hind","actinopterygii","cephalopholis polleni","LC",1,2020
-"strawberry hind","actinopterygii","cephalopholis spiloparaea","LC",1,2020
-"white speckled rockcod","actinopterygii","epinephelus hexagonatus","LC",1,2020
-"honeycomb grouper","actinopterygii","epinephelus merra","LC",1,2020
-"golden hind","actinopterygii","cephalopholis aurantia","LC",1,2020
-"masked grouper","actinopterygii","gracila albomarginata","LC",1,2020
-"darkfin hind","actinopterygii","cephalopholis urodeta","LC",1,2020
-"comet grouper","actinopterygii","epinephelus morrhua","LC",1,2020
-"one-blotch grouper","actinopterygii","epinephelus melanostigma","LC",1,2020
-"giant grouper","actinopterygii","epinephelus lanceolatus","DD",NA,2020
-"golden grouper","actinopterygii","saloptia powelli","LC",1,2020
-"blacktip grouper","actinopterygii","epinephelus fasciatus","LC",1,2020
-"surge grouper","actinopterygii","epinephelus socialis","LC",1,2020
-"yellow-edged lyretail","actinopterygii","variola louti","LC",1,2020
-"six-blotch hind","actinopterygii","cephalopholis sexmaculata","LC",1,2020
-"reticulate grouper","actinopterygii","epinephelus tuamotuensis","LC",1,2020
-"bullseye reef lobster","malacostraca","enoplometopus holthuisi","DD",NA,2020
-"longlegged spiny lobster","malacostraca","panulirus longipes","LC",1,2020
-NA,"malacostraca","enoplometopus gracilipes","DD",NA,2020
-"royal spanish lobster","malacostraca","arctides regalis","LC",1,2020
-NA,"malacostraca","pentacheles snyderi","LC",1,2020
-"sculptured mitten lobster","malacostraca","parribacus antarcticus","LC",1,2020
-"white-whiskered coral crayfish","malacostraca","panulirus femoristriga","LC",1,2020
-NA,"malacostraca","stereomastis auriculata","LC",1,2020
-NA,"malacostraca","galearctus aurora","LC",1,2020
-NA,"malacostraca","stereomastis suhmi","LC",1,2020
-"melon-headed whale","mammalia","peponocephala electra","LC",1,2020
-"rough-toothed dolphin","mammalia","steno bredanensis","LC",1,2020
-"pygmy sperm whale","mammalia","kogia breviceps","DD",NA,2020
-"striped dolphin","mammalia","stenella coeruleoalba","LC",1,2020
-"antarctic minke whale","mammalia","balaenoptera bonaerensis","NT",0.8,2020
-"ginkgo-toothed beaked whale","mammalia","mesoplodon ginkgodens","DD",NA,2020
-"cuvier's beaked whale","mammalia","ziphius cavirostris","LC",1,2020
-"killer whale","mammalia","orcinus orca","DD",NA,2020
-"sperm whale","mammalia","physeter macrocephalus","VU",0.6,2020
-"common bottlenose dolphin","mammalia","tursiops truncatus","LC",1,2020
-"bryde's whale","mammalia","balaenoptera edeni","LC",1,2020
-"dwarf sperm whale","mammalia","kogia sima","DD",NA,2020
-"blainville's beaked whale","mammalia","mesoplodon densirostris","DD",NA,2020
-"spinner dolphin","mammalia","stenella longirostris","LC",1,2020
-"short-finned pilot whale","mammalia","globicephala macrorhynchus","LC",1,2020
-"sei whale","mammalia","balaenoptera borealis","EN",0.4,2020
-"risso's dolphin","mammalia","grampus griseus","LC",1,2020
-"blue whale","mammalia","balaenoptera musculus","EN",0.4,2020
-"fraser's dolphin","mammalia","lagenodelphis hosei","LC",1,2020
-"common minke whale","mammalia","balaenoptera acutorostrata","LC",1,2020
-"false killer whale","mammalia","pseudorca crassidens","NT",0.8,2020
-"pygmy killer whale","mammalia","feresa attenuata","LC",1,2020
-"pantropical spotted dolphin","mammalia","stenella attenuata","LC",1,2020
-"blunthead puffer","actinopterygii","sphoeroides pachygaster","LC",1,2020
-"brown-lined puffer","actinopterygii","canthigaster rivulata","LC",1,2020
-"honeycomb toby","actinopterygii","canthigaster janthinoptera","LC",1,2020
-"spider-eye puffer","actinopterygii","canthigaster amboinensis","LC",1,2020
-"spotted sharpnose","actinopterygii","canthigaster solandri","LC",1,2020
-"oceanic puffer","actinopterygii","lagocephalus lagocephalus","LC",1,2020
-"silver-cheeked toadfish","actinopterygii","lagocephalus sceleratus","LC",1,2020
-"valentini's sharpnose puffer","actinopterygii","canthigaster valentini","LC",1,2020
-"bennett's sharpnose puffer","actinopterygii","canthigaster bennetti","LC",1,2020
-"white-spotted puffer","actinopterygii","arothron hispidus","LC",1,2020
-"stellate puffer","actinopterygii","arothron stellatus","LC",1,2020
-"guineafowl puffer","actinopterygii","arothron meleagris","LC",1,2020
-"hawksbill turtle","reptilia","eretmochelys imbricata","CR",0.2,2020
-"yellow-bellied sea snake","reptilia","hydrophis platurus","LC",1,2020
-"white thread fish","holothuroidea","holothuria leucospilota","LC",1,2020
-"greenfish","holothuroidea","stichopus chloronotus","LC",1,2020
-NA,"holothuroidea","holothuria fuscogilva","VU",0.6,2020
-NA,"holothuroidea","holothuria hilla","LC",1,2020
-NA,"holothuroidea","stichopus monotuberculatus","DD",NA,2020
-NA,"holothuroidea","holothuria pervicax","LC",1,2020
-NA,"holothuroidea","holothuria difficilis","LC",1,2020
-"selenka's sea cucumber","holothuroidea","stichopus horrens","DD",NA,2020
-NA,"holothuroidea","holothuria flavomaculata","LC",1,2020
-"surf redfish","holothuroidea","actinopyga mauritiana","VU",0.6,2020
-NA,"holothuroidea","mesothuria multipora","DD",NA,2020
-"amberfish","holothuroidea","thelenota anax","DD",NA,2020
-NA,"holothuroidea","holothuria turriscelsa","LC",1,2020
-NA,"holothuroidea","holothuria pardalis","LC",1,2020
-NA,"holothuroidea","holothuria discrepans","DD",NA,2020
-"black teatfish","holothuroidea","holothuria whitmaei","EN",0.4,2020
-NA,"holothuroidea","holothuria olivacea","DD",NA,2020
-NA,"holothuroidea","holothuria glandifera","DD",NA,2020
-"bottleneck sea cucumber","holothuroidea","holothuria impatiens","DD",NA,2020
-"pinkfish","holothuroidea","holothuria edulis","LC",1,2020
-NA,"holothuroidea","holothuria hawaiiensis","LC",1,2020
-NA,"holothuroidea","holothuria fuscocinerea","LC",1,2020
-"brown sandfish","holothuroidea","bohadschia vitiensis","DD",NA,2020
-NA,"holothuroidea","holothuria stocki","DD",NA,2020
-"brownspotted sandfish","holothuroidea","bohadschia similis","DD",NA,2020
-"leopardfish","holothuroidea","bohadschia argus","LC",1,2020
-"blackspotted sea cucumber","holothuroidea","pearsonothuria graeffei","LC",1,2020
-"lollyfish","holothuroidea","holothuria atra","LC",1,2020
-"harry blackfish","holothuroidea","actinopyga miliaris","VU",0.6,2020
-NA,"holothuroidea","holothuria erinaceaus","LC",1,2020
-NA,"holothuroidea","actinopyga varians","DD",NA,2020
-NA,"holothuroidea","holothuria verrucosa","LC",1,2020
-NA,"holothuroidea","holothuria arenicola","DD",NA,2020
-"paddle grass","liliopsida","halophila decipiens","LC",1,2020
-"two-spot bristletooth","actinopterygii","ctenochaetus binotatus","LC",1,2020
-"orange spine surgeonfish","actinopterygii","naso lituratus","LC",1,2020
-"blackstreak surgeonfish","actinopterygii","acanthurus nigricauda","LC",1,2020
-"bluespine unicornfish","actinopterygii","naso unicornis","LC",1,2020
-"longnose tang","actinopterygii","zebrasoma rostratum","DD",NA,2020
-"palefin unicornfish","actinopterygii","naso brevirostris","LC",1,2020
-"hawaiian bristletooth","actinopterygii","ctenochaetus hawaiiensis","LC",1,2020
-"convict surgeonfish","actinopterygii","acanthurus triostegus","LC",1,2020
-"yellowfin surgeonfish","actinopterygii","acanthurus xanthopterus","LC",1,2020
-"humpback unicornfish","actinopterygii","naso brachycentron","LC",1,2020
-"whitemargin unicornfish","actinopterygii","naso annulatus","LC",1,2020
-"lined surgeonfish","actinopterygii","acanthurus lineatus","LC",1,2020
-"bignose unicornfish","actinopterygii","naso vlamingii","LC",1,2020
-"whitespotted surgeonfish","actinopterygii","acanthurus guttatus","LC",1,2020
-"blue-spotted bristletooth","actinopterygii","ctenochaetus marginatus","LC",1,2020
-"thompson's surgeonfish","actinopterygii","acanthurus thompsoni","LC",1,2020
-"golden rim surgeonfish","actinopterygii","acanthurus nigricans","LC",1,2020
-"mimic surgeonfish","actinopterygii","acanthurus pyroferus","LC",1,2020
-"orange band surgeonfish","actinopterygii","acanthurus olivaceus","LC",1,2020
-"whitebar surgeonfish","actinopterygii","acanthurus leucopareius","LC",1,2020
-"sailfin tang","actinopterygii","zebrasoma veliferum","LC",1,2020
-"gray unicornfish","actinopterygii","naso caesius","LC",1,2020
-"brushtail tang","actinopterygii","zebrasoma scopas","LC",1,2020
-"achilles tang","actinopterygii","acanthurus achilles","LC",1,2020
-"ringtail surgeonfish","actinopterygii","acanthurus blochii","LC",1,2020
-"whitetail bristletooth","actinopterygii","ctenochaetus flavicauda","LC",1,2020
-"brown surgeonfish","actinopterygii","acanthurus nigrofuscus","LC",1,2020
-"sleek unicornfish","actinopterygii","naso hexacanthus","LC",1,2020
-"elongate surgeonfish","actinopterygii","acanthurus mata","LC",1,2020
-"dropoff surgeonfish","actinopterygii","acanthurus nubilus","LC",1,2020
-"striped bristletooth","actinopterygii","ctenochaetus striatus","LC",1,2020
-"banded pipefish","actinopterygii","dunckerocampus dactyliophorus","DD",NA,2020
-"red cornetfish","actinopterygii","fistularia petimba","LC",1,2020
-"bluespotted cornetfish","actinopterygii","fistularia commersonii","LC",1,2020
-"opossum pipefish","actinopterygii","microphis brachyurus","LC",1,2020
-"bluestripe pipefish","actinopterygii","doryrhamphus excisus","LC",1,2020
-"flat-nosed pipefish","actinopterygii","microphis argulus","LC",1,2020
-"sculptured pipefish","actinopterygii","choeroichthys sculptus","LC",1,2020
-"network pipefish","actinopterygii","corythoichthys flavofasciatus","LC",1,2020
-"black-breasted pipefish","actinopterygii","corythoichthys nigripectus","LC",1,2020
-"lord howe pipefish","actinopterygii","cosmocampus howensis","LC",1,2020
-"chinese trumpetfish","actinopterygii","aulostomus chinensis","LC",1,2020
-"pygmy pipefish","actinopterygii","micrognathus brevirostris","LC",1,2020
-"myers' pipefish","actinopterygii","minyichthys myersi","LC",1,2020
-"short dragonfish","actinopterygii","eurypegasus draconis","LC",1,2020
-"dogtooth tuna","actinopterygii","gymnosarda unicolor","LC",1,2020
-"skipjack tuna","actinopterygii","katsuwonus pelamis","LC",1,2020
-"kawakawa","actinopterygii","euthynnus affinis","LC",1,2020
-"pacific bluefin tuna","actinopterygii","thunnus orientalis","VU",0.6,2020
-"yellowfin tuna","actinopterygii","thunnus albacares","NT",0.8,2020
-"blue marlin","actinopterygii","makaira nigricans","VU",0.6,2020
-"shortbill spearfish","actinopterygii","tetrapturus angustirostris","DD",NA,2020
-"albacore tuna","actinopterygii","thunnus alalunga","NT",0.8,2020
-"swordfish","actinopterygii","xiphias gladius","LC",1,2020
-"striped marlin","actinopterygii","kajikia audax","NT",0.8,2020
-"bigeye tuna","actinopterygii","thunnus obesus","VU",0.6,2020
-"sailfish","actinopterygii","istiophorus platypterus","LC",1,2020
-"black marlin","actinopterygii","istiompax indica","DD",NA,2020
-"tripletail wrasse","actinopterygii","cheilinus trilobatus","LC",1,2020
-"white-spotted wrasse","actinopterygii","anampses melanurus","LC",1,2020
-"dusky wrasse","actinopterygii","halichoeres marginatus","LC",1,2020
-"white-dotted maori wrasse","actinopterygii","cheilinus chlorourus","LC",1,2020
-"yellow-banded possum wrasse","actinopterygii","wetmorella nigropinnata","LC",1,2020
-"red-spot razor wrasse","actinopterygii","iniistius pentadactylus","LC",1,2020
-"african clown wrasse","actinopterygii","coris gaimard","LC",1,2020
-"olive-scribbled wrasse","actinopterygii","novaculichthys taeniourus","LC",1,2020
-"exquisite wrasse","actinopterygii","cirrhilabrus exquisitus","DD",NA,2020
-"six-line wrasse","actinopterygii","pseudocheilinus hexataenia","LC",1,2020
-"bluntheaded wrasse","actinopterygii","thalassoma amblycephalum","LC",1,2020
-"finescale razorfish","actinopterygii","cymolutes torquatus","LC",1,2020
-"six-banded wrasse","actinopterygii","thalassoma hardwicke","LC",1,2020
-"polynesian slender wrasse","actinopterygii","pseudojuloides atavai","DD",NA,2020
-"rust-banded wrasse","actinopterygii","pseudocoris aurantiofasciata","LC",1,2020
-"checkerboard wrasse","actinopterygii","halichoeres hortulanus","LC",1,2020
-"whiteband maori wrasse","actinopterygii","oxycheilinus unifasciatus","LC",1,2020
-"yellow-brown wrasse","actinopterygii","thalassoma lutescens","LC",1,2020
-"thin-line maori wrasse","actinopterygii","oxycheilinus arenatus","LC",1,2020
-"sling-jaw wrasse","actinopterygii","epibulus insidiator","LC",1,2020
-"five striped surge wrasse","actinopterygii","thalassoma quinquevittatum","LC",1,2020
-NA,"actinopterygii","oxycheilinus lineatus","LC",1,2020
-"four-lined wrasse","actinopterygii","pseudocheilinus tetrataenia","LC",1,2020
-NA,"actinopterygii","labropsis polynesica","LC",1,2020
-"purple wrasse","actinopterygii","thalassoma purpureum","LC",1,2020
-"yellowstriped hogfish","actinopterygii","polylepion russelli","LC",1,2020
-"carolines parrotfish","actinopterygii","calotomus carolinus","LC",1,2020
-"bicolor parrotfish","actinopterygii","cetoscarus ocellatus","LC",1,2020
-"globehead parrotfish","actinopterygii","scarus globiceps","LC",1,2020
-"filament-finned parrotfish","actinopterygii","scarus altipinnis","LC",1,2020
-"steephead parrotfish","actinopterygii","chlorurus microrhinos","LC",1,2020
-"common parrotfish","actinopterygii","scarus psittacus","LC",1,2020
-"dusky parrotfish","actinopterygii","scarus niger","LC",1,2020
-"forsten's parrotfish","actinopterygii","scarus forsteni","LC",1,2020
-"blue banded parrotfish","actinopterygii","scarus pyrrostethus","LC",1,2020
-"blue parrotfish","actinopterygii","scarus oviceps","LC",1,2020
-"yellowband parrotfish","actinopterygii","scarus schlegeli","LC",1,2020
-"white-barred pink wrasse","actinopterygii","pseudocheilinus ocellatus","LC",1,2020
-"barred thicklip wrasse","actinopterygii","hemigymnus fasciatus","LC",1,2020
-"sharp-nosed rainbowfish","actinopterygii","cheilio inermis","LC",1,2020
-"blue-streak cleaner wrasse","actinopterygii","labroides dimidiatus","LC",1,2020
-"red-spot rainbowfish","actinopterygii","stethojulis bandanensis","LC",1,2020
-"pearl-spotted wrasse","actinopterygii","halichoeres margaritaceus","LC",1,2020
-"three-spot wrasse","actinopterygii","halichoeres trimaculatus","LC",1,2020
-"silver-streaked rainbowfish","actinopterygii","stethojulis strigiventer","LC",1,2020
-"turncoat hogfish","actinopterygii","bodianus axillaris","LC",1,2020
-"twospot maori wrasse","actinopterygii","oxycheilinus bimaculatus","LC",1,2020
-"purple club-nosed wrasse","actinopterygii","gomphosus varius","LC",1,2020
-"whitebanded sharpnose wrasse","actinopterygii","wetmorella albofasciata","LC",1,2020
-"ocellated wrasse","actinopterygii","halichoeres melasmapomus","LC",1,2020
-"scott's wrasse","actinopterygii","cirrhilabrus scottorum","LC",1,2020
-"eightstripe wrasse","actinopterygii","pseudocheilinus octotaenia","LC",1,2020
-"long blue-lined wrasse","actinopterygii","pseudojuloides cerasinus","DD",NA,2020
-"point-head maori wrasse","actinopterygii","cheilinus oxycephalus","LC",1,2020
-"disappearing wrasse","actinopterygii","pseudocheilinus evanidus","LC",1,2020
-"knife razorfish","actinopterygii","cymolutes praetextatus","LC",1,2020
-"blackspotted wrasse","actinopterygii","macropharyngodon meleagris","LC",1,2020
-"narrow-banded rainbowfish","actinopterygii","hologymnosus annulatus","LC",1,2020
-NA,"actinopterygii","halichoeres claudia","LC",1,2020
-"indianfish blue razorfish","actinopterygii","iniistius pavo","LC",1,2020
-"green-blocked wrasse","actinopterygii","thalassoma trilobatum","LC",1,2020
-"chisel-tooth wrasse","actinopterygii","pseudodax moluccanus","LC",1,2020
-"lyre-tail hogfish","actinopterygii","bodianus anthioides","LC",1,2020
-"bluespotted wrasse","actinopterygii","anampses caeruleopunctatus","LC",1,2020
-"spotted wrasse","actinopterygii","anampses meleagrides","LC",1,2020
-"redlip cleaner wrasse","actinopterygii","labroides rubrolabiatus","LC",1,2020
-"two-colour cleaner wrasse","actinopterygii","labroides bicolor","LC",1,2020
-"halstead's razorfish","actinopterygii","xyrichtys halsteadi","LC",1,2020
-"yellowbreasted wrasse","actinopterygii","anampses twistii","LC",1,2020
-"false clownwrasse","actinopterygii","coris aygula","LC",1,2020
-"tricolour parrotfish","actinopterygii","scarus tricolor","LC",1,2020
-"bullethead parrotfish","actinopterygii","chlorurus spilurus","LC",1,2020
-"ember parrotfish","actinopterygii","scarus rubroviolaceus","LC",1,2020
-"pacific longnose parrotfish","actinopterygii","hipposcarus longiceps","LC",1,2020
-"bridled parrotfish","actinopterygii","scarus frenatus","LC",1,2020
-"marbled parrotfish","actinopterygii","leptoscarus vaigiensis","LC",1,2020
-"tan-faced parrotfish","actinopterygii","chlorurus frontalis","LC",1,2020
-"swamp harrier","aves","circus approximans","LC",1,2020
-"pacific reef-egret","aves","egretta sacra","LC",1,2020
-"white-bellied storm-petrel","aves","fregetta grallaria","LC",1,2020
-"black-bellied storm-petrel","aves","fregetta tropica","LC",1,2020
-"chatham albatross","aves","thalassarche eremita","VU",0.6,2020
-"common white tern","aves","gygis alba","LC",1,2020
-"wilson's storm-petrel","aves","oceanites oceanicus","LC",1,2020
-"polynesian storm-petrel","aves","nesofregetta fuliginosa","EN",0.4,2020
-"bristle-thighed curlew","aves","numenius tahitiensis","VU",0.6,2020
-"grey-backed tern","aves","onychoprion lunatus","LC",1,2020
-"white-faced storm-petrel","aves","pelagodroma marina","LC",1,2020
-"blue noddy","aves","anous ceruleus","LC",1,2020
-"tahiti petrel","aves","pseudobulweria rostrata","NT",0.8,2020
-"kermadec petrel","aves","pterodroma neglecta","LC",1,2020
-"phoenix petrel","aves","pterodroma alba","EN",0.4,2020
-"white-necked petrel","aves","pterodroma cervicalis","VU",0.6,2020
-"herald petrel","aves","pterodroma heraldica","LC",1,2020
-"tropical shearwater","aves","puffinus bailloni","LC",1,2020
-"christmas shearwater","aves","puffinus nativitatis","LC",1,2020
-"greater crested tern","aves","thalasseus bergii","LC",1,2020
-"wandering tattler","aves","tringa incana","LC",1,2020
-"spotless crake","aves","zapornia tabuensis","LC",1,2020
-"henderson petrel","aves","pterodroma atrata","EN",0.4,2020
-"tahiti swallow","aves","hirundo tahitica","LC",1,2020
-"black petrel","aves","procellaria parkinsoni","VU",0.6,2020
-"cook's petrel","aves","pterodroma cookii","VU",0.6,2020
-"mottled petrel","aves","pterodroma inexpectata","NT",0.8,2020
-"black-winged petrel","aves","pterodroma nigripennis","LC",1,2020
-"white-winged petrel","aves","pterodroma leucoptera","VU",0.6,2020
-"murphy's petrel","aves","pterodroma ultima","NT",0.8,2020
-"masked booby","aves","sula dactylatra","LC",1,2020
-"brown booby","aves","sula leucogaster","LC",1,2020
-"red-footed booby","aves","sula sula","LC",1,2020
-"buller's shearwater","aves","ardenna bulleri","VU",0.6,2020
-"collared petrel","aves","pterodroma brevipes","VU",0.6,2020
-"red-tailed tropicbird","aves","phaethon rubricauda","LC",1,2020
-"pacific black duck","aves","anas superciliosa","LC",1,2020
-"brown noddy","aves","anous stolidus","LC",1,2020
-"black noddy","aves","anous minutus","LC",1,2020
-"ruddy turnstone","aves","arenaria interpres","LC",1,2020
-"green-backed heron","aves","butorides striata","LC",1,2020
-"lesser frigatebird","aves","fregata ariel","LC",1,2020
-"white-tailed tropicbird","aves","phaethon lepturus","LC",1,2020
-"wedge-tailed shearwater","aves","ardenna pacifica","LC",1,2020
-"short-tailed shearwater","aves","ardenna tenuirostris","LC",1,2020
-"great frigatebird","aves","fregata minor","LC",1,2020
-"sooty tern","aves","onychoprion fuscatus","LC",1,2020
-"leatherback turtle","reptilia","dermochelys coriacea","CR",0.2,2020
-"sharptooth lemon shark","chondrichthyes","negaprion acutidens","VU",0.6,2020
-"shortfin mako","chondrichthyes","isurus oxyrinchus","EN",0.4,2020
-"humpback whale","mammalia","megaptera novaeangliae","LC",1,2020
-"loggerhead turtle","reptilia","caretta caretta","CR",0.2,2020
-"green turtle","reptilia","chelonia mydas","EN",0.4,2020
+"region_id","common","class","sciname","category","status","year"
+1,"pacific golden plover","aves","pluvialis fulva","LC",1,2020
+1,"peppered moray eel","actinopterygii","gymnothorax pictus","LC",1,2020
+1,"blotch-eye soldier firsh","actinopterygii","myripristis murdjan","LC",1,2020
+1,"bullethead parrotfish","actinopterygii","chlorurus sordidus","LC",1,2020
+1,"giant squirrelfish","actinopterygii","sargocentron spiniferum","LC",1,2020
+1,"moorish idol","actinopterygii","zanclus cornutus","LC",1,2020
+1,"goldlined emperor","actinopterygii","gnathodentex aureolineatus","LC",1,2020
+1,"milk fish","actinopterygii","chanos chanos","LC",1,2020
+1,"giant jack","actinopterygii","caranx ignobilis","LC",1,2020
+1,"silver squirrelfish","actinopterygii","neoniphon argenteus","LC",1,2020
+1,"giant moray","actinopterygii","gymnothorax javanicus","LC",1,2020
+1,"blackblotch lizardfish","actinopterygii","synodus jaculum","LC",1,2020
+1,"helmet gurnard","actinopterygii","dactyloptena orientalis","LC",1,2020
+1,"yellowstripe goatfish","actinopterygii","mulloidichthys flavolineatus","LC",1,2020
+1,"barred jack","actinopterygii","carangoides ferdau","LC",1,2020
+1,"yellow-margined snapper","actinopterygii","lutjanus fulvus","LC",1,2020
+1,"dot-dashed goatfish","actinopterygii","parupeneus barberinus","LC",1,2020
+1,"blacktip reef shark","chondrichthyes","carcharhinus melanopterus","NT",0.8,2020
+1,"coconut crab","malacostraca","birgus latro","DD",0.4,2020
+1,"day octopus","cephalopoda","octopus cyanea","LC",1,2020
+1,"clam","bivalvia","tridacna maxima","LR/cd",0.9,2020
+1,"olive ridley sea turtle","reptilia","lepidochelys olivacea","VU",0.6,2020
+1,"twospined angelfish","actinopterygii","centropyge bispinosa","LC",1,2020
+1,"lemonpeel angelfish","actinopterygii","centropyge flavissima","LC",1,2020
+1,"multicolor angelfish","actinopterygii","centropyge multicolor","LC",1,2020
+1,"yellow angelfish","actinopterygii","centropyge heraldi","LC",1,2020
+1,"royal angelfish","actinopterygii","pygoplites diacanthus","LC",1,2020
+1,"ornate angelfish","actinopterygii","genicanthus bellus","LC",1,2020
+1,"blackedged angelfish","actinopterygii","genicanthus watanabei","LC",1,2020
+1,"hawaiian flame angelfish","actinopterygii","centropyge fisheri","LC",1,2020
+1,"emperor angelfish","actinopterygii","pomacanthus imperator","LC",1,2020
+1,"barred angelfish","actinopterygii","paracentropyge multifasciata","LC",1,2020
+1,"flame angel","actinopterygii","centropyge loricula","LC",1,2020
+1,"giant herring","actinopterygii","elops hawaiensis","DD",NA,2020
+1,NA,"actinopterygii","albula argentea","DD",NA,2020
+1,"saddle-back butterflyfish","actinopterygii","chaetodon ephippium","LC",1,2020
+1,"dusky butterflyfish","actinopterygii","chaetodon flavirostris","LC",1,2020
+1,"threadfin butterflyfish","actinopterygii","chaetodon auriga","LC",1,2020
+1,"decorated butterflyfish","actinopterygii","chaetodon semeion","LC",1,2020
+1,"lined butterflyfish","actinopterygii","chaetodon lineolatus","LC",1,2020
+1,"speckled butterflyfish","actinopterygii","chaetodon citrinellus","LC",1,2020
+1,"triangulate butterflyfish","actinopterygii","chaetodon trifascialis","NT",0.8,2020
+1,"neonbanded butterflyfish","actinopterygii","chaetodon quadrimaculatus","LC",1,2020
+1,"unicorn pennant coralfish","actinopterygii","heniochus monoceros","LC",1,2020
+1,"black long-nosed butterflyfish","actinopterygii","forcipiger longirostris","LC",1,2020
+1,"thompson's butterflyfish","actinopterygii","hemitaurichthys thompsoni","LC",1,2020
+1,"threeband pennantfish","actinopterygii","heniochus chrysostomus","LC",1,2020
+1,"bluelashed butterflyfish","actinopterygii","chaetodon bennetti","DD",NA,2020
+1,"brushytoothed butterflyfish","actinopterygii","hemitaurichthys polylepis","LC",1,2020
+1,"redstriped butterflyfish","actinopterygii","chaetodon lunula","LC",1,2020
+1,"ornate butterflyfish","actinopterygii","chaetodon ornatissimus","LC",1,2020
+1,"reticulated butterflyfish","actinopterygii","chaetodon reticulatus","DD",NA,2020
+1,"orangebar butterflyfish","actinopterygii","chaetodon mertensii","LC",1,2020
+1,"tahitian butterflyfish","actinopterygii","chaetodon trichrous","LC",1,2020
+1,"pacific pinstriped butterflyfish","actinopterygii","chaetodon lunulatus","LC",1,2020
+1,"hunchbacked coralfish","actinopterygii","heniochus varius","LC",1,2020
+1,"pacific double-saddled butterflyfish","actinopterygii","chaetodon ulietensis","LC",1,2020
+1,"big long-nosed butterflyfish","actinopterygii","forcipiger flavissimus","LC",1,2020
+1,"teardrop butterfly fish","actinopterygii","chaetodon unimaculatus","LC",1,2020
+1,"raffle's butterflyfish","actinopterygii","chaetodon rafflesii","LC",1,2020
+1,"criss-cross butterflyfish","actinopterygii","chaetodon vagabundus","LC",1,2020
+1,"pennant coral fish","actinopterygii","heniochus acuminatus","LC",1,2020
+1,"dot-and-dash butterflyfish","actinopterygii","chaetodon pelewensis","LC",1,2020
+1,"pygmy shark","chondrichthyes","euprotomicrus bispinatus","LC",1,2020
+1,"scalloped hammerhead","chondrichthyes","sphyrna lewini","EN",0.4,2020
+1,"grey reef shark","chondrichthyes","carcharhinus amblyrhynchos","NT",0.8,2020
+1,"blue shark","chondrichthyes","prionace glauca","NT",0.8,2020
+1,"pelagic thresher","chondrichthyes","alopias pelagicus","VU",0.6,2020
+1,"spotted eagle ray","chondrichthyes","aetobatus narinari","NT",0.8,2020
+1,"bull shark","chondrichthyes","carcharhinus leucas","NT",0.8,2020
+1,"white shark","chondrichthyes","carcharodon carcharias","VU",0.6,2020
+1,"spotted eagle ray","chondrichthyes","aetobatus ocellatus","VU",0.6,2020
+1,"whitetip reef shark","chondrichthyes","triaenodon obesus","NT",0.8,2020
+1,"common thresher","chondrichthyes","alopias vulpinus","VU",0.6,2020
+1,"tawny nurse shark","chondrichthyes","nebrius ferrugineus","VU",0.6,2020
+1,"longtail butterfly ray","chondrichthyes","gymnura poecilura","NT",0.8,2020
+1,"great hammerhead","chondrichthyes","sphyrna mokarran","EN",0.4,2020
+1,"longfin mako","chondrichthyes","isurus paucus","EN",0.4,2020
+1,"crocodile shark","chondrichthyes","pseudocarcharias kamoharai","LC",1,2020
+1,"tiger shark","chondrichthyes","galeocerdo cuvier","NT",0.8,2020
+1,"pelagic stingray","chondrichthyes","pteroplatytrygon violacea","LC",1,2020
+1,"megamouth shark","chondrichthyes","megachasma pelagios","LC",1,2020
+1,"reef manta ray","chondrichthyes","mobula alfredi","VU",0.6,2020
+1,"silvertip shark","chondrichthyes","carcharhinus albimarginatus","VU",0.6,2020
+1,"blacktip shark","chondrichthyes","carcharhinus limbatus","NT",0.8,2020
+1,"silky shark","chondrichthyes","carcharhinus falciformis","VU",0.6,2020
+1,"galapagos shark","chondrichthyes","carcharhinus galapagensis","NT",0.8,2020
+1,"giant manta ray","chondrichthyes","mobula birostris","VU",0.6,2020
+1,"whale shark","chondrichthyes","rhincodon typus","EN",0.4,2020
+1,"oceanic whitetip shark","chondrichthyes","carcharhinus longimanus","VU",0.6,2020
+1,"buccaneer anchovy","actinopterygii","encrasicholina punctifer","LC",1,2020
+1,NA,"actinopterygii","praealticus caesius","LC",1,2020
+1,"seale's blenny","actinopterygii","entomacrodus sealei","LC",1,2020
+1,"picture rockskipper","actinopterygii","blenniella gibbifrons","LC",1,2020
+1,"orange-spotted blenny","actinopterygii","blenniella chrysospilos","LC",1,2020
+1,"white-spotted triplefin","actinopterygii","enneapterygius triserialis","LC",1,2020
+1,"blacktail triplefin","actinopterygii","enneapterygius nigricauda","LC",1,2020
+1,"dusky spotted blenny","actinopterygii","cirripectes fuscoguttatus","LC",1,2020
+1,"black blenny","actinopterygii","atrosalarias fuscus","LC",1,2020
+1,"wavyline rockskipper","actinopterygii","entomacrodus decussatus","LC",1,2020
+1,"cleaner mimic","actinopterygii","aspidontus taeniatus","LC",1,2020
+1,NA,"actinopterygii","atrosalarias holomelas","LC",1,2020
+1,"dussumier's blenny","actinopterygii","aspidontus dussumieri","LC",1,2020
+1,"banded fringe blenny","actinopterygii","cirripectes variolosus","LC",1,2020
+1,"blackbelly triplefin","actinopterygii","enneapterygius fuscoventer","LC",1,2020
+1,"pacific blue-spotted blenny","actinopterygii","blenniella caudolineata","LC",1,2020
+1,"black blenny","actinopterygii","enchelyurus ater","LC",1,2020
+1,"bartail blenny","actinopterygii","entomacrodus caudofasciatus","LC",1,2020
+1,"thomas' triplefin","actinopterygii","norfolkia thomasi","LC",1,2020
+1,"umpire triplefin","actinopterygii","enneapterygius rhabdotus","LC",1,2020
+1,"high hat triplefin","actinopterygii","enneapterygius tutuilae","LC",1,2020
+1,"little hooded triplefin","actinopterygii","helcogramma chica","LC",1,2020
+1,NA,"actinopterygii","cirripectes jenningsi","LC",1,2020
+1,"blue-dashed rockskipper","actinopterygii","blenniella paula","LC",1,2020
+1,"reef margin blenny","actinopterygii","entomacrodus thalassinus","LC",1,2020
+1,"leaping rockskipper","actinopterygii","alticus arnoldorum","LC",1,2020
+1,"seychelles blenny","actinopterygii","stanulus seychellensis","LC",1,2020
+1,"smoothlipped blenny","actinopterygii","istiblennius edentulus","LC",1,2020
+1,"leopard blenny","actinopterygii","exallias brevis","LC",1,2020
+1,"pyramid triplefin","actinopterygii","enneapterygius pyramis","LC",1,2020
+1,"zebra blenny","actinopterygii","cirripectes quagga","LC",1,2020
+1,"black-lined blenny","actinopterygii","istiblennius lineatus","LC",1,2020
+1,"bluestriped fangblenny","actinopterygii","plagiotremus rhinorhynchos","LC",1,2020
+1,"piano fangblenny","actinopterygii","plagiotremus tapeinosoma","LC",1,2020
+1,"blackspotted rockskipper","actinopterygii","entomacrodus striatus","LC",1,2020
+1,"bearded sabretooth blenny","actinopterygii","petroscirtes xestus","LC",1,2020
+1,NA,"gastropoda","conus planorbis","LC",1,2020
+1,NA,"gastropoda","conus miles","LC",1,2020
+1,NA,"gastropoda","conus coronatus","LC",1,2020
+1,"flea cone","gastropoda","conus pulicarius","LC",1,2020
+1,NA,"gastropoda","conus lividus","LC",1,2020
+1,NA,"gastropoda","conus pertusus","LC",1,2020
+1,NA,"gastropoda","conus ebraeus","LC",1,2020
+1,NA,"gastropoda","conus auricomus","LC",1,2020
+1,NA,"gastropoda","conus acutangulus","LC",1,2020
+1,"bubble cone","gastropoda","conus bullatus","LC",1,2020
+1,NA,"gastropoda","conus sanguinolentus","LC",1,2020
+1,NA,"gastropoda","conus muriculatus","LC",1,2020
+1,NA,"gastropoda","conus bandanus","LC",1,2020
+1,NA,"gastropoda","conus circumcisus","LC",1,2020
+1,NA,"gastropoda","conus coffeae","LC",1,2020
+1,NA,"gastropoda","conus mitratus","LC",1,2020
+1,NA,"gastropoda","conus varius","LC",1,2020
+1,NA,"gastropoda","conus legatus","LC",1,2020
+1,NA,"gastropoda","conus tulipa","LC",1,2020
+1,NA,"gastropoda","conus vexillum","LC",1,2020
+1,NA,"gastropoda","conus quercinus","LC",1,2020
+1,NA,"gastropoda","conus armadillo","LC",1,2020
+1,NA,"gastropoda","conus obscurus","LC",1,2020
+1,NA,"gastropoda","conus eburneus","LC",1,2020
+1,NA,"gastropoda","conus aureus","LC",1,2020
+1,NA,"gastropoda","conus rattus","LC",1,2020
+1,NA,"gastropoda","conus retifer","LC",1,2020
+1,NA,"gastropoda","conus imperialis","LC",1,2020
+1,NA,"gastropoda","conus striatus","LC",1,2020
+1,NA,"gastropoda","conus canonicus","LC",1,2020
+1,NA,"gastropoda","conus textile","LC",1,2020
+1,NA,"gastropoda","conus catus","LC",1,2020
+1,NA,"gastropoda","conus nussatella","LC",1,2020
+1,NA,"gastropoda","conus generalis","LC",1,2020
+1,NA,"gastropoda","conus glans","LC",1,2020
+1,NA,"gastropoda","conus moreleti","LC",1,2020
+1,"yellow pacific cone","gastropoda","conus flavidus","LC",1,2020
+1,NA,"gastropoda","conus tessulatus","LC",1,2020
+1,NA,"gastropoda","conus tenuistriatus","LC",1,2020
+1,NA,"gastropoda","conus episcopatus","LC",1,2020
+1,"frigid cone","gastropoda","conus frigidus","LC",1,2020
+1,"sponsal cone","gastropoda","conus sponsalis","LC",1,2020
+1,NA,"gastropoda","conus virgo","LC",1,2020
+1,"cylindrical cone","gastropoda","conus cylindraceus","LC",1,2020
+1,"false virgin cone","gastropoda","conus emaciatus","LC",1,2020
+1,NA,"gastropoda","conus distans","LC",1,2020
+1,NA,"gastropoda","conus litteratus","LC",1,2020
+1,NA,"gastropoda","conus terebra","LC",1,2020
+1,"sand-dusted cone","gastropoda","conus arenatus","LC",1,2020
+1,NA,"gastropoda","conus aulicus","LC",1,2020
+1,NA,"gastropoda","conus geographus","LC",1,2020
+1,NA,"gastropoda","conus ferrugineus","LC",1,2020
+1,NA,"gastropoda","conus litoglyphus","LC",1,2020
+1,NA,"gastropoda","conus magnificus","LC",1,2020
+1,NA,"gastropoda","conus adamsonii","LC",1,2020
+1,NA,"gastropoda","conus chaldaeus","LC",1,2020
+1,NA,"gastropoda","conus leopardus","LC",1,2020
+1,NA,"anthozoa","goniopora somaliensis","LC",1,2020
+1,NA,"anthozoa","leptastrea transversa","LC",1,2020
+1,NA,"anthozoa","montipora verrilli","DD",NA,2020
+1,NA,"anthozoa","leptoseris mycetoseroides","LC",1,2020
+1,NA,"anthozoa","leptoseris scabra","LC",1,2020
+1,NA,"anthozoa","montipora informis","LC",1,2020
+1,NA,"anthozoa","pavona cactus","VU",0.6,2020
+1,NA,"anthozoa","acropora retusa","VU",0.6,2020
+1,NA,"anthozoa","acropora tenuis","NT",0.8,2020
+1,NA,"anthozoa","favia pallida","LC",1,2020
+1,NA,"anthozoa","acropora clathrata","LC",1,2020
+1,NA,"anthozoa","turbinaria frondens","LC",1,2020
+1,NA,"anthozoa","pavona frondifera","LC",1,2020
+1,NA,"anthozoa","acropora cytherea","LC",1,2020
+1,NA,"anthozoa","acropora rambleri","DD",NA,2020
+1,NA,"anthozoa","podabacia crustacea","LC",1,2020
+1,NA,"anthozoa","fungia moluccensis","LC",1,2020
+1,NA,"anthozoa","astreopora myriophthalma","LC",1,2020
+1,NA,"anthozoa","montipora australiensis","VU",0.6,2020
+1,NA,"anthozoa","leptoria phrygia","NT",0.8,2020
+1,NA,"anthozoa","alveopora allingi","VU",0.6,2020
+1,NA,"anthozoa","acropora inermis","DD",NA,2020
+1,NA,"anthozoa","barabattoia laddi","VU",0.6,2020
+1,NA,"anthozoa","psammocora nierstraszi","LC",1,2020
+1,NA,"anthozoa","acropora nana","NT",0.8,2020
+1,NA,"anthozoa","acropora samoensis","LC",1,2020
+1,NA,"anthozoa","pachyseris speciosa","LC",1,2020
+1,NA,"anthozoa","favia stelligera","NT",0.8,2020
+1,"smooth cauliflower coral","anthozoa","stylophora pistillata","NT",0.8,2020
+1,NA,"anthozoa","acropora speciosa","VU",0.6,2020
+1,NA,"anthozoa","plerogyra sinuosa","NT",0.8,2020
+1,NA,"anthozoa","goniastrea australensis","LC",1,2020
+1,NA,"anthozoa","acropora glauca","NT",0.8,2020
+1,NA,"anthozoa","acropora abrotanoides","LC",1,2020
+1,NA,"anthozoa","favia rotumana","LC",1,2020
+1,NA,"anthozoa","porites vaughani","LC",1,2020
+1,NA,"anthozoa","pavona varians","LC",1,2020
+1,NA,"anthozoa","psammocora haimeana","LC",1,2020
+1,NA,"anthozoa","echinophyllia aspera","LC",1,2020
+1,NA,"anthozoa","montipora angulata","VU",0.6,2020
+1,NA,"anthozoa","acropora austera","NT",0.8,2020
+1,NA,"anthozoa","pavona maldivensis","LC",1,2020
+1,NA,"anthozoa","montipora venosa","NT",0.8,2020
+1,"finger coral","anthozoa","acropora humilis","NT",0.8,2020
+1,NA,"anthozoa","turbinaria reniformis","VU",0.6,2020
+1,NA,"anthozoa","echinopora lamellosa","LC",1,2020
+1,"head coral","anthozoa","favia favus","LC",1,2020
+1,NA,"anthozoa","montipora floweri","LC",1,2020
+1,NA,"anthozoa","acropora tortuosa","LC",1,2020
+1,NA,"anthozoa","psammocora superficialis","LC",1,2020
+1,NA,"anthozoa","acropora lutkeni","NT",0.8,2020
+1,NA,"anthozoa","montipora spumosa","LC",1,2020
+1,NA,"anthozoa","acropora striata","VU",0.6,2020
+1,NA,"anthozoa","acropora latistella","LC",1,2020
+1,NA,"anthozoa","merulina ampliata","LC",1,2020
+1,NA,"anthozoa","montipora lobulata","VU",0.6,2020
+1,NA,"anthozoa","stylocoeniella armata","LC",1,2020
+1,NA,"anthozoa","madracis kirbyi","LC",1,2020
+1,NA,"anthozoa","favites complanata","NT",0.8,2020
+1,NA,"anthozoa","montipora turgescens","LC",1,2020
+1,NA,"anthozoa","acropora nasuta","NT",0.8,2020
+1,NA,"anthozoa","favites russelli","NT",0.8,2020
+1,NA,"anthozoa","acropora elseyi","LC",1,2020
+1,NA,"anthozoa","acropora gemmifera","LC",1,2020
+1,NA,"anthozoa","montipora danae","LC",1,2020
+1,NA,"anthozoa","fungia scutaria","LC",1,2020
+1,NA,"anthozoa","porites lutea","LC",1,2020
+1,NA,"anthozoa","montipora effusa","NT",0.8,2020
+1,NA,"anthozoa","platygyra pini","LC",1,2020
+1,NA,"anthozoa","fungia tenuis","LC",1,2020
+1,NA,"anthozoa","montipora aequituberculata","LC",1,2020
+1,NA,"anthozoa","astreopora randalli","LC",1,2020
+1,NA,"anthozoa","mycedium elephantotus","LC",1,2020
+1,NA,"anthozoa","acropora valida","LC",1,2020
+1,NA,"anthozoa","cyphastrea chalcidicum","LC",1,2020
+1,NA,"anthozoa","porites latistella","LC",1,2020
+1,NA,"anthozoa","barabattoia amicorum","LC",1,2020
+1,NA,"anthozoa","porites arnaudi","LC",1,2020
+1,NA,"anthozoa","pocillopora woodjonesi","LC",1,2020
+1,NA,"anthozoa","montipora caliculata","VU",0.6,2020
+1,NA,"anthozoa","fungia sinensis","LC",1,2020
+1,"brush coral","anthozoa","acropora hyacinthus","NT",0.8,2020
+1,NA,"anthozoa","acropora vaughani","VU",0.6,2020
+1,"elongate mushroom coral","anthozoa","fungia paumotensis","LC",1,2020
+1,NA,"anthozoa","acropora sarmentosa","LC",1,2020
+1,NA,"anthozoa","pocillopora eydouxi","NT",0.8,2020
+1,NA,"anthozoa","pavona clavus","LC",1,2020
+1,NA,"anthozoa","porites lobata","NT",0.8,2020
+1,NA,"anthozoa","echinophyllia echinata","LC",1,2020
+1,NA,"anthozoa","favia matthaii","NT",0.8,2020
+1,"thin birdsnest coral","anthozoa","seriatopora hystrix","LC",1,2020
+1,NA,"anthozoa","acropora granulosa","NT",0.8,2020
+1,NA,"anthozoa","fungia repanda","LC",1,2020
+1,"staghorn coral","anthozoa","acropora formosa","NT",0.8,2020
+1,NA,"anthozoa","leptoseris solida","LC",1,2020
+1,NA,"anthozoa","cyphastrea microphthalma","LC",1,2020
+1,NA,"anthozoa","ctenactis echinata","LC",1,2020
+1,NA,"anthozoa","fungia horrida","LC",1,2020
+1,"firecoral","hydrozoa","millepora platyphylla","LC",1,2020
+1,"largebrain root coral","anthozoa","lobophyllia hemprichii","LC",1,2020
+1,"common mushroom coral","anthozoa","fungia fungites","NT",0.8,2020
+1,NA,"anthozoa","porites lichen","LC",1,2020
+1,NA,"anthozoa","pavona duerdeni","LC",1,2020
+1,NA,"anthozoa","acropora horrida","VU",0.6,2020
+1,NA,"anthozoa","montipora verrucosa","LC",1,2020
+1,NA,"anthozoa","favia speciosa","LC",1,2020
+1,NA,"anthozoa","scolymia vitiensis","NT",0.8,2020
+1,NA,"anthozoa","porites murrayensis","NT",0.8,2020
+1,NA,"anthozoa","acropora nobilis","LC",1,2020
+1,NA,"anthozoa","goniopora stutchburyi","LC",1,2020
+1,NA,"anthozoa","porites solida","LC",1,2020
+1,NA,"anthozoa","acropora paniculata","VU",0.6,2020
+1,NA,"anthozoa","leptoseris incrustans","VU",0.6,2020
+1,NA,"anthozoa","acropora longicyathus","LC",1,2020
+1,NA,"anthozoa","ctenactis crassa","LC",1,2020
+1,NA,"anthozoa","fungia scruposa","LC",1,2020
+1,NA,"anthozoa","montipora foveolata","NT",0.8,2020
+1,NA,"anthozoa","coscinaraea exesa","LC",1,2020
+1,NA,"anthozoa","herpolitha limax","LC",1,2020
+1,NA,"anthozoa","acropora microphthalma","LC",1,2020
+1,NA,"anthozoa","montipora millepora","LC",1,2020
+1,NA,"anthozoa","hydnophora microconos","NT",0.8,2020
+1,"cauliflower coral","anthozoa","pocillopora damicornis","LC",1,2020
+1,"brain coral","anthozoa","platygyra daedalea","LC",1,2020
+1,NA,"anthozoa","turbinaria mesenterina","VU",0.6,2020
+1,NA,"anthozoa","fungia concinna","LC",1,2020
+1,NA,"anthozoa","echinopora gemmacea","LC",1,2020
+1,NA,"anthozoa","leptastrea bottae","NT",0.8,2020
+1,NA,"anthozoa","goniastrea aspera","LC",1,2020
+1,NA,"anthozoa","platygyra sinensis","LC",1,2020
+1,NA,"anthozoa","alveopora spongiosa","NT",0.8,2020
+1,NA,"anthozoa","sandalolitha dentata","LC",1,2020
+1,"distorted mushroom coral","anthozoa","fungia distorta","LC",1,2020
+1,NA,"anthozoa","coscinaraea columna","LC",1,2020
+1,NA,"anthozoa","montipora tuberculosa","LC",1,2020
+1,NA,"anthozoa","montipora hoffmeisteri","LC",1,2020
+1,NA,"anthozoa","acropora robusta","LC",1,2020
+1,NA,"anthozoa","montipora hispida","LC",1,2020
+1,NA,"anthozoa","goniastrea pectinata","LC",1,2020
+1,NA,"anthozoa","favites flexuosa","NT",0.8,2020
+1,NA,"anthozoa","leptastrea purpurea","LC",1,2020
+1,NA,"anthozoa","fungia granulosa","LC",1,2020
+1,NA,"anthozoa","gardineroseris planulata","LC",1,2020
+1,NA,"anthozoa","acropora globiceps","VU",0.6,2020
+1,NA,"anthozoa","psammocora profundacella","LC",1,2020
+1,NA,"anthozoa","montipora efflorescens","NT",0.8,2020
+1,NA,"anthozoa","pocillopora elegans","VU",0.6,2020
+1,NA,"anthozoa","acropora secale","NT",0.8,2020
+1,NA,"anthozoa","favites abdita","NT",0.8,2020
+1,NA,"anthozoa","acropora carduus","NT",0.8,2020
+1,NA,"anthozoa","pavona explanulata","LC",1,2020
+1,NA,"anthozoa","psammocora contigua","NT",0.8,2020
+1,NA,"anthozoa","fungia scabra","LC",1,2020
+1,NA,"anthozoa","porites australiensis","LC",1,2020
+1,NA,"anthozoa","alveopora verrilliana","VU",0.6,2020
+1,NA,"anthozoa","cyphastrea serailia","LC",1,2020
+1,NA,"anthozoa","acropora loripes","NT",0.8,2020
+1,NA,"anthozoa","psammocora digitata","NT",0.8,2020
+1,NA,"anthozoa","montipora foliosa","NT",0.8,2020
+1,"cactus coral","anthozoa","pavona decussata","VU",0.6,2020
+1,NA,"anthozoa","acropora digitifera","NT",0.8,2020
+1,NA,"anthozoa","psammocora explanulata","LC",1,2020
+1,NA,"anthozoa","galaxea fascicularis","NT",0.8,2020
+1,NA,"anthozoa","leptoseris hawaiiensis","LC",1,2020
+1,"brain root coral","anthozoa","lobophyllia corymbosa","LC",1,2020
+1,"rasp coral","anthozoa","pocillopora verrucosa","LC",1,2020
+1,NA,"anthozoa","acropora pulchra","LC",1,2020
+1,NA,"anthozoa","goniopora minor","NT",0.8,2020
+1,NA,"anthozoa","acanthastrea echinata","LC",1,2020
+1,NA,"anthozoa","plesiastrea versipora","LC",1,2020
+1,NA,"anthozoa","pavona bipartita","VU",0.6,2020
+1,NA,"anthozoa","fungia costulata","LC",1,2020
+1,NA,"anthozoa","pocillopora capitata","LC",1,2020
+1,NA,"anthozoa","montastrea curta","LC",1,2020
+1,NA,"anthozoa","acropora monticulosa","NT",0.8,2020
+1,NA,"anthozoa","stylocoeniella guentheri","LC",1,2020
+1,NA,"anthozoa","pocillopora ligulata","LC",1,2020
+1,"yellow-banded sergeant-major","actinopterygii","abudefduf sordidus","LC",1,2020
+1,"yellow-speckled chromis","actinopterygii","chromis alpha","LC",1,2020
+1,"five-banded sergeant-major","actinopterygii","abudefduf vaigiensis","LC",1,2020
+1,"seven-banded sergeant-major","actinopterygii","abudefduf septemfasciatus","LC",1,2020
+1,"scissortail sergeant","actinopterygii","abudefduf sexfasciatus","LC",1,2020
+1,"camouflage grouper","actinopterygii","epinephelus polyphekadion","VU",0.6,2020
+1,"leopard hind","actinopterygii","cephalopholis leopardus","LC",1,2020
+1,"blacksaddled coral grouper","actinopterygii","plectropomus laevis","LC",1,2020
+1,"greasy grouper","actinopterygii","epinephelus tauvina","DD",NA,2020
+1,"eightbar grouper","actinopterygii","hyporthodus octofasciatus","LC",1,2020
+1,"garish hind","actinopterygii","cephalopholis igarashiensis","LC",1,2020
+1,"peacock grouper","actinopterygii","cephalopholis argus","LC",1,2020
+1,"harlequin hind","actinopterygii","cephalopholis polleni","LC",1,2020
+1,"strawberry hind","actinopterygii","cephalopholis spiloparaea","LC",1,2020
+1,"white speckled rockcod","actinopterygii","epinephelus hexagonatus","LC",1,2020
+1,"honeycomb grouper","actinopterygii","epinephelus merra","LC",1,2020
+1,"golden hind","actinopterygii","cephalopholis aurantia","LC",1,2020
+1,"masked grouper","actinopterygii","gracila albomarginata","LC",1,2020
+1,"darkfin hind","actinopterygii","cephalopholis urodeta","LC",1,2020
+1,"comet grouper","actinopterygii","epinephelus morrhua","LC",1,2020
+1,"one-blotch grouper","actinopterygii","epinephelus melanostigma","LC",1,2020
+1,"giant grouper","actinopterygii","epinephelus lanceolatus","DD",NA,2020
+1,"golden grouper","actinopterygii","saloptia powelli","LC",1,2020
+1,"blacktip grouper","actinopterygii","epinephelus fasciatus","LC",1,2020
+1,"surge grouper","actinopterygii","epinephelus socialis","LC",1,2020
+1,"yellow-edged lyretail","actinopterygii","variola louti","LC",1,2020
+1,"six-blotch hind","actinopterygii","cephalopholis sexmaculata","LC",1,2020
+1,"reticulate grouper","actinopterygii","epinephelus tuamotuensis","LC",1,2020
+1,"bullseye reef lobster","malacostraca","enoplometopus holthuisi","DD",NA,2020
+1,"longlegged spiny lobster","malacostraca","panulirus longipes","LC",1,2020
+1,NA,"malacostraca","enoplometopus gracilipes","DD",NA,2020
+1,"royal spanish lobster","malacostraca","arctides regalis","LC",1,2020
+1,NA,"malacostraca","pentacheles snyderi","LC",1,2020
+1,"sculptured mitten lobster","malacostraca","parribacus antarcticus","LC",1,2020
+1,"white-whiskered coral crayfish","malacostraca","panulirus femoristriga","LC",1,2020
+1,NA,"malacostraca","stereomastis auriculata","LC",1,2020
+1,NA,"malacostraca","galearctus aurora","LC",1,2020
+1,NA,"malacostraca","stereomastis suhmi","LC",1,2020
+1,"melon-headed whale","mammalia","peponocephala electra","LC",1,2020
+1,"rough-toothed dolphin","mammalia","steno bredanensis","LC",1,2020
+1,"pygmy sperm whale","mammalia","kogia breviceps","DD",NA,2020
+1,"striped dolphin","mammalia","stenella coeruleoalba","LC",1,2020
+1,"antarctic minke whale","mammalia","balaenoptera bonaerensis","NT",0.8,2020
+1,"ginkgo-toothed beaked whale","mammalia","mesoplodon ginkgodens","DD",NA,2020
+1,"cuvier's beaked whale","mammalia","ziphius cavirostris","LC",1,2020
+1,"killer whale","mammalia","orcinus orca","DD",NA,2020
+1,"sperm whale","mammalia","physeter macrocephalus","VU",0.6,2020
+1,"common bottlenose dolphin","mammalia","tursiops truncatus","LC",1,2020
+1,"bryde's whale","mammalia","balaenoptera edeni","LC",1,2020
+1,"dwarf sperm whale","mammalia","kogia sima","DD",NA,2020
+1,"blainville's beaked whale","mammalia","mesoplodon densirostris","DD",NA,2020
+1,"spinner dolphin","mammalia","stenella longirostris","LC",1,2020
+1,"short-finned pilot whale","mammalia","globicephala macrorhynchus","LC",1,2020
+1,"sei whale","mammalia","balaenoptera borealis","EN",0.4,2020
+1,"risso's dolphin","mammalia","grampus griseus","LC",1,2020
+1,"blue whale","mammalia","balaenoptera musculus","EN",0.4,2020
+1,"fraser's dolphin","mammalia","lagenodelphis hosei","LC",1,2020
+1,"common minke whale","mammalia","balaenoptera acutorostrata","LC",1,2020
+1,"false killer whale","mammalia","pseudorca crassidens","NT",0.8,2020
+1,"pygmy killer whale","mammalia","feresa attenuata","LC",1,2020
+1,"pantropical spotted dolphin","mammalia","stenella attenuata","LC",1,2020
+1,"blunthead puffer","actinopterygii","sphoeroides pachygaster","LC",1,2020
+1,"brown-lined puffer","actinopterygii","canthigaster rivulata","LC",1,2020
+1,"honeycomb toby","actinopterygii","canthigaster janthinoptera","LC",1,2020
+1,"spider-eye puffer","actinopterygii","canthigaster amboinensis","LC",1,2020
+1,"spotted sharpnose","actinopterygii","canthigaster solandri","LC",1,2020
+1,"oceanic puffer","actinopterygii","lagocephalus lagocephalus","LC",1,2020
+1,"silver-cheeked toadfish","actinopterygii","lagocephalus sceleratus","LC",1,2020
+1,"valentini's sharpnose puffer","actinopterygii","canthigaster valentini","LC",1,2020
+1,"bennett's sharpnose puffer","actinopterygii","canthigaster bennetti","LC",1,2020
+1,"white-spotted puffer","actinopterygii","arothron hispidus","LC",1,2020
+1,"stellate puffer","actinopterygii","arothron stellatus","LC",1,2020
+1,"guineafowl puffer","actinopterygii","arothron meleagris","LC",1,2020
+1,"hawksbill turtle","reptilia","eretmochelys imbricata","CR",0.2,2020
+1,"yellow-bellied sea snake","reptilia","hydrophis platurus","LC",1,2020
+1,"white thread fish","holothuroidea","holothuria leucospilota","LC",1,2020
+1,"greenfish","holothuroidea","stichopus chloronotus","LC",1,2020
+1,NA,"holothuroidea","holothuria fuscogilva","VU",0.6,2020
+1,NA,"holothuroidea","holothuria hilla","LC",1,2020
+1,NA,"holothuroidea","stichopus monotuberculatus","DD",NA,2020
+1,NA,"holothuroidea","holothuria pervicax","LC",1,2020
+1,NA,"holothuroidea","holothuria difficilis","LC",1,2020
+1,"selenka's sea cucumber","holothuroidea","stichopus horrens","DD",NA,2020
+1,NA,"holothuroidea","holothuria flavomaculata","LC",1,2020
+1,"surf redfish","holothuroidea","actinopyga mauritiana","VU",0.6,2020
+1,NA,"holothuroidea","mesothuria multipora","DD",NA,2020
+1,"amberfish","holothuroidea","thelenota anax","DD",NA,2020
+1,NA,"holothuroidea","holothuria turriscelsa","LC",1,2020
+1,NA,"holothuroidea","holothuria pardalis","LC",1,2020
+1,NA,"holothuroidea","holothuria discrepans","DD",NA,2020
+1,"black teatfish","holothuroidea","holothuria whitmaei","EN",0.4,2020
+1,NA,"holothuroidea","holothuria olivacea","DD",NA,2020
+1,NA,"holothuroidea","holothuria glandifera","DD",NA,2020
+1,"bottleneck sea cucumber","holothuroidea","holothuria impatiens","DD",NA,2020
+1,"pinkfish","holothuroidea","holothuria edulis","LC",1,2020
+1,NA,"holothuroidea","holothuria hawaiiensis","LC",1,2020
+1,NA,"holothuroidea","holothuria fuscocinerea","LC",1,2020
+1,"brown sandfish","holothuroidea","bohadschia vitiensis","DD",NA,2020
+1,NA,"holothuroidea","holothuria stocki","DD",NA,2020
+1,"brownspotted sandfish","holothuroidea","bohadschia similis","DD",NA,2020
+1,"leopardfish","holothuroidea","bohadschia argus","LC",1,2020
+1,"blackspotted sea cucumber","holothuroidea","pearsonothuria graeffei","LC",1,2020
+1,"lollyfish","holothuroidea","holothuria atra","LC",1,2020
+1,"harry blackfish","holothuroidea","actinopyga miliaris","VU",0.6,2020
+1,NA,"holothuroidea","holothuria erinaceaus","LC",1,2020
+1,NA,"holothuroidea","actinopyga varians","DD",NA,2020
+1,NA,"holothuroidea","holothuria verrucosa","LC",1,2020
+1,NA,"holothuroidea","holothuria arenicola","DD",NA,2020
+1,"paddle grass","liliopsida","halophila decipiens","LC",1,2020
+1,"two-spot bristletooth","actinopterygii","ctenochaetus binotatus","LC",1,2020
+1,"orange spine surgeonfish","actinopterygii","naso lituratus","LC",1,2020
+1,"blackstreak surgeonfish","actinopterygii","acanthurus nigricauda","LC",1,2020
+1,"bluespine unicornfish","actinopterygii","naso unicornis","LC",1,2020
+1,"longnose tang","actinopterygii","zebrasoma rostratum","DD",NA,2020
+1,"palefin unicornfish","actinopterygii","naso brevirostris","LC",1,2020
+1,"hawaiian bristletooth","actinopterygii","ctenochaetus hawaiiensis","LC",1,2020
+1,"convict surgeonfish","actinopterygii","acanthurus triostegus","LC",1,2020
+1,"yellowfin surgeonfish","actinopterygii","acanthurus xanthopterus","LC",1,2020
+1,"humpback unicornfish","actinopterygii","naso brachycentron","LC",1,2020
+1,"whitemargin unicornfish","actinopterygii","naso annulatus","LC",1,2020
+1,"lined surgeonfish","actinopterygii","acanthurus lineatus","LC",1,2020
+1,"bignose unicornfish","actinopterygii","naso vlamingii","LC",1,2020
+1,"whitespotted surgeonfish","actinopterygii","acanthurus guttatus","LC",1,2020
+1,"blue-spotted bristletooth","actinopterygii","ctenochaetus marginatus","LC",1,2020
+1,"thompson's surgeonfish","actinopterygii","acanthurus thompsoni","LC",1,2020
+1,"golden rim surgeonfish","actinopterygii","acanthurus nigricans","LC",1,2020
+1,"mimic surgeonfish","actinopterygii","acanthurus pyroferus","LC",1,2020
+1,"orange band surgeonfish","actinopterygii","acanthurus olivaceus","LC",1,2020
+1,"whitebar surgeonfish","actinopterygii","acanthurus leucopareius","LC",1,2020
+1,"sailfin tang","actinopterygii","zebrasoma veliferum","LC",1,2020
+1,"gray unicornfish","actinopterygii","naso caesius","LC",1,2020
+1,"brushtail tang","actinopterygii","zebrasoma scopas","LC",1,2020
+1,"achilles tang","actinopterygii","acanthurus achilles","LC",1,2020
+1,"ringtail surgeonfish","actinopterygii","acanthurus blochii","LC",1,2020
+1,"whitetail bristletooth","actinopterygii","ctenochaetus flavicauda","LC",1,2020
+1,"brown surgeonfish","actinopterygii","acanthurus nigrofuscus","LC",1,2020
+1,"sleek unicornfish","actinopterygii","naso hexacanthus","LC",1,2020
+1,"elongate surgeonfish","actinopterygii","acanthurus mata","LC",1,2020
+1,"dropoff surgeonfish","actinopterygii","acanthurus nubilus","LC",1,2020
+1,"striped bristletooth","actinopterygii","ctenochaetus striatus","LC",1,2020
+1,"banded pipefish","actinopterygii","dunckerocampus dactyliophorus","DD",NA,2020
+1,"red cornetfish","actinopterygii","fistularia petimba","LC",1,2020
+1,"bluespotted cornetfish","actinopterygii","fistularia commersonii","LC",1,2020
+1,"opossum pipefish","actinopterygii","microphis brachyurus","LC",1,2020
+1,"bluestripe pipefish","actinopterygii","doryrhamphus excisus","LC",1,2020
+1,"flat-nosed pipefish","actinopterygii","microphis argulus","LC",1,2020
+1,"sculptured pipefish","actinopterygii","choeroichthys sculptus","LC",1,2020
+1,"network pipefish","actinopterygii","corythoichthys flavofasciatus","LC",1,2020
+1,"black-breasted pipefish","actinopterygii","corythoichthys nigripectus","LC",1,2020
+1,"lord howe pipefish","actinopterygii","cosmocampus howensis","LC",1,2020
+1,"chinese trumpetfish","actinopterygii","aulostomus chinensis","LC",1,2020
+1,"pygmy pipefish","actinopterygii","micrognathus brevirostris","LC",1,2020
+1,"myers' pipefish","actinopterygii","minyichthys myersi","LC",1,2020
+1,"short dragonfish","actinopterygii","eurypegasus draconis","LC",1,2020
+1,"dogtooth tuna","actinopterygii","gymnosarda unicolor","LC",1,2020
+1,"skipjack tuna","actinopterygii","katsuwonus pelamis","LC",1,2020
+1,"kawakawa","actinopterygii","euthynnus affinis","LC",1,2020
+1,"pacific bluefin tuna","actinopterygii","thunnus orientalis","VU",0.6,2020
+1,"yellowfin tuna","actinopterygii","thunnus albacares","NT",0.8,2020
+1,"blue marlin","actinopterygii","makaira nigricans","VU",0.6,2020
+1,"shortbill spearfish","actinopterygii","tetrapturus angustirostris","DD",NA,2020
+1,"albacore tuna","actinopterygii","thunnus alalunga","NT",0.8,2020
+1,"swordfish","actinopterygii","xiphias gladius","LC",1,2020
+1,"striped marlin","actinopterygii","kajikia audax","NT",0.8,2020
+1,"bigeye tuna","actinopterygii","thunnus obesus","VU",0.6,2020
+1,"sailfish","actinopterygii","istiophorus platypterus","LC",1,2020
+1,"black marlin","actinopterygii","istiompax indica","DD",NA,2020
+1,"tripletail wrasse","actinopterygii","cheilinus trilobatus","LC",1,2020
+1,"white-spotted wrasse","actinopterygii","anampses melanurus","LC",1,2020
+1,"dusky wrasse","actinopterygii","halichoeres marginatus","LC",1,2020
+1,"white-dotted maori wrasse","actinopterygii","cheilinus chlorourus","LC",1,2020
+1,"yellow-banded possum wrasse","actinopterygii","wetmorella nigropinnata","LC",1,2020
+1,"red-spot razor wrasse","actinopterygii","iniistius pentadactylus","LC",1,2020
+1,"african clown wrasse","actinopterygii","coris gaimard","LC",1,2020
+1,"olive-scribbled wrasse","actinopterygii","novaculichthys taeniourus","LC",1,2020
+1,"exquisite wrasse","actinopterygii","cirrhilabrus exquisitus","DD",NA,2020
+1,"six-line wrasse","actinopterygii","pseudocheilinus hexataenia","LC",1,2020
+1,"bluntheaded wrasse","actinopterygii","thalassoma amblycephalum","LC",1,2020
+1,"finescale razorfish","actinopterygii","cymolutes torquatus","LC",1,2020
+1,"six-banded wrasse","actinopterygii","thalassoma hardwicke","LC",1,2020
+1,"polynesian slender wrasse","actinopterygii","pseudojuloides atavai","DD",NA,2020
+1,"rust-banded wrasse","actinopterygii","pseudocoris aurantiofasciata","LC",1,2020
+1,"checkerboard wrasse","actinopterygii","halichoeres hortulanus","LC",1,2020
+1,"whiteband maori wrasse","actinopterygii","oxycheilinus unifasciatus","LC",1,2020
+1,"yellow-brown wrasse","actinopterygii","thalassoma lutescens","LC",1,2020
+1,"thin-line maori wrasse","actinopterygii","oxycheilinus arenatus","LC",1,2020
+1,"sling-jaw wrasse","actinopterygii","epibulus insidiator","LC",1,2020
+1,"five striped surge wrasse","actinopterygii","thalassoma quinquevittatum","LC",1,2020
+1,NA,"actinopterygii","oxycheilinus lineatus","LC",1,2020
+1,"four-lined wrasse","actinopterygii","pseudocheilinus tetrataenia","LC",1,2020
+1,NA,"actinopterygii","labropsis polynesica","LC",1,2020
+1,"purple wrasse","actinopterygii","thalassoma purpureum","LC",1,2020
+1,"yellowstriped hogfish","actinopterygii","polylepion russelli","LC",1,2020
+1,"carolines parrotfish","actinopterygii","calotomus carolinus","LC",1,2020
+1,"bicolor parrotfish","actinopterygii","cetoscarus ocellatus","LC",1,2020
+1,"globehead parrotfish","actinopterygii","scarus globiceps","LC",1,2020
+1,"filament-finned parrotfish","actinopterygii","scarus altipinnis","LC",1,2020
+1,"steephead parrotfish","actinopterygii","chlorurus microrhinos","LC",1,2020
+1,"common parrotfish","actinopterygii","scarus psittacus","LC",1,2020
+1,"dusky parrotfish","actinopterygii","scarus niger","LC",1,2020
+1,"forsten's parrotfish","actinopterygii","scarus forsteni","LC",1,2020
+1,"blue banded parrotfish","actinopterygii","scarus pyrrostethus","LC",1,2020
+1,"blue parrotfish","actinopterygii","scarus oviceps","LC",1,2020
+1,"yellowband parrotfish","actinopterygii","scarus schlegeli","LC",1,2020
+1,"white-barred pink wrasse","actinopterygii","pseudocheilinus ocellatus","LC",1,2020
+1,"barred thicklip wrasse","actinopterygii","hemigymnus fasciatus","LC",1,2020
+1,"sharp-nosed rainbowfish","actinopterygii","cheilio inermis","LC",1,2020
+1,"blue-streak cleaner wrasse","actinopterygii","labroides dimidiatus","LC",1,2020
+1,"red-spot rainbowfish","actinopterygii","stethojulis bandanensis","LC",1,2020
+1,"pearl-spotted wrasse","actinopterygii","halichoeres margaritaceus","LC",1,2020
+1,"three-spot wrasse","actinopterygii","halichoeres trimaculatus","LC",1,2020
+1,"silver-streaked rainbowfish","actinopterygii","stethojulis strigiventer","LC",1,2020
+1,"turncoat hogfish","actinopterygii","bodianus axillaris","LC",1,2020
+1,"twospot maori wrasse","actinopterygii","oxycheilinus bimaculatus","LC",1,2020
+1,"purple club-nosed wrasse","actinopterygii","gomphosus varius","LC",1,2020
+1,"whitebanded sharpnose wrasse","actinopterygii","wetmorella albofasciata","LC",1,2020
+1,"ocellated wrasse","actinopterygii","halichoeres melasmapomus","LC",1,2020
+1,"scott's wrasse","actinopterygii","cirrhilabrus scottorum","LC",1,2020
+1,"eightstripe wrasse","actinopterygii","pseudocheilinus octotaenia","LC",1,2020
+1,"long blue-lined wrasse","actinopterygii","pseudojuloides cerasinus","DD",NA,2020
+1,"point-head maori wrasse","actinopterygii","cheilinus oxycephalus","LC",1,2020
+1,"disappearing wrasse","actinopterygii","pseudocheilinus evanidus","LC",1,2020
+1,"knife razorfish","actinopterygii","cymolutes praetextatus","LC",1,2020
+1,"blackspotted wrasse","actinopterygii","macropharyngodon meleagris","LC",1,2020
+1,"narrow-banded rainbowfish","actinopterygii","hologymnosus annulatus","LC",1,2020
+1,NA,"actinopterygii","halichoeres claudia","LC",1,2020
+1,"indianfish blue razorfish","actinopterygii","iniistius pavo","LC",1,2020
+1,"green-blocked wrasse","actinopterygii","thalassoma trilobatum","LC",1,2020
+1,"chisel-tooth wrasse","actinopterygii","pseudodax moluccanus","LC",1,2020
+1,"lyre-tail hogfish","actinopterygii","bodianus anthioides","LC",1,2020
+1,"bluespotted wrasse","actinopterygii","anampses caeruleopunctatus","LC",1,2020
+1,"spotted wrasse","actinopterygii","anampses meleagrides","LC",1,2020
+1,"redlip cleaner wrasse","actinopterygii","labroides rubrolabiatus","LC",1,2020
+1,"two-colour cleaner wrasse","actinopterygii","labroides bicolor","LC",1,2020
+1,"halstead's razorfish","actinopterygii","xyrichtys halsteadi","LC",1,2020
+1,"yellowbreasted wrasse","actinopterygii","anampses twistii","LC",1,2020
+1,"false clownwrasse","actinopterygii","coris aygula","LC",1,2020
+1,"tricolour parrotfish","actinopterygii","scarus tricolor","LC",1,2020
+1,"bullethead parrotfish","actinopterygii","chlorurus spilurus","LC",1,2020
+1,"ember parrotfish","actinopterygii","scarus rubroviolaceus","LC",1,2020
+1,"pacific longnose parrotfish","actinopterygii","hipposcarus longiceps","LC",1,2020
+1,"bridled parrotfish","actinopterygii","scarus frenatus","LC",1,2020
+1,"marbled parrotfish","actinopterygii","leptoscarus vaigiensis","LC",1,2020
+1,"tan-faced parrotfish","actinopterygii","chlorurus frontalis","LC",1,2020
+1,"swamp harrier","aves","circus approximans","LC",1,2020
+1,"pacific reef-egret","aves","egretta sacra","LC",1,2020
+1,"white-bellied storm-petrel","aves","fregetta grallaria","LC",1,2020
+1,"black-bellied storm-petrel","aves","fregetta tropica","LC",1,2020
+1,"chatham albatross","aves","thalassarche eremita","VU",0.6,2020
+1,"common white tern","aves","gygis alba","LC",1,2020
+1,"wilson's storm-petrel","aves","oceanites oceanicus","LC",1,2020
+1,"polynesian storm-petrel","aves","nesofregetta fuliginosa","EN",0.4,2020
+1,"bristle-thighed curlew","aves","numenius tahitiensis","VU",0.6,2020
+1,"grey-backed tern","aves","onychoprion lunatus","LC",1,2020
+1,"white-faced storm-petrel","aves","pelagodroma marina","LC",1,2020
+1,"blue noddy","aves","anous ceruleus","LC",1,2020
+1,"tahiti petrel","aves","pseudobulweria rostrata","NT",0.8,2020
+1,"kermadec petrel","aves","pterodroma neglecta","LC",1,2020
+1,"phoenix petrel","aves","pterodroma alba","EN",0.4,2020
+1,"white-necked petrel","aves","pterodroma cervicalis","VU",0.6,2020
+1,"herald petrel","aves","pterodroma heraldica","LC",1,2020
+1,"tropical shearwater","aves","puffinus bailloni","LC",1,2020
+1,"christmas shearwater","aves","puffinus nativitatis","LC",1,2020
+1,"greater crested tern","aves","thalasseus bergii","LC",1,2020
+1,"wandering tattler","aves","tringa incana","LC",1,2020
+1,"spotless crake","aves","zapornia tabuensis","LC",1,2020
+1,"henderson petrel","aves","pterodroma atrata","EN",0.4,2020
+1,"tahiti swallow","aves","hirundo tahitica","LC",1,2020
+1,"black petrel","aves","procellaria parkinsoni","VU",0.6,2020
+1,"cook's petrel","aves","pterodroma cookii","VU",0.6,2020
+1,"mottled petrel","aves","pterodroma inexpectata","NT",0.8,2020
+1,"black-winged petrel","aves","pterodroma nigripennis","LC",1,2020
+1,"white-winged petrel","aves","pterodroma leucoptera","VU",0.6,2020
+1,"murphy's petrel","aves","pterodroma ultima","NT",0.8,2020
+1,"masked booby","aves","sula dactylatra","LC",1,2020
+1,"brown booby","aves","sula leucogaster","LC",1,2020
+1,"red-footed booby","aves","sula sula","LC",1,2020
+1,"buller's shearwater","aves","ardenna bulleri","VU",0.6,2020
+1,"collared petrel","aves","pterodroma brevipes","VU",0.6,2020
+1,"red-tailed tropicbird","aves","phaethon rubricauda","LC",1,2020
+1,"pacific black duck","aves","anas superciliosa","LC",1,2020
+1,"brown noddy","aves","anous stolidus","LC",1,2020
+1,"black noddy","aves","anous minutus","LC",1,2020
+1,"ruddy turnstone","aves","arenaria interpres","LC",1,2020
+1,"green-backed heron","aves","butorides striata","LC",1,2020
+1,"lesser frigatebird","aves","fregata ariel","LC",1,2020
+1,"white-tailed tropicbird","aves","phaethon lepturus","LC",1,2020
+1,"wedge-tailed shearwater","aves","ardenna pacifica","LC",1,2020
+1,"short-tailed shearwater","aves","ardenna tenuirostris","LC",1,2020
+1,"great frigatebird","aves","fregata minor","LC",1,2020
+1,"sooty tern","aves","onychoprion fuscatus","LC",1,2020
+1,"leatherback turtle","reptilia","dermochelys coriacea","CR",0.2,2020
+1,"sharptooth lemon shark","chondrichthyes","negaprion acutidens","VU",0.6,2020
+1,"shortfin mako","chondrichthyes","isurus oxyrinchus","EN",0.4,2020
+1,"humpback whale","mammalia","megaptera novaeangliae","LC",1,2020
+1,"loggerhead turtle","reptilia","caretta caretta","CR",0.2,2020
+1,"green turtle","reptilia","chelonia mydas","EN",0.4,2020

@@ -191,7 +191,7 @@ spp_class <- inner_join(spp_list, all_df_comp, by = "sciname")
 
 ```
 
-Now need to filter out the sub-populations that I want, since their conservation status is different
+Now need to filter out the sub-populations that I want, since their conservation status is different. This is a bit confusing because there are some species where the specific subpop is relevant, and others that we don't want the subpop for. I removed all the subpopulations, leaving only "NA" in the df, manually grabbed the ones I wanted from that, and then re-joined those into the larger df. 
 
 ```{r}
 
@@ -199,12 +199,18 @@ subpops <- spp_class %>%
   filter(!is.na(population))
 subpops_nm <- unique(subpops$sciname) #16 subpops, only 6 we want the rest can be NA
 
-test <- spp_class[grepl("South Pacific", spp_class$population) | grepl("Hawaiian", spp_class$population) | grepl("Asia", spp_class$population)| grepl("East Pacific", spp_class$population) | grepl("Indo-west", spp_class$population) | grepl("Oceania", spp_class$population),]
+test <- spp_class[grepl("South Pacific", spp_class$population) | grepl("Hawaiian", spp_class$population) | grepl("Asia", spp_class$population)| grepl("East Pacific", spp_class$population) | grepl("Indo-west", spp_class$population) | grepl("Oceania", spp_class$population),] #these are the ones I want
 
 spp_status_final <- spp_class %>% filter(is.na(population)) %>% 
   filter(sciname %!in% test$sciname) %>% 
   bind_rows(., test) %>%
   mutate(region_id = 1) %>% 
+  mutate(
+    stat_score = case_when(
+      sciname %in% "birgus latro" ~ 0.4, #because they are locally endangered
+      TRUE ~ stat_score
+    )
+  ) %>% 
   dplyr::select(region_id,common = name,class,sciname,category = category.x, status = stat_score, year)
 
 #write spp_stats to outputs and toolbox
