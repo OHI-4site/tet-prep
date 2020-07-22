@@ -4,7 +4,7 @@ output: html_document
 ---
 #Summary 
 
-This markdown is the initial data prep for the livelihoods and economy goal. Using the 2018 and 2019 Tetiaroa Society reports as well initial planning documents indicating priority projects and their costs, we will assess the ideal budget to complete the CASUP priority projects, and how much progress has been made towards it. 
+This markdown is the initial data prep for the livelihoods and economy goal. Using the 2018 and 2019 Tetiaroa Society reports as well initial planning documents (CASUP_funding.docx) indicating priority projects and their costs, we will assess the ideal budget to complete the CASUP priority projects, and how much progress has been made towards it. 
 
 Priorities for the CASUP are
 1)	Rat eradication and invasive species control in order to allow bird, plant, and invertebrate populations to rebound. 
@@ -40,7 +40,7 @@ For now, we are simply going to divide the sum of the CASUP priority projects ov
 ```{r}
 #read in the data
 
-funding <- read_csv(file.path(dir_goal, "raw_data_","CASUP_data_18_19.csv")) %>% 
+funding <- read_csv(file.path(dir_goal, "raw_data_","TS_income_18_19.csv")) %>% 
   clean_names()
 
 #sum priority project costs
