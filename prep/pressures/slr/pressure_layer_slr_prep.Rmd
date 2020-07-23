@@ -5,7 +5,7 @@ date: "7/23/2020"
 output: 
   html_document:
     includes:
-      in_header: '~/github/tet-prep/workflow/templates/ohi_hdr.html'
+      in_header: '~/github/tet-prep/workflow/templates/tet_hdr.html'
 ---
 
 # Summary 
