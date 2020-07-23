@@ -1,0 +1,28 @@
+---
+title: "pressure_layer_slr_prep"
+author: "Maddie Berger"
+date: "7/23/2020"
+output: html_document
+---
+
+# Summary 
+
+The sea level rise pressure for Tetiaroa will be derived from a global raster of monthly data indicating sea level anomalies from 1993 to present. This data is clipped to three nautical miles of the coastline in the US Northeast region and aggregated to annual means. All data is rescaled from 0 to 1 using the maximum annual anomaly across the time series as the reference point. 
+
+***
+
+# Data Source
+
+**Reference**: AVISO [Monthly mean Maps of Sea Level Anomaly](http://www.aviso.altimetry.fr/en/data/products/sea-surface-height-products/global/msla-mean-climatology.html#c10358)
+
+**Downloaded**: September 16, 2019
+
+**Description**:  Mean Sea Level Anomaly (m above a climatological mean)
+
+**Native data resolution**: 0.25 degree cells
+
+**Time range**: 1993 - 2015, monthly data provided for each year
+
+**Format**:  NetCDF
+
+***
