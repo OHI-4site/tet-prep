@@ -4,6 +4,7 @@ author: "Maddie Berger"
 date: "7/23/2020"
 output: 
   html_document:
+    theme: cerulean
     includes:
       in_header: '~/github/tet-prep/workflow/templates/tet_hdr.html'
 ---
