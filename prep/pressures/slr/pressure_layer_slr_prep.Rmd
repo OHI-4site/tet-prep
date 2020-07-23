@@ -1,8 +1,11 @@
 ---
-title: "pressure_layer_slr_prep"
+title: "OHI Tetiaroa: Sea Level Rise Pressure Layer"
 author: "Maddie Berger"
 date: "7/23/2020"
-output: html_document
+output: 
+  html_document:
+    includes:
+      in_header: '~/github/tet-prep/workflow/templates/ohi_hdr.html'
 ---
 
 # Summary 
@@ -26,3 +29,48 @@ The sea level rise pressure for Tetiaroa will be derived from a global raster of
 **Format**:  NetCDF
 
 ***
+# Set up 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(fig.width = 10, 
+                      fig.height = 8, 
+                      message = FALSE,
+                      warning = FALSE)
+
+library(raster)
+library(tidyverse)
+library(sf)
+library(RColorBrewer)
+library(googleVis)
+library(foreach)
+library(doParallel)
+library(fasterize)
+library(rasterVis)
+library(animation)
+
+```
+
+# Load Data
+
+
+# Convert .tif files into usable rasters
+
+
+# Calculate annual mean sea level anomalies
+
+
+# Change the projection and mask
+
+
+# Reference point
+
+
+# Rescale
+
+
+# Results
+
+
+## Region scores
+
+
+## Visualize through time
