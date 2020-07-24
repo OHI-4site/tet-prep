@@ -26,11 +26,13 @@ There are a handful of green / eco / sustainable tourism certifications out ther
 
 [EcoTourism Australia](https://www.ecotourism.org.au/our-certification-programs/eco-destination-certification/) considers any place that has met 80% of the requirements in this standard a "nature destination", a place that has met 90% as "ecotourism destination" and one that meets 100% as officially Green Destination Certified. 
 
-For now I'll just use this framework to group the statistics I have into categories. 3 main categories we can start with are:  
+For now I'll just use this framework to group the statistics I have into categories. Under Environment and Climate, Green Destinations has 3 main categories we can start with:  
 
 * Energy use
 * Waste & Recycling
 * Water management
+
+Alban has mentioned they keep "social metrics" as well, so if future data surfaces than this goal could address some of the other themes listed above as well. 
 
 
 ## Set up 

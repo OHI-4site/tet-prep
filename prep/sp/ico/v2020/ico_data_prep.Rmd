@@ -7,7 +7,7 @@ output: html_document
 
 #Summary
 
-Preparing data layer for iconic species, based on list from the Tetiaroa Society website. Thanks to Gage Clawson for helping out with the RRedlist package!
+Preparing data layer for iconic species, based on list from the Tetiaroa Society [website](https://www.tetiaroasociety.org/index.php/island). Thanks to Gage Clawson for helping out with the RRedlist package!
 
 #Set up
 ```{r setup, include=FALSE}
