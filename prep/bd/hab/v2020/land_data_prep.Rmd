@@ -4,13 +4,12 @@ output: html_document
 ---
 # Summary
 
-This script calculates the land habitat score. While for now it is only based on limited information from CASUP planning documents, I will create a framework to easily include more accurate spatial data with the distributions of each habitat.
+This script calculates the land habitat score. Because a long term goal for Tetiaroa is to restore abandoned coconut plantation areas to native vegetation, the status score of the land habitat will be the ratio of native to non native habitat that exists now on the motus. 
 
-For now, we will calculate the scores using the following assumptions:
-- any version of coco forest are not healthy habitat and should be counted as zero
-- since we do not know how much of each motu the coco forests takes up, we will give motus with coco forest a zero
-- all other habitats listed in the `tet_habitats.csv` are counted as native, and will be a 1
-- because Aie, Tahuna Rahu and Tahuna Iti were all referred to as "pristine" in `CASUP_vegetation_and_flora_JYM_2015.docx`, these will get a score of 1.
+Data used for this goal comes from a 2017 forest monitoring monitoring project undertaken by researchers from the University of French Polynesia and Oxford University (CITE). 
+
+[insert more details here once we get Forest Plots data]
+
 
 Each motu will receive a score, and then then scores will be averaged weighted by area of the motu. 
 
