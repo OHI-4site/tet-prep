@@ -32,7 +32,6 @@ For now I'll just use this framework to group the statistics I have into categor
 * Waste & Recycling
 * Water management
 
-It would also be interesting to include something about food sustainability, but will leave that out for now. 
 
 ## Set up 
 ```{r setup, include=FALSE}
@@ -58,7 +57,16 @@ brando_stats <- read_csv(file.path(dir_goal,"_raw_data/tr_stats_beachcomber.csv"
 
 ## Methods
 
-For this goal, we will simply score each sustainability category in terms of how close it is to 100% sustainable, or zero impact. If a category has multiple metrics, those will be averaged to get the category score. We will then average the three category scores to get the final score. 
+For this goal, we will score each sustainability category based on two criteria: 
+
+1. How close it is to 100% sustainable, or zero impact?
+2. Is this category being closely monitored?
+
+If the answer to the second criteria is "no", the score will be reduced by 0.5.
+
+Based on our limited information, we believe that energy and waste meet both these criteria, while water does not. Furthermore, it is unclear how much water sourced from non-native freshwater is actually being used, so its difficult to give this category a score. 
+
+If a category has multiple metrics, those will be averaged to get the category score. We will then average the three category scores to get the final score. 
 
 ```{r}
 
@@ -66,16 +74,25 @@ For this goal, we will simply score each sustainability category in terms of how
 
 energy_score <- brando_stats %>% 
   filter(category == "energy") %>% 
-  filter(percent == 0.7) %>% 
-  dplyr::select(category, units, score = percent)
+  filter(percent == 0.7) %>%
+  mutate(
+    sustainability = percent,
+    monitoring = 1,
+    score = percent*monitoring
+  ) %>% 
+  dplyr::select(category, units, score)
 
 
 #waste - average the three waste scores, since each are a different type of waste
 
 waste_score <- brando_stats %>% 
-  filter(category == "waste") %>% 
+  filter(category == "waste") %>%
+   mutate(
+    sustainability = percent,
+    monitoring = 1,
+    score = percent*monitoring) %>% 
   summarize(
-    score = mean(percent)
+    score = mean(score)
   ) %>% 
   mutate(
     category = "waste",
@@ -88,6 +105,10 @@ waste_score <- brando_stats %>%
 water_score <- brando_stats %>% 
   filter(category == "water") %>% 
   filter(percent == 1) %>% 
+   mutate(
+    sustainability = percent,
+    monitoring = 0.5,
+    score = percent*monitoring) %>% 
   dplyr::select(category, units, score = percent)
 
 ```
@@ -111,7 +132,7 @@ For now, save this to the int folder (once we finalize it, save to outputs and t
 
 ```{r}
 
-write_csv(tr_scores, file.path(dir_goal, "int/tr_status_draft.csv"))
+write_csv(tr_scores, file.path(dir_goal, "int/tr_status_final.csv"))
 
 
 ```
