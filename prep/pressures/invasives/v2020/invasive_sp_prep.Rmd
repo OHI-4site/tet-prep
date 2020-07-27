@@ -1,9 +1,17 @@
 ---
-title: "invasive_sp_prep"
-output: html_document
+title: "OHI Tetiaroa: Invasive Species Pressure"
+authoer: "Madeline Berger"
+output:
+  html_document:
+    highlight: haddock
+    includes:
+      in_header: '~/github/tet-prep/workflow/templates/ohi_hdr.html' 
+    number_sections: yes
+    theme: cerulean
+    toc: yes
 ---
 
-#Summary 
+# Summary 
 
 For the invasive species pressure layer, we will take a very simple approach based on where invasive species exist. We know from the documentation provided by the Tetiaroa Society that there are 5 main invasive species groups they are trying to eradicate: two species of rats, mosquito, biting flies, and ants. We know which motus these have been successfully eliminated off of, so we can quantify which areas have which species. So a perfect score would be an area with 0 invasive species, and the lowest score would be an area with all the invasive species. Scores will be assigned by motu and then weighted by area of the motu. 
 
@@ -31,7 +39,7 @@ dir_github    <- '~/github/tet-prep'
 
 ```
 
-### Read in data 
+## Read in data 
 
 This represents the best of my knowledge based on documents in the drop box Frank sent over and our meeting with Frank and Neil on 7/23. This version does not have the birds because I did not feel there was enough information on them to determine their extent and the damage they cause (i.e. are they really a pressure?)
 
@@ -43,7 +51,8 @@ tet_is <- read_csv(file.path(dir_goal,"_raw_data/tet_invasives.csv")) %>%
 
 
 ```
-### Add score
+
+## Add score
 
 To score, we will divide the total invasive sum by the total possible number to normalize to a 0-1 
 
@@ -79,7 +88,8 @@ tet_is_status <- bind_rows(sp_2019, tet_is_score)
 
 ```
 
-### Create layer with trend
+
+## Create layer with trend
 
 The only invasive species that have been successfully eradicated from any motu are rats. These were successfully eradicated from Reiono, Aie, Tahuna Rahi and Tahuna Iti. It sounds like this was accomplished between 2018 and now, so we'll change the score for 2014 - 2018 to reflect what is show in the table from Russell, Faulquier, and Tonione (2011), and 2019 and 2020 to reflect full rat eradication from these motus. 
 

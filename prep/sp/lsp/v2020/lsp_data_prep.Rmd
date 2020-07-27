@@ -247,7 +247,7 @@ lsp_status <- all_regions %>%
 
 From the protected area file created, write out the individual layers ready for the Toolbox[TM]. These need to include years (2014 - 2020). Since they resort started construction in 2009, and the island was purchased in 1967, most of the ownership can remain the same. The no take zone was established in 2014 so that has not changed either, although if we decide to extend the trend calculation beyond 5 years than it would change.
 
-* areas of each zone and its score for years 2014 - 2020
+- `lsp_status_mgmt.csv` areas of each zone and its score for years 2014 - 2020
 
 ``` {r write_layers, eval = FALSE}
 
@@ -262,8 +262,12 @@ lsp_status_final <- data.frame(
     status = rep(all_regions$status, length(years)),
     year = years
     )
-
+#output
 write_csv(lsp_status_final, file.path(dir_goal, "output/lsp_status_mgmt.csv"))
+
+#toolbox
+
+write.csv(lsp_status_final, file = "~/github/tet-scores/region/layers/lsp_status.csv", row.names = FALSE)
 
 ```
 
