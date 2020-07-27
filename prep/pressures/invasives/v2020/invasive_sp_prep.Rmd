@@ -27,13 +27,13 @@ dir_github    <- '~/github/tet-prep'
 
 ```
 
-Read in data - this represents the best of my knowledge based on documents in the drop box Frank sent over. This version does not have the birds because I did not feel there was enough information on them to determine their extent and the damage they cause (ie are they really a pressure?)
+Read in data - this represents the best of my knowledge based on documents in the drop box Frank sent over. This version does not have the birds because I did not feel there was enough information on them to determine their extent and the damage they cause (i.e. are they really a pressure?)
 
 ```{r}
 
 tet_is <- read_csv(file.path(dir_goal,"_raw_data/tet_invasives.csv")) %>% 
   clean_names() %>% 
-  dplyr::select(name = motu, r_rattus = rats, r_exulans = rats_1, mosquitos,biting_midges, ants, total_invasives)
+  dplyr::select(name = motu, r_rattus = rats_1, r_exulans = rats_2, mosquitos,biting_midges, ants, total_invasives)
 
 
 ```
@@ -64,8 +64,12 @@ tet_is_score <- tet_is %>%
 
 Write this draft layer to int folder for now
 ```{r}
+#to output
+write_csv(tet_is_score, file.path(dir_goal,"output/sp_alien.csv"))
 
-write_csv(tet_is_score, file.path(dir_goal,"int/is_status_draft.csv"))
+#to toolboxy
+
+write_csv(tet_is_score, file = "~/github/tet-scores/region/layers/sp_alient.csv", row.names = FALSE)
 
 ```
 
