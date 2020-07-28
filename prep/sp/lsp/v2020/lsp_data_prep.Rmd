@@ -49,7 +49,7 @@ Below is a table listing these criteria for different management zones in Tetiar
 | :---- | :----------- | :------- | :------- | :------- |
 | All motus | SA Frangipani, The Tetiaroa Society | yes | yes | yes |
 | No-take zone | The Tetiaroa Society, TBSA, FP Gov | yes | no | no |
-| Rest of Lagoon | FP Government, The Tetiaroa Society | yes | yes? | yes |
+| Rest of Lagoon | FP Government, The Tetiaroa Society | yes | no? | yes |
 | 3nm offshore | FP Government | no | no | no | no |
 
 **Motus**
@@ -121,7 +121,7 @@ plot(crop)
 
 ### Calculate region areas 
 
-First, we'll calculate the total area of our buffer, and then subtract the areas of the motus and the no-take zone, which we know is 8869 acres in size. 
+We'll calculate the total area of our buffer, and then subtract the areas of the motus and the no-take zone, which we know is 8869 acres in size. 
 
 ``` {r calc_rgn_area, eval = FALSE}
 

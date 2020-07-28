@@ -2,12 +2,22 @@
 title: "Tetiaroa RRedlist"
 author: "Maddie Berger"
 date: "6/4/2020"
-output: html_document
+html_document:
+    highlight: haddock
+    includes:
+      in_header: '~/github/tet-prep/workflow/templates/ohi_hdr.html' 
+    number_sections: yes
+    theme: cerulean
+    toc: yes
 ---
 
 #Summary
 
-Preparing data layer for iconic species, based on list from the Tetiaroa Society [website](https://www.tetiaroasociety.org/index.php/island). Thanks to Gage Clawson for helping out with the RRedlist package!
+The Iconic Species goal aims to assess the conservation status of species that have particular value to an area. We decided that for this assessment, our iconic species list would be the list of species highlighted on the [Tetiaroa Society's website](https://www.tetiaroasociety.org/index.php/island).
+
+After compiling a list of species from this source, we pulled its conservation status using the IUCN RRedlist package and then assign each species a score based on its conservation status. The overall score is determined by finding the average score per species class, and then taking the overall average among the classes. These last two steps are calculated in the Toolbox found in the tet_scores repository on Github. 
+
+This script contains the process for pulling the conservation information from the IUCN for each species in 2014 - 2020, assigning scores, and writing out the layers to the Toolbox. Thanks to Gage Clawson for helping out with the RRedlist package!
 
 #Set up
 ```{r setup, include=FALSE}
@@ -362,7 +372,6 @@ ico_scores <- status_19 %>%
   bind_rows(.,ico_scores)
 
 ```
-
 
 
 May need to add a gapfilling file, which would just indicate which years were gapfilled and which were not. 

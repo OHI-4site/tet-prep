@@ -9,7 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="Compiled on Fri Jul 24 11:01:29 2020 by berger" />
+<meta name="author" content="Compiled on Tue Jul 28 12:27:40 2020 by berger" />
 
 
 <title>OHI Tetiaroa: Lasting Special Places</title>
@@ -439,7 +439,7 @@ summary {
 
 
 <h1 class="title toc-ignore">OHI Tetiaroa: Lasting Special Places</h1>
-<h4 class="author"><em>Compiled on Fri Jul 24 11:01:29 2020 by berger</em></h4>
+<h4 class="author"><em>Compiled on Tue Jul 28 12:27:40 2020 by berger</em></h4>
 
 </div>
 
@@ -476,6 +476,7 @@ summary {
 <li><span class="math inline">\(Ref\)</span> = 30% of total area within buffer zone is protected</li>
 </ul>
 <hr />
+<p>[better intro here instead of global thing?]</p>
 <p>Because Tetiaroa is such a small area, we will deviate slightly from these methods. First, instead of just calculating protected area within 1km of the shore, we will treat all land areas as coastal land on Tetiaroa, since most motus (individual islands) are not wider than 1 km anyway. Second, instead of creating a buffer of 3nm and treating that as all offshore, we will split up the marine area into two categories: the lagoon area, and the area extending outwards 3nm from each motu (“offshore”).</p>
 <p>Lastly, we will adjust what we define as “area protected”, and rather compute each areas score based on if they meet four criteria, developed through conversations with Frank Murphy and Neil Davies:</p>
 <ol style="list-style-type: decimal">
@@ -533,6 +534,8 @@ summary {
 <p><strong>Rest of the lagoon</strong></p>
 <p>The Tetiaroa Society and The Brando are still involved in the management of the rest of the lagoon, so we consider this area to have multiple stakeholders. There is also technically a plan, as seasonal fishing restrictions are in place and enforced. Frank feels this enforcement is pretty effective, more so than the no-take zone, although its unclear how well the enforcement is monitored. This zone therefore meets 3 out of 4 criteria.</p>
 <p><strong>Offshore</strong></p>
+<p>The marine area 3 nm offshore from Tetiaroa is managed solely by the French Polynesian Government. While there exist restrictions on fishing in all FP waters (ie prohibition on shark fishing), it is unclear if there is a specific management plan. For now, we will consider this area as a zero score as we cannot confirm it meets any of the four criteria.</p>
+<p>The final score will be the average of the land, lagoon and offshore. We will calculate the land score by calculating the weighted average of each motu’s score, which leaves room for the score of a specific motu to change if future monitoring finds that the management plans have not been effective in things like deterring poachers or preventing introductions of native species.</p>
 <hr />
 </div>
 <div id="setup" class="section level2">
@@ -553,12 +556,12 @@ summary {
 <h2><span class="header-section-number">0.3</span> Methods</h2>
 <div id="check-for-overlapping-mpas" class="section level3">
 <h3><span class="header-section-number">0.3.1</span> Check for overlapping MPAs</h3>
-<p>First, we’ll check the WDPA raster and make sure there aren’t any MPAs that fall within our 3nm buffer. Since these all came out as NA, we can conclude there aren’t any MPAs in the offshore area.</p>
+<p>First, we’ll check the WDPA raster and confirm there aren’t any MPAs that fall within our 3nm buffer. Since these all came out as NA, we can conclude there aren’t any MPAs in the offshore area.</p>
 <hr />
 </div>
 <div id="calculate-region-areas" class="section level3">
 <h3><span class="header-section-number">0.3.2</span> Calculate region areas</h3>
-<p>First, we’ll calculate the total area of our buffer, and then subtract the areas of the motus and the no-take zone, which we know is 8869 acres in size</p>
+<p>First, we’ll calculate the total area of our buffer, and then subtract the areas of the motus and the no-take zone, which we know is 8869 acres in size.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co">#buffered area = total area of offshore and onshore we are interested in</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a>calc_area_3nm &lt;-<span class="st"> </span><span class="kw">st_read</span>(<span class="kw">file.path</span>(dir_github, <span class="st">&#39;spatial/shp&#39;</span>), <span class="dt">layer =</span> <span class="st">&#39;tet_buffer_3nm&#39;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb2-3"><a href="#cb2-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">area_m2 =</span> <span class="kw">st_area</span>(.),</span>
@@ -587,69 +590,82 @@ summary {
 <span id="cb3-7"><a href="#cb3-7"></a>    <span class="dt">year =</span> <span class="dv">2020</span></span>
 <span id="cb3-8"><a href="#cb3-8"></a>  )</span>
 <span id="cb3-9"><a href="#cb3-9"></a></span>
-<span id="cb3-10"><a href="#cb3-10"></a></span>
-<span id="cb3-11"><a href="#cb3-11"></a><span class="co">#lagoon - half of this is protected with a no take zone.</span></span>
-<span id="cb3-12"><a href="#cb3-12"></a><span class="co">#convert acres into kilometers squared</span></span>
+<span id="cb3-10"><a href="#cb3-10"></a><span class="co">#lagoon - half of this is protected with a no take zone.</span></span>
+<span id="cb3-11"><a href="#cb3-11"></a><span class="co">#convert acres into kilometers squared</span></span>
+<span id="cb3-12"><a href="#cb3-12"></a><span class="co">##since the no take area is appx. half the lagoon, we can assume the rest of it is the same area.</span></span>
 <span id="cb3-13"><a href="#cb3-13"></a></span>
 <span id="cb3-14"><a href="#cb3-14"></a>no_take_area_km &lt;-<span class="st"> </span><span class="fl">0.00404686</span><span class="op">*</span><span class="dv">8869</span></span>
 <span id="cb3-15"><a href="#cb3-15"></a></span>
-<span id="cb3-16"><a href="#cb3-16"></a>no_take_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
-<span id="cb3-17"><a href="#cb3-17"></a>  <span class="dt">region =</span> <span class="st">&quot;No take zone&quot;</span>,</span>
-<span id="cb3-18"><a href="#cb3-18"></a>  <span class="dt">area_km2 =</span> no_take_area_km,</span>
-<span id="cb3-19"><a href="#cb3-19"></a>  <span class="dt">year =</span> <span class="dv">2020</span></span>
+<span id="cb3-16"><a href="#cb3-16"></a>lagoon_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
+<span id="cb3-17"><a href="#cb3-17"></a>  <span class="dt">region =</span>  <span class="kw">c</span>(<span class="st">&quot;No take zone&quot;</span>,<span class="st">&quot;Rest of lagoon&quot;</span>),</span>
+<span id="cb3-18"><a href="#cb3-18"></a>  <span class="dt">area_km2 =</span> <span class="kw">rep</span>(no_take_area_km,<span class="dv">2</span>),</span>
+<span id="cb3-19"><a href="#cb3-19"></a>  <span class="dt">year =</span> <span class="kw">rep</span>(<span class="dv">2020</span>, <span class="dv">2</span>)</span>
 <span id="cb3-20"><a href="#cb3-20"></a>)</span>
 <span id="cb3-21"><a href="#cb3-21"></a></span>
-<span id="cb3-22"><a href="#cb3-22"></a><span class="co">#create df with the motus and the no take zone, which we&#39;ll subtract from the total to get the offshore </span></span>
-<span id="cb3-23"><a href="#cb3-23"></a></span>
-<span id="cb3-24"><a href="#cb3-24"></a>prot_areas_total &lt;-<span class="st"> </span><span class="kw">bind_rows</span>(area_motus, no_take_df) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb3-25"><a href="#cb3-25"></a><span class="st">  </span><span class="kw">summarize</span>(</span>
-<span id="cb3-26"><a href="#cb3-26"></a>    <span class="dt">total_area_km =</span> <span class="kw">sum</span>(area_km2)</span>
-<span id="cb3-27"><a href="#cb3-27"></a>  )</span>
-<span id="cb3-28"><a href="#cb3-28"></a></span>
-<span id="cb3-29"><a href="#cb3-29"></a><span class="co">#now subtract this total from the total to get the offshore area NOT protected, and combine that all into a df</span></span>
-<span id="cb3-30"><a href="#cb3-30"></a></span>
-<span id="cb3-31"><a href="#cb3-31"></a>non_prot_areas &lt;-<span class="st"> </span>total_tet_area[<span class="dv">1</span>,<span class="dv">3</span>] <span class="op">-</span><span class="st"> </span>prot_areas_total[<span class="dv">1</span>,<span class="dv">1</span>]</span>
+<span id="cb3-22"><a href="#cb3-22"></a> </span>
+<span id="cb3-23"><a href="#cb3-23"></a><span class="co">#create df with the motus and the lagoon, which we&#39;ll subtract from the total to get the offshore + half the lagoon </span></span>
+<span id="cb3-24"><a href="#cb3-24"></a></span>
+<span id="cb3-25"><a href="#cb3-25"></a>motus_lagoon_area &lt;-<span class="st"> </span><span class="kw">bind_rows</span>(area_motus, lagoon_df) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb3-26"><a href="#cb3-26"></a><span class="st">  </span><span class="kw">summarize</span>(</span>
+<span id="cb3-27"><a href="#cb3-27"></a>    <span class="dt">total_area_km =</span> <span class="kw">sum</span>(area_km2)</span>
+<span id="cb3-28"><a href="#cb3-28"></a>  )</span>
+<span id="cb3-29"><a href="#cb3-29"></a></span>
+<span id="cb3-30"><a href="#cb3-30"></a><span class="co">#offshore</span></span>
+<span id="cb3-31"><a href="#cb3-31"></a><span class="co">#now subtract this total from the total to get the offshore area NOT protected, and combine that all into a df</span></span>
 <span id="cb3-32"><a href="#cb3-32"></a></span>
-<span id="cb3-33"><a href="#cb3-33"></a>all_regions_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
-<span id="cb3-34"><a href="#cb3-34"></a>  <span class="dt">region =</span> <span class="st">&quot;No protection&quot;</span>,</span>
-<span id="cb3-35"><a href="#cb3-35"></a>  <span class="dt">area_km2 =</span> non_prot_areas,</span>
-<span id="cb3-36"><a href="#cb3-36"></a>  <span class="dt">year =</span> <span class="dv">2020</span></span>
-<span id="cb3-37"><a href="#cb3-37"></a>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb3-38"><a href="#cb3-38"></a><span class="st">  </span><span class="kw">bind_rows</span>(no_take_df, area_motus)</span>
-<span id="cb3-39"><a href="#cb3-39"></a></span>
-<span id="cb3-40"><a href="#cb3-40"></a><span class="kw">write_csv</span>(all_regions_df, <span class="kw">file.path</span>(dir_goal, <span class="st">&#39;int/all_regions_area.csv&#39;</span>))</span></code></pre></div>
+<span id="cb3-33"><a href="#cb3-33"></a>offshore_area &lt;-<span class="st"> </span>total_tet_area[<span class="dv">1</span>,<span class="dv">3</span>] <span class="op">-</span><span class="st"> </span>motus_lagoon_area[<span class="dv">1</span>,<span class="dv">1</span>]</span>
+<span id="cb3-34"><a href="#cb3-34"></a></span>
+<span id="cb3-35"><a href="#cb3-35"></a>all_regions_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
+<span id="cb3-36"><a href="#cb3-36"></a>  <span class="dt">region =</span> <span class="st">&quot;Offshore&quot;</span>,</span>
+<span id="cb3-37"><a href="#cb3-37"></a>  <span class="dt">area_km2 =</span> offshore_area,</span>
+<span id="cb3-38"><a href="#cb3-38"></a>  <span class="dt">year =</span> <span class="dv">2020</span></span>
+<span id="cb3-39"><a href="#cb3-39"></a>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb3-40"><a href="#cb3-40"></a><span class="st">  </span><span class="kw">bind_rows</span>(lagoon_df, area_motus)</span>
+<span id="cb3-41"><a href="#cb3-41"></a></span>
+<span id="cb3-42"><a href="#cb3-42"></a><span class="kw">write_csv</span>(all_regions_df, <span class="kw">file.path</span>(dir_goal, <span class="st">&#39;int/all_regions_area.csv&#39;</span>))</span></code></pre></div>
 </div>
 <div id="assign-scores" class="section level3">
 <h3><span class="header-section-number">0.3.3</span> Assign scores</h3>
-<p>Next step is to assign scores from 0 - 1 for each area in the data frame. This step is somewhat arbitrary, and could use input from FourSite to refine. For now, we will score the areas as follows:</p>
-<ul>
-<li>Areas that are considered public domain and only have one management party will get a 0</li>
-<li>Areas that are protected with enforcement and have multiple stakeholders will get 1</li>
-<li>Areas that are not protected, but have multiple stakeholders will get 0.7</li>
-<li>Areas that are not protected, but only have one stakeholder will get 0.5</li>
-</ul>
-<p>We will assign these scores to each corresponding zone, and then fine the average score weighted by area.</p>
+<p>Next step is to assign a score of 0 - 4 for each area in the data frame and divide by 4 to normalize to 0 - 1.</p>
+<p>We will calculate the total score by averaging across the land, lagoon and offshore scores.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>all_regions &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="kw">file.path</span>(dir_goal,<span class="st">&quot;int/all_regions_area.csv&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb4-2"><a href="#cb4-2"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
-<span id="cb4-3"><a href="#cb4-3"></a>    <span class="dt">status =</span> <span class="kw">case_when</span>(</span>
-<span id="cb4-4"><a href="#cb4-4"></a>      region <span class="op">%in%</span><span class="st"> &quot;No take zone&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">1</span>,</span>
-<span id="cb4-5"><a href="#cb4-5"></a>      region <span class="op">%in%</span><span class="st"> &quot;No protection&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">0</span>,</span>
-<span id="cb4-6"><a href="#cb4-6"></a>      region <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Onetahi&quot;</span>, <span class="st">&quot;Honuea&quot;</span>) <span class="op">~</span><span class="st"> </span><span class="fl">0.7</span>,</span>
-<span id="cb4-7"><a href="#cb4-7"></a>      <span class="ot">TRUE</span> <span class="op">~</span><span class="st"> </span><span class="fl">0.5</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a>    <span class="dt">score =</span> <span class="kw">case_when</span>(</span>
+<span id="cb4-4"><a href="#cb4-4"></a>      region <span class="op">%in%</span><span class="st"> &quot;No take zone&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">2</span>,</span>
+<span id="cb4-5"><a href="#cb4-5"></a>      region <span class="op">%in%</span><span class="st"> &quot;Offshore&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">0</span>,</span>
+<span id="cb4-6"><a href="#cb4-6"></a>      region <span class="op">%in%</span><span class="st"> &quot;Rest of lagoon&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">3</span>,</span>
+<span id="cb4-7"><a href="#cb4-7"></a>      <span class="ot">TRUE</span> <span class="op">~</span><span class="st"> </span><span class="dv">4</span></span>
 <span id="cb4-8"><a href="#cb4-8"></a>    )</span>
-<span id="cb4-9"><a href="#cb4-9"></a>  )</span>
-<span id="cb4-10"><a href="#cb4-10"></a><span class="co">#note: these calculations will be done in the toolbox, but doing them here now so we can see what the scores would be</span></span>
-<span id="cb4-11"><a href="#cb4-11"></a>lsp_status &lt;-<span class="st"> </span>all_regions <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb4-12"><a href="#cb4-12"></a><span class="st">  </span><span class="kw">summarize</span>(</span>
-<span id="cb4-13"><a href="#cb4-13"></a>    <span class="dt">status =</span> <span class="kw">weighted.mean</span>(status,area_km2)</span>
-<span id="cb4-14"><a href="#cb4-14"></a>  ) <span class="co">#0.149</span></span>
-<span id="cb4-15"><a href="#cb4-15"></a></span>
-<span id="cb4-16"><a href="#cb4-16"></a>lsp_status_noweight &lt;-<span class="st"> </span>all_regions <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb4-17"><a href="#cb4-17"></a><span class="st">  </span><span class="kw">summarize</span>(</span>
-<span id="cb4-18"><a href="#cb4-18"></a>    <span class="dt">status =</span> <span class="kw">mean</span>(status)</span>
-<span id="cb4-19"><a href="#cb4-19"></a>  ) <span class="co">#0.525</span></span>
-<span id="cb4-20"><a href="#cb4-20"></a></span>
-<span id="cb4-21"><a href="#cb4-21"></a><span class="co">#this is super low, consider also making one for just half the lagoon and leaving out the offshore stuff</span></span></code></pre></div>
+<span id="cb4-9"><a href="#cb4-9"></a>  ) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb4-10"><a href="#cb4-10"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
+<span id="cb4-11"><a href="#cb4-11"></a>    <span class="dt">status =</span> score <span class="op">/</span><span class="st"> </span><span class="dv">4</span></span>
+<span id="cb4-12"><a href="#cb4-12"></a>  )</span>
+<span id="cb4-13"><a href="#cb4-13"></a></span>
+<span id="cb4-14"><a href="#cb4-14"></a></span>
+<span id="cb4-15"><a href="#cb4-15"></a><span class="co">#note: these calculations will be done in the toolbox, but doing them here now so we can see what the scores would be</span></span>
+<span id="cb4-16"><a href="#cb4-16"></a>land_status &lt;-<span class="st"> </span>all_regions <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb4-17"><a href="#cb4-17"></a><span class="st">  </span><span class="kw">filter</span>(region <span class="op">%!in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Offshore&quot;</span>,<span class="st">&quot;No take zone&quot;</span>,<span class="st">&quot;Rest of lagoon&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb4-18"><a href="#cb4-18"></a><span class="st">  </span><span class="kw">summarize</span>(</span>
+<span id="cb4-19"><a href="#cb4-19"></a>    <span class="dt">status =</span> <span class="kw">weighted.mean</span>(status,area_km2)</span>
+<span id="cb4-20"><a href="#cb4-20"></a>  ) <span class="co">#1</span></span>
+<span id="cb4-21"><a href="#cb4-21"></a></span>
+<span id="cb4-22"><a href="#cb4-22"></a>lagoon_status &lt;-<span class="st"> </span>all_regions <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb4-23"><a href="#cb4-23"></a><span class="st">  </span><span class="kw">filter</span>(region <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;No take zone&quot;</span>,<span class="st">&quot;Rest of lagoon&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb4-24"><a href="#cb4-24"></a><span class="st">  </span><span class="kw">summarize</span>(</span>
+<span id="cb4-25"><a href="#cb4-25"></a>    <span class="dt">status =</span> <span class="kw">mean</span>(status)</span>
+<span id="cb4-26"><a href="#cb4-26"></a>  ) <span class="co">#0.625</span></span>
+<span id="cb4-27"><a href="#cb4-27"></a></span>
+<span id="cb4-28"><a href="#cb4-28"></a>lsp_status &lt;-<span class="st"> </span>all_regions <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb4-29"><a href="#cb4-29"></a><span class="st">  </span><span class="kw">filter</span>(region <span class="op">==</span><span class="st"> &quot;Offshore&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb4-30"><a href="#cb4-30"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(status) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb4-31"><a href="#cb4-31"></a><span class="st">  </span><span class="kw">bind_rows</span>(land_status, lagoon_status) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb4-32"><a href="#cb4-32"></a><span class="st">  </span><span class="kw">summarize</span>(</span>
+<span id="cb4-33"><a href="#cb4-33"></a>    <span class="dt">status =</span> <span class="kw">mean</span>(status) <span class="co">#0.54</span></span>
+<span id="cb4-34"><a href="#cb4-34"></a>  ) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb4-35"><a href="#cb4-35"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
+<span id="cb4-36"><a href="#cb4-36"></a>    <span class="dt">region_id =</span> <span class="dv">1</span>,</span>
+<span id="cb4-37"><a href="#cb4-37"></a>    <span class="dt">year =</span> <span class="dv">2020</span></span>
+<span id="cb4-38"><a href="#cb4-38"></a>  )</span></code></pre></div>
 <hr />
 </div>
 </div>
@@ -657,7 +673,7 @@ summary {
 <h2><span class="header-section-number">0.4</span> Write out layers</h2>
 <p>From the protected area file created, write out the individual layers ready for the Toolbox[TM]. These need to include years (2014 - 2020). Since they resort started construction in 2009, and the island was purchased in 1967, most of the ownership can remain the same. The no take zone was established in 2014 so that has not changed either, although if we decide to extend the trend calculation beyond 5 years than it would change.</p>
 <ul>
-<li>areas of each zone and its score for years 2014 - 2020</li>
+<li><code>lsp_status_mgmt.csv</code> areas of each zone and its score for years 2014 - 2020</li>
 </ul>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>years =<span class="st"> </span><span class="kw">rep</span>(<span class="kw">seq</span>(<span class="dv">2014</span>,<span class="dv">2020</span>,<span class="dv">1</span>), <span class="dv">16</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb5-2"><a href="#cb5-2"></a><span class="st">  </span><span class="kw">sort</span>()</span>
@@ -670,8 +686,12 @@ summary {
 <span id="cb5-9"><a href="#cb5-9"></a>    <span class="dt">status =</span> <span class="kw">rep</span>(all_regions<span class="op">$</span>status, <span class="kw">length</span>(years)),</span>
 <span id="cb5-10"><a href="#cb5-10"></a>    <span class="dt">year =</span> years</span>
 <span id="cb5-11"><a href="#cb5-11"></a>    )</span>
-<span id="cb5-12"><a href="#cb5-12"></a></span>
-<span id="cb5-13"><a href="#cb5-13"></a><span class="kw">write_csv</span>(lsp_status_final, <span class="kw">file.path</span>(dir_goal, <span class="st">&quot;output/lsp_status_mgmt.csv&quot;</span>))</span></code></pre></div>
+<span id="cb5-12"><a href="#cb5-12"></a><span class="co">#output</span></span>
+<span id="cb5-13"><a href="#cb5-13"></a><span class="kw">write_csv</span>(lsp_status_final, <span class="kw">file.path</span>(dir_goal, <span class="st">&quot;output/lsp_status_mgmt.csv&quot;</span>))</span>
+<span id="cb5-14"><a href="#cb5-14"></a></span>
+<span id="cb5-15"><a href="#cb5-15"></a><span class="co">#toolbox</span></span>
+<span id="cb5-16"><a href="#cb5-16"></a></span>
+<span id="cb5-17"><a href="#cb5-17"></a><span class="kw">write.csv</span>(lsp_status_final, <span class="dt">file =</span> <span class="st">&quot;~/github/tet-scores/region/layers/lsp_status.csv&quot;</span>, <span class="dt">row.names =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
 </div>
 
 
