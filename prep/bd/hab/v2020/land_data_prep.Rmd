@@ -133,6 +133,9 @@ tet_hab_score <- tet_motus %>%
 
 Next step is to use the areas of the motus to weight the average score. That proportion will be the weight applied to that motus score. 
 
+Given we do not have any temporal data indicating change over time, and the fact that we are using two sources from 2015 and 2017, respectively, we can probably just assume the composition of the motus has not changed much since 2020. We'll still create a df with every year to save to the toolbox, in case this is updated in the future. 
+
+
 ```{r}
 
 #find the weighted average
@@ -142,18 +145,26 @@ hab_stat <- tet_hab_score %>%
     weighted_score = weighted.mean(score, area_km2)
   )
 
+years <- seq(2014,2020,1)
+
 #create final data frame
 land_hab_status <- data.frame(
-  region_id = 1,
-  hab_type = "land",
-  status = unique(hab_stat$weighted_score),
-  year = 2020
+  region_id = rep(1, length(years)),
+  hab_type = rep("land", length(years)),
+  status = rep(unique(hab_stat$weighted_score), length(years)),
+  year = years
 )
 
 #write out this draft version to int folder for now
 
-write_csv(land_hab_status, file.path(dir_goal, "output/land_hab_status_scored.csv"))
+write_csv(land_hab_status, file.path(dir_goal, "output/land_hab_status.csv"))
+
+#write to toolbox
+
+
+
 ```
+
 
 Draft score for land habitat, 2020 is the number in the score column in `land_hab_status` data frame. 
 
