@@ -18,7 +18,6 @@ Data used for this goal comes from a 2018 forest monitoring project undertaken b
 
 Each motu will receive a score, and then the final score will be calculated using the average weighted by area of the motu. 
 
-[insert cool tree image from Carol here]
 
 # Set up
 ```{r setup, include=FALSE}
@@ -104,12 +103,12 @@ The motus we have yet to score, and that are not addressed in McIntosh et al. (2
 
 To summarize, our final scoring scheme is as follows: 
 
-| Habitat | Score
-| :--------------- | :-----: |
-| Only native vegetation | 1 |
-| Native vegetation dominant, but some coconut grove | 0.6 |
-| Coconut grove or altered landscape dominant, some vegetation | 0.3 |
-| Dense coconut grove present, lacking details on native vegetation | 0 | 
+| Habitat | Motus | Score
+| :--------------- | :------------ | :-----: |
+| Only native vegetation | Aie, Ahuroa, Tauvine, Tahuna Rahi, Tahuna Iti, Honuea | 1 |
+| Native vegetation dominant, but some coconut grove | Reiono, Rimatu | 0.6 |
+| Coconut grove or altered landscape dominant, some vegetation | Tiaraunu, Onetahi | 0.3 |
+| Dense coconut grove present, lacking details on native vegetation | Hiraanaa, Horoatera | 0 | 
 
 ```{r}
 
