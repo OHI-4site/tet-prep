@@ -14,9 +14,9 @@ output:
 
 This script calculates the land habitat score. Because a long term goal for Tetiaroa is to restore abandoned coconut plantation areas to native vegetation, the status score of the land habitat will be the ratio of native to non native habitat that exists now on the motus. 
 
-Data used for this goal comes from a 2017 forest monitoring monitoring project undertaken by researchers from the University of French Polynesia and Oxford University (CITE) in addition to the CASUP_vegetation_flora_JYM_2015.docx found in the dropbox. Because we are not able to access to database online, these documents simply help us understand what vegetation is dominant on each motu. We will assign scores based on whether the motu is dominated by native vegetation or by coconut grove. 
+Data used for this goal comes from a 2018 forest monitoring project undertaken by researchers from the University of French Polynesia and Oxford University (McIntosh et al., 2018) in addition to the CASUP_vegetation_flora_JYM_2015.docx found in the dropbox. Because we are not able to access to database online, these documents simply help us understand what vegetation is dominant on each motu. We will assign scores based on whether the motu is dominated by native vegetation or by coconut grove. 
 
-Each motu will receive a score, and then then scores will be averaged weighted by area of the motu. 
+Each motu will receive a score, and then the final score will be calculated using the average weighted by area of the motu. 
 
 [insert cool tree image from Carol here]
 
@@ -92,14 +92,14 @@ The image below (screen shot from the report) displays the proportion of each sp
 ![**Figure 1:** Species diversity in each monitored plot (McIntosh et al, 2018)](./_raw_data/forest_sp_graph.png)
 
 
-We get some additional detail from this. First, it appears that Tiaraunu has some coastal "native" vegetation, as one plot was dominated by coco groves and the other is dominated by a native trees, yet still had a substatial proportion of coconut trees (last bar on the graph). We'll therefore increase its score from 0 to 0.3. Second, this report and the Tetiaroa society suggest that Reiono is actually comprised mostly of dense Pisonia grandis forest, which is native and has many ecosystem benefits. Given we are interested in scoring habitats for biodiversity, this merits a higher score than 0.5, so we'll increase it to 0.6 based on the bar graph showing about 2/3 native forest, 1/3 coco forest. It seems like Rimatu also has important native plants (Screwpine), so it seems appropriate to score this motu as 0.6 as well. Lastly, the plot on Onetahi was mostly large native trees, but still had a pretty high proportion of coconut groves. We also know this motu has built environment, so seems best to score it similarly to Tiaraunu.
+We get some additional detail from this. First, it appears that Tiaraunu has some coastal "native" vegetation, as one plot was dominated by coco groves and the other is dominated by a native trees, yet still had a substantial proportion of coconut trees (last bar on the graph). We'll therefore increase its score from 0 to 0.3. Second, this report and the Tetiaroa society suggest that Reiono is actually comprised mostly of dense *Pisonia grandis* forest, which is native and has many ecosystem benefits. Given we are interested in scoring habitats for biodiversity, this merits a higher score than 0.5, so we'll increase it to 0.6 based on the bar graph showing about 2/3 native forest, 1/3 coco forest. It seems like Rimatu also has important native plants (Screwpine), so it seems appropriate to score this motu as 0.6 as well. Lastly, the plot on Onetahi was mostly large native trees, but still had a pretty high proportion of coconut groves. We also know this motu has built environment, so seems best to score it similarly to Tiaraunu.
 
 
 The motus we have yet to score, and that are not addressed in McIntosh et al. (2018) are:   
 
-- **Tauvine:** only shows up in Pemphis thicket, will get a score of 1 since this is a native land cover type
+- **Tauvine:** mostly Pemphis thicket, will get a score of 1 since this is a native land cover type
 - **Ahuroa:** this is a tiny motu (the fourth smallest). We don't have details for it, but is is right next to Tauvine, so we'll assume it has a similar vegetation make up and get the same score of 1
-- **Honuea:** only has cadium marsh, and pandanus forest, both of which are native habitats. Score of 1.
+- **Honuea:** only has cadium marsh, and *Pandanus* forest, both of which are native habitats. Score of 1.
 
 
 To summarize, our final scoring scheme is as follows: 
