@@ -1,0 +1,20 @@
+---
+title: 'OHI Tetiaroa: Coastal Protection'
+author: "Maddie Berger"
+date: "7/29/2020"
+output: html_document
+---
+
+# Summary
+
+The Coasta Protection goal is closely linked to the habitat goal. Tetiaroa is subject to cyclones which can cause substantial damage to the motus. Both the marine habitat and the native vegetation on the motus can help protect against storm surge. Therefore, we will include both land habitat and the coral reef condition in this score. 
+
+
+# Set up
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+# Methods
