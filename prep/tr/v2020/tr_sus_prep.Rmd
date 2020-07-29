@@ -139,3 +139,23 @@ write_csv(tr_scores, file.path(dir_goal, "int/tr_status_final.csv"))
 
 ```
 
+We were not able to find any information on The Brando website or the Beachcomber sustainability document on how the sustainability of the resort has evolved since its opening in 2014. Therefore, for now we will provide the same score for every year since 2014.
+
+```{r}
+
+years <- seq(2014,2020,1)
+
+tr_status <- data.frame(
+  region_id = rep(1, length(years)),
+  status = rep(tr_scores$status, length(years)),
+  year = years
+)
+
+#write out final layer to output and toolbox
+write_csv(tr_status, file.path(dir_goal, "output/tr_status.csv"))
+
+
+write_csv(tr_status, file.path( "~/github/tet-scores/region/layers/tr_status.csv"))
+
+```
+
