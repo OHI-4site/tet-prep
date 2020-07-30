@@ -444,8 +444,8 @@ summary {
 <div id="TOC">
 <ul>
 <li><a href="#summary"><span class="toc-section-number">1</span> Summary</a></li>
-<li><a href="#set-up"><span class="toc-section-number">2</span> Set up</a></li>
-<li><a href="#method"><span class="toc-section-number">3</span> Method</a></li>
+<li><a href="#method"><span class="toc-section-number">2</span> Method</a></li>
+<li><a href="#final-scores"><span class="toc-section-number">3</span> Final scores</a></li>
 </ul>
 </div>
 
@@ -504,57 +504,77 @@ summary {
 </tr>
 </tbody>
 </table>
-<p><strong>Total Yearly Budget</strong> = $2 M USD.</p>
+<p><strong>Total Yearly Budget</strong> = $2,000,000</p>
 <p>To measure the status of this goal, we use the 2018 and 2019 Tetiaroa Society reports for income in 2018 and 2019, and then a measure of $700 K / year for 2020 (per Neil and Frank’s estimation).</p>
 </div>
-<div id="set-up" class="section level1">
-<h1><span class="header-section-number">2</span> Set up</h1>
-</div>
 <div id="method" class="section level1">
-<h1><span class="header-section-number">3</span> Method</h1>
+<h1><span class="header-section-number">2</span> Method</h1>
+<p>This calculation is relatively simple, simply summing the income sources in each year to get the total income, and then dividing by the refernce point described above to get the status score for each year.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">#read in the data</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a></span>
 <span id="cb1-3"><a href="#cb1-3"></a>funding &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="kw">file.path</span>(dir_goal, <span class="st">&quot;raw_data_&quot;</span>,<span class="st">&quot;TS_income_18_19_updated.csv&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="st">  </span><span class="kw">clean_names</span>()</span></code></pre></div>
-<pre><code>## Parsed with column specification:
-## cols(
-##   item = col_character(),
-##   cost_usd = col_number(),
-##   cost_fp = col_character(),
-##   category = col_character(),
-##   year = col_double()
-## )</code></pre>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co">#add 2020 status from Neil&#39;s email</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a></span>
-<span id="cb3-3"><a href="#cb3-3"></a>ts_income_<span class="dv">20</span> &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
-<span id="cb3-4"><a href="#cb3-4"></a>  <span class="dt">category =</span> <span class="st">&quot;ts_income&quot;</span>,</span>
-<span id="cb3-5"><a href="#cb3-5"></a>  <span class="dt">year =</span> <span class="dv">2020</span>,</span>
-<span id="cb3-6"><a href="#cb3-6"></a>  <span class="dt">income =</span> <span class="dv">700000</span></span>
-<span id="cb3-7"><a href="#cb3-7"></a>)</span>
-<span id="cb3-8"><a href="#cb3-8"></a></span>
-<span id="cb3-9"><a href="#cb3-9"></a><span class="co">#sum each category to get total income in each year</span></span>
-<span id="cb3-10"><a href="#cb3-10"></a></span>
-<span id="cb3-11"><a href="#cb3-11"></a>summary &lt;-<span class="st"> </span>funding <span class="op">%&gt;%</span></span>
-<span id="cb3-12"><a href="#cb3-12"></a><span class="st">  </span><span class="co">#filter(category != &quot;goal&quot;) %&gt;% </span></span>
-<span id="cb3-13"><a href="#cb3-13"></a><span class="st">  </span><span class="kw">group_by</span>(category, year) <span class="op">%&gt;%</span></span>
-<span id="cb3-14"><a href="#cb3-14"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">income =</span> <span class="kw">sum</span>(cost_usd)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#find sum of each category in each year</span></span>
-<span id="cb3-15"><a href="#cb3-15"></a><span class="st">  </span><span class="kw">bind_rows</span>(., ts_income_<span class="dv">20</span>)</span></code></pre></div>
-<pre><code>## `summarise()` regrouping output by &#39;category&#39; (override with `.groups` argument)</code></pre>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co">#add </span></span>
-<span id="cb5-2"><a href="#cb5-2"></a></span>
-<span id="cb5-3"><a href="#cb5-3"></a></span>
-<span id="cb5-4"><a href="#cb5-4"></a><span class="co">#calculate scores and create status df</span></span>
-<span id="cb5-5"><a href="#cb5-5"></a></span>
-<span id="cb5-6"><a href="#cb5-6"></a>CE_status &lt;-<span class="st"> </span>summary <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb5-7"><a href="#cb5-7"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
-<span id="cb5-8"><a href="#cb5-8"></a>    <span class="dt">status =</span> income<span class="op">/</span><span class="dv">2000000</span></span>
-<span id="cb5-9"><a href="#cb5-9"></a>  ) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb5-10"><a href="#cb5-10"></a><span class="st">  </span><span class="kw">filter</span>(category <span class="op">%!in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;goal&quot;</span>,<span class="st">&quot;TS_cost&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb5-11"><a href="#cb5-11"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
-<span id="cb5-12"><a href="#cb5-12"></a>    <span class="dt">region_id =</span> <span class="dv">1</span></span>
-<span id="cb5-13"><a href="#cb5-13"></a>  )</span></code></pre></div>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="st">  </span><span class="kw">clean_names</span>()</span>
+<span id="cb1-5"><a href="#cb1-5"></a></span>
+<span id="cb1-6"><a href="#cb1-6"></a></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="co">#add 2020 status from Neil&#39;s email</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a></span>
+<span id="cb1-9"><a href="#cb1-9"></a>ts_income_<span class="dv">20</span> &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
+<span id="cb1-10"><a href="#cb1-10"></a>  <span class="dt">category =</span> <span class="st">&quot;ts_income&quot;</span>,</span>
+<span id="cb1-11"><a href="#cb1-11"></a>  <span class="dt">year =</span> <span class="dv">2020</span>,</span>
+<span id="cb1-12"><a href="#cb1-12"></a>  <span class="dt">income =</span> <span class="dv">700000</span></span>
+<span id="cb1-13"><a href="#cb1-13"></a>)</span>
+<span id="cb1-14"><a href="#cb1-14"></a></span>
+<span id="cb1-15"><a href="#cb1-15"></a><span class="co">#sum each category to get total income in each year</span></span>
+<span id="cb1-16"><a href="#cb1-16"></a></span>
+<span id="cb1-17"><a href="#cb1-17"></a>summary &lt;-<span class="st"> </span>funding <span class="op">%&gt;%</span></span>
+<span id="cb1-18"><a href="#cb1-18"></a><span class="st">  </span><span class="co">#filter(category != &quot;goal&quot;) %&gt;% </span></span>
+<span id="cb1-19"><a href="#cb1-19"></a><span class="st">  </span><span class="kw">group_by</span>(category, year) <span class="op">%&gt;%</span></span>
+<span id="cb1-20"><a href="#cb1-20"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">income =</span> <span class="kw">sum</span>(cost_usd)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#find sum of each category in each year</span></span>
+<span id="cb1-21"><a href="#cb1-21"></a><span class="st">  </span><span class="kw">bind_rows</span>(., ts_income_<span class="dv">20</span>)</span>
+<span id="cb1-22"><a href="#cb1-22"></a></span>
+<span id="cb1-23"><a href="#cb1-23"></a></span>
+<span id="cb1-24"><a href="#cb1-24"></a><span class="co">#calculate scores and create status df</span></span>
+<span id="cb1-25"><a href="#cb1-25"></a></span>
+<span id="cb1-26"><a href="#cb1-26"></a>CE_status &lt;-<span class="st"> </span>summary <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb1-27"><a href="#cb1-27"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
+<span id="cb1-28"><a href="#cb1-28"></a>    <span class="dt">status =</span> income<span class="op">/</span><span class="dv">2000000</span></span>
+<span id="cb1-29"><a href="#cb1-29"></a>  ) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb1-30"><a href="#cb1-30"></a><span class="st">  </span><span class="kw">filter</span>(category <span class="op">%!in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;goal&quot;</span>,<span class="st">&quot;TS_cost&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb1-31"><a href="#cb1-31"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
+<span id="cb1-32"><a href="#cb1-32"></a>    <span class="dt">region_id =</span> <span class="dv">1</span></span>
+<span id="cb1-33"><a href="#cb1-33"></a>  )</span></code></pre></div>
 <p>Write out layers to output folder and to Toolbox</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">write_csv</span>(CE_status, <span class="kw">file.path</span>(dir_goal, <span class="st">&quot;output/CE_status.csv&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">write_csv</span>(CE_status, <span class="kw">file.path</span>(dir_goal, <span class="st">&quot;output/CE_status.csv&quot;</span>))</span></code></pre></div>
+</div>
+<div id="final-scores" class="section level1">
+<h1><span class="header-section-number">3</span> Final scores</h1>
+<p>With this method, the final status scores are:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Year</th>
+<th align="left">Yearly Income</th>
+<th align="left">Status Score</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">2018</td>
+<td align="left">$500641.20</td>
+<td align="left">0.2503206</td>
+</tr>
+<tr class="even">
+<td align="left">2019</td>
+<td align="left">$828701.00</td>
+<td align="left">0.4143505</td>
+</tr>
+<tr class="odd">
+<td align="left">2020</td>
+<td align="left">$700000.00</td>
+<td align="left">0.3500000</td>
+</tr>
+</tbody>
+</table>
 </div>
 
 

@@ -11,7 +11,7 @@ output:
 ---
 # Summary 
 
-This markdown is the initial data prep for the livelihoods and economy goal. There are very few full time residents on the island, and all of them are employed by The Brando or the Tetiaroa Society. Essentially all of the Tetiaroa Society's activities and expenditures are related to environmental and cultural conservation of the island, so we refer to this goal in this context "Conservation Economy" - (MORE). Also, because a portion of the Tetiaroa Society's income comes from guest fees at the resort, we can make the link between a health ocean that attracts tourism, and generating the funds necessary to help preserve it. 
+This markdown is the initial data prep for the livelihoods and economy goal. There are very few full time residents on the island, and all of them are employed by The Brando or the Tetiaroa Society. Essentially all of the Tetiaroa Society's activities and expenditures are related to environmental and cultural conservation of the island, so we refer to this goal in this context "Conservation Economy". Also, because a portion of the Tetiaroa Society's income comes from guest fees at the resort, there is a direct link between a healthy ocean or island environment that attracts tourism, and generating the funds necessary to help preserve it. 
 
 We use the Tetiaroa's Society fundraising goal as the reference point, which breaks down as follows:
 
@@ -25,14 +25,13 @@ We use the Tetiaroa's Society fundraising goal as the reference point, which bre
 | Cultural and Educational Programs | $100 K |       |
 | Blue Climate Initiative | $100 K |       |
 
-**Total Yearly Budget** = $2 M USD. 
+**Total Yearly Budget** = $2,000,000 
 
 
 To measure the status of this goal, we use the 2018 and 2019 Tetiaroa Society reports for income in 2018 and 2019, and then a measure of $700 K / year for 2020 (per Neil and Frank's estimation). 
 
-# Set up
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
 
 library(tidyverse)
 library(here)
@@ -77,8 +76,6 @@ summary <- funding %>%
   group_by(category, year) %>%
   summarize(income = sum(cost_usd)) %>% #find sum of each category in each year
   bind_rows(., ts_income_20)
-  
-#add 
 
 
 #calculate scores and create status df
@@ -99,15 +96,15 @@ Write out layers to output folder and to Toolbox
 
 write_csv(CE_status, file.path(dir_goal, "output/CE_status.csv"))
 
-
 ```
 
+# Final scores
 
 With this method, the final status scores are: 
 
 
 | Year | Yearly Income | Status Score |
 | :------ | :-------- | :------- | 
-| 2018 | $500641.20 |   | 
-| 2019 | $828701.00 |   |
-| 2020 | $700000.00 |   |
+| 2018 | $500641.20 | 0.2503206  | 
+| 2019 | $828701.00 | 0.4143505  |
+| 2020 | $700000.00 | 0.3500000  |
