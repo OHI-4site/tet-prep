@@ -441,8 +441,16 @@ summary {
 
 </div>
 
+<div id="TOC">
+<ul>
+<li><a href="#summary"><span class="toc-section-number">1</span> Summary</a></li>
+<li><a href="#set-up"><span class="toc-section-number">2</span> Set up</a></li>
+<li><a href="#method"><span class="toc-section-number">3</span> Method</a></li>
+</ul>
+</div>
 
-<p>#Summary</p>
+<div id="summary" class="section level1">
+<h1><span class="header-section-number">1</span> Summary</h1>
 <p>This markdown is the initial data prep for the livelihoods and economy goal. There are very few full time residents on the island, and all of them are employed by The Brando or the Tetiaroa Society. Essentially all of the Tetiaroa Society’s activities and expenditures are related to environmental and cultural conservation of the island, so we refer to this goal in this context “Conservation Economy” - (MORE). Also, because a portion of the Tetiaroa Society’s income comes from guest fees at the resort, we can make the link between a health ocean that attracts tourism, and generating the funds necessary to help preserve it.</p>
 <p>We use the Tetiaroa’s Society fundraising goal as the reference point, which breaks down as follows:</p>
 <table>
@@ -497,63 +505,57 @@ summary {
 </tbody>
 </table>
 <p><strong>Total Yearly Budget</strong> = $2 M USD.</p>
-<p>Using the 2018 and 2019 Tetiaroa Society reports as well initial planning documents (CASUP_funding.docx) indicating priority projects and their costs, we will assess the ideal budget to complete the CASUP priority projects, and how much progress has been made towards it.</p>
-<p>Priorities for the CASUP are 1) Rat eradication and invasive species control in order to allow bird, plant, and invertebrate populations to rebound. 2) Detailed surveys of biota and cultural sites along with the creation of precise maps using LIDAR and ground-based GPS. 3) Development of an education program with local school children and the construction of a Cultural Center for this program. 4) Creation of a database as the foundation of the Island Digital Ecosystem Avatar for Tetiaroa.</p>
-<p>#Set up</p>
-<p>#Method</p>
-<p>For now, we are simply going to divide the sum of the CASUP priority projects over 3 years, and then measure how close the TS_income total has come to that amount.</p>
+<p>To measure the status of this goal, we use the 2018 and 2019 Tetiaroa Society reports for income in 2018 and 2019, and then a measure of $700 K / year for 2020 (per Neil and Frank’s estimation).</p>
+</div>
+<div id="set-up" class="section level1">
+<h1><span class="header-section-number">2</span> Set up</h1>
+</div>
+<div id="method" class="section level1">
+<h1><span class="header-section-number">3</span> Method</h1>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">#read in the data</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a></span>
-<span id="cb1-3"><a href="#cb1-3"></a>funding &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="kw">file.path</span>(dir_goal, <span class="st">&quot;raw_data_&quot;</span>,<span class="st">&quot;TS_income_18_19.csv&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb1-3"><a href="#cb1-3"></a>funding &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="kw">file.path</span>(dir_goal, <span class="st">&quot;raw_data_&quot;</span>,<span class="st">&quot;TS_income_18_19_updated.csv&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb1-4"><a href="#cb1-4"></a><span class="st">  </span><span class="kw">clean_names</span>()</span></code></pre></div>
-<pre><code>## Warning: Missing column names filled in: &#39;X6&#39; [6], &#39;X7&#39; [7]</code></pre>
 <pre><code>## Parsed with column specification:
 ## cols(
 ##   item = col_character(),
-##   `cost (USD)` = col_number(),
-##   `cost(FP)` = col_character(),
+##   cost_usd = col_number(),
+##   cost_fp = col_character(),
 ##   category = col_character(),
-##   year = col_double(),
-##   X6 = col_logical(),
-##   X7 = col_logical(),
-##   `Income 2019 (USD)` = col_number(),
-##   `Income 2018 (USD)` = col_number(),
-##   `ref_goal 2016` = col_double(),
-##   `status 2019` = col_double(),
-##   `status 2018` = col_double()
+##   year = col_double()
 ## )</code></pre>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co">#sum priority project costs</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a></span>
-<span id="cb4-3"><a href="#cb4-3"></a>summary &lt;-<span class="st"> </span>funding <span class="op">%&gt;%</span></span>
-<span id="cb4-4"><a href="#cb4-4"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(item, cost_usd,category,year) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb4-5"><a href="#cb4-5"></a><span class="st">  </span><span class="kw">group_by</span>(category, year) <span class="op">%&gt;%</span></span>
-<span id="cb4-6"><a href="#cb4-6"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">income =</span> <span class="kw">sum</span>(cost_usd)) <span class="co">#find sum of each category in each year</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co">#add 2020 status from Neil&#39;s email</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a></span>
+<span id="cb3-3"><a href="#cb3-3"></a>ts_income_<span class="dv">20</span> &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
+<span id="cb3-4"><a href="#cb3-4"></a>  <span class="dt">category =</span> <span class="st">&quot;ts_income&quot;</span>,</span>
+<span id="cb3-5"><a href="#cb3-5"></a>  <span class="dt">year =</span> <span class="dv">2020</span>,</span>
+<span id="cb3-6"><a href="#cb3-6"></a>  <span class="dt">income =</span> <span class="dv">700000</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a>)</span>
+<span id="cb3-8"><a href="#cb3-8"></a></span>
+<span id="cb3-9"><a href="#cb3-9"></a><span class="co">#sum each category to get total income in each year</span></span>
+<span id="cb3-10"><a href="#cb3-10"></a></span>
+<span id="cb3-11"><a href="#cb3-11"></a>summary &lt;-<span class="st"> </span>funding <span class="op">%&gt;%</span></span>
+<span id="cb3-12"><a href="#cb3-12"></a><span class="st">  </span><span class="co">#filter(category != &quot;goal&quot;) %&gt;% </span></span>
+<span id="cb3-13"><a href="#cb3-13"></a><span class="st">  </span><span class="kw">group_by</span>(category, year) <span class="op">%&gt;%</span></span>
+<span id="cb3-14"><a href="#cb3-14"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">income =</span> <span class="kw">sum</span>(cost_usd)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#find sum of each category in each year</span></span>
+<span id="cb3-15"><a href="#cb3-15"></a><span class="st">  </span><span class="kw">bind_rows</span>(., ts_income_<span class="dv">20</span>)</span></code></pre></div>
 <pre><code>## `summarise()` regrouping output by &#39;category&#39; (override with `.groups` argument)</code></pre>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co">#calculate scores</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a>  </span>
-<span id="cb6-3"><a href="#cb6-3"></a>score &lt;-<span class="st"> </span><span class="kw">bind_cols</span>((ref_<span class="dv">2016</span> &lt;-<span class="st"> </span>summary[<span class="dv">1</span>,<span class="dv">3</span>] <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">ref_2016 =</span> income<span class="op">/</span><span class="dv">3</span>)), </span>
-<span id="cb6-4"><a href="#cb6-4"></a>                   (income_<span class="dv">18</span> &lt;-<span class="st"> </span>summary[<span class="dv">4</span>,<span class="dv">3</span>]), </span>
-<span id="cb6-5"><a href="#cb6-5"></a>                   (income_<span class="dv">19</span> &lt;-<span class="st"> </span>summary[<span class="dv">5</span>,<span class="dv">3</span>])) <span class="op">%&gt;%</span></span>
-<span id="cb6-6"><a href="#cb6-6"></a><span class="st">  </span><span class="kw">clean_names</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb6-7"><a href="#cb6-7"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
-<span id="cb6-8"><a href="#cb6-8"></a>    <span class="dt">status_18 =</span> income_<span class="dv">3</span><span class="op">/</span>ref_<span class="dv">2016</span>,</span>
-<span id="cb6-9"><a href="#cb6-9"></a>    <span class="dt">status_19 =</span> income_<span class="dv">4</span><span class="op">/</span>ref_<span class="dv">2016</span></span>
-<span id="cb6-10"><a href="#cb6-10"></a>  )</span></code></pre></div>
-<pre><code>## New names:
-## * income -&gt; income...1
-## * income -&gt; income...3
-## * income -&gt; income...4</code></pre>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co">#create status df</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a></span>
-<span id="cb8-3"><a href="#cb8-3"></a>liv_status &lt;-<span class="st"> </span><span class="kw">data_frame</span>(</span>
-<span id="cb8-4"><a href="#cb8-4"></a>  <span class="dt">region_id =</span> <span class="kw">rep</span>(<span class="dv">1</span>, <span class="dv">2</span>),</span>
-<span id="cb8-5"><a href="#cb8-5"></a>  <span class="dt">year =</span> <span class="kw">c</span>(<span class="dv">2018</span>,<span class="dv">2019</span>),</span>
-<span id="cb8-6"><a href="#cb8-6"></a>  <span class="dt">status =</span> <span class="kw">c</span>(score<span class="op">$</span>status_<span class="dv">18</span>, score<span class="op">$</span>status_<span class="dv">19</span>)</span>
-<span id="cb8-7"><a href="#cb8-7"></a>)</span></code></pre></div>
-<pre><code>## Warning: `data_frame()` is deprecated as of tibble 1.1.0.
-## Please use `tibble()` instead.
-## This warning is displayed once every 8 hours.
-## Call `lifecycle::last_warnings()` to see where this warning was generated.</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co">#add </span></span>
+<span id="cb5-2"><a href="#cb5-2"></a></span>
+<span id="cb5-3"><a href="#cb5-3"></a></span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="co">#calculate scores and create status df</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a></span>
+<span id="cb5-6"><a href="#cb5-6"></a>CE_status &lt;-<span class="st"> </span>summary <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb5-7"><a href="#cb5-7"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
+<span id="cb5-8"><a href="#cb5-8"></a>    <span class="dt">status =</span> income<span class="op">/</span><span class="dv">2000000</span></span>
+<span id="cb5-9"><a href="#cb5-9"></a>  ) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb5-10"><a href="#cb5-10"></a><span class="st">  </span><span class="kw">filter</span>(category <span class="op">%!in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;goal&quot;</span>,<span class="st">&quot;TS_cost&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb5-11"><a href="#cb5-11"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
+<span id="cb5-12"><a href="#cb5-12"></a>    <span class="dt">region_id =</span> <span class="dv">1</span></span>
+<span id="cb5-13"><a href="#cb5-13"></a>  )</span></code></pre></div>
+<p>Write out layers to output folder and to Toolbox</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">write_csv</span>(CE_status, <span class="kw">file.path</span>(dir_goal, <span class="st">&quot;output/CE_status.csv&quot;</span>))</span></code></pre></div>
+</div>
 
 
 

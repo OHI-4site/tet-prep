@@ -1,0 +1,4 @@
+category,year,income,status,region_id
+TS_income,2018,500641.22,0.25032061,1
+TS_income,2019,828701,0.4143505,1
+ts_income,2020,700000,0.35,1

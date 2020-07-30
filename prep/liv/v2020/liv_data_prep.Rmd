@@ -53,41 +53,61 @@ dir_github    <- '~/github/tet-prep'
 
 # Method
 
+This calculation is relatively simple, simply summing the income sources in each year to get the total income, and then dividing by the refernce point described above to get the status score for each year. 
 
 ```{r}
 #read in the data
 
-funding <- read_csv(file.path(dir_goal, "raw_data_","TS_income_18_19.csv")) %>% 
-  clean_names() %>% 
-  dplyr::select(item, cost_usd,category,year)
+funding <- read_csv(file.path(dir_goal, "raw_data_","TS_income_18_19_updated.csv")) %>% 
+  clean_names()
 
-#sum priority project costs
+
+#add 2020 status from Neil's email
+
+ts_income_20 <- data.frame(
+  category = "ts_income",
+  year = 2020,
+  income = 700000
+)
+
+#sum each category to get total income in each year
 
 summary <- funding %>%
+  #filter(category != "goal") %>% 
   group_by(category, year) %>%
-  summarize(income = sum(cost_usd)) %>% 
-  #find sum of each category in each year
-
-#calculate scores
+  summarize(income = sum(cost_usd)) %>% #find sum of each category in each year
+  bind_rows(., ts_income_20)
   
-score <- bind_cols((ref_2016 <- summary[1,3] %>% mutate(ref_2016 = income/3)), 
-                   (income_18 <- summary[4,3]), 
-                   (income_19 <- summary[5,3])) %>%
-  clean_names() %>% 
+#add 
+
+
+#calculate scores and create status df
+
+CE_status <- summary %>% 
   mutate(
-    status_18 = income_3/ref_2016,
-    status_19 = income_4/ref_2016
+    status = income/2000000
+  ) %>% 
+  filter(category %!in% c("goal","TS_cost")) %>% 
+  mutate(
+    region_id = 1
   )
+```
 
-#create status df
+Write out layers to output folder and to Toolbox
 
-liv_status <- data_frame(
-  region_id = rep(1, 2),
-  year = c(2018,2019),
-  status = c(score$status_18, score$status_19)
-)
+```{r}
+
+write_csv(CE_status, file.path(dir_goal, "output/CE_status.csv"))
+
 
 ```
 
 
+With this method, the final status scores are: 
 
+
+| Year | Yearly Income | Status Score |
+| :------ | :-------- | :------- | 
+| 2018 | $500641.20 |   | 
+| 2019 | $828701.00 |   |
+| 2020 | $700000.00 |   |
