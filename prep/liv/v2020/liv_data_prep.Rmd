@@ -1,19 +1,36 @@
 ---
-title: "le_data_prep"
-output: html_document
+title: "OHI Tetiaroa: Conservation Economy"
+output:
+  html_document:
+    highlight: haddock
+    includes:
+      in_header: '~/github/tet-prep/workflow/templates/ohi_hdr.html' 
+    number_sections: yes
+    theme: cerulean
+    toc: yes
 ---
-#Summary 
+# Summary 
 
-This markdown is the initial data prep for the livelihoods and economy goal. Using the 2018 and 2019 Tetiaroa Society reports as well initial planning documents (CASUP_funding.docx) indicating priority projects and their costs, we will assess the ideal budget to complete the CASUP priority projects, and how much progress has been made towards it. 
+This markdown is the initial data prep for the livelihoods and economy goal. There are very few full time residents on the island, and all of them are employed by The Brando or the Tetiaroa Society. Essentially all of the Tetiaroa Society's activities and expenditures are related to environmental and cultural conservation of the island, so we refer to this goal in this context "Conservation Economy" - (MORE). Also, because a portion of the Tetiaroa Society's income comes from guest fees at the resort, we can make the link between a health ocean that attracts tourism, and generating the funds necessary to help preserve it. 
 
-Priorities for the CASUP are
-1)	Rat eradication and invasive species control in order to allow bird, plant, and invertebrate populations to rebound. 
-2)	Detailed surveys of biota and cultural sites along with the creation of precise maps using LIDAR and ground-based GPS.
-3)	Development of an education program with local school children and the construction of a Cultural Center for this program. 
-4)	Creation of a database as the foundation of the Island Digital Ecosystem Avatar for Tetiaroa. 
+We use the Tetiaroa's Society fundraising goal as the reference point, which breaks down as follows:
+
+| Item | Yearly Cost | Description | 
+| :------- | :--------: | :------------ |
+| Operations | $700 K | Covers core staff and facilities maintenance / depreciation | 
+| **Mission Programs:** |       |          |
+| Conservation & Sustainable Use Plan | $ 250 K 
+| Social-Ecological System Observatory | $750 K | Monitoring CASUP, data management, and establishing baselines for science |
+| Science Programs | $100 K | Seed grants, equipment, meetings, workshops |
+| Cultural and Educational Programs | $100 K |       |
+| Blue Climate Initiative | $100 K |       |
+
+**Total Yearly Budget** = $2 M USD. 
 
 
-#Set up
+To measure the status of this goal, we use the 2018 and 2019 Tetiaroa Society reports for income in 2018 and 2019, and then a measure of $700 K / year for 2020 (per Neil and Frank's estimation). 
+
+# Set up
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
@@ -34,21 +51,22 @@ dir_github    <- '~/github/tet-prep'
 
 ```
 
-#Method
+# Method
 
-For now, we are simply going to divide the sum of the CASUP priority projects over 3 years, and then measure how close the TS_income total has come to that amount. 
+
 ```{r}
 #read in the data
 
 funding <- read_csv(file.path(dir_goal, "raw_data_","TS_income_18_19.csv")) %>% 
-  clean_names()
+  clean_names() %>% 
+  dplyr::select(item, cost_usd,category,year)
 
 #sum priority project costs
 
 summary <- funding %>%
-  dplyr::select(item, cost_usd,category,year) %>% 
   group_by(category, year) %>%
-  summarize(income = sum(cost_usd)) #find sum of each category in each year
+  summarize(income = sum(cost_usd)) %>% 
+  #find sum of each category in each year
 
 #calculate scores
   
