@@ -52,7 +52,7 @@ dir_github    <- '~/github/tet-prep'
 
 # Method
 
-This calculation is relatively simple, simply summing the income sources in each year to get the total income, and then dividing by the refernce point described above to get the status score for each year. 
+This calculation is relatively simple, summing the income sources in each year to get the total income, and then dividing by the reference point described above to get the status score for each year. 
 
 ```{r}
 #read in the data
@@ -95,6 +95,10 @@ Write out layers to output folder and to Toolbox
 ```{r}
 
 write_csv(CE_status, file.path(dir_goal, "output/CE_status.csv"))
+
+#tool box
+
+write.csv(CE_status, file = "~/github/tet-scores/region/layers/liv_status.csv", row.names = FALSE)
 
 ```
 
