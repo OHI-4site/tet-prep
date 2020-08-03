@@ -92,9 +92,9 @@ Between the report and the species profiles on the Tetiaroa Society we can see t
 | Habitat | Score |
 | :--------------- | :------------ |
 | Only native vegetation | 1 |
-| Native vegetation dominant, but some coconut grove | 0.6 |
-| Coconut grove or altered landscape dominant, some vegetation | 0.3 |
-| Dense coconut grove present, lacking details on native vegetation | 0 | 
+| Native vegetation mixed with coconut grove | 0.5 |
+| Landscaped area | 0.3 |
+| Only coconut grove | 0 | 
 
 ```{r}
 
@@ -119,7 +119,7 @@ hab_scores <- tet_hab %>%
   
 ```
 
-We'll do the actual weighting calculation in the Toolbox. The tricky part is the trend - come back to this. 
+We'll do the actual weighting calculation in the Toolbox. The tricky part is the trend - come back to this. Guessing that the trend for the last 5 years will be pretty close to zero  
 
 ```{r}
 
