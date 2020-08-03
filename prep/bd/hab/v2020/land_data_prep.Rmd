@@ -14,9 +14,11 @@ output:
 
 This script calculates the land habitat score. Because a long term goal for Tetiaroa is to restore abandoned coconut plantation areas to native vegetation, the status score of the land habitat will be the ratio of native to non native habitat that exists now on the motus. 
 
-Data used for this goal comes from a 2018 forest monitoring project undertaken by researchers from the University of French Polynesia and Oxford University (McIntosh et al., 2018) in addition to the CASUP_vegetation_flora_JYM_2015.docx found in the dropbox. Because we are not able to access to database online, these documents simply help us understand what vegetation is dominant on each motu. We will assign scores based on whether the motu is dominated by native vegetation or by coconut grove. 
+Possible data used this goal comes from a variety of sources, including a 2018 forest monitoring project undertaken by researchers from the University of French Polynesia and Oxford University (McIntosh et al., 2018) in addition to the CASUP_vegetation_flora_JYM_2015.docx found in the dropbox. However, Frank felt that neither of these documents provided an accurate enough assessment of vegetation on each motu. The monitoring report only includes data for small plots on each motu, and the document just lists which habitats exist on each motu, not their extents.
 
-Each motu will receive a score, and then the final score will be calculated using the average weighted by area of the motu. 
+Frank used Google Earth to estimate the area of coconut grove, coconut grove and native habitat mix, and just native habitat. He also includes the estimated area of landscaped habitat on Onetahi. 
+
+We will assign scores based on whether the motu is dominated by native vegetation or by coconut grove. Each motu will receive a score, and then the final score will be calculated using the average weighted by area of the motu. 
 
 
 # Set up
@@ -40,40 +42,38 @@ dir_github    <- '~/github/tet-prep'
 
 #read in habitat data
 
-tet_hab <- read_csv(file.path(dir_goal, "_raw_data/tet_habitats_casup.csv")) %>%
+tet_hab <- read_csv(file.path(dir_goal, "_raw_data/frank_motu_veg_type.csv")) %>%
   clean_names()
 ```
 
 # Methods
 
+## Compare areas
+
+First, we'll just makes sure that the areas calculated with our shapefile are similar to the areas Frank has on his document.
+
+```{r}
+
+frank_area <- tet_hab %>%
+  dplyr::select(name = motu,total_area_ha = total_area)
+
+area_comparison <- left_join(tet_motus, frank_area, by = "name") %>%
+  filter(name != "Aie") %>% 
+  mutate(
+    area_calc = total_area_ha * 0.01
+  )
+  
+## looks pretty good
+
+
+```
+
+
 ## Assigning habitat scores
 
 Looking at the CASUP habitat document, we can see that there are four motus that have "very dense coco forest". All four also have another type of vegetation. Do some exploring to come up with the best scoring scheme: 
 
-```{r}
-
-#lets see what vegetation types are on the "pristine" atolls
-
-tet_pristine <- tet_hab %>% 
-  filter(str_detect(motu, pattern = "AIE") | str_detect(motu, pattern = "TAR") | str_detect(motu, pattern = "TAI"))
-
-#looks like there are only thickets and native forest. These habitats will get a score of 1. 
-
-tet_coco <- tet_hab %>%
-  filter(str_detect(motu, pattern = "TIA") | str_detect(motu, pattern = "HIR") | str_detect(motu, pattern = "HOR") | str_detect(motu, pattern = "RIM"))
-  
-#there are a lot of habitats - come back to this if giving them a score of zero seems too harsh
-
-scored_motus <- c("AIE","TAR","TAI","TIA","HIR","HOR","RIM")
-
-need_score <- tet_motus %>% 
-  filter(abb %!in% scored_motus)
-
-```
-
-We'll cross reference what the CASUP document suggests with what the 2017 study suggests. If there are any major conflicts, we'll default to the to forest study since it is more recent. 
-
-The 2017 study simply indicates which tree species in dominant in each plot. I think it is safe to assume that the study tried to choose plots that were representative of the whole motu. Furthermore, we can cross reference each species of tree with Tetiaroa Society since they have a list of plants on the website with more details, including if it is native, and how it contributes to the island ecosystem. Note: if the tree is designated on the Tetiaroa website as 'Polynesian Introduction' we'll still consider it native.
+We'll use what Frank has for this calculation, but information from the forest study helps underscore which native trees should be present. The summary below includes information about these species. Note: if the tree is designated on the Tetiaroa website as 'Polynesian Introduction' we'll still consider it native.
 
 Below are the results from the study: 
 
@@ -86,75 +86,42 @@ Below are the results from the study:
 | Onetahi | Casuarina equisetifoilia / Ironwood | yes | Introduced by native Polynesians, can grow to 100 ft tall, symbol of the war god 'Oro |
 | A'ie | Mixed forest | yes | No further details |
 
-The image below (screen shot from the report) displays the proportion of each species in these plots graphically:
 
-![**Figure 1:** Species diversity in each monitored plot (McIntosh et al, 2018)](./_raw_data/forest_sp_graph.png)
+Between the report and the species profiles on the Tetiaroa Society we can see that the native ecosystem has many benefits. We therefore will use the following scheme to score each area of the motus:
 
-
-We get some additional detail from this. First, it appears that Tiaraunu has some coastal "native" vegetation, as one plot was dominated by coco groves and the other is dominated by a native trees, yet still had a substantial proportion of coconut trees (last bar on the graph). We'll therefore increase its score from 0 to 0.3. Second, this report and the Tetiaroa society suggest that Reiono is actually comprised mostly of dense *Pisonia grandis* forest, which is native and has many ecosystem benefits. Given we are interested in scoring habitats for biodiversity, this merits a higher score than 0.5, so we'll increase it to 0.6 based on the bar graph showing about 2/3 native forest, 1/3 coco forest. It seems like Rimatu also has important native plants (Screwpine), so it seems appropriate to score this motu as 0.6 as well. Lastly, the plot on Onetahi was mostly large native trees, but still had a pretty high proportion of coconut groves. We also know this motu has built environment, so seems best to score it similarly to Tiaraunu.
-
-
-The motus we have yet to score, and that are not addressed in McIntosh et al. (2018) are:   
-
-- **Tauvine:** mostly Pemphis thicket, will get a score of 1 since this is a native land cover type
-- **Ahuroa:** this is a tiny motu (the fourth smallest). We don't have details for it, but is is right next to Tauvine, so we'll assume it has a similar vegetation make up and get the same score of 1
-- **Honuea:** only has cadium marsh, and *Pandanus* forest, both of which are native habitats. Score of 1.
-
-
-To summarize, our final scoring scheme is as follows: 
-
-| Habitat | Motus | Score
-| :--------------- | :------------ | :-----: |
-| Only native vegetation | Aie, Ahuroa, Tauvine, Tahuna Rahi, Tahuna Iti, Honuea | 1 |
-| Native vegetation dominant, but some coconut grove | Reiono, Rimatu | 0.6 |
-| Coconut grove or altered landscape dominant, some vegetation | Tiaraunu, Onetahi | 0.3 |
-| Dense coconut grove present, lacking details on native vegetation | Hiraanaa, Horoatera | 0 | 
+| Habitat | Score |
+| :--------------- | :------------ |
+| Only native vegetation | 1 |
+| Native vegetation dominant, but some coconut grove | 0.6 |
+| Coconut grove or altered landscape dominant, some vegetation | 0.3 |
+| Dense coconut grove present, lacking details on native vegetation | 0 | 
 
 ```{r}
 
-#this can always be adjusted
-
-tet_hab_score <- tet_motus %>%
-  mutate(
-    abb = as.character(abb)
+hab_scores <- tet_hab %>%
+  dplyr::select(motu,coco_area,native_coco_area,native_area,landscape_area,total_area) %>%
+  pivot_longer(cols = c("coco_area","native_coco_area","native_area","landscape_area","total_area"), names_to = "habitat",values_to = "area_ha") %>% 
+  group_by(habitat) %>% 
+  summarize(
+    total_hab_area = sum(area_ha)
   ) %>% 
+  ungroup() %>% 
   mutate(
     score = case_when(
-      abb %in% c("AIE","TAR","TAI","TAU","AHU","HON") ~ "1",
-      abb %in% c("HIR","HOR") ~ "0",
-      abb %in% c("TIA", "ONE") ~ "0.3",
-      abb %in% c("REI", "RIM") ~ "0.6",
-      TRUE ~ "0"
-    )
+      habitat %in% "coco_area" ~ 0,
+      habitat %in% "native_coco_area" ~ 0.5,
+      habitat %in% "native_area" ~ 1,
+      habitat %in% "landscape_area" ~ 0.3
+    ),
+    region_id = 1,
+    year = 2020
   )
-
+  
 ```
 
-Next step is to use the areas of the motus to weight the average score. That proportion will be the weight applied to that motus score. 
-
-Given we do not have any temporal data indicating change over time, and the fact that we are using two sources from 2015 and 2017, respectively, we can probably just assume the composition of the motus has not changed much since 2020. We'll still create a df with every year to save to the toolbox, in case this is updated in the future. 
-
+We'll do the actual weighting calculation in the Toolbox. The tricky part is the trend - come back to this. 
 
 ```{r}
-
-#find the weighted average
-hab_stat <- tet_hab_score %>% 
-  mutate(
-    score = as.numeric(score),
-    weighted_score = weighted.mean(score, area_km2)
-  )
-
-years <- seq(2014,2020,1)
-
-#create final data frame
-land_hab_status <- data.frame(
-  region_id = rep(1, length(years)),
-  hab_type = rep("land", length(years)),
-  status = rep(unique(hab_stat$weighted_score), length(years)),
-  year = years
-)
-
-#write out this draft version to int folder for now
 
 write_csv(land_hab_status, file.path(dir_goal, "output/land_hab_status.csv"))
 
@@ -166,7 +133,3 @@ write_csv(land_hab_status, file.path(dir_goal, "output/land_hab_status.csv"))
 
 
 Draft score for land habitat, 2020 is the number in the score column in `land_hab_status` data frame. 
-
-## Using spatial extent data
-
-If we had data showing the extent of each vegetation type, we could instead use a method assessing area covered by native habitat versus coconut habitat. 
