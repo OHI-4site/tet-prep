@@ -41,7 +41,7 @@ source(here('workflow/R/common.R'))
 
 
 # file paths 
-goal     <- 'liv'
+goal     <- 'eco'
 scenario <- 'v2020'
 dir_anx       <- file.path(dir_M, 'git-annex/globalprep') 
 dir_goal      <- file.path(here('prep',goal, scenario))
@@ -99,7 +99,7 @@ write_csv(CE_status, file.path(dir_goal, "output/CE_status.csv"))
 
 #tool box
 
-write.csv(CE_status, file = "~/github/tet-scores/region/layers/liv_status.csv", row.names = FALSE)
+write.csv(CE_status, file = "~/github/tet-scores/region/layers/eco_status.csv", row.names = FALSE)
 
 ```
 
