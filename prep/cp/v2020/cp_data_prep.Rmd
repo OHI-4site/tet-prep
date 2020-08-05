@@ -7,16 +7,40 @@ output: html_document
 
 # Summary
 
-This goal aims to assess the amount of protection provided by marine and coastal habitats to coastal areas that people value, both inhabited (homes and other structures) and uninhabited (parks, special places, etc.).The habitats that provide protection to coastal areas for which we have global data include mangroves, coral reefs, seagrasses, salt marshes (Table 5.2), and coastal sea ice (shoreline pixels with >15% ice cover).
+This goal aims to assess the amount of protection provided by marine and coastal habitats to coastal areas that people value, both inhabited (homes and other structures) and uninhabited (parks, special places, etc.).The habitats that provide protection to coastal areas for which we have global data include mangroves, coral reefs, seagrasses, salt marshes, and coastal sea ice (shoreline pixels with >15% ice cover).
+
+OHI Global calculates The status of this goal, $x_{cp}$, was calculated to be a function of the relative health of the habitats, $k$, within a region that provide shoreline protection, weighted by their area and protectiveness rank (Table 5.4), such that:
+
+$$
+x_{cp} = \frac { \displaystyle\sum _{ k=1 }^{ N }{ { (h }_{ k } } \times { w }_{ k }\times { A }_{ k }) }{ \displaystyle\sum _{ k=1 }^{ N }{ { (w }_{ k }\times { A }_{ k }) }  }, (Eq. 5.6)
+$$
 
 
-Tetiaroa is subject to cyclones which can cause substantial damage to the motus. Both the marine habitat and the native vegetation on the motus can help protect against storm surge. Therefore, we will include both land habitat and the coral reef habitat in this score. 
+**Coastal protectiveness ranks**
+Scores range from 1-4, with 4 being the most protective [@tallis_invest_2011].
 
+Habitat | Protectiveness rank ($w$)
+------- | -------------------------
+mangroves | 4
+salt marshes |4 
+coastal sea ice | 4
+coral reefs | 3 
+seagrasses | 1
 
+Tetiaroa is subject to cyclones which can cause substantial damage to the motus. Both the marine habitat and the native vegetation on the motus can help protect against storm surge. Therefore, we will include both land habitat and the coral reef habitat in this score. The score we calculated for the HAB goal as part of biodiversity will reflect the condition, ($h$), and those will be weighted by their protectiveness.
 
+Coral reefs will get a protectiveness rank of 3, as per the table above. For the vegetation, I am inclined to give it a score of 4 given that the Tetiaroa Society specifically mentions native forest as an important mechanism in protecting from cyclones. Below are a few other studies looking at what affects coastal protection on small island atolls. Overall, it can be said that human modified areas on the terrestrial portion of small island atolls, whether that be infrastructure or coconut plantations, make that area more vulerable to flooding and erosion. 
 
+Tetiaroa Habitat | Protectiveness rank ($w$)
+------- | -------------------------
+Native vegetation | 4
+coral reefs |3 
 
+References for factors affecting coastal erosion, cyclone vulnerability and coastline shifting on small island atolls:
 
+- https://www.sciencedirect.com/science/article/pii/S0169555X16309977
+- https://link.springer.com/content/pdf/10.1007/s11625-013-0215-7.pdf
+- https://onlinelibrary.wiley.com/doi/pdf/10.1111/j.1654-1103.2010.01219.x
 
 
 # Set up
