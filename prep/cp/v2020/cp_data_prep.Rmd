@@ -7,7 +7,16 @@ output: html_document
 
 # Summary
 
-The Coasta Protection goal is closely linked to the habitat goal. Tetiaroa is subject to cyclones which can cause substantial damage to the motus. Both the marine habitat and the native vegetation on the motus can help protect against storm surge. Therefore, we will include both land habitat and the coral reef condition in this score. 
+This goal aims to assess the amount of protection provided by marine and coastal habitats to coastal areas that people value, both inhabited (homes and other structures) and uninhabited (parks, special places, etc.).The habitats that provide protection to coastal areas for which we have global data include mangroves, coral reefs, seagrasses, salt marshes (Table 5.2), and coastal sea ice (shoreline pixels with >15% ice cover).
+
+
+Tetiaroa is subject to cyclones which can cause substantial damage to the motus. Both the marine habitat and the native vegetation on the motus can help protect against storm surge. Therefore, we will include both land habitat and the coral reef habitat in this score. 
+
+
+
+
+
+
 
 
 # Set up
