@@ -2,7 +2,14 @@
 title: 'OHI Tetiaroa: Coastal Protection'
 author: "Maddie Berger"
 date: "7/29/2020"
-output: html_document
+output:
+  html_document:
+    highlight: haddock
+    includes:
+      in_header: '~/github/tet-prep/workflow/templates/ohi_hdr.html' 
+    number_sections: yes
+    theme: cerulean
+    toc: yes
 ---
 
 # Summary
@@ -49,7 +56,42 @@ References for factors affecting coastal erosion, cyclone vulnerability and coas
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+
+
+
+library(tidyverse)
+library(sf)
+library(here)
+library(janitor)
+
+source(here('workflow/R/common.R'))
+
+#file paths
+goal     <- 'cp'
+scenario <- 'v2020'
+dir_goal      <- file.path(here('prep',goal, scenario))
+dir_goal_anx  <- file.path(dir_anx, goal, scenario)
+dir_github    <- '~/github/tet-prep'
+
 ```
 
 
 # Methods
+
+```{r}
+#read in habitat csvs from toolbox
+
+land_hab <- read.csv(file = "~/github/tet-scores/region/layers/lsp_status.csv")
+
+#coral hab here when you get it 
+
+
+
+```
+
+Multiply scores by weights, sum, and then rescale 0 - 1:
+
+
+
+
+Write out layers to toolbox: 
