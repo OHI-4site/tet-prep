@@ -127,8 +127,6 @@ write_csv(land_hab_status, file.path(dir_goal, "output/land_hab_status.csv"))
 
 #write to toolbox
 
-
-
 ```
 
 
