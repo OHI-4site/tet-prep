@@ -36,6 +36,8 @@ Tetiaroa Habitat | Protectiveness rank ($w$)
 Native vegetation | 4
 coral reefs |3 
 
+**note: should we do what Jamie did and weight relative to each other?**
+
 References for factors affecting coastal erosion, cyclone vulnerability and coastline shifting on small island atolls:
 
 - https://www.sciencedirect.com/science/article/pii/S0169555X16309977
