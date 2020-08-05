@@ -5,14 +5,14 @@ output:
   html_document:
     highlight: haddock
     includes:
-      in_header: '~/github/tet-prep/workflow/templates/ohi_hdr.html' 
+      in_header: '~/github/tet-prep/workflow/templates/tet_hdr.html' 
     number_sections: yes
     theme: cerulean
     toc: yes
 ---
 # Summary
 
-This script calculates the land habitat score. Because a long term goal for Tetiaroa is to restore abandoned coconut plantation areas to native vegetation, the status score of the land habitat will be the ratio of native to non native habitat that exists now on the motus. 
+This script calculates the land habitat score. Because a long term goal for Tetiaroa is to restore abandoned coconut plantation areas to native vegetation, the status score of the land habitat will be based on the extent of coconut grove versus native habitat. We will also include altered habitat (ie landscaped) since much of the habitat on Onetahi has been altered for construction of the Brando. 
 
 Possible data used this goal comes from a variety of sources, including a 2018 forest monitoring project undertaken by researchers from the University of French Polynesia and Oxford University (McIntosh et al., 2018) in addition to the CASUP_vegetation_flora_JYM_2015.docx found in the dropbox. However, Frank felt that neither of these documents provided an accurate enough assessment of vegetation on each motu. The monitoring report only includes data for small plots on each motu, and the document just lists which habitats exist on each motu, not their extents.
 
@@ -87,7 +87,7 @@ Below are the results from the study:
 | A'ie | Mixed forest | yes | No further details |
 
 
-Between the report and the species profiles on the Tetiaroa Society we can see that the native ecosystem has many benefits. We therefore will use the following scheme to score each area of the motus:
+Between the report and the species profiles on the Tetiaroa Society we can see that the native ecosystem has many benefits compared to coconut groves. Also, while landscaped areas are most likely replacing removed or altered native habitat, we know from The Brando's website that they only use native plants and do their best to recreate the ecosystem. We therefore will score these areas slightly better than "only coconut grove". See full scoring scheme below:
 
 | Habitat | Score |
 | :--------------- | :------------ |
