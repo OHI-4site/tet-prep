@@ -127,7 +127,7 @@ write_csv(hab_scores %>% filter(habitat != "total_area"), file.path(dir_goal, "o
 
 #write to toolbox
 
-write.csv(hab_scores %>% filter(habitat != "total_area"), file = "~/github/tet-scores/region/layers/lsp_status.csv", row.names = FALSE)
+write.csv(hab_scores %>% filter(habitat != "total_area"), file = "~/github/tet-scores/region/layers/hab_land_status.csv", row.names = FALSE)
 
 ```
 
