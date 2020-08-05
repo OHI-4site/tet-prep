@@ -123,9 +123,11 @@ We'll do the actual weighting calculation in the Toolbox. The tricky part is the
 
 ```{r}
 
-write_csv(land_hab_status, file.path(dir_goal, "output/land_hab_status.csv"))
+write_csv(hab_scores %>% filter(habitat != "total_area"), file.path(dir_goal, "output/land_extents.csv"))
 
 #write to toolbox
+
+write_csv(hab_scores %>% filter(habitat != "total_area"), file.path("Home/github/tet-scores/layers/land_extents.csv"))
 
 ```
 
