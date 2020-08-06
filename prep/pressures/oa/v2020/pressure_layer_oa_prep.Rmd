@@ -126,7 +126,7 @@ foreach (i = seq(1,708, by=12)) %dopar% { i = 1
             rotate() %>%
             projectRaster(tet_ocean_rast_100) %>% # Reproject to Tetiaroa ocean raster
             crop(azim_ext) %>% # Crop to Tetiaroa extent
-            resample(hist, method = 'ngb') %>% #returning a blank raster
+            #resample(hist, method = 'bilinear') %>% #returning a blank raster
           writeRaster(., filename = paste0(file.path(dir_anx), '/prs_oa/int/annual_avg_azimuthal/tet_arag_avg_azimuthal_', yr, '.tif'), overwrite=T)
  
 }
