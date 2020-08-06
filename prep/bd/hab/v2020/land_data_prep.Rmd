@@ -12,7 +12,7 @@ output:
 ---
 # Summary
 
-This script calculates the land habitat score. Because a long term goal for Tetiaroa is to restore abandoned coconut plantation areas to native vegetation, the status score of the land habitat will be based on the extent of coconut grove versus native habitat. We will also include altered habitat (ie landscaped) since much of the habitat on Onetahi has been altered for construction of the Brando. 
+This script calculates the land habitat extent, health and trned. Because a long term goal for Tetiaroa is to restore abandoned coconut plantation areas to native vegetation, the health score of the land habitat will be based on the extent of coconut grove versus native habitat. We will also include altered habitat (ie landscaped) since much of the habitat on Onetahi has been altered for construction of the Brando. 
 
 Possible data used this goal comes from a variety of sources, including a 2018 forest monitoring project undertaken by researchers from the University of French Polynesia and Oxford University (McIntosh et al., 2018) in addition to the CASUP_vegetation_flora_JYM_2015.docx found in the dropbox. However, Frank felt that neither of these documents provided an accurate enough assessment of vegetation on each motu. The monitoring report only includes data for small plots on each motu, and the document just lists which habitats exist on each motu, not their extents.
 
@@ -68,8 +68,45 @@ area_comparison <- left_join(tet_motus, frank_area, by = "name") %>%
 
 ```
 
+## Extent Native Habitat 
 
-## Assigning habitat scores
+Sum up the extent of native habitat on Tetiaroa. We will include the coco / native habitat and multiply it by 0.5
+
+```{r}
+
+native_area <- hab_scores <- tet_hab %>%
+  dplyr::select(motu,coco_area,native_coco_area,native_area,landscape_area,total_area) %>%
+  pivot_longer(cols = c("coco_area","native_coco_area","native_area","landscape_area","total_area"), names_to = "habitat",values_to = "area_ha") %>% 
+  filter(habitat == "native_area" | habitat == "native_coco_area") %>% 
+  group_by(habitat) %>% 
+  summarize(
+    total_area = sum(area_ha)
+  ) %>% 
+  mutate(
+    total_area = case_when(
+      habitat %in% "native_coco_area" ~ 0.5*total_area,
+      TRUE ~ total_area
+    )
+  ) %>% 
+  summarize(
+    total_native_km2 = sum(total_area)*0.01 #convert to km2
+  )
+
+native_extent_df <- data.frame(
+  region_id = 1,
+  habitat = "native_land",
+  year = 2020,
+  km2 = native_area$total_native_km2
+)
+
+#write to tool box
+
+write.csv(native_extent_df, file = "~/github/tet-scores/region/layers/hab_land_extent.csv", row.names = FALSE)
+
+```
+
+
+## Assigning habitat scores to determine health of habitat
 
 Looking at the CASUP habitat document, we can see that there are four motus that have "very dense coco forest". All four also have another type of vegetation. Do some exploring to come up with the best scoring scheme: 
 
@@ -96,61 +133,54 @@ Between the report and the species profiles on the Tetiaroa Society we can see t
 | Landscaped area | 0.3 |
 | Only coconut grove | 0 | 
 
+
+**INSERT HOW THESE SCORES WILL BE CALCULATED**
+
+## Calulate the habitat health
 ```{r}
 
-hab_scores <- tet_hab %>%
+native_health <- tet_hab %>%
   dplyr::select(motu,coco_area,native_coco_area,native_area,landscape_area,total_area) %>%
   pivot_longer(cols = c("coco_area","native_coco_area","native_area","landscape_area","total_area"), names_to = "habitat",values_to = "area_ha") %>% 
   group_by(habitat) %>% 
   summarize(
-    total_hab_area = sum(area_ha)
-  ) %>% 
-  ungroup() %>% 
+    total_area_ha = sum(area_ha)
+  ) %>%
+  ungroup() %>%
+  pivot_wider(names_from = "habitat", values_from = "total_area_ha") %>% 
   mutate(
-    score = case_when(
-      habitat %in% "coco_area" ~ 0,
-      habitat %in% "native_coco_area" ~ 0.5,
-      habitat %in% "native_area" ~ 1,
-      habitat %in% "landscape_area" ~ 0.3
-    ),
-    region_id = 1,
-    year = 2020
+    health = (native_area + 0.3*landscape_area + 0.5*native_coco_area)/total_area
   )
-  
+
+native_health_df <- data.frame(
+  region_id = 1,
+  habitat = "native_land",
+  year = 2020,
+  health = native_health$health
+)
+
+#write to tool box
+
+write.csv(native_health_df, file = "~/github/tet-scores/region/layers/hab_land_health.csv", row.names = FALSE)
+
 ```
 
-Since this makeup has not changed drastically in the last 5 years, we will simply repeat the above scores for 2014 - 2020.
+## Calculate native habitat trend
+
+Since this makeup has not changed drastically in the last 5 years, the trend will be zero
 
 ```{r}
 
-years = rep(seq(2014,2020,1), 5) %>% 
-  sort()
+#create trend df for toolbox
 
-land_hab_final <- data.frame(
-    region_id = 1,
-    habitat = rep(hab_scores$habitat, length(years)),
-    hab_area_ha = rep(hab_scores$total_hab_area, length(years)),
-    status = rep(hab_scores$score, length(years)),
-    year = years
-    ) %>% 
-  filter(habitat != "total_area")
+years = seq(2014,2020,1)
 
+native_trend <- data.frame(
+    region_id = rep(1, length(years)),
+    habitat = rep("native_land", length(years)),
+    year = years,
+    trend = rep(0, length(years))
+)
 
+write.csv(native_trend, file = "~/github/tet-scores/region/layers/hab_land_trend.csv", row.names = FALSE)
 ```
-
-
-
-We'll do the actual weighting calculation in the Toolbox. 
-
-```{r}
-
-write_csv(land_hab_final, file.path(dir_goal, "output/land_hab_final.csv"))
-
-#write to toolbox
-
-write.csv(land_hab_final, file = "~/github/tet-scores/region/layers/hab_land_status.csv", row.names = FALSE)
-
-```
-
-
-Draft score for land habitat, 2020 is the number in the score column in `land_hab_status` data frame. 
