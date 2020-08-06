@@ -68,8 +68,8 @@ library(gstat)
 library(scales)
 library(animation)
 
-# Source and set file paths
-source(here('src/R/common.R'))
+# Source and set file paths, will also load Tetiaroa shapefiles and rasters
+source(here('workflow/R/common.R'))
 
 raw_dir <- file.path(dir_M, 'git-annex/globalprep/_raw_data') # Path to raw data held on NCEAS server, Mazu
 
@@ -115,7 +115,7 @@ Since this data is now on a regular grid, but the historical data from 1880-1889
 # Register 10 cores for parallel processing
 registerDoParallel(10)
 
-foreach (i = seq(1,708, by=12)) %dopar% {
+foreach (i = seq(1,708, by=12)) %dopar% { i = 1
 
   j = i+11
   
@@ -126,10 +126,12 @@ foreach (i = seq(1,708, by=12)) %dopar% {
             rotate() %>%
             projectRaster(tet_ocean_rast_100) %>% # Reproject to Tetiaroa ocean raster
             crop(azim_ext) %>% # Crop to Tetiaroa extent
-            resample(hist, method = 'ngb') %>%
-          writeRaster(., filename = paste0(file.path(dir_anx), 'prs_oa/int/annual_avg_azimuthal/tet_arag_avg_azimuthal_', yr, '.tif'), overwrite=T)
+            resample(hist, method = 'ngb') %>% #returning a blank raster
+          writeRaster(., filename = paste0(file.path(dir_anx), '/prs_oa/int/annual_avg_azimuthal/tet_arag_avg_azimuthal_', yr, '.tif'), overwrite=T)
  
 }
+
+plot(yr_mean)
 
 ```
 
@@ -139,7 +141,7 @@ foreach (i = seq(1,708, by=12)) %dopar% {
 r_2016 <- raster(file.path(dir_anx,'prs_oa/int/annual_avg_azimuthal/tet_arag_avg_azimuthal_2016.tif'))
 
 plot(r_2016, box=F, axes=F, main="Mean Ωaragonite saturation state 2016", col=rev(cols))
- 
+#this is coming out blank?
 ```
 
 ## Rescale from 0 to 1
