@@ -119,15 +119,36 @@ hab_scores <- tet_hab %>%
   
 ```
 
-We'll do the actual weighting calculation in the Toolbox. The tricky part is the trend - come back to this. Guessing that the trend for the last 5 years will be pretty close to zero  
+Since this makeup has not changed drastically in the last 5 years, we will simply repeat the above scores for 2014 - 2020.
 
 ```{r}
 
-write_csv(hab_scores %>% filter(habitat != "total_area"), file.path(dir_goal, "output/land_extents.csv"))
+years = rep(seq(2014,2020,1), 5) %>% 
+  sort()
+
+land_hab_final <- data.frame(
+    region_id = 1,
+    habitat = rep(hab_scores$habitat, length(years)),
+    hab_area_ha = rep(hab_scores$total_hab_area, length(years)),
+    status = rep(hab_scores$score, length(years)),
+    year = years
+    ) %>% 
+  filter(habitat != "total_area")
+
+
+```
+
+
+
+We'll do the actual weighting calculation in the Toolbox. 
+
+```{r}
+
+write_csv(land_hab_final, file.path(dir_goal, "output/land_hab_final.csv"))
 
 #write to toolbox
 
-write.csv(hab_scores %>% filter(habitat != "total_area"), file = "~/github/tet-scores/region/layers/hab_land_status.csv", row.names = FALSE)
+write.csv(land_hab_final, file = "~/github/tet-scores/region/layers/hab_land_status.csv", row.names = FALSE)
 
 ```
 
