@@ -1,11 +1,20 @@
 ---
-title: "get_coral_data"
-output: html_document
+title: "OHI Tetiaroa: Coral Reef Habitat"
+output:
+  html_document:
+    highlight: haddock
+    includes:
+      in_header: '~/github/tet-prep/workflow/templates/tet_hdr.html' 
+    number_sections: yes
+    theme: cerulean
+    toc: yes
 ---
 
 #Summary
 
-This script pulls more up to date coral data from the Living Oceans Foundation French Polynesia report, which was published in 2017. This will be used to assess current status of benthic habitats on Tetiaroa
+This script pulls more up to date coral data from the Living Oceans Foundation French Polynesia report, which was published in 2017. This will be used to assess current extent of benthic habitats on Tetiaroa. 
+
+For the health and trend scores, we will use the values for French Polynesia calculated in the Global Assessnent for 2020. 
 
 ***
 
@@ -17,7 +26,7 @@ This script pulls more up to date coral data from the Living Oceans Foundation F
 French Polynesia Final Report
 https://data.unep-wcmc.org/datasets/
 
-Description
+[Insert better description here]
 
 **Time range**: 2017
 
@@ -42,7 +51,7 @@ dir_github    <- '~/github/tet-prep'
 pdf_api <- "yclryli65jdy"
 ```
 
-Use pdftables to convert the data on page 21 of the pdf
+Use pdftables to convert the data on page 21 of the pdf (do not re run this, since I cleaned in a bit in Excel)
 ```{r}
 
 convert_pdf(file.path(dir_goal,"_raw_data/French-Polynesia-pg-21.pdf"), "fp_habtable.csv", api_key = pdf_api)
@@ -52,7 +61,7 @@ convert_pdf(file.path(dir_goal,"_raw_data/French-Polynesia-pg-21.pdf"), "fp_habt
 This worked - had to export and clean it up, resaved as fp_habtable_clean
 
 ```{r}
-hab_table <- read_csv(here("prep/bd/hab/v2020", "fp_habtable_clean.csv")) %>% 
+coral_table <- read_csv(here("prep/bd/hab/v2020/_raw_data", "fp_habtable_clean.csv")) %>% 
    mutate(
     area_km2 = as.numeric(Tetiaroa)
   ) %>% 
@@ -61,12 +70,12 @@ hab_table <- read_csv(here("prep/bd/hab/v2020", "fp_habtable_clean.csv")) %>%
 
 ```
 
-### Habitat sums 
+## Find total coral extent
 
 We can now find sums of each type of habitat. The classification also allows us to find coral / algae ratios.
 ```{r}
 
-hab_stats <- hab_table %>%
+benthic_areas <- hab_table %>%
   filter(!is.na(area_km2)) %>% 
   group_by(classification) %>%
   summarize(
@@ -74,7 +83,7 @@ hab_stats <- hab_table %>%
   )
 #export this as a csv, may be helpful to send to someone
 
-write_csv(hab_stats, file.path(dir_goal, "int","hab_total_area.csv"))
+write_csv(benthic_areas, file.path(dir_goal, "int","hab_benthic_total_area.csv"))
 
 ```
 
@@ -83,16 +92,22 @@ write_csv(hab_stats, file.path(dir_goal, "int","hab_total_area.csv"))
 We'll treat the categories that have the word "coral" or "reef" as area with coral cover
 ```{r}
 
-coral_stats <- hab_stats %>% 
+coral_extent <- benthic_areas %>% 
   filter(str_detect(classification, pattern = "coral") | str_detect(classification, pattern = "reef")) %>% 
   summarize(
-    total_area_km2 = sum(tot_area_km2)
+    km2 = sum(tot_area_km2)
   ) %>% 
   mutate(
-    class = "coral extent",
-    year = 2017
+    habitat = "coral",
+    year = 2017,
+    region_id = 1
   )
 
 
 ```
 
+## Quantify coral health 
+
+The global score for FP was one - just to compare, lets calculate the ratio of coral to macroalgea dominated areas
+
+(note: check in report what lagoonal substrate is)
