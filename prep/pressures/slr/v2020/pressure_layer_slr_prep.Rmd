@@ -63,6 +63,7 @@ library(doParallel)
 library(fasterize)
 library(rasterVis)
 library(animation)
+library(mapview)
 
 # Source and set file paths
 source(here('workflow/R/common.R'))
@@ -181,17 +182,19 @@ plot(three_nm)
 annual_means <- list.files(file.path(dir_anx, "prs_slr/int/msla_annual_mean"), full = TRUE)
 foreach(file = annual_means) %dopar% {  
   
- # file = annual_means[26]
+ file = annual_means[26]
   yr <- str_sub(file, -8, -5)
   
   rast_data <- raster(file) %>%
-    projectRaster(crs = azim_eq, over = FALSE, progress="text") %>%
+    projectRaster(crs = azim_eq, over = FALSE, progress="text") %>% #this is where its failing
     raster::resample(three_nm, method = "ngb", 
              filename = sprintf("%s/prs_slr/int/msla_annual_azimuthal/mlsa_annual_azimuthal_%s.tif", 
                                 dir_anx, yr), overwrite = TRUE) %>% 
     mask(three_nm, filename = sprintf("%s/prs_slr/int/msla_annual_azimuthal_coastal/msla_annual_azimuthal_coastal_%s.tif", dir_anx, yr), overwrite = TRUE)
 }
 plot(raster(file.path(dir_anx, "prs_slr/int/msla_annual_azimuthal_coastal/msla_annual_azimuthal_coastal_2010.tif")))
+
+plot(rast_data)
 
 ```
 

@@ -42,8 +42,15 @@ azim_eq <- raster::crs("+proj=laea +lat_1=29.5 +lat_2=45.5 +lat_0=37.5 +lon_0=-9
 
 # spatial extents for the Tetiaroa region
 
-wgs_ext <- raster::extent(-149.67, -149.46,-17.10,-16.92)
+#wgs_ext <- raster::extent(-149.67, -149.46,-17.10,-16.92)
 azim_ext <- raster::extent(-6156061, -6136000,-4607084,-4588580) #this is for equal area projection only
+
+#spatial extents and projections from NE for troubleshooting
+
+wgs_ext <- raster::extent(-85, -55,30, 50)
+ne_ext <- raster::extent(1750000, 2550000,300000,1200000)
+
+us_alb    <- "+proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=37.5 +lon_0=-96 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs"
 
 ## Tetiaroa spatial files
 
