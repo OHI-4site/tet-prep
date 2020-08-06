@@ -65,9 +65,7 @@ library(rasterVis)
 library(animation)
 
 # Source and set file paths
-source(here('src/R/common.R'))
-
-dir_git       <- '~/github/tet-prep' # Path to the tet-prep github directory
+source(here('workflow/R/common.R'))
 
 ```
 
@@ -102,7 +100,7 @@ A peek into what the monthly data looks like
 
 ```{r explore_monthly}
 
-plot(raster(slr_nc_files[3]), col = cols, axes = F, 
+plot(raster(slr_nc_files[1]), col = cols, axes = F, 
      main = paste("Year", substr(slr_nc_files[3], 90, 93), "Month", substr(slr_nc_files[3], 96, 97)))
 
 ```
@@ -112,7 +110,7 @@ plot(raster(slr_nc_files[3]), col = cols, axes = F,
 The following code is used to:
 
 1. Rasterize each monthly NetCDF file
-2. Rotate each raster so that the Atlantic Ocean is centered in the raster, and changes the extent from 0 to 360 to -180 to 180, which is needed when using wgs or us_albers projections/extents
+2. Rotate each raster so that the Atlantic Ocean is centered in the raster, and changes the extent from 0 to 360 to -180 to 180, which is needed when using wgs or us_albers projections/extents (any equal area, like azim_eq?)
 
 ```{r rasterize_monthly, results = 'hide'}
 
@@ -122,7 +120,7 @@ registerDoParallel(10)
 
 ## Parallel forloop function that rotates each monthly file, sets the long/lat projection, and keeps only coastal cells - saved to GitHub
 foreach(file = slr_nc_files) %dopar% {
-  
+  #file = slr_nc_files[1]
   m_yr <- substr(file, nchar(file)-10, nchar(file)-3) 
   
   ## Read in month raster
@@ -131,13 +129,16 @@ foreach(file = slr_nc_files) %dopar% {
   
   ## Define projection of the raster before reprojecting; double check projection
   
-  r <- raster::crop(r, wgs84) # Current projection is wgs84
+  ##question - should this crop by the one for the region?
+  
+  r <- raster::crop(r, wgs_ext) # Current projection is wgs84
   
   ## Write raster to int folder in prs_slr
   fp <- sprintf("%s/prs_slr/int/msla_monthly/msla_monthly_%s.tif", dir_anx, m_yr)
   writeRaster(r, filename = fp, overwrite = TRUE)
 }
 
+plot(r)
 ```
 
 ## Calculate annual mean sea level anomalies
@@ -148,7 +149,7 @@ Annual mean sea level anomaly rasters are calculated from the monthly data.
 
 msla_files <- list.files(sprintf("%s/prs_slr/int/msla_monthly", dir_anx), 
                          full.names = TRUE)
-maxyr <- substr(msla_files, 83, 86) %>% as.numeric() %>% max()
+maxyr <- substr(msla_files, 93, 96) %>% as.numeric() %>% max() #note this changed for Tetiaroa
 
 ## Stack all rasters for this year, and calculate annual mean, then write as raster
 registerDoParallel(6)
@@ -172,7 +173,7 @@ Since we are only interested in the increase in sea level near the coasts, we ap
 ```{r projection_masking, results = 'hide'}
 
 ## 3nm offshore raster to select only nearshore cells
-three_nm <- raster(file.path(dir_git, "spatial/rasters/ocean_ras_100.tif"))
+three_nm <- raster(file.path(dir_github, "spatial/rasters/ocean_ras_100.tif"))
 three_nm <- raster::crop(three_nm, azim_ext) # Crop to Tetiaroa extent
 plot(three_nm)
 
@@ -190,7 +191,7 @@ foreach(file = annual_means) %dopar% {
                                 dir_anx, yr), overwrite = TRUE) %>% 
     mask(three_nm, filename = sprintf("%s/prs_slr/int/msla_annual_azimuthal_coastal/msla_annual_azimuthal_coastal_%s.tif", dir_anx, yr), overwrite = TRUE)
 }
-plot(raster(file.path(dir_anx, "prs_slr/int/msla_annual_us_albers_coastal/msla_annual_azimuthal_coastal_2010.tif")))
+plot(raster(file.path(dir_anx, "prs_slr/int/msla_annual_azimuthal_coastal/msla_annual_azimuthal_coastal_2010.tif")))
 
 ```
 
