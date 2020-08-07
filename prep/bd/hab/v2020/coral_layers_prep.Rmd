@@ -12,9 +12,9 @@ output:
 
 ## Summary
 
-This script pulls more up to date coral data from the Living Oceans Foundation French Polynesia report, which was published in 2017. This will be used to assess current extent of benthic habitats on Tetiaroa. 
+This script pulls more up to date coral extent data from the Living Oceans Foundation French Polynesia report, which was published in 2017. This will be used to assess current extent of benthic habitats on Tetiaroa. 
 
-For the health and trend scores, we will use the values for French Polynesia calculated in the Global Assessment for 2020. 
+For the health and trend scores, we will use the values for French Polynesia calculated in the Global Assessment. 
 
 ***
 
@@ -24,13 +24,20 @@ For the health and trend scores, we will use the values for French Polynesia cal
 
 **Description**:  
 
-[Insert better description here]
+The Living Oceans Foundation is a non-profit dedicated to ocean protection rooted in science-based solutions. Their 5-year Global Reef Expedition was the largest coral reef survey and high resolution mapping expedition, with the goal of studying the health and resilience of reefs. The GRE mapped out benthic habitats in the Society Islands in 2012, including Tetiaroa. The final report where the habitat areas were published was released in 2017, but the data was collected in 2012. 
 
 **Time range**: 2017
 
+**Citation**
+
+1. Global Reef Expedition: French Polynesia. Final Report. Purkis, S., Dempsey, A., Carlton, R.D., Andréfouët, S., Samaniego, B.,
+Rauer, E.M., and Renaud, P.G. (2017) Khaled Bin Sultan Living Oceans Foundation, Annapolis, MD. Vol 5: 80p.
+ISBN: 978-0-9975451-1-1
+
 ## Set up 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE,
+                      message = FALSE)
 
 library(tidyverse)
 library(pdftables)
@@ -73,7 +80,7 @@ coral_table <- read_csv(here("prep/bd/hab/v2020/_raw_data", "fp_habtable_clean.c
 We can now find sums of each type of habitat. The classification also allows us to find coral / algae ratios.
 ```{r}
 
-benthic_areas <- hab_table %>%
+benthic_areas <- coral_table %>%
   filter(!is.na(area_km2)) %>% 
   group_by(classification) %>%
   summarize(
