@@ -108,7 +108,7 @@ coral_extent <- benthic_areas %>%
     region_id = 1
   )
 
-write.csv(coral_extent, file = "~/github/tet-scores/region/layers/hab_coral_extent.csv", row.names = FALSE)
+write.csv(coral_extent %>% dplyr::select(region_id,habitat,year,km2), file = "~/github/tet-scores/region/layers/hab_coral_extent.csv", row.names = FALSE)
 ```
 
 ## Quantify coral health? 
@@ -164,7 +164,7 @@ coral_health_fp <- coral_health %>%
     rgn_id = 1
   )
 
-write.csv(coral_health_fp, file = "~/github/tet-scores/region/layers/hab_coral_health.csv", row.names = FALSE)
+write.csv(coral_health_fp %>% dplyr::select(region_id = rgn_id,habitat,year,health), file = "~/github/tet-scores/region/layers/hab_coral_health.csv", row.names = FALSE)
 
 coral_trend_fp <- coral_trend %>% 
   filter(rgn_id == 147) %>% 
@@ -172,6 +172,6 @@ coral_trend_fp <- coral_trend %>%
     rgn_id = 1
   )# do i need to make this for every year?
 
-write.csv(coral_trend_fp, file = "~/github/tet-scores/region/layers/hab_coral_trend.csv", row.names = FALSE)
+write.csv(coral_trend_fp %>% dplyr::select(region_id = rgn_id,habitat,year,trend), file = "~/github/tet-scores/region/layers/hab_coral_trend.csv", row.names = FALSE)
 ```
 
