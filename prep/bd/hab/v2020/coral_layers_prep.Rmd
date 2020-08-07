@@ -159,10 +159,19 @@ Filter for French Polynesia
 ```{r}
 
 coral_health_fp <- coral_health %>% 
-  filter(rgn_id == 147)
+  filter(rgn_id == 147) %>% 
+  mutate(
+    rgn_id = 1
+  )
+
+write.csv(coral_health_fp, file = "~/github/tet-scores/region/layers/hab_coral_health.csv", row.names = FALSE)
 
 coral_trend_fp <- coral_trend %>% 
-  filter(rgn_id == 147) # do i need to make this for every year?
+  filter(rgn_id == 147) %>% 
+  mutate(
+    rgn_id = 1
+  )# do i need to make this for every year?
 
+write.csv(coral_trend_fp, file = "~/github/tet-scores/region/layers/hab_coral_trend.csv", row.names = FALSE)
 ```
 
