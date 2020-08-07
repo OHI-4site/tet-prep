@@ -170,8 +170,9 @@ coral_trend_fp <- coral_trend %>%
   filter(rgn_id == 147) %>% 
   mutate(
     rgn_id = 1
-  )# do i need to make this for every year?
+  ) %>% 
+  dplyr::select(region_id = rgn_id,habitat,year,trend)# do i need to make this for every year?
 
-write.csv(coral_trend_fp %>% dplyr::select(region_id = rgn_id,habitat,year,trend), file = "~/github/tet-scores/region/layers/hab_coral_trend.csv", row.names = FALSE)
+write.csv(coral_trend_fp, file = "~/github/tet-scores/region/layers/hab_coral_trend.csv", row.names = FALSE)
 ```
 

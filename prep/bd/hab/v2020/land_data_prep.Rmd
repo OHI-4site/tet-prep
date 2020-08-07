@@ -182,5 +182,12 @@ native_trend <- data.frame(
     trend = rep(0, length(years))
 )
 
-write.csv(native_trend, file = "~/github/tet-scores/region/layers/hab_land_trend.csv", row.names = FALSE)
+native_trend_sm <- data.frame(
+  region_id = 1,
+  habitat = "native_land",
+  year = 2020,
+  trend = 0
+)
+
+write.csv(native_trend_sm, file = "~/github/tet-scores/region/layers/hab_land_trend.csv", row.names = FALSE)
 ```
