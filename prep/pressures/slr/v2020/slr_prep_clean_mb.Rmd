@@ -151,7 +151,7 @@ We use the reference point to rescale all values from 0 to 1. If a value is grea
 
 registerDoParallel(10) 
 
-foreach(file = coastal_rasts) %dopar% { # file = coastal_rasts[10]
+foreach(file = coastal_rasts) %dopar% {  #file = coastal_rasts[10]
   yr <- str_sub(file, -8,-5)
     raster::raster(file) %>%
     calc(fun = function(x){ifelse(x < 0, 0, x)}) %>% # Set all negative values to 0
@@ -160,7 +160,7 @@ foreach(file = coastal_rasts) %dopar% { # file = coastal_rasts[10]
 }
 
 
-plot(raster(file.path(dir_anx, "prs_slr/output/msla_rescaled/slr_2010.tif")))
+plot(raster(file.path(dir_anx, "prs_slr/output/msla_rescaled/slr_2005.tif")))
 ```
 
 ***
@@ -169,17 +169,17 @@ plot(raster(file.path(dir_anx, "prs_slr/output/msla_rescaled/slr_2010.tif")))
 
 ```{r gif_results}
 
-coastal_rasts <- list.files(file.path(dir_anx, 'prs_slr/output/msla_rescaled'), full.names = T) %>%
+coastal_rasts_rescaled <- list.files(file.path(dir_anx, 'prs_slr/output/msla_rescaled'), full.names = T) %>%
                            stack()
                          
-names(coastal_rasts) <- paste0("Year_", substr(names(coastal_rasts),5,8))
+names(coastal_rasts_rescaled) <- paste0("Year_", substr(names(coastal_rasts_rescaled),5,8))
 
 # Make a gif animation
 animation::saveGIF({
-  for(i in 1:nlayers(coastal_rasts)){
-     plot(coastal_rasts[[i]], col='cornsilk2', main=names(coastal_rasts[[i]]), axes=F, legend=F)
+  for(i in 1:nlayers(coastal_rasts_rescaled)){
+     plot(coastal_rasts_rescaled[[i]], col='cornsilk2', main=names(coastal_rasts_rescaled[[i]]), axes=F, legend=F)
       # don't forget to fix the zlimits
-    plot(coastal_rasts[[i]], zlim=c(0,1), axes=F, col=cols, add=T)
+    plot(coastal_rasts_rescaled[[i]], zlim=c(0,1), axes=F, col=cols, add=T)
       
   }
 }, movie.name = 'slr_annual_rescaled.gif')
@@ -187,3 +187,54 @@ animation::saveGIF({
 ```
 
 <img src="slr_annual_rescaled.gif"/>
+
+## Region scores
+
+Extract data for the region as a whole
+
+```{r extract_region_data}
+
+## Read in raster files
+pressure_stack <- lapply(list.files(file.path(dir_anx, 'prs_slr/output/msla_rescaled'), full.names=T), raster) %>%
+  brick()
+tet_regionstats <- cellStats(pressure_stack, mean)%>% 
+  as.data.frame() %>% 
+  rename(pressure_score = ".") %>% 
+  tibble::rownames_to_column("file_name") %>% 
+  mutate(year = substr(file_name, 5, 8)) %>% 
+  select(-file_name) %>% 
+  mutate(rgn_id = 1, # Change to Tetiaroa region - what rgn_id is it?
+         rgn_name = "Tetiaroa", # Change this # Change this
+         year = as.numeric(year))
+
+```
+
+
+Save data
+
+```{r save}
+
+slr_data <- tet_regionstats %>% 
+  filter(year >= 2005 & year <= 2018)
+
+write.csv(slr_data, file.path("~/github/tet-scores/region/layers/prs_slr.csv"), row.names=FALSE)
+
+```
+
+
+
+## Visualize through time
+
+```{r graph_scores_overtime}
+
+slr_overtime <-ggplot(slr_data)+
+  geom_line(aes(x=year, y = pressure_score, color=rgn_name))+
+  ggtitle("Sea Level Rise Pressure Score") +
+  ylab("Score") +
+  xlab("Year") +
+  theme_classic() 
+slr_overtime
+#ggsave(file.path(dir_git, "prep/pressures/slr/v2020/figs/scores_2005-2019.png"), width=7, height=5, dpi=300)
+
+```
+
