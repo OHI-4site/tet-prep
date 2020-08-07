@@ -23,8 +23,6 @@ For the health and trend scores, we will use the values for French Polynesia cal
 **Downloaded**: 07/10/2020
 
 **Description**:  
-French Polynesia Final Report
-https://data.unep-wcmc.org/datasets/
 
 [Insert better description here]
 
@@ -134,5 +132,18 @@ coral_algae_ratio <- benthic_areas %>%
 #so using this method health would only be 50%. Seems really uncertain and pretty low, so we'll stick with global for now. 
 
 
+```
+
+Instead we'll grab layers from global and filter by country (147)
+
+```{r}
+
+coral_health_fp <- read_csv(here("prep/bd/hab/v2020/_raw_data", "hab_coral_health.csv")) %>% 
+  filter(rgn_id == 147)
+
+coral_trend_fp <- read_csv(here("prep/bd/hab/v2020/_raw_data", "hab_coral_trend.csv")) %>%
+  filter(rgn_id == 147)
+
+  
 ```
 
