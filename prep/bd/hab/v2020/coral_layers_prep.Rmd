@@ -10,7 +10,7 @@ output:
     toc: yes
 ---
 
-#Summary
+## Summary
 
 This script pulls more up to date coral data from the Living Oceans Foundation French Polynesia report, which was published in 2017. This will be used to assess current extent of benthic habitats on Tetiaroa. 
 
@@ -18,7 +18,7 @@ For the health and trend scores, we will use the values for French Polynesia cal
 
 ***
 
-#Data source
+## Data source
 
 **Downloaded**: 07/10/2020
 
@@ -28,7 +28,7 @@ For the health and trend scores, we will use the values for French Polynesia cal
 
 **Time range**: 2017
 
-#Set up 
+## Set up 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
@@ -138,12 +138,24 @@ Instead we'll grab layers from global and filter by country (147)
 
 ```{r}
 
-coral_health_fp <- read_csv(here("prep/bd/hab/v2020/_raw_data", "hab_coral_health.csv")) %>% 
+coral_health <- read_csv(here("prep/bd/hab/v2020/_raw_data", "hab_coral_health.csv")) %>% 
   filter(rgn_id == 147)
 
-coral_trend_fp <- read_csv(here("prep/bd/hab/v2020/_raw_data", "hab_coral_trend.csv")) %>%
+coral_trend <- read_csv(here("prep/bd/hab/v2020/_raw_data", "hab_coral_trend.csv")) %>%
   filter(rgn_id == 147)
 
   
+```
+
+Filter for French Polynesia
+
+```{r}
+
+coral_health_fp <- coral_health %>% 
+  filter(rgn_id == 147)
+
+coral_trend_fp <- coral_trend %>% 
+  filter(rgn_id == 147) # do i need to make this for every year?
+
 ```
 
