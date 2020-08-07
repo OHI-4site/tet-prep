@@ -14,7 +14,7 @@ output:
 
 This script pulls more up to date coral data from the Living Oceans Foundation French Polynesia report, which was published in 2017. This will be used to assess current extent of benthic habitats on Tetiaroa. 
 
-For the health and trend scores, we will use the values for French Polynesia calculated in the Global Assessnent for 2020. 
+For the health and trend scores, we will use the values for French Polynesia calculated in the Global Assessment for 2020. 
 
 ***
 
@@ -103,11 +103,36 @@ coral_extent <- benthic_areas %>%
     region_id = 1
   )
 
+write.csv(coral_extent, file = "~/github/tet-scores/region/layers/hab_coral_extent.csv", row.names = FALSE)
+```
+
+## Quantify coral health? 
+
+Tricky because we don't know what it should be - ie how much coral there should be versus barren reef versus macro algae dominated. As a quick experiment, lets just find the ratio of coral to barren substrate is. There appears to be no marcoalgae dominated substrate in this survey.
+
+```{r}
+
+coral_algae_ratio <- benthic_areas %>% 
+  filter(str_detect(classification, pattern = "substrate") | str_detect(classification, pattern = "Substrate")) %>% 
+  summarize(
+    km2 = sum(tot_area_km2)
+  ) %>%
+  mutate(
+    habitat = "barren_substrate",
+    year = 2017,
+    region_id = 1
+  ) %>%
+  bind_rows(.,coral_extent) %>% 
+  pivot_wider(
+    names_from = habitat,
+    values_from = km2
+  ) %>% 
+  mutate(
+    health = coral/barren_substrate
+  )
+
+#so using this method health would only be 50%. Seems really uncertain and pretty low, so we'll stick with global for now. 
+
 
 ```
 
-## Quantify coral health 
-
-The global score for FP was one - just to compare, lets calculate the ratio of coral to macroalgea dominated areas
-
-(note: check in report what lagoonal substrate is)
