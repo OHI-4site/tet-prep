@@ -270,5 +270,20 @@ write_csv(lsp_status_final, file.path(dir_goal, "output/lsp_status_mgmt.csv"))
 
 write.csv(lsp_status_final, file = "~/github/tet-scores/region/layers/lsp_status.csv", row.names = FALSE)
 
+
+```
+
+## Resilience: Management
+
+We will also use these scores as a resilience layer, since better management will produce positive outcomes for species, habitats, tourism and the conservation economy. Essentially, this will effect all the goals as this layer affects all areas considered in the analysis. 
+
+Since we've already created it above, we just need to write it to the resilience folder for record keeping, and to the toolbox under a different name. 
+
+```{r}
+
+write.csv(lsp_status_final, file = "~/github/tet-scores/region/layers/res_mgmt.csv", row.names = FALSE)
+
+write.csv(lsp_status_final, file.path(dir_github, "/prep/resilience/social/management/res_mgmt.csv"))
+
 ```
 

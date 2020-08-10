@@ -47,11 +47,17 @@ mpa <- data.frame(
   ) #convert acres into kilometers squared
 
 
-mpa_df <- bind_cols(total_area, mpa) %>% 
+mpa <- bind_cols(total_area, mpa) %>% 
   mutate(
     percent_protected = mpa_area_km2/ area_km2
-  ) %>% 
-  dplyr::select(region_id = region, year, res_score = percent_protected)
+  )
+  
+mpa_df <- data.frame(
+  region_id = 1,
+  year = seq(2014,2020,1),
+  res_score = mpa$percent_protected
+) 
+
 
 #write to output folder for now
 

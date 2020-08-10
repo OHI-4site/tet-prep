@@ -1,0 +1,43 @@
+---
+title: 'OHI Tetiaroa: Local Employees Resilience Layer'
+author: "Maddie Berger"
+output:
+  html_document:
+    highlight: haddock
+    includes:
+      in_header: '~/github/tet-prep/workflow/templates/ohi_hdr.html' 
+    number_sections: yes
+    theme: cerulean
+    toc: yes
+---
+# Summary
+
+This script creates a resilience layer based on the number of local employees on Tetiaroa. We are using the number reported in the 2018 Beachcomber sustainability report. 
+
+We think this is a measure of resilience because using local knowledge in resource management often results in positive environmental outcomes. Furthermore, it is important that local people are engaged as stakeholders in decisions about Tetiaroa's land and waters, even if it is owned privately. 
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(here)
+library(tidyverse)
+
+dir_resilience <- file.path(dir_github,"prep/resilience")
+```
+
+# Methods
+
+Page 30 in the report states "80% of staff are Polynesian", therefore that will be our resilience score for now. 
+
+```{r}
+
+res_local_employees <- data.frame(
+  region_id = 1, 
+  years = seq(2014,2020,1),
+  res_score = 0.80
+)
+
+write_csv(res_local_employees, file.path(dir_resilience, "social/local_employees/res_local_emp.csv"))
+```
+
+

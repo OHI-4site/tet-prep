@@ -17,7 +17,7 @@ knitr::opts_chunk$set(echo = TRUE,
 library(rredlist)
 library(here)
 library(tidyverse)
-#source(here::here('workflow/R/common.R'))
+
 
 #file paths
 goal     <- 'spp'
@@ -223,3 +223,7 @@ write.csv(spp_status_final, file.path(dir_goal,"output","spp_status.csv"), row.n
 Final trends layer is created in the last script `3_get_historic_trends.Rmd`. 
 
 ***
+
+## Resilience: Species Diversity
+
+The species scores can also be used as a resilience layer. 
