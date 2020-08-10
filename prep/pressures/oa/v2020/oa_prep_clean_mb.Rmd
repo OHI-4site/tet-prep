@@ -60,6 +60,7 @@ source(here('workflow/R/common.R'))
 
 raw_dir <- file.path(dir_M, 'git-annex/globalprep/_raw_data')
 
+dir_github <- here()
 ```
 
 # Method 1 - Zonal Stats from final Global Output
@@ -153,7 +154,7 @@ maps::map('world', col='gray95', fill=T, border='gray80', add=T)
 registerDoParallel(10)
 
 foreach (i = seq(1,708, by=12)) %dopar% { 
-  i = 1
+  #i = 1
 
   j = i+11
   
@@ -185,5 +186,16 @@ Find zonal statistics
 zonal <- zonal(stack, tet_ocean_rast_100, fun = "mean", na.rm= T)
 write.csv(zonal, file.path(dir_github,"/prep/pressures/oa/v2020/int/region_stats_2.csv"), row.names=FALSE)
 
+region_stats3 <- data.frame(zonal) %>% 
+  pivot_longer(cols = starts_with("tet"), names_to = "year", values_to = "pressure_score") %>% 
+  mutate(
+    year = substr(year, 24, 27)
+  )
+
+write.csv(region_stats3, file.path(dir_github,"/prep/pressures/oa/v2020/int/oa_method_two_raw.csv"), row.names=FALSE)
 ```
+
+Could we just repeat this with the historical reference point? or can we just grab the historical reference point from global and use a quick mutate to rescale?
+
+## Gapfilling?
 
