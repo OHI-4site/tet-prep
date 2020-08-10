@@ -1,0 +1,53 @@
+---
+title: "lsp_data_prep_old"
+output: html_document
+---
+## Summary
+
+This script calculates the protected areas resilience layer. The resilience score is the ratio of area protected against fishing out of the total area that could be fished. Areas with this level of protection will help protect both marine and terrestrial species, as well inter tidal and coastal habitat. Fishing protections helps coastal habitat because it prevents fisherman from landing on areas where they might poach green turtles and coconut crabs, an issue Tetiaroa has had difficulty regulating. 
+
+Data source: The Tetiaroa Society, and The Beachcomber LLC 2019 Sustainability Report. 
+
+## Setup
+
+```{r setup, echo = FALSE, message = FALSE, warning = FALSE}
+
+knitr::opts_chunk$set(fig.width = 6, fig.height = 4, fig.path = 'Figs/',
+                      echo = FALSE, message = FALSE, warning = FALSE, eval=FALSE)
+
+library(raster)
+library(sf)
+library(tidyverse)
+library(here)
+
+source(here('workflow/R/common.R'))
+
+dir_resilience <- file.path(dir_github,"prep/resilience")
+```
+
+# Method 
+
+## Find total area of extent, and divide MPA by total area
+
+```{r}
+
+
+total_area <- read_csv(file.path(dir_github,"/prep/sp/lsp/v2020/int/total_tet_area.csv"))
+
+mpa <- data.frame(
+  mpa_area_km2 = 0.00404686*8869
+  ) #convert acres into kilometers squared
+
+
+mpa_df <- bind_cols(total_area, mpa) %>% 
+  mutate(
+    percent_protected = mpa_area_km2/ area_km2
+  ) %>% 
+  dplyr::select(region_id = region, year, res_score = percent_protected)
+
+#write to output folder for now
+
+write_csv(mpa_df, file.path(dir_resilience, "ecological/protected_areas/res_mpa.csv"))
+
+```
+
