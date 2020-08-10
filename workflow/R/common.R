@@ -6,6 +6,7 @@ library(rgdal)
 library(sf)
 library(raster)
 library(RColorBrewer)
+library(here)
 
 cat("This file makes it easier to process data for the OHI global assessment\n",
     "by creating the following objects:\n\n",
@@ -63,14 +64,14 @@ tet_buffer_50nm <- sf::st_read(dsn = here::here('/spatial/shp'),layer = 'tet_buf
 ## Tetiaroa rasters
 
 #at 100 m res
-tet_ocean_rast_100 <- raster::raster('~/github/tet-prep/spatial/rasters/ocean_ras_100.tif')
+tet_ocean_rast_100 <- raster::raster(file.path(here('spatial/rasters/ocean_ras_100.tif')))
 
-tet_buffer_rast_100 <- raster::raster('~/github/tet-prep/spatial/rasters/all_ras_100.tif')
+tet_buffer_rast_100 <- raster::raster(file.path(here('spatial/rasters/all_ras_100.tif')))
 
 #at 1000 m res
-tet_ocean_rast_1k <- raster::raster('~/github/tet-prep/spatial/rasters/ocean_ras_1k.tif')
+tet_ocean_rast_1k <- raster::raster(file.path(here('spatial/rasters/ocean_ras_1k.tif')))
 
-tet_buffer_rast_1k <- raster::raster('~/github/tet-prep/spatial/rasters/all_ras_1k.tif')
+tet_buffer_rast_1k <- raster::raster(file.path(here('spatial/rasters/all_ras_1k.tif')))
 
 
 #other stuff
