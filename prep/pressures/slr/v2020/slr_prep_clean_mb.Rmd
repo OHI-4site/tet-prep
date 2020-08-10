@@ -70,7 +70,7 @@ slr_gl_files <- list.files(file.path(dir_M, "git-annex/globalprep/prs_slr/v2020/
                        full.names = TRUE, pattern = ".tif")
 
 plot(raster(slr_gl_files[1]), col = cols, axes = F, 
-     main = paste("Year", substr(slr_gl_files[1], 5, 8))) #wont work
+     main = paste("Year", substr(slr_gl_files[1], 5, 8))) 
 ```
 
 This has already been cropped, so lets grab the annual mean files instead:
@@ -82,11 +82,21 @@ slr_msla_annual_files <- list.files(file.path(dir_M, "git-annex/globalprep/prs_s
 
 plot(raster(slr_msla_annual_files[1]), col = cols, axes = F, 
      main = paste("Year", substr(slr_msla_annual_files[1], -8, -5)))
+
+#loop to check out values - these seem ok
+
+foreach(file = slr_msla_annual_files) %dopar%{
+  max <- maxValue(raster(file))
+  print(max)
+}
 ```
 
 ## Change the projection and mask
 
-Since we are only interested in the increase in sea level around Tetiaroa, we apply a mask to the raster layers that removes all cells farther than 3nm offshore. This mask was created previously for another part of this assessment. We also reproject to Lambert azimuthal equal-area projection.
+Since we are only interested in the increase in sea level around Tetiaroa, we apply a mask to the raster layers that removes all cells farther than the 3nm offshore Tetiaroa buffer. This mask was created previously for another part of this assessment. We also reproject to Lambert azimuthal equal-area projection.
+
+
+Note: this is where they are all becoming the exact same value (if you run maxValue for the rasters saved after this loop using `raster::maxValue(raster(coastal_rasts[27]))` they are all the same)
 
 ```{r}
 
@@ -99,7 +109,7 @@ plot(three_nm)
 #annual_means <- list.files(file.path(dir_anx, "prs_slr/int/msla_annual_mean"), full = TRUE)
 foreach(file = slr_msla_annual_files) %dopar% {  
   
- #file = slr_msla_annual_files[26]
+ file = slr_msla_annual_files[10]
   yr <- str_sub(file, -8, -5)
   
   rast_data <- raster(file) %>%
@@ -110,9 +120,11 @@ foreach(file = slr_msla_annual_files) %dopar% {
     mask(three_nm, filename = sprintf("%s/prs_slr/int/msla_annual_azimuthal_coastal/msla_annual_azimuthal_coastal_%s.tif", dir_anx, yr), overwrite = TRUE)
 }
 
+#run these two when trouble shooting the loop
+
 plot(raster(file.path(dir_anx, "prs_slr/int/msla_annual_azimuthal_coastal/msla_annual_azimuthal_coastal_2010.tif")))
 
-
+raster::maxValue(rast_data)
 
 ```
 

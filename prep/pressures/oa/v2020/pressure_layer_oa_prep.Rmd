@@ -115,7 +115,8 @@ Since this data is now on a regular grid, but the historical data from 1880-1889
 # Register 10 cores for parallel processing
 registerDoParallel(10)
 
-foreach (i = seq(1,708, by=12)) %dopar% { i = 1
+foreach (i = seq(1,708, by=12)) %dopar% { 
+  i = 1
 
   j = i+11
   
@@ -124,15 +125,25 @@ foreach (i = seq(1,708, by=12)) %dopar% { i = 1
   yr_mean = raw[[i:j]] %>%
             calc(fun=function(x){mean(x, na.rm=T)}) %>%
             rotate() %>%
-           # Crop to Tetiaroa extent
-            resample(hist, method = 'bilinear') %>%
-            projectRaster(tet_ocean_rast_100) %>% # Reproject to Tetiaroa ocean raster
-            crop(azim_ext) %>% #returning a blank raster
+            projectRaster(tet_ocean_rast_100, method = "ngb") %>% # Reproject to Tetiaroa ocean raster
+            crop(azim_ext) %>%
+            #resample(hist, method = 'ngb') %>% 
+             #returning a blank raster
           writeRaster(., filename = paste0(file.path(dir_anx), '/prs_oa/int/annual_avg_azimuthal/tet_arag_avg_azimuthal_', yr, '.tif'), overwrite=T)
  
 }
 
 plot(yr_mean)
+
+plot(tet_ocean_rast_100, col="#4566FE80", add=T)
+plot(tet_motus, add=T)
+
+plot(raw[[i])
+
+
+zonal_test <- zonal(yr_mean, tet_ocean_rast_100, fun = "mean", na.rm= T)
+
+
 
 ```
 
