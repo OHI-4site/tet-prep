@@ -19,10 +19,7 @@ output:
 
 The sea level rise (SLR) pressure layer for Tetiaroa is derived from a global raster of monthly data indicating mean sea level anomalies from 1993 to 2019. This preparation script does the following for newly available global SLR data:
   
-- Clips all monthly rasters to the coast using a 3 nautical mile offshore buffer
-- Calculates annual mean sea level anomaly rasters from monthly data
-- Rescales values from 0 to 1 using the reference point (maximum annual anomaly across the time series)
-- Sets to zero all negative values, indicating decreases in mean sea level
+- Clips all output raster to the coast using a 3 nautical mile offshore buffer
 - Resamples raster to ~ 1km^2^ and reprojects to Lambert azimuthal equal-area projection
 
 This process is completed entirely within this script. The raw data is downloaded externally and held on a server at NCEAS. Although the raw data is not provided, this script can be used on the data downloaded from Aviso [here](https://www.aviso.altimetry.fr/data/products/sea-surface-height-products/global/gridded-sea-level-anomalies-mean-and-climatology.html). You will need to register with Aviso in order to get a username and password for data access.
@@ -64,6 +61,7 @@ library(fasterize)
 library(rasterVis)
 library(animation)
 library(mapview)
+library(here)
 
 # Source and set file paths
 source(here('workflow/R/common.R'))
@@ -82,8 +80,8 @@ We don't need to download the data from the AVISO website because it's already b
 
 # d2016/msla_monthly_mean has data for 1993-2015
 # Then include list.files for d2017 through the data folder for current scenario year
-slr_nc_files <- c(list.files(file.path(dir_M, "git-annex/globalprep/_raw_data/AVISO_slr/d2020"),
-                       full.names = TRUE, pattern = ".nc"),
+slr_gl_files <- c(list.files(file.path(dir_M, "git-annex/globalprep/prs_slr/v2020/output"),
+                       full.names = TRUE, pattern = ".tif"),
               list.files(file.path(dir_M, "git-annex/globalprep/_raw_data/AVISO_slr/d2019"),
                        full.names = TRUE, pattern = ".nc"),
               list.files(file.path(dir_M, "git-annex/globalprep/_raw_data/AVISO_slr/d2018"),
@@ -95,9 +93,12 @@ slr_nc_files <- c(list.files(file.path(dir_M, "git-annex/globalprep/_raw_data/AV
 
 slr_nc_files <- slr_nc_files[-1:-2] # Double check this, but since the first two files are zip files I am confident in removing them. However, I did grab it directly from the most recent version of global so I so still want to make sure it's correct
 
+slr_gl_files <- list.files(file.path(dir_M, "git-annex/globalprep/prs_slr/v2020/output"),
+                       full.names = TRUE, pattern = ".tif")
+
 ```
 
-A peek into what the monthly data looks like
+A peek into what the monthly data looks like, and also the global data
 
 ```{r explore_monthly}
 
