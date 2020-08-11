@@ -63,5 +63,9 @@ mpa_df <- data.frame(
 
 write_csv(mpa_df, file.path(dir_resilience, "ecological/protected_areas/res_mpa.csv"))
 
+#write to toolbox
+
+write_csv(mpa_df, file.path(dir_scores, "region/layers/res_mpa.csv"))
+
 ```
 

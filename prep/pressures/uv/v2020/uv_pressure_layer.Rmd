@@ -223,5 +223,9 @@ uv_data <- pivot_longer(tet_stats, cols = uv_rescale_2005_2009:uv_rescale_2015_2
 
 write.csv(uv_data, file.path(dir_github, "prep/pressures/uv/v2020/output/uv_data.csv"))
 
+uv_clean <- read_csv(file.path(dir_github, "prep/pressures/uv/v2020/output/uv_data.csv")) %>% 
+  dplyr::select(region_id, year, pressure_score) %>% 
+  filter(year > 2013)
 
+write.csv(uv_clean, file.path(dir_scores, "/region/layers/prs_uv.csv"))
 ```

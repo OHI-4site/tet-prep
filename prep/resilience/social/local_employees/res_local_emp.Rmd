@@ -38,6 +38,11 @@ res_local_employees <- data.frame(
 )
 
 write_csv(res_local_employees, file.path(dir_resilience, "social/local_employees/res_local_emp.csv"))
+
+#toolbox
+
+write_csv(res_local_employees, file.path(dir_scores, "region/layers/res_local_emp.csv"))
+
 ```
 
 

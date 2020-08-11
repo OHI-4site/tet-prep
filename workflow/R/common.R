@@ -29,6 +29,8 @@ dir_anx       <- file.path(dir_M, 'git-annex/foursite/tetiaroa/dataprep')
 
 dir_github    <- '~/github/tet-prep'
 
+dir_scores <- '~/github/tet-scores'
+
 # warning if Mazu directory doesn't exist
 if (Sys.info()[['sysname']] != 'Linux' & !file.exists(dir_M)){
   warning(sprintf("The Mazu directory dir_M set in src/R/common.R does not exist. Do you need to mount Mazu: %s?", dir_M))

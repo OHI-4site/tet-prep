@@ -93,5 +93,9 @@ res_fishing_reg_1 <- data.frame(
 #write to folder
 
 write_csv(res_fishing_reg_1, file.path(dir_resilience, "ecological/fishing_reg/res_fishing_reg.csv"))
+
+#write to toolbox
+
+write_csv(res_fishing_reg_1, file.path(dir_scores, "region/layers/res_fishing_reg.csv"))
 ```
 

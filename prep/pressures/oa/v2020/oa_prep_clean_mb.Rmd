@@ -236,10 +236,12 @@ hist <- 4.67
 tet_oa_rescaled <- tet_oa %>%
   mutate(
     mean = pressure_score,
-    diff = (hist-mean)/(hist-1)
-  )
+    diff = (hist-mean)/(hist-1),
+    diff2 = hist-mean
+  ) 
   
-#check this
+  
+#check this - all less than one so are these just one then?
 ```
 
 

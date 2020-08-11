@@ -230,14 +230,19 @@ write.csv(sst_data, file.path(dir_github, "prep/pressures/sst/v2020/output/sst_d
 
 ```
 
-## Current score
+## Clean up sst
 
 ```{r current}
 
+sst_clean <- read_csv(file.path(dir_github, "prep/pressures/sst/v2020/output/sst_data.csv")) %>% 
+  dplyr::select(region_id, year, pressure_score) %>% 
+  filter(year > 2013)
 
 
 
+write.csv(sst_clean, file.path(dir_github, "prep/pressures/sst/v2020/output/prs_sst.csv"), row.names = FALSE)
 
+write.csv(sst_clean, file.path(dir_scores, "/region/layers/prs_sst.csv"), row.names = FALSE)
 ```
 
 
