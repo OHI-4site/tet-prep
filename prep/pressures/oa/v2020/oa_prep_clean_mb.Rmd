@@ -197,5 +197,51 @@ write.csv(region_stats3, file.path(dir_github,"/prep/pressures/oa/v2020/int/oa_m
 
 Could we just repeat this with the historical reference point? or can we just grab the historical reference point from global and use a quick mutate to rescale?
 
-## Gapfilling?
+## Get historical baseline - crop, reproject and get zonal stats
+
+```{r}
+
+hist <- raster(file.path(dir_M, 'git-annex/globalprep/prs_oa/v2015/working/global_oa_1880_1889_arag_mean_moll.tif'))
+
+plot(hist, main='Mean Ωaragonite 1880-1889', col=rev(cols), box=F, axes=F)
+
+
+hist_tet <- hist %>%
+  projectRaster(tet_ocean_rast_100, method = "ngb") %>% # Reproject to Tetiaroa ocean raster
+  crop(azim_ext)
+  #resample(hist, method = 'ngb') %>% 
+  #writeRaster(., filename = paste0(file.path(dir_anx), '/prs_oa/int/annual_avg_azimuthal/tet_arag_avg_azimuthal_', yr, '.tif'), overwrite=T)
+  
+
+plot(hist_tet)
+
+zonal_hist <- zonal(hist_tet, tet_ocean_rast_100, fun = "mean", na.rm= T)
+region_hist <- data.frame(zonal_hist)
+```
+
+The historical mean is 4.67. Apply this to the region_stats3 df to get the difference and scale it. Use the following equation: 
+
+>This pressure layer is rescaled so that all values lie between 0 and 1 using both a historical reference period and >a biological reference point. All cells with values less than 1, indicating an undersaturated state, are set equal >to the highest stressor level, 1. For all other cells, rescaling the aragonite saturation state value to between 0 >and 1 relies upon the change in saturation relative to the reference period.
+
+>Deviation from aragonite saturation state is determined for each year in the study period using this equation:
+
+$$\Delta \Omega_{year} = \frac{(\Omega_{base} - \Omega_{year})}{(\Omega_{base} - 1)}$$
+
+```{r}
+
+tet_oa <- read_csv(file.path(dir_github,"/prep/pressures/oa/v2020/int/oa_method_two_raw.csv"))
+
+hist <- 4.67
+
+tet_oa_rescaled <- tet_oa %>%
+  mutate(
+    mean = pressure_score,
+    diff = (hist-mean)/(hist-1)
+  )
+  
+#check this
+```
+
+
+
 
