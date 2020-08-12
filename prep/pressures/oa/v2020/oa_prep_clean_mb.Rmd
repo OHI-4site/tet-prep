@@ -248,7 +248,7 @@ tet_oa_final <- tet_oa_rescaled %>%
 
 #write this to toolbox
 
-write.csv(tet_oa_rescaled, file.path(dir_scores, "region/layers/prs_oa.csv"))
+write.csv(tet_oa_final, file.path(dir_scores, "region/layers/prs_oa.csv"), row.names = FALSE)
   
   
 #check this - all less than one so are these just one then?
