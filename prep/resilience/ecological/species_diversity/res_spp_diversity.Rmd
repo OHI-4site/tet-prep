@@ -1,0 +1,69 @@
+---
+title: 'OHI+ Tetiaroa 2020: Species Diversity Pressure Layer'
+author: "*Compiled on `r date()` by `r Sys.info()['user']`*"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 2 
+    toc_float: yes
+    number_sections: false
+    theme: cerulean
+    highlight: haddock
+    includes: 
+     in_header: '../../../src/templates/ohi_hdr.html' 
+  pdf_document:
+    toc: true
+---
+
+# Summary
+
+This script prepares the species diversity resilience layer. It is identical to the methods used to calculate the species diversity status score in the Toolbox.
+
+# Set up 
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Methods
+
+## Read in final SPP layer from SPP prep 
+
+```{r}
+
+spp_status <- read_csv(file.path(dir_github, "/prep/bd/spp/v2020/output/spp_status.csv"))
+
+
+```
+
+
+## Find average scores
+```{r}
+
+res_spp_div <- spp_status %>%
+   dplyr::filter(year == 2020) %>% #do i need this?
+  dplyr::filter(!is.na(status)) %>%
+    group_by(region_id, class) %>%
+    summarize(
+      status = mean(status) #mean per class
+    ) %>%
+    group_by(region_id) %>%
+    summarize(
+      res_score = mean(status),
+      year = 2020
+      #dimension = "status"#average of the 10 classes, final score
+    )
+
+
+
+```
+
+## Write layer to Toolbox
+
+```{r}
+
+write_csv(res_spp_div, file.path(dir_scores,"/region/layers/res_spp_div.csv"))
+
+
+```
+

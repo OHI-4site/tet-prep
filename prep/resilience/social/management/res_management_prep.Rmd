@@ -19,15 +19,74 @@ source(here('workflow/R/common.R'))
 
 ```
 
+# Method 
 
-# Methods
+## Read in data 
 ```{r}
 
 #read in lsp data 
 
-mgmt_raw <- read_csv(file.path(dir_github, "/prep/resilience/social/management/res_mgmt.csv"))
+mgmt_raw <- read_csv(file.path(dir_github, "/prep/resilience/social/management/res_mgmt_raw.csv"))
 
 
+
+```
+
+
+
+## Calculate "status" score for LSP
+
+```{r}
+
+
+  land_status <- mgmt_raw %>%
+    filter(zone %!in% c("Offshore","No take zone","Rest of lagoon")) %>%
+    group_by(year) %>%
+    summarize(
+      status = weighted.mean(status,area)
+    ) #1
+
+  #calculate lagoon scores
+
+  lagoon_status <- mgmt_raw %>%
+    filter(zone %in% c("No take zone","Rest of lagoon")) %>%
+    group_by(year) %>%
+    summarize(
+      status = mean(status)
+    )
+
+   #offshore, and add the rest to get the final status
+
+  res_mgmt <- mgmt_raw %>%
+    filter(zone %in% "Offshore") %>%
+    group_by(year) %>%
+    summarize(
+      status = mean(status)
+    ) %>%
+    bind_rows(land_status, lagoon_status) %>%
+    group_by(year) %>%
+    summarize(
+      status = mean(status)
+    ) %>%
+    mutate(
+      res_score = status,
+      region_id = 1,
+      dimension = "status"
+    ) %>% 
+    dplyr::select(region_id, year, res_score)
+
+
+
+
+```
+
+## Write layers to tool box
+
+```{r}
+
+write_csv(res_mgmt, file.path(dir_github,"/prep/resilience/social/management/res_mgmt.csv"))
+
+write_csv(res_mgmt, file.path(dir_scores, "/region/layers/res_mgmt.csv"))
 
 ```
 
