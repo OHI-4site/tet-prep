@@ -1,0 +1,44 @@
+---
+title: 'OHI+ Tetiaroa 2020: Management Pressure Layer'
+author: "*Compiled on `r date()` by `r Sys.info()['user']`*"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 2 
+    toc_float: yes
+    number_sections: false
+    theme: cerulean
+    highlight: haddock
+    includes: 
+     in_header: '../../../src/templates/ohi_hdr.html' 
+  pdf_document:
+    toc: true
+---
+# Summary
+
+This script creates the social pressure mangement layer. This layer is just the inverse of the management resilience layer. 
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+```
+
+# Methods
+
+```{r}
+#read in res_mgmt layer
+
+prs_mgmt <- read_csv(file.path(dir_github, "/prep/resilience/social/management/res_mgmt.csv")) %>% 
+  mutate(
+    pressure_score = 1 - res_score
+  ) %>%
+  dplyr::select(region_id, year, pressure_score)
+
+#write to Toolbox
+
+write_csv(prs_mgmt, file.path(dir_scores, "/region/layers/prs_mgmt.csv"))
+
+
+```
+
