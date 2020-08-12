@@ -256,6 +256,7 @@ ggsave(file='./figs/scores_2005-2020.png', width=7, height=5, dpi=300)
 ## Save To Toolbox
 
 ```{r save-to-toolbox, eval=F}
-write.csv(slr_data, file.path(dir_scores, "layers/cc_slr.csv", row.names=FALSE)
+
+write.csv(slr_data, file.path(dir_scores, "/region/layers/cc_slr.csv"))
           
 ```

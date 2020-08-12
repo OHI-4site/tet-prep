@@ -54,6 +54,7 @@ library(here)
 library(gstat)
 library(scales)
 library(animation)
+library(tidyverse)
 
 # Source and set file paths, will also load Tetiaroa shapefiles and rasters
 source(here('workflow/R/common.R'))
@@ -239,11 +240,74 @@ tet_oa_rescaled <- tet_oa %>%
     diff = (hist-mean)/(hist-1),
     diff2 = hist-mean
   ) 
+
+
+tet_oa_final <- tet_oa_rescaled %>% 
+  dplyr::select(region_id = zone, year, pressure_score = diff)
+
+
+#write this to toolbox
+
+write.csv(tet_oa_rescaled, file.path(dir_scores, "region/layers/prs_oa.csv"))
   
   
 #check this - all less than one so are these just one then?
 ```
 
+## Visualize through times
 
+```{r}
+
+oa_overtime <- ggplot(tet_oa_final) +
+  geom_line(aes(x=year, y = pressure_score), color="dodgerblue4")+
+  ggtitle("Ocean Acidification Pressure Score") +
+  ylab("Score") +
+  xlab("Year") +
+  theme_classic() 
+oa_overtime
+ggsave(file='./figs/scores_1959-2016.png', width=7, height=5, dpi=300)
+
+
+```
+
+
+
+
+## Try the raster function to double check layers
+
+```{r}
+
+# For each layer, all values <=1 are assigned a 1, otherwise old-new/(old-1)
+oaRescale <- function(file){
+  
+  yr   = substr(file, nchar(file)-7, nchar(file)-4) # Get year of file
+  mean = raster(file)                               # Get seasonal mean aragonite raster for given year
+  diff = (hist_tet-mean)/(hist_tet-1)
+  mean[mean<=1] <- 1                                # All values at or less than 1 are given a value of 1
+  mean[mean>1]  <- diff[mean>1]                     # All cells with values greater than 1 are swapped out with their amount of change scaled to how close to 1 
+  mean[mean<0]  <- 0                                # All values less than 0 (indicating a decrease in acidity) are capped at 0
+
+    writeRaster(mean, filename = paste0(dir_anx, '/prs_oa/int/tet_avg_azimuthal_rescaled/oa_rescaled_', yr, sep=""), format='GTiff', overwrite=TRUE)
+}
+
+files = list.files(file.path(dir_anx, '/prs_oa/int/annual_avg_azimuthal/'), full.names=TRUE)
+
+mclapply(files, oaRescale, mc.cores = 16)
+
+
+```
+
+Plot 2016 to see if this worked: 
+
+```{r}
+
+r <- raster(file.path(dir_anx, 'prs_oa/int/tet_avg_azimuthal_rescaled/oa_rescaled_2016.tif'))
+
+plot(r, col=cols, box=F, axes=F, main = 'Rescaled Ωaragonite layer for 2016')
+
+
+```
+
+It looks like this is the same thing of also using the difference as the score? 
 
 

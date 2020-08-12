@@ -1,0 +1,33 @@
+---
+title: "resilience_mgmt_prep"
+author: "Maddie Berger"
+date: "8/12/2020"
+output: html_document
+---
+
+# Summary
+
+This script creates the management resilience layer. The methods are identical to the process of calculated the LSP score in the toolbox. 
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(here)
+
+source(here('workflow/R/common.R'))
+
+```
+
+
+# Methods
+```{r}
+
+#read in lsp data 
+
+mgmt_raw <- read_csv(file.path(dir_github, "/prep/resilience/social/management/res_mgmt.csv"))
+
+
+
+```
+
