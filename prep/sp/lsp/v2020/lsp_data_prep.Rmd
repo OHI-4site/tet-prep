@@ -48,9 +48,9 @@ Below is a table listing these criteria for different management zones in Tetiar
 | Zone | Ownership / Management | Plan? | Monitoring? | Effective? |
 | :---- | :----------- | :------- | :------- | :------- |
 | All motus | SA Frangipani, The Tetiaroa Society | yes | yes | yes |
-| No-take zone | The Tetiaroa Society, TBSA, FP Gov | yes | no | no |
-| Rest of Lagoon | FP Government, The Tetiaroa Society | yes | no? | yes |
-| 3nm offshore | FP Government | no | no | no | no |
+| No-take zone | The Tetiaroa Society, TBSA, FP Gov | yes | yes | yes (75%) |
+| Rest of Lagoon | FP Government, The Tetiaroa Society | yes | yes | yes |
+| 3nm offshore | FP Government | yes (50%) | no | no | yes |
 
 **Motus**
 
@@ -204,9 +204,9 @@ We will calculate the total score by averaging across the land, lagoon and offsh
 all_regions <- read_csv(file.path(dir_goal,"int/all_regions_area.csv")) %>% 
   mutate(
     score = case_when(
-      region %in% "No take zone" ~ 2,
-      region %in% "Offshore" ~ 0,
-      region %in% "Rest of lagoon" ~ 3,
+      region %in% "No take zone" ~ 3.75,
+      region %in% "Offshore" ~ 1.5,
+      region %in% "Rest of lagoon" ~ 4,
       TRUE ~ 4
     )
   ) %>% 
