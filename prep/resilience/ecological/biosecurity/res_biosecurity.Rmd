@@ -1,0 +1,21 @@
+---
+title: 'OHI Tetiaroa: Biosecurity Resilience'
+author: "Maddie Berger"
+date: "8/13/2020"
+output: html_document
+---
+
+# Summary
+
+Both Tetiaroa and greater French Polynesia have stringent biosecurity plans in place to help prevent the introduction of additional harmful invasive species. This helps maintain the health of the ecosystems and species present, and is therefore a major contributor to the resilience of the islands' natural resources. 
+
+We'll score this using a reference point informed by the Island Biosecurity SOP Best Practice Manual (2003)
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+
+```
+
+
+# Method
