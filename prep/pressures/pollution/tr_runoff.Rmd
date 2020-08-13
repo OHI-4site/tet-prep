@@ -1,0 +1,26 @@
+---
+title: 'OHI Tetiaroa: Tourism Pressure'
+author: "Maddie Berger"
+date: "8/13/2020"
+output: html_document
+---
+
+# Summary 
+
+This script aims to calculate the pressures generated from tourism on Tetiaroa. In the future, when more data is available, 
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Method 
+
+## Read in tourism layers 
+
+```{r}
+
+
+
+```
+
