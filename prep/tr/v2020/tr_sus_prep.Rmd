@@ -143,6 +143,7 @@ For now, save this to the int folder (once we finalize it, save to outputs and t
 
 write_csv(tr_scores, file.path(dir_goal, "int/tr_status_final.csv"))
 
+#write_csv(tr_scores, file.path(dir_goal, "int/tr_category_scores.csv"))
 
 ```
 

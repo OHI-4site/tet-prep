@@ -7,11 +7,20 @@ output: html_document
 
 # Summary 
 
-This script aims to calculate the pressures generated from tourism on Tetiaroa. In the future, when more data is available, 
+This script aims to calculate the pressures generated from tourism on Tetiaroa. In the future, when more data is available, this could include population data to calculate intertidal trampling, or more details on possible contamination from the hotel. For now, this pressure is expressed using the inverse of the waste management score we calculated in the Tourism Sustainability goal. 
 
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(here)
+
+source(here('workflow/R/common.R'))
+
+goal     <- 'pollution'
+scenario <- 'v2020'
+dir_goal      <- file.path(here('prep/pressures',goal))
 ```
 
 # Method 
@@ -19,8 +28,27 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Read in tourism layers 
 
 ```{r}
+#grab just the waste management row
+tr_data <- read_csv(here("/prep/tr/v2020/int/tr_category_scores.csv")) %>% 
+  filter(category == "waste")
 
+po_tr_pollution <- tr_data %>%
+  mutate(
+    pressure_score = 1 - score,
+    region_id = 1,
+    year = 2020
+  ) %>% 
+  dplyr::select(region_id, year, pressure_score)
 
+```
+
+## Save layer
+
+```{r}
+
+write_csv(po_tr_pollution, file.path(dir_goal, "po_tr.csv"))
+
+write_csv(po_tr_pollution, file.path(dir_scores,"/region/layers/prs_po_tr.csv"))
 
 ```
 
