@@ -1,0 +1,47 @@
+---
+title: 'OHI Tetiaroa: Clean Waters'
+author: "Maddie Berger"
+date: "8/14/2020"
+output: html_document
+---
+
+# Summary
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+
+library(tidyverse)
+library(here)
+
+source(here('workflow/R/common.R'))
+
+#file paths
+goal     <- 'cw'
+scenario <- 'v2020'
+dir_goal      <- file.path(here('prep',goal, scenario))
+dir_goal_anx  <- file.path(dir_anx, goal, scenario)
+
+
+
+```
+
+
+## Create a placeholder layer with NA
+
+```{r}
+
+
+cw_status_placeholder <- data.frame(
+  region_id = 1,
+  year = seq(2014,2020,1),
+  status = NA
+)
+
+#write to toolbox
+
+write_csv(cw_status_placeholder, file.path(dir_scores,"/region/layers/cw_status_placeholder.csv"))
+
+```
