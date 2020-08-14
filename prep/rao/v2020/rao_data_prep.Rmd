@@ -1,0 +1,52 @@
+---
+title: 'OHI Tetiaroa: Resource Access Opportunities'
+author: "Maddie Berger"
+date: "8/14/2020"
+output: html_document
+---
+
+# Summary 
+
+The resource access opportunities goal captures the access people have to coastal resources, whether or not they actually take fish or harvest from coastal waters. 
+
+Data relevant to Tetiaroa that could inform this goal include things like:
+- artisanal fishing catch, number of boats, accessible areas
+- recreational fishing
+- measures of access or availability: boat rental prices, gas prices
+
+For this assessment, we will use a placeholder layer that can be updated once this type of data becomes more available. 
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(here)
+
+source(here('workflow/R/common.R'))
+
+#file paths
+goal     <- 'rao'
+scenario <- 'v2020'
+dir_goal      <- file.path(here('prep',goal, scenario))
+dir_goal_anx  <- file.path(dir_anx, goal, scenario)
+
+```
+
+
+## Create a placeholder layer with NA
+
+```{r}
+
+
+rao_status_placeholder <- data.frame(
+  region_id = 1,
+  year = seq(2014,2020,1),
+  status = NA
+)
+
+#write to toolbox
+
+write_csv(rao_status_placeholder, file.path(dir_scores,"/region/layers/rao_status_placeholder.csv"))
+
+```
+
