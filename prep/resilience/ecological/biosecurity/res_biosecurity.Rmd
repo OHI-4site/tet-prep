@@ -18,39 +18,63 @@ Both Tetiaroa and greater French Polynesia have stringent biosecurity plans in p
 
 We'll score this using a reference point informed by the Island Biosecurity SOP Best Practice Manual (2003). Below I've pulled out four main elements to a robust biosecurity plan: 
 
-### Quarantine: Eliminating target pests before they reach the island
+**Quarantine: Eliminating target pests before they reach the island**
 There should be a safe space in the store for:  
 
 - storage and maintenance equipment used on islands
 - checking and packing supplies needed for the programmes on the islands
 - cleaning and checking items returned from the islands 
 
-### Contingency: Contaning the pest once it is on the island
+**Contingency: Contaning the pest once it is on the island**
 - Rodent control methods in place?
 - Pest invasion kits in place?
 
-### Surveillance: Active searching for a target pest
+**Surveillance: Active searching for a target pest**
 - Are there survellience protocols and tools in place to keep track of invasive species?
 
-### Advocacy and Communication: 
+**Advocacy and Communication:**
 - Materials available for incoming visitors
 - Signs on the islands 
 - Public awareness programming
 - Biosecurity-specific staff training 
 - Entry permits 
 
+Notes on Tetiaroa's current biosecurity activities, from page 7 of the Tetiaroa Biosecruity Plan V1.0:
 
-Advice from introduction on how to priortizie these:
-- Quarantine store or space is the most important
-- Having secure transport is the second most important
-- Traps and Surveillance Equipment = next lowest
+- Phytosanitary measures were appropriately applied during the construction phase but following
+completion, less precautions are being taken.  
+- In 2018, Air Tetiaroa introduced a new directive for baggage handlers focussing on the transport
+of cut flowers which specifies that only flower consignments sourced from approved suppliers (such Tahiti Fleurs) or accompanied by a phytosanitary certificate are allowed for transported. Other airfreight is not subject to any biosecurity control.  
+- Tetiaroa Maritime Transport (TMT), carries out rat and insect control on their vessels, every six months.
+- All new staff of The Brando are required to sign the charter for the protection of the environment on Tetiaroa. They receive training when they arrive on the island which includes a Green Tour. The tour covers sustainable development measures taken by The Brando, as well as, biosecurity issues such as food and plants they are not allowed to bring to the island, an introduction to the mosquito control project and how they can contribute to it, and what actions they need to take to help limit the proliferation of flies. In addition, these issues are often discussed with staff by the environment coordinator and the staff village manager. Despite this, staff have been known to bring fruit and vegetable, house plants and other plant material for planting. Such violations are not subject to any consequences.
+
+From this, is appears there are some potential risk pathways, i.e. risky products or items that are not undergoing quarantine or being prevented from coming to the island. 
+
+**FOR NOW: estimate about 80% score? Note that past years may not have been as strong**
 
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
-
+library(tidyverse)
+library(here)
 ```
 
 
 # Method
+
+We'll create a data frame with the resilience score for this year.
+
+```{r}
+
+res_biosecurity <- data.frame(
+  region_id = 1,
+  year = 2020,
+  res_score = 0.80
+)
+
+# write to tool box
+
+write_csv(res_biosecurity, file.path(dir_scores, "/region/layers/res_biosecurity.csv"))
+```
+
