@@ -47,7 +47,6 @@ dir_goal_anx  <- file.path(dir_anx, goal, scenario)
 
 ```
 
-
 ## Create a placeholder layer with NA
 
 ```{r}
