@@ -7,8 +7,6 @@ output: html_document
 
 # Summary
 
-
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 

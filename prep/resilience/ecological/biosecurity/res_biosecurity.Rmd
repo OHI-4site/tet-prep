@@ -2,14 +2,49 @@
 title: 'OHI Tetiaroa: Biosecurity Resilience'
 author: "Maddie Berger"
 date: "8/13/2020"
-output: html_document
+output:
+  html_document:
+    highlight: haddock
+    includes:
+      in_header: '~/github/tet-prep/workflow/templates/tet_hdr.html' 
+    number_sections: yes
+    theme: cerulean
+    toc: yes
 ---
 
 # Summary
 
 Both Tetiaroa and greater French Polynesia have stringent biosecurity plans in place to help prevent the introduction of additional harmful invasive species. This helps maintain the health of the ecosystems and species present, and is therefore a major contributor to the resilience of the islands' natural resources. 
 
-We'll score this using a reference point informed by the Island Biosecurity SOP Best Practice Manual (2003)
+We'll score this using a reference point informed by the Island Biosecurity SOP Best Practice Manual (2003). Below I've pulled out four main elements to a robust biosecurity plan: 
+
+### Quarantine: Eliminating target pests before they reach the island
+There should be a safe space in the store for:  
+
+- storage and maintenance equipment used on islands
+- checking and packing supplies needed for the programmes on the islands
+- cleaning and checking items returned from the islands 
+
+### Contingency: Contaning the pest once it is on the island
+- Rodent control methods in place?
+- Pest invasion kits in place?
+
+### Surveillance: Active searching for a target pest
+- Are there survellience protocols and tools in place to keep track of invasive species?
+
+### Advocacy and Communication: 
+- Materials available for incoming visitors
+- Signs on the islands 
+- Public awareness programming
+- Biosecurity-specific staff training 
+- Entry permits 
+
+
+Advice from introduction on how to priortizie these:
+- Quarantine store or space is the most important
+- Having secure transport is the second most important
+- Traps and Surveillance Equipment = next lowest
+
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
