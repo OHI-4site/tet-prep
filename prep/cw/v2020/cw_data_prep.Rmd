@@ -1,11 +1,32 @@
 ---
 title: 'OHI Tetiaroa: Clean Waters'
 author: "Maddie Berger"
-date: "8/14/2020"
-output: html_document
+date: "8/13/2020"
+output:
+  html_document:
+    highlight: haddock
+    includes:
+      in_header: '~/github/tet-prep/workflow/templates/tet_hdr.html' 
+    number_sections: yes
+    theme: cerulean
+    toc: yes
 ---
 
 # Summary
+
+The clean waters goal aims to capture the value people have for marine waters that are free of pollution and debris for aesthetic and health reason. The Global OHI considers various contamination sources, such as contamination from chemicals or oil spills, trash, and mass kills of organisms. 
+
+The four layers included in the global OHI are:   
+- Eutrophication
+- Chemicals
+- Pathogens
+- Marine debris 
+
+Full description of how each of these layers are created can be found [here](https://raw.githack.com/OHI-Science/ohi-global/published/documents/methods/Supplement.html#65_clean_waters).
+
+Lacking data on any of these categories in Tetiaroa, for now we will just include placeholder layers for each of these categories. 
+
+
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)

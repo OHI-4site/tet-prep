@@ -2,7 +2,14 @@
 title: 'OHI Tetiaroa: Resource Access Opportunities'
 author: "Maddie Berger"
 date: "8/14/2020"
-output: html_document
+output:
+  html_document:
+    highlight: haddock
+    includes:
+      in_header: '~/github/tet-prep/workflow/templates/tet_hdr.html' 
+    number_sections: yes
+    theme: cerulean
+    toc: yes
 ---
 
 # Summary 
