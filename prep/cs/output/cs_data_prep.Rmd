@@ -33,7 +33,7 @@ cs_status_placeholder <- data.frame(
 
 #write to toolbox
 
-write_csv(cw_eutrophication_trend_ph, file.path(dir_scores,"/region/layers/cw_debris_trend_ph.csv"))
+write_csv(cs_status_placeholder, file.path(dir_scores,"/region/layers/cs_status_placeholder.csv"))
 
 ```
 
