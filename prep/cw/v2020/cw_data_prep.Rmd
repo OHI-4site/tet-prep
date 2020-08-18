@@ -51,41 +51,15 @@ dir_goal_anx  <- file.path(dir_anx, goal, scenario)
 
 ```{r}
 
-
-cw_eutrophication_trend_ph <- data.frame(
+cw_status_placeholder <- data.frame(
   region_id = 1,
   year = seq(2014,2020,1),
   status = NA
 )
 
-cw_chemicals_trend_ph <- data.frame(
-  region_id = 1,
-  year = seq(2014,2020,1),
-  status = NA
-)
-
-cw_pathogens_trend_ph <- data.frame(
-  region_id = 1,
-  year = seq(2014,2020,1),
-  status = NA
-)
-
-cw_debris_trend_ph <- data.frame(
-  region_id = 1,
-  year = seq(2014,2020,1),
-  status = NA
-)
 
 #write to toolbox
 
-write_csv(cw_eutrophication_trend_ph, file.path(dir_scores,"/region/layers/cw_eutrophication_trend_ph.csv"))
-
-write_csv(cw_eutrophication_trend_ph, file.path(dir_scores,"/region/layers/cw_chemicals_trend_ph.csv"))
-
-
-write_csv(cw_eutrophication_trend_ph, file.path(dir_scores,"/region/layers/cw_pathogens_trend_ph.csv"))
-
-
-write_csv(cw_eutrophication_trend_ph, file.path(dir_scores,"/region/layers/cw_debris_trend_ph.csv"))
+write_csv(cw_status_placeholder, file.path(dir_scores,"/region/layers/cw_status_placeholder.csv"))
 
 ```

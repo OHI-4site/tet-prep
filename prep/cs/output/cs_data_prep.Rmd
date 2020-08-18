@@ -1,0 +1,39 @@
+---
+title: "OHI+ Tetiaroa: Carbon Storage"
+author: "Maddie Berger"
+date: "8/18/2020"
+output: html_document
+---
+# Summary 
+
+The carbon storage goal aims to measure the status of marine and coastal habitats known to provide meaningful amounts of carbon storage, which includes mangroves, seagrasses, and salt marshes.
+
+Tetiaroa does not have any mangroves or seagrass, however the native rainforest and cyanobacteria mats that do exist in the area may provide carbon storage. However, without data that details the actual extent and species make up of the native habitats, it is not possible to quantify carbon storage in a meaningful way. We therefore will create a placeholder layer in its place for now. 
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(here)
+
+goal     <- 'cs'
+scenario <- 'v2020'
+dir_goal      <- file.path(here('prep',goal, scenario))
+dir_goal_anx  <- file.path(dir_anx, goal, scenario)
+
+
+
+cs_status_placeholder <- data.frame(
+  region_id = 1,
+  year = seq(2014,2020,1),
+  status = NA
+)
+
+
+#write to toolbox
+
+write_csv(cw_eutrophication_trend_ph, file.path(dir_scores,"/region/layers/cw_debris_trend_ph.csv"))
+
+```
+
