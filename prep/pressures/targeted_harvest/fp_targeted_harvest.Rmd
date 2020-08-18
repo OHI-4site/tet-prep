@@ -1,0 +1,46 @@
+---
+title: 'OHI Tetiaroa: Targeted Harvest'
+author: "Maddie Berger"
+date: "8/18/2020"
+output:
+  html_document:
+    highlight: haddock
+    includes:
+      in_header: '~/github/tet-prep/workflow/templates/tet_hdr.html' 
+    number_sections: yes
+    theme: cerulean
+    toc: yes
+---
+
+# Summary
+
+While Tetiaroa is a private island, managers acknowledge that there is some pressure from local fisherman working in the surrounding waters. Sometimes, they also poach endangered species such as coconut crabs and green turtles. While there has not been any surveillance resulting in data we could use to create a pressure layer, we will include a placeholder layer in case data becomes available. 
+
+# Method
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(here)
+
+source(here('workflow/R/common.R'))
+
+goal     <- 'targeted_harvset'
+scenario <- 'v2020'
+dir_goal      <- file.path(here('prep/pressures',goal, scenario))
+dir_goal_anx  <- file.path(dir_anx, goal, scenario)
+
+
+targeted_harvest_status_ph <- data.frame(
+  region_id = 1,
+  year = seq(2014,2020,1),
+  status = NA
+)
+
+
+#write to toolbox
+
+write_csv(targeted_harvest_status_ph, file.path(dir_scores,"/region/layers/targeted_harvest_status_ph.csv"))
+
+```
+
