@@ -1,5 +1,6 @@
 name,result.year,result.code,result.category
 22696698,2018,LC,Least Concern
+22696698,2017,LC,Least Concern
 22696698,2016,LC,Least Concern
 22696698,2012,LC,Least Concern
 22696698,2009,LC,Least Concern
@@ -27,6 +28,7 @@ name,result.year,result.code,result.category
 22694821,1994,LR/lc,Lower Risk/least concern
 22694821,1988,LR/lc,Lower Risk/least concern
 22697733,2018,LC,Least Concern
+22697733,2017,LC,Least Concern
 22697733,2016,LC,Least Concern
 22697733,2012,LC,Least Concern
 22697733,2009,LC,Least Concern
@@ -36,7 +38,6 @@ name,result.year,result.code,result.category
 22697733,1994,LR/lc,Lower Risk/least concern
 22697733,1988,LR/lc,Lower Risk/least concern
 22697738,2018,LC,Least Concern
-22697738,2017,LC,Least Concern
 22697738,2016,LC,Least Concern
 22697738,2012,LC,Least Concern
 22697738,2009,LC,Least Concern
@@ -150,6 +151,7 @@ name,result.year,result.code,result.category
 16285718,2012,LC,Least Concern
 46967807,2013,CR,Critically Endangered
 84156809,2015,CR,Critically Endangered
+2811,2020,VU,Vulnerable
 2811,1996,DD,Data Deficient
 2811,1994,R,Rare
 2811,1990,R,Rare

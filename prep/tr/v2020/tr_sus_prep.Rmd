@@ -1,23 +1,23 @@
 ---
-title: "Tourism sustainability"
+title: "OHI Tetiaroa: Tourism sustainability"
 author: Madeline Berger
 output:
   html_document:
     highlight: haddock
     includes:
-      in_header: '~/github/tet-prep/workflow/templates/ohi_hdr.html' 
+      in_header: '~/github/tet-prep/workflow/templates/tet_hdr.html' 
     number_sections: yes
     theme: cerulean
     toc: yes
 ---
 
-## Summary 
+# Summary 
 
-This script calculates a score for tourism sustainability of [The Brando](https://thebrando.com/) resort, the eco-resort on Onetahi. Data for this goal are descriptive sustainability metrics that I gathered from SA Beachcomber's 2019 sustainability report. Most of them are just in percentages (i.e. 80% energy provided by solar).
+This script calculates a score for tourism sustainability of [The Brando](https://thebrando.com/) resort, the eco-resort on Onetahi. Data for this goal are descriptive sustainability metrics that I gathered from SA Beachcomber's 2019 sustainability report. Most of them are in percentages (i.e. 80% energy provided by solar).
 
 We did inquire about actual data from The Brando, contacting Alban Perret (sustainability manager). He was not able to share any data at this time, as The Brando has had to push their sustainability work to 2021. Alban said to reach out again in Q2 2021 for an update. His contact information is: aperret@pbsc.pf
 
-The Brando has already achieved far more in terms of sustainability than most resorts, so setting a reference point is tricky. They were the first resort building to receive LEED Platinum certification, and already have a very low impact. We'll assume that being at 100% sustainable, i.e. no footprint, is a goal. While it does not seem totally feasible, the 2019 sustainability report outlines the following broad goal, which supports this reference point: 
+The Brando has already achieved far more in terms of sustainability than most resorts, so setting a reference point was tricky. They were the first resort building to receive LEED Platinum certification, and already have a very low impact in terms of waste generated and energy used. We'll assume that being at 100% sustainable, i.e. no footprint, is a goal. While it does not seem totally feasible, the 2019 sustainability report outlines the following broad goal, which supports this reference point: 
 
 >"Decrease carbon footprint of human activity on the island, working towards zero impact"
 
@@ -39,10 +39,10 @@ For now I'll just use this framework to group the statistics I have into categor
 * Waste & Recycling
 * Water management
 
-Alban has mentioned they keep "social metrics" as well, so if future data surfaces than this goal could address some of the other themes listed above as well. 
+Alban has mentioned they keep "social metrics" in addition to sustainability metrics, so if future data surfaces than this goal could address some of the other themes listed above as well. 
 
 
-## Set up 
+# Set up 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
@@ -64,7 +64,7 @@ brando_stats <- read_csv(file.path(dir_goal,"_raw_data/tr_stats_beachcomber.csv"
 ```
 
 
-## Methods
+# Method
 
 For this goal, we will score each sustainability category based on two criteria: 
 

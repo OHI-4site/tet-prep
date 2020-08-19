@@ -1,10 +1,11 @@
 ---
 title: "OHI Tetiaroa: Conservation Economy"
+author: Maddie Berger
 output:
   html_document:
     highlight: haddock
     includes:
-      in_header: '~/github/tet-prep/workflow/templates/ohi_hdr.html' 
+      in_header: '~/github/tet-prep/workflow/templates/tet_hdr.html' 
     number_sections: yes
     theme: cerulean
     toc: yes
@@ -27,8 +28,7 @@ We use the Tetiaroa's Society fundraising goal as the reference point, which bre
 
 **Total Yearly Budget** = $2,000,000 
 
-
-To measure the status of this goal, we use the 2018 and 2019 Tetiaroa Society reports for income in 2018 and 2019, and then a measure of $700 K / year for 2020 (per Neil and Frank's estimation). 
+To measure the status of this goal, we used the 2018 and 2019 Tetiaroa Society reports for income in 2018 and 2019, and then a measure of $700,000 per year for 2020 (per Neil and Frank's estimation). 
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
@@ -41,7 +41,7 @@ source(here('workflow/R/common.R'))
 
 
 # file paths 
-goal     <- 'eco'
+goal     <- 'ce'
 scenario <- 'v2020'
 dir_anx       <- file.path(dir_M, 'git-annex/globalprep') 
 dir_goal      <- file.path(here('prep',goal, scenario))
@@ -91,15 +91,15 @@ CE_status <- summary %>%
 ```
 
 
-Write out layers to output folder and to Toolbox
+# Write out layers to output folder and to Toolbox
 
-```{r}
+```{r, eval = FALSE}
 
 write_csv(CE_status, file.path(dir_goal, "output/CE_status.csv"))
 
 #tool box
 
-write.csv(CE_status, file = "~/github/tet-scores/region/layers/eco_status.csv", row.names = FALSE)
+write.csv(CE_status, file = "~/github/tet-scores/region/layers/ce_status.csv", row.names = FALSE)
 
 ```
 

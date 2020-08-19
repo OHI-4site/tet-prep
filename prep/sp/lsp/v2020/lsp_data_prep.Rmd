@@ -5,7 +5,7 @@ output:
   html_document:
     highlight: haddock
     includes:
-      in_header: '~/github/tet-prep/workflow/templates/ohi_hdr.html' 
+      in_header: '~/github/tet-prep/workflow/templates/tet_hdr.html' 
     number_sections: yes
     theme: cerulean
     toc: yes
@@ -13,13 +13,9 @@ output:
 
 ## Summary
 
-The methods for global are as follows, from Halpern et al. 2012 supplemental info: 
+The methods for the global OHI assessment use the extent of areas protected as a way to measure the aesthetic, spiritual, and cultural value people hold for a certain place. The model for this goal considers the inland coastal zone (up to 1 km inland) independently from, and equally weighted with, the offshore coastal zone (up to 3 nm offshore).  The status for this goal is calculated as:  
 
-> The ‘Lasting Special Places’ sub-goal focuses instead on those geographic locations that hold particular value for aesthetic, spiritual, cultural, recreational or existence reasons57. This sub-goal is particularly hard to quantify. Ideally one would survey every community around the world to determine the top list of special places, and then assess how those locations are faring relative to a desired state (e.g., protected or well managed). The reality is that such lists do not exist. Instead, we assume areas that are protected represent these special places (i.e. the effort to protect them suggests they are important places).
-
-> Clearly this is an imperfect assumption but in many cases it will be true. Using lists of protected areas as the catalogue of special places then creates the problem of determining a reference condition. We do not know how many special places have yet to be protected, and so we end up having all identified special places also being protected. To solve this problem we make two important assumptions. First, we assume that all countries have roughly the same percentage of their coastal waters and coastline that qualify as lasting special places. In other words, they all have the same reference target (as a percentage of the total area). Second, we assume that the target reference level is 30% of area protected.
-
-The model for this goal considers the inland coastal zone (up to 1 km inland) independently from, and equally weighted with, the offshore coastal zone (up to 3 nm offshore).  The status for this goal is calculated as:
+<br>
 
 $$X_{LSP} = \frac{\left(\frac{Area_{P}}{Area_{P_{ref}}} + \frac{Area_{MPA}}{Area_{MPA_{ref}}}\right)}{2}$$
 
@@ -30,27 +26,27 @@ where:
 * $Area_{MPA}$ = Marine protected area for offshore 3 nm buffer
 * ${Area_{MPA_{ref}}}$ = Reference value for marine protected area within offshore 3 nm buffer
 * $Ref$ = 30% of total area within buffer zone is protected
+  
+    
+<br>
 
-*** 
-[better intro here instead of global thing?]
+Because Tetiaroa is such a small area, we will adjust these methods. First, instead of just calculating protected area within 1km of the shore, we will treat all land areas as coastal land on Tetiaroa, since most motus (individual islands) are not wider than 1 km anyway. Second, instead of creating a buffer of 3nm and treating that as all offshore, we will split up the marine area into two categories: the lagoon area, and the area extending outwards 3nm from each motu ("offshore"). 
 
-Because Tetiaroa is such a small area, we will deviate slightly from these methods. First, instead of just calculating protected area within 1km of the shore, we will treat all land areas as coastal land on Tetiaroa, since most motus (individual islands) are not wider than 1 km anyway. Second, instead of creating a buffer of 3nm and treating that as all offshore, we will split up the marine area into two categories: the lagoon area, and the area extending outwards 3nm from each motu ("offshore"). 
-
-Lastly, we will adjust what we define as "area protected", and rather compute each areas score based on if they meet four criteria, developed through conversations with Frank Murphy and Neil Davies: 
+Lastly, we will adjust what we define as "area protected", computing a score for each zone based on if they meet four criteria, developed through conversations with Frank Murphy and Neil Davies: 
 
 1. Is there more than one stakeholder?
 2. Is there a management plan for that area in place?
 3. Does there exist some sort of monitoring or tracking of the effects of the management plan?
 4. Has the management plan been effective in changing behaviors or meeting is objectives?
 
-Below is a table listing these criteria for different management zones in Tetiaroa:  
+Below is a table listing these criteria for different management zones in Tetiaroa, with a 1 indicating this criteria is being fulfilled to the best extent, and a 0 indicating that a criteria does not exist at all:  
 
-| Zone | Ownership / Management | Plan? | Monitoring? | Effective? |
+| Zone | Multiple Stakeholders? | Plan? | Monitoring? | Effective? |
 | :---- | :----------- | :------- | :------- | :------- |
-| All motus | SA Frangipani, The Tetiaroa Society | yes | yes | yes |
-| No-take zone | The Tetiaroa Society, TBSA, FP Gov | yes | yes | yes (75%) |
-| Rest of Lagoon | FP Government, The Tetiaroa Society | yes | yes | yes |
-| 3nm offshore | FP Government | yes (50%) | no | no | yes |
+| All motus | 1 | 1 | 1 | 1 |
+| No-take zone | 1 | 1 | 1 | 0.75 |
+| Rest of Lagoon | 1 | 1 | 1 | 1 |
+| 3nm offshore | 0 | 0.5 | 0 | 0 | 1 |
 
 **Motus**
 
@@ -58,16 +54,15 @@ The land in Tetiaroa is privately owned by Marlon Brando's trust, which has a 99
 
 **Lagoon No-Take Zone**. 
 
-Half the lagoon is considered a protected "no-take zone", which is enforced by rangers employed with the Tetiaroa Society. According to the Tetiaroa Society's [sustainable use plan](https://www.tetiaroasociety.org/sites/default/files/research-docs/Tetiaroa-CASUP.pdf), this area is recognized by the Ministry for Natural Resources as of June 2014. However, Frank and Neil pointed out that while there are rangers employed, there has not been a strong monitoring effort to determine how well this area is deterring fisherman or other ecologically damaging activities. Therefore, it only meets the first two criteria. 
+Half the lagoon is considered a protected "no-take zone", which is enforced by rangers employed with the Tetiaroa Society. According to the Tetiaroa Society's [sustainable use plan](https://www.tetiaroasociety.org/sites/default/files/research-docs/Tetiaroa-CASUP.pdf), this area is recognized by the Ministry for Natural Resources as of June 2014. However, Frank and Neil pointed out that while there are rangers employed, the monitoring effort has not helped to determine how well this area is deterring fisherman or other ecologically damaging activities. Therefore, it meets with first three criteria and scores a 0.75 in its effectiveness. 
 
 **Rest of the lagoon**
 
-The Tetiaroa Society and The Brando are still involved in the management of the rest of the lagoon, so we consider this area to have multiple stakeholders. There is also technically a plan, as seasonal fishing restrictions are in place and enforced. Frank feels this enforcement is pretty effective, more so than the no-take zone, although its unclear how well the enforcement is monitored. This zone therefore meets 3 out of 4 criteria.
+The Tetiaroa Society and The Brando are still involved in the management of the rest of the lagoon, so we consider this area to have multiple stakeholders. There is also technically a plan, as seasonal fishing restrictions are in place and enforced. Frank feels this enforcement is pretty effective, more so than the no-take zone. This zone therefore meets 4 out of 4 criteria.
 
 **Offshore**
 
-The marine area 3 nm offshore from Tetiaroa is managed solely by the French Polynesian Government. While there exist restrictions on fishing in all FP waters (ie prohibition on shark fishing), it is unclear if there is a specific management plan. For now, we will consider this area as a zero score as we cannot confirm it meets any of the four criteria. 
-
+The marine area 3 nm offshore from Tetiaroa is managed solely by the French Polynesian Government. While there exist restrictions on fishing in all FP waters (ie year-round prohibitions on shark fishing), there does not seem to exist a comprehensive management plan for pelagic ecosystems, so we'll score this criteria as 0.5. Because the existing "management plan" is very simple, Frank and Neil feel that it is being enforced well, even if it is not monitored well. This might seem counterintuitive, but it may be that fishers and visitors are adhering to the restrictions more because violation can result in a large fine and possible jail time, acting a strong deterrent despite a lack of monitoring.
 
 The final score will be the average of the land, lagoon and offshore. We will calculate the land score by calculating the weighted average of each motu's score, which leaves room for the score of a specific motu to change if future monitoring finds that the management plans have not been effective in things like deterring poachers or preventing introductions of native species. 
 
@@ -103,7 +98,7 @@ dir_github    <- '~/github/tet-prep'
 
 First, we'll check the WDPA raster and confirm there aren't any MPAs that fall within our 3nm buffer. Since these all came out as NA, we can conclude there aren't any MPAs in the offshore area. 
 
-```{r, include=FALSE}
+``` {r, check_mpas, eval = FALSE}
 #source wdpa raster
 rast_wdpa <- raster::raster(file.path(dir_M, 'git-annex/globalprep/lsp/v2020/rast/wdpa_2020_moll_500m.tif')) #note: the numbers for this are 2019, does that seem right?
 

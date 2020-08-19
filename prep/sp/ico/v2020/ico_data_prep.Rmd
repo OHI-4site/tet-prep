@@ -1,27 +1,28 @@
 ---
-title: "Tetiaroa RRedlist"
+title: "OHI Tetiaroa: Iconic Species"
 author: "Maddie Berger"
 date: "6/4/2020"
-html_document:
+output:
+ html_document:
     highlight: haddock
     includes:
-      in_header: '~/github/tet-prep/workflow/templates/ohi_hdr.html' 
+      in_header: '~/github/tet-prep/workflow/templates/tet_hdr.html' 
     number_sections: yes
     theme: cerulean
     toc: yes
 ---
 
-#Summary
+# Summary
 
 The Iconic Species goal aims to assess the conservation status of species that have particular value to an area. We decided that for this assessment, our iconic species list would be the list of species highlighted on the [Tetiaroa Society's website](https://www.tetiaroasociety.org/index.php/island).
 
-After compiling a list of species from this source, we pulled its conservation status using the IUCN RRedlist package and then assign each species a score based on its conservation status. The overall score is determined by finding the average score per species class, and then taking the overall average among the classes. These last two steps are calculated in the Toolbox found in the tet_scores repository on Github. 
+After compiling a list of species from this source, we pulled its conservation status using the IUCN RRedlist package and then assigned each species a score based on its conservation status (least concern, vulnerable, etc.). The overall score is determined by finding the average score for each taxonomic class, and then taking the overall average among the classes. These last two steps are calculated in the Toolbox found in the tet_scores repository on Github. 
 
 This script contains the process for pulling the conservation information from the IUCN for each species in 2014 - 2020, assigning scores, and writing out the layers to the Toolbox. Thanks to Gage Clawson for helping out with the RRedlist package!
 
-#Set up
+# Set up
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 library(rredlist)
 library(tidyverse)
 library(dplyr)
@@ -58,11 +59,11 @@ tet_species <- read_csv(here::here("./prep/sp/ico/v2020/raw_data", "tet_species.
   )
 ```
 
-#Method
+# Method
 
-##Part 1: Filtering Redlist by Location (French Polynesia)
+## Part 1: Filtering Redlist by Location (French Polynesia)
 Get US Minor French Polynesia species 
-```{r}
+```{r get_iucn_m1, eval = FALSE}
 spp_country_url <- 'http://apiv3.iucnredlist.org/api/v3/country/getspecies/id/%s?token=%s'
 # 
 # /api/v3/country/getspecies/:country?token='YOUR TOKEN'
@@ -84,7 +85,7 @@ spp_fp <- rl_sp_country('PF', key = api_key)$result %>%
 ```
 
 Filter out species we want for Tetiaroa:
-```{r}
+```{r, eval=FALSE}
 
 tet_species_iucn <- spp_fp %>% 
   filter(scientific_name %in% tet_species$scientific_name)
@@ -94,7 +95,7 @@ tet_species_iucn_fp <- inner_join(tet_species_iucn,tet_species, by = "scientific
 ```
 
 Check to see if they were all there:
-```{r}
+```{r, eval=FALSE}
 
 missing_spp <- setdiff(tet_species$scientific_name, tet_species_iucn$scientific_name)
 
@@ -105,7 +106,7 @@ tet_species_missing_fp <- tet_species %>%
 Seems like the French Polynesia list is missing some species that are found on Tetiaroa
 https://rdrr.io/cran/rredlist/man/rl_occ_country.html
 
-```{r}
+```{r, eval=FALSE}
 
 #test hawksbill turtle, which is critically endangered
 
@@ -114,14 +115,14 @@ rl_occ_country("Eretmochelys imbricata", key = api_key)
 
 ```
 
-##Part 2: Using the entire IUCN dataset, instead of filtering by country
+## Part 2: Using the entire IUCN dataset, instead of filtering by country
 
 Using the IUCN API, we accessed the full IUCN species list at http://apiv3.iucnredlist.org/api/v3/speciescount?token=. With some minor formatting, this list contains the following variables:
 
 iucn_sid | kingdom | phylum | class | order | family | genus | sciname | population | category
 
 
-```{r}
+```{r get_iucn_m2}
 ## get a dataframe of all iucn redlist species
 
 out <- rl_sp(all = TRUE, key = api_key)
@@ -155,13 +156,14 @@ no_record <- tet_species %>%
 
 ```
 
-So far, have created the following dfs:
+So far, have created the following dataframes:  
+
 - `tet_species_iucn_fp` is all the species that matched what was pulled from the IUCN French Polynesia list
 - `tet_species_missing_fp` is all the species that were missing from the IUCN French Polynesia list but were included in Tetiaroa's species list
 - `tet_listed` is all the species that were matched using the entire IUCN dataset, which gets us up to 86 - a bunch of duplicates though, need to filter out by range
-- `no_record` includes all the species we still can't match. This list is probably a result of differences in spelling as there are many species on there that should be in the IUCN, like humpback whale, spotted eagle ray, and olive ridley's turtle. 
+- `no_record` includes all the species we still can't match. This list is probably a result of differences in spelling as there are many species on there that should be in the IUCN, like humpback whale, spotted eagle ray, and Olive ridley's turtle. 
 
-###Working with `tet_listed` dataset
+### Working with `tet_listed` dataset
 
 This dataset needs to be cleaned up and filtered out for the sub-populations we are interested in, since the IUCN category differs for them. 
 
@@ -194,7 +196,7 @@ tet_listed_ico <- inner_join(tet_listed_info, tet_listed_clean, by = "sciname")
 
 ```
 
-###Working with `no_record` dataset
+### Working with `no_record` dataset
 
 Now we can work on the other batch, the ones that did NOT match. While 61 iconic species is plenty, there are a few key species we want to add that seem like obvious oversights. These include:  
 
@@ -271,7 +273,7 @@ df <- as.data.frame(out)
 write_csv(tet_ico_history, file.path(dir_goal,'int/tet_ico_history.csv'))
 ```
 
-#Export final data layers to output
+# Export final data layers to output
 
 The toolbox wants `rgn_id`, species `sciname`, and extinction risk category for the basic calculations. Since some regions contain multiple subpops (or parent/subpop) we also include `iucn_sid` to differentiate. This information is included for each `year`, filtered back to the year 2000.
 
@@ -300,7 +302,7 @@ write_csv(ico_spp_iucn_status, file.path(dir_goal, "output/ico_spp_iucn_list.csv
 
 ```
 
-##Calculating status scores
+## Calculating status scores
 
 So far we've found the conservation status for these species, now calculate score. In global this is done in the tool box but we'll do it in prep here. I've saved both layers in outputs. 
 
@@ -331,7 +333,7 @@ tet_ico_stat_sco <- left_join(tet_ico_list, pop_cat, by = "category") %>%
 
 ```
 
-##Backfilling missing years
+## Backfilling missing years
 ```{r}
 
 #this gap fills based on the earliest assessment for that species
@@ -361,24 +363,16 @@ common_names <- read_csv(here("/prep/bd/spp/v2020/int", "2_spp_ico_iucn.csv")) %
 
 #join to tet_ico_full
 
-status_19 <- left_join(tet_ico_full, common_names, by = "sciname")
-
-#add 2020 data
-ico_scores <- status_19 %>% 
-  filter(year == 2019) %>% 
-  mutate(
-    year = 2020
-  ) %>% 
-  bind_rows(.,ico_scores)
+ico_scores <- left_join(tet_ico_full, common_names, by = "sciname")
 
 ```
 
 
 May need to add a gapfilling file, which would just indicate which years were gapfilled and which were not. 
 
-Write final scores output
+## Write final scores output
 
-```{r}
+```{r, eval=FALSE}
 #write to outputs folder -full version
 write_csv(ico_scores, file.path(dir_goal, "output/ico_scores.csv"), append = FALSE)
 

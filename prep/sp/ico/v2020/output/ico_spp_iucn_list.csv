@@ -1,5 +1,6 @@
 rgn_id,iucn_sid,year,category,eval_year,sciname
 1,22696698,2018,LC,2020,sula leucogaster
+1,22696698,2017,LC,2020,sula leucogaster
 1,22696698,2016,LC,2020,sula leucogaster
 1,22696698,2012,LC,2020,sula leucogaster
 1,22696698,2009,LC,2020,sula leucogaster
@@ -27,6 +28,7 @@ rgn_id,iucn_sid,year,category,eval_year,sciname
 1,22694821,1994,LR/lc,2020,gygis alba
 1,22694821,1988,LR/lc,2020,gygis alba
 1,22697733,2018,LC,2020,fregata minor
+1,22697733,2017,LC,2020,fregata minor
 1,22697733,2016,LC,2020,fregata minor
 1,22697733,2012,LC,2020,fregata minor
 1,22697733,2009,LC,2020,fregata minor
@@ -36,7 +38,6 @@ rgn_id,iucn_sid,year,category,eval_year,sciname
 1,22697733,1994,LR/lc,2020,fregata minor
 1,22697733,1988,LR/lc,2020,fregata minor
 1,22697738,2018,LC,2020,fregata ariel
-1,22697738,2017,LC,2020,fregata ariel
 1,22697738,2016,LC,2020,fregata ariel
 1,22697738,2012,LC,2020,fregata ariel
 1,22697738,2009,LC,2020,fregata ariel
@@ -150,6 +151,7 @@ rgn_id,iucn_sid,year,category,eval_year,sciname
 1,16285718,2012,LC,2020,chelonia mydas
 1,46967807,2013,CR,2020,dermochelys coriacea
 1,84156809,2015,CR,2020,caretta caretta
+1,2811,2020,VU,2020,birgus latro
 1,2811,1996,DD,2020,birgus latro
 1,2811,1994,R,2020,birgus latro
 1,2811,1990,R,2020,birgus latro
