@@ -40,7 +40,7 @@ targeted_harvest_status_ph <- data.frame(
 
 #write to toolbox
 
-write_csv(targeted_harvest_status_ph, file.path(dir_scores,"/region/layers/targeted_harvest_status_ph.csv"))
+write_csv(targeted_harvest_status_ph, file.path(dir_scores,"/region/layers/prs_fp_targetharvest.csv"))
 
 ```
 
