@@ -1,6 +1,6 @@
 ---
 title: "OHI Tetiaroa: Tourism sustainability"
-author: Madeline Berger
+author: Maddie Berger
 output:
   html_document:
     highlight: haddock
