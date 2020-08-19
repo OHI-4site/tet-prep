@@ -34,9 +34,8 @@ dir_goal_anx  <- file.path(dir_anx, goal, scenario)
 targeted_harvest_status_ph <- data.frame(
   region_id = 1,
   year = seq(2014,2020,1),
-  status = NA
+  pressure_score = NA
 )
-
 
 #write to toolbox
 
