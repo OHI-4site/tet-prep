@@ -1,0 +1,36 @@
+---
+title: 'OHI Tetiaroa: Habitat Destruction'
+author: "Maddie Berger"
+date: "8/24/2020"
+output: html_document
+---
+
+# Summary
+
+Habitat destruction from various industries or overcrowding is a significant pressure on many coastal and intertidal environments. On Tetiaroa, this might result from tourists walking in sensitive, shallow intertidal areas, accidentally disturbing coral structures while snorkeling or boating, or participating in recreational fishing. A good way to quantify this goal might be using the number of people on the island at peak tourism (ie population density), with a reference point representing the maximum number of people that could sustainably visit the island at once. Jamie did something similar with OHI+ Northeast to represent beach trampling pressure. 
+
+For now, we'll just create an empty layer that can be updated as data on visitor numbers and visitor activities becomes available and a realistic reference point can be calculated.
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(here)
+
+
+source(here('workflow/R/common.R'))
+
+```
+
+```{r}
+
+prs_hd_trampling <- data.frame(
+  region_id = 1,
+  year = 2020,
+  pressure_score = 0
+)
+
+write_csv(prs_hd_trampling, file.path(dir_scores,"/region/layers/prs_hd_trampling.csv"))
+
+```
+
