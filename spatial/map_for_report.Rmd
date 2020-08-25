@@ -1,0 +1,81 @@
+---
+title: "Tetiaroa Map Prep"
+author: "Maddie Berger"
+date: "8/25/2020"
+output: html_document
+---
+
+This script attempts to create a nicer map than the one sent, specifically because we want to add a locator map. 
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(sf)
+library(leaflet)
+library(tmap)
+library(here)
+library(tidyverse)
+library(ggspatial)
+library(paletteer)
+library(mapview)
+
+source(here('workflow/R/common.R'))
+```
+
+## Read in the data
+
+```{r}
+
+tet_shp <- read_sf(here("/spatial/shp/tet_motus_area.shp")) %>% 
+  st_transform(crs = wgs84)
+
+plot(tet_shp)
+
+mapview(tet_shp)
+```
+
+## Try with ggspatial first
+
+```{r}
+
+motu_points <- cbind(tet_shp, st_coordinates(st_centroid(tet_shp$geometry)))
+
+tet_map <- ggplot(data = tet_shp)+
+  geom_sf(data = tet_shp,
+          color = NA,
+          fill = "darkseagreen3")+
+geom_text(data = motu_points,
+          aes(x = X, y= Y, label=name),
+          color = "black", 
+          fontface = "bold", check_overlap = TRUE)+
+   annotation_scale(location = "bl", 
+                   width_hint = 0.5) +
+    annotation_north_arrow(location = "bl", 
+                           which_north = "true", 
+         pad_x = unit(0.5, "cm"), 
+         pad_y = unit(0.5, "cm"),
+        style = north_arrow_fancy_orienteering)+
+  theme(panel.grid.major = element_line(color = gray(.1), 
+                                        linetype = "dashed", size = 0.1), 
+        panel.background = element_rect(fill = "aliceblue")
+  )+
+  labs(x = "Longitude", y = "Latitude")
+
+
+tet_map
+```
+
+## Creating a map with leaflet
+
+```{r}
+
+leaflet(tet_shp) %>%
+  #addProviderTiles("CartoDB.Positron") %>% 
+  addTiles() %>% 
+  addPolygons(color = "#444444", weight = 0, smoothFactor = 1,
+    opacity = 1.0, fillOpacity = 0)
+
+
+```
+

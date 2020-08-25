@@ -27,14 +27,14 @@ dir_resilience <- file.path(dir_github,"prep/resilience")
 
 # Methods
 
-Page 30 in the report states "80% of staff are Polynesian", therefore that will be our resilience score for now. 
+Page 30 in the report states "80% of staff are Polynesian", which exceeds the governments' requirment for local employment. Therefore, Frank and Neil feel the resilience score should be 100%. 
 
 ```{r}
 
 res_local_employees <- data.frame(
   region_id = 1, 
   years = seq(2014,2020,1),
-  res_score = 0.80
+  res_score = 1
 )
 
 write_csv(res_local_employees, file.path(dir_resilience, "social/local_employees/res_local_emp.csv"))
