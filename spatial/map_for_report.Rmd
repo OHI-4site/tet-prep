@@ -71,10 +71,23 @@ tet_map
 ```{r}
 
 leaflet(tet_shp) %>%
-  #addProviderTiles("CartoDB.Positron") %>% 
-  addTiles() %>% 
+  addProviderTiles(providers$Esri.NatGeoWorldMap) %>% 
+  #addTiles() %>% 
   addPolygons(color = "#444444", weight = 0, smoothFactor = 1,
     opacity = 1.0, fillOpacity = 0)
+
+
+```
+
+## Using T map
+
+```{r}
+tmap_mode("view")
+
+tm_shape(tet_shp)+
+  #tm_fill("area_sqmi", title = "Area in sq. miles", alpha = 0.7)+
+  tm_borders("black")+
+  tm_basemap("Esri.OceanBasemap")
 
 
 ```
