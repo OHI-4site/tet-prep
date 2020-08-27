@@ -50,7 +50,8 @@ of cut flowers which specifies that only flower consignments sourced from approv
 
 From this, is appears there are some potential risk pathways, i.e. risky products or items that are not undergoing quarantine or being prevented from coming to the island. 
 
-**FOR NOW: estimate about 80% score? Note that past years may not have been as strong**
+
+<u>Alien Species</u>: Tetiaroa has begun implementing a robust biosecurity plan in order to prevent more non-native species from being introduced to the island (cite). After reviewing this plan and the best biosecurity practices for small islands (Sherley, 2000), we score this regulation as 1 in the first criteria, a 1 in the second criteria, and a 0.5 in the last one since the full suite of preventative measures have yet to be implemented. 
 
 
 ```{r setup, include=FALSE}
@@ -70,7 +71,7 @@ We'll create a data frame with the resilience score for this year.
 res_biosecurity <- data.frame(
   region_id = 1,
   year = 2020,
-  res_score = 0.80
+  res_score = (1+1+0.5)/3
 )
 
 # write to tool box

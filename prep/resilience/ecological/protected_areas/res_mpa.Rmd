@@ -65,7 +65,7 @@ mpa_df <- data.frame(
 mpa_df_reg <- data.frame(
   region_id = 1,
   year = seq(2014,2020,1),
-  res_score = (1 + 1 + 0.5)/3
+  res_score = (1 + 1 + 0.75)/3
 )
 
 
