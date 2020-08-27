@@ -14,6 +14,8 @@ output:
 
 This script calculates the protected areas resilience layer. The resilience score is the ratio of area protected against fishing out of the total area that could be fished. Areas with this level of protection will help protect both marine and terrestrial species, as well inter tidal and coastal habitat. Fishing protections helps coastal habitat because it prevents fisherman from landing on areas where they might poach green turtles and coconut crabs, an issue Tetiaroa has had difficulty regulating. 
 
+<u>Habitat resilience:</u> We included a measure of how much of Tetiaroa falls under a recognized protected area. Officially, this only includes the no-take zone established in the lagoon, as well as the land. For this protected area, The Tetiaroa Society has implemented a management plan with monitoring, but feel that it should be a 0.75 in its effectiveness. 
+
 Data source: The Tetiaroa Society, and The Beachcomber LLC 2019 Sustainability Report. 
 
 ## Setup
@@ -58,6 +60,14 @@ mpa_df <- data.frame(
   res_score = mpa$percent_protected
 ) 
 
+#new version:
+  
+mpa_df_reg <- data.frame(
+  region_id = 1,
+  year = seq(2014,2020,1),
+  res_score = (1 + 1 + 0.5)/3
+)
+
 
 #write to output folder for now
 
@@ -65,7 +75,7 @@ write_csv(mpa_df, file.path(dir_resilience, "ecological/protected_areas/res_mpa.
 
 #write to toolbox
 
-write_csv(mpa_df, file.path(dir_scores, "region/layers/res_mpa.csv"))
+write_csv(mpa_df_reg, file.path(dir_scores, "region/layers/res_mpa.csv"))
 
 ```
 

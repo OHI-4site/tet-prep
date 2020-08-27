@@ -12,6 +12,17 @@ output:
 ---
 # Summary 
 
+Regulatory resilience describes the institutional measures (e.g., rules, regulations, and laws) designed to address ecological pressures. The regulatory resilience datasets are grouped into five categories that address the 5 pressure categories: fishing pressure, habitat destruction, climate change, water pollution, and alien species. For this assessment we use two resilience layers for each pressure category where possible: regulations and management.  
+
+Regulation layers are based on if there are established rules to prevent ecological pressures. For alien species, we use the presence of rules to prevent the introduction and spread of invasive species from boats, vessels, and cargo. Fishing and habitat regulations are based on the establishment of protected areas. For fishing resilience, we use the presence of marine protected areas and for habitats, we consider both terrestrial protected areas and marine protected areas. Due to the lack of permanent residents, pollution and climate change don't have localized rules and therefore aren't considered as resilience layers.
+
+Management layers are derived for climate change, habitats, fishing, and alien species based on evaluation of three questions:   
+ 1. Is there a management plan?    
+ 2. Does there exist some sort of monitoring or tracking of the effects of the management plan?   
+ 3. Has the management plan been effective in changing behaviors or meeting its objectives?   
+ 
+A score of one is given for every "Yes" response, a zero given for a "No" response, and 0.5 given if management plans or monitoring programs are "In Development". The overall resilience layer score is the sum over three. Since the inverse of the habitat management resilience is used for a social pressure, we will consider this a social resilience instead of an ecological one.    
+
 The French Polynesian government has a variety of regulations for incoming vessels of all sizes. They are outlined in the 
 Stopover Handbook for French Polyesia for Mariners, 2020-2021. From this we know that there are strong protections for many categories of species year round, as well as detailed directions for incoming mariners on registration, mooring, waste management, etc. 
 
@@ -27,12 +38,6 @@ The following classess of species are prohibited from being captured, possesed, 
 - Black coral 
 
 Some species have seasonal restrictions (lobsters) and size requirements, but we don't have a full list of those. 
-
-## Biosecurity 
-
-All incoming vessels must declare their plants, plant products, and animals before unboarding. Certain products are prohibited, like honey. Vessels from certain countries with known threats (ie coconut rhinocerous beetle) all must be inspected. 
-
-Offenders of these rules face up to 6 months in prison and a fine of up to 3.57 million Francs. 
 
 
 # Set Up
@@ -90,12 +95,20 @@ res_fishing_reg_1 <- data.frame(
   res_score = 59/657
 )
 
+#using the other version
+
+res_fishing_reg_2 <- data.frame(
+  region_id = 1, 
+  year = seq(2014,2020,1),
+  res_score = (1 + 0 + 1)/3
+)
+
 #write to folder
 
 write_csv(res_fishing_reg_1, file.path(dir_resilience, "ecological/fishing_reg/res_fishing_reg.csv"))
 
 #write to toolbox
 
-write_csv(res_fishing_reg_1, file.path(dir_scores, "region/layers/res_fishing_reg.csv"))
+write_csv(res_fishing_reg_2, file.path(dir_scores, "region/layers/res_fishing_reg.csv"))
 ```
 
