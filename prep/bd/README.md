@@ -11,7 +11,7 @@ This folder contains the following sub-folders:
 - `spp` folder contains all data prep for the Species sub-goal
 
 
-Click [scores/metadata_documentation/ohi-model/goal_descriptions/ *BD_long.rmd*] to learn more about how the [name of goal/sub-goal] is calculated
+Click [here](https://raw.githack.com/OHI-4site/tet-scores/master/documents/methods-results/Supplement.html#311_Biodiversity_(BD)) to learn more about how the Biodiversity Goal is calculated
 
 
 
