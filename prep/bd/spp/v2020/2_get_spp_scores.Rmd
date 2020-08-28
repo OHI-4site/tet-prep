@@ -1,23 +1,38 @@
 ---
-title: "Species status and trend"
-output: html_document
+title: "OHI+ Tetiaroa: Get species scores"
+authoer: "Madeline Berger"
+output:
+  html_document:
+    code_folding: show
+    toc: true
+    toc_depth: 3 
+    toc_float: yes
+    number_sections: false
+    theme: cerulean
+    highlight: haddock
+    includes: 
+      in_header: '~/github/tet-prep/workflow/templates/tet_hdr.html'
+  pdf_document:
+    toc: true
 ---
 
-#Summary 
+# Summary 
 
 This script joins the different conservation status to their respective weights, in addition to creating a trends layer using the `rl_search()` function in the rredlist package
 
-#Set up
+# Set up
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE,
                       warning = FALSE,
-                      message = FALSE)
+                      message = FALSE,
+                      eval = FALSE)
 
 library(rredlist)
 library(here)
 library(tidyverse)
 
+source(here('workflow/R/common.R'))
 
 #file paths
 goal     <- 'spp'
@@ -36,7 +51,7 @@ api_key <- scan(api_file, what = 'character')
 
 ```
 
-#Status
+# Status
 
 Read in species list
 
@@ -78,9 +93,9 @@ write.csv(spp_status, file.path(dir_goal,"int","3_iucn_status_scores.csv"), row.
 
 ```
 
-#Trend
+# Trend
 Next, get trends using the method Jamie does
-```{r}
+```{r, echo=FALSE}
 
 #forloop for each species to grab trend
 
@@ -109,7 +124,7 @@ for(i in 1:nrow(spp_list)){
 write.csv(df_iucn, "3_iucn_population_trends.csv")
 ```
 
-##Score
+## Score
 Now, score the trend based on what was pulled from rl_search
 ```{r}
 
@@ -129,7 +144,7 @@ spp_trend_scores <- iucn_trends %>%
   filter(!is.na(trend)) #filter out three where trend was unknown
 ```
 
-##Visualize
+## Visualize
 
 ```{r}
 spp_trends_plot <- spp_trend_scores %>%
@@ -159,7 +174,7 @@ write.csv(spp_trends, file = "~/github/tet-scores/region/layers/spp_trend.csv", 
 
 ```
 
-#Averaging by class
+# Averaging by class
 
 To get a more representative score, we are going to average each score over class. This will avoid a class that has a lot of species but may not be that important, ie cone snails, from dominating the score. The averaging will be done in the toolbox, however here we'll add the class and then export that to the toolbox. 
 
@@ -221,9 +236,3 @@ write.csv(spp_status_final, file.path(dir_goal,"output","spp_status.csv"), row.n
 ```
 
 Final trends layer is created in the last script `3_get_historic_trends.Rmd`. 
-
-***
-
-## Resilience: Species Diversity
-
-The species scores can also be used as a resilience layer. 

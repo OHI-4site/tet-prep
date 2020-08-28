@@ -1,7 +1,6 @@
 ---
-title: "OHI Tetiaroa: Iconic Species"
-author: "Maddie Berger"
-date: "6/4/2020"
+title: "OHI+ Tetiaroa: Iconic Species"
+author: "Madeline Berger"
 output:
  html_document:
     highlight: haddock
@@ -10,6 +9,8 @@ output:
     number_sections: yes
     theme: cerulean
     toc: yes
+    toc_depth: 3
+    toc_float: yes
 ---
 
 # Summary

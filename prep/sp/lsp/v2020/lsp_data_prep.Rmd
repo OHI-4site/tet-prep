@@ -1,6 +1,6 @@
 ---
 title: 'OHI Tetiaroa: Lasting Special Places'
-author: "Maddie"
+author: "Madeline Berger"
 output:
   html_document:
     highlight: haddock
@@ -9,6 +9,8 @@ output:
     number_sections: yes
     theme: cerulean
     toc: yes
+    toc_depth: 3
+    toc_float: yes
 ---
 
 ## Summary

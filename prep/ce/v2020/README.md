@@ -4,10 +4,10 @@
 
 Click on the layers to see data preparation:
 
-[Link to each of the html data prep files]
+[Conservation Economy Status](https://ohi-4site.github.io/tet-prep/prep/ce/v2020/ce_data_prep.html)
 
 #### Layers Created
 
-- `CE_status.csv` [short description]
+- `ce_status.csv` proportion of budget goal that has been reached for 2018, 2019, 2020
 
 

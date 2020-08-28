@@ -8,7 +8,7 @@ The folders in this file include the metadata, R scripts, and data for each asse
 - `int` folder contains any intermediate files created in the data prep process
 - `output` folder contains the final layers created - these layers are the ones saved to the Toolbox
 
-Click [add link here to the scores/metadata_documentation/ohi-model/goal_descriptions/ *specific_goal.rmd*] to learn more about how the [name of goal/sub-goal] is calculated
+Click [here](https://ohi-4site.github.io/tet-scores/documents/methods-results/Supplement.html#312_Habitat_Services_(HS)) to learn more about how the [name of goal/sub-goal] is calculated
 
 
 

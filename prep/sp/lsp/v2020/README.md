@@ -4,10 +4,10 @@
 
 Click on the layers to see data preparation:
 
-[Link to each of the html data prep files]
+[Lasting Special Places Status](https://ohi-4site.github.io/tet-prep/prep/sp/lsp/v2020/lsp_data_prep.html)
 
 #### Layers Created
 
-- `rgn_area_offshore_3nm`: total area of the motus plus 3nm offshore from each
-- `lsp_prot_area_1km`: total land area of motus, which we know are protected
+- `lsp_status`: current lsp scores for Tetiaroa
+- `res_mgmt`: resilience management layer
 

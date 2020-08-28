@@ -68,14 +68,14 @@ tet_buffer_50nm <- sf::st_read(dsn = here::here('/spatial/shp'),layer = 'tet_buf
 ## Tetiaroa rasters
 
 #at 100 m res
-tet_ocean_rast_100 <- raster::raster(file.path(here('spatial/rasters/ocean_ras_100.tif')))
+tet_ocean_rast_100 <- raster::raster(file.path(here::here('spatial/rasters/ocean_ras_100.tif')))
 
-tet_buffer_rast_100 <- raster::raster(file.path(here('spatial/rasters/all_ras_100.tif')))
+tet_buffer_rast_100 <- raster::raster(file.path(here::here('spatial/rasters/all_ras_100.tif')))
 
 #at 1000 m res
-tet_ocean_rast_1k <- raster::raster(file.path(here('spatial/rasters/ocean_ras_1k.tif')))
+tet_ocean_rast_1k <- raster::raster(file.path(here::here('spatial/rasters/ocean_ras_1k.tif')))
 
-tet_buffer_rast_1k <- raster::raster(file.path(here('spatial/rasters/all_ras_1k.tif')))
+tet_buffer_rast_1k <- raster::raster(file.path(here::here('spatial/rasters/all_ras_1k.tif')))
 
 
 #other stuff

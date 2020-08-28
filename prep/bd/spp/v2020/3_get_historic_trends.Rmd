@@ -1,6 +1,19 @@
 ---
-title: "Trends using rl_history"
-output: html_document
+title: "OHI+ Tetiaroa: Finding Species Trends"
+author: "Madeline Berger"
+output:
+  html_document:
+    code_folding: show
+    toc: true
+    toc_depth: 3 
+    toc_float: yes
+    number_sections: false
+    theme: cerulean
+    highlight: haddock
+    includes: 
+      in_header: '~/github/tet-prep/workflow/templates/tet_hdr.html'
+  pdf_document:
+    toc: true
 ---
 
 ## Summary 
@@ -9,7 +22,10 @@ Script based on code developed by Gage Clawson to try and calculate species tren
 
 ## Set up 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE,
+                      warning = FALSE,
+                      message = FALSE,
+                      eval = FALSE)
 
 library(rredlist)
 library(tidyverse)
@@ -61,7 +77,7 @@ dir_github    <- '~/github/tet-prep'
 ## Method 
 
 read in data - use what I already had from `2_get_spp_scores.csv`
-```{r}
+```{r, eval = FALSE}
 ## Load packages and other important things
 tet_pop_trends <- read_csv(here::here("/prep/bd/spp/v2020/int", "3_iucn_population_trends.csv"))
 
@@ -69,7 +85,7 @@ tet_species_vec <- tet_pop_trends$sciname
 ```
 
 
-``` {r}
+``` {r, eval = FALSE}
 ## get past assessments with rl_history
 hist <- list()
 
@@ -99,10 +115,12 @@ write_csv(spp_hist, file.path(dir_goal, "int/spp_history.csv"))
 
 
 Join to categories 
-``` {r}
+``` {r, eval = FALSE}
 
 
 cat_lookup <- read_csv(file.path(dir_goal, "risk_code_lookup.csv")) # read in the category look up so that old category naming conventions will match todays. This is in ohiprep_v2020/globalprep/spp/v2020/setup/raw folder
+
+spp_hist <- read_csv(file.path(dir_goal, "int/spp_history.csv"))
     
 spp_past_df <- spp_hist %>%
     left_join(cat_lookup, by = c('code', 'category')) %>%
@@ -129,7 +147,7 @@ Create data frames for modeling
 - `cat_trend` binds our historic pull to the trend, so contains all info for all years
 - `lm_trend` filters out only ones that have enough info to create a linear model on 
 
-``` {r}
+``` {r, eval = FALSE}
 tet_pop_trends <- read_csv(here::here("/prep/bd/spp/v2020/int", "3_iucn_population_trends.csv")) %>%
   dplyr::rename(pop_trend = trend) ## read in population trends grabbed from IUCN
 
@@ -149,7 +167,7 @@ lm_trend <- cat_trend %>%
 ```
 
 Compare IUCN trend to what we found with model
-``` {r}
+``` {r, eval = FALSE}
 trend <- cat_trend %>%
   dplyr::filter(n_assess > 1) %>%
   dplyr::group_by(sciname) %>%
@@ -172,7 +190,7 @@ trend_2 <- trend %>%
 
 Next model: taking `calc_trend` and modeling it on the IUCN population trend 
 
-``` {r}  
+``` {r, eval = FALSE}  
   ### NOTE: here we’re coding the trend in *population* not risk. This tells us the regression coeffs based on the population trends grabbed from iucn (increasing, decreasing, unknown)
 
 trend_regr <- lm(calc_trend ~ pop_trend, data = trend_2)
@@ -205,7 +223,7 @@ write_csv(trend_df_2, file.path(dir_goal, "int/spp_hist_trends.csv"))
 
 Last step is to fill in the ones that have a pop_trend but were NA in the loop, meaning they probably only had one observation.
 
-```{r}
+```{r, eval = FALSE}
 
 tet_pop_trends <- read_csv(here::here("/prep/bd/spp/v2020/int", "3_iucn_population_trends.csv")) %>%
   dplyr::rename(pop_trend = trend)

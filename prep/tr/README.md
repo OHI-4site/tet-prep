@@ -8,7 +8,7 @@ The folders in this file include the metadata, R scripts, and data for each asse
 - `int` folder contains any intermediate data frames or layers created
 - `output` contains all final output layers
 
-Click [add link here to the scores/metadata_documentation/ohi-model/goal_descriptions/ *specific_goal.rmd*] to learn more about how the [name of goal/sub-goal] is calculated
+Click [here](https://ohi-4site.github.io/tet-scores/documents/methods-results/Supplement.html#315_Tourism_and_Recreation_(TR)) to learn more about how the Tourism and Recreation goal is calculated
 
 
 

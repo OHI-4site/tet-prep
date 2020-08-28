@@ -1,15 +1,27 @@
 ---
-title: '"Getting IUCN species for tet region"'
-output: html_document
+title: 'OHI+ Tetiaroa: Species Trend'
+output:
+  html_document:
+    code_folding: show
+    toc: true
+    toc_depth: 3 
+    toc_float: yes
+    number_sections: false
+    theme: cerulean
+    highlight: haddock
+    includes: 
+      in_header: '~/github/tet-prep/workflow/templates/tet_hdr.html'
+  pdf_document:
+    toc: true
 ---
 
-#Summary 
+# Summary 
 
 This script compares the shapefile of Tetiaroa and its surrounding waters to the species range map shapefiles from the IUCN to extract all the species in this area. Methods match `1_get_ne_iucn_spp.Rmd` by Jamie Montgomery, OHI Northeast, and also use data and code developed by Casey O'Hara: https://github.com/madelinemberger/spp_risk_dists.
 
 **Note:** For the species list pull, we decided to use a shapefile with a 50 nm buffer rather than a 3nm buffer. This is because when using the 3nm buffer, the species list was strangely short, and missing large groups that we know exist in Tetiaroa, like corals. Using the 50nm buffer helped capture these marine groups better, but also may have added certain species that do not exist in Tetiaroa as the 50nm buffer overlaps with Moorea and Tahiti. Ultimately the risk of adding extra species seemed less of an issue than missing all the coral species, so the layer created using the 50nm is the one used in the toolbox. 
 
-#Set up
+# Set up
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE,
@@ -47,7 +59,7 @@ api_key <- scan(api_file, what = 'character')
 
 ```
 
-#Methods
+# Methods
 
 First step is to get a list of the cell IDs contained in the tet_region
 

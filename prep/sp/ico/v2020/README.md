@@ -4,10 +4,10 @@
 
 Click on the layers to see data preparation:
 
-[Link to each of the html data prep files]
+[Iconic Species Prep](https://ohi-4site.github.io/tet-prep/prep/sp/ico/v2020/ico_data_prep.html)
 
 #### Layers Created
 
-- Layer_name [short description]
-- Layer_name [short description]
+- `ico_status` conservation status of iconic species on Tetiaroa
+
 

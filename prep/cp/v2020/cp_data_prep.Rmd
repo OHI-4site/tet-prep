@@ -1,7 +1,6 @@
 ---
-title: 'OHI Tetiaroa: Coastal Protection'
-author: "Maddie Berger"
-date: "7/29/2020"
+title: 'OHI+ Tetiaroa: Coastal Protection'
+author: "Madeline Berger"
 output:
   html_document:
     highlight: haddock
@@ -10,6 +9,8 @@ output:
     number_sections: yes
     theme: cerulean
     toc: yes
+    toc_depth: 3
+    toc_float: yes
 ---
 
 # Summary
@@ -51,47 +52,4 @@ References for factors affecting coastal erosion, cyclone vulnerability and coas
 - https://link.springer.com/content/pdf/10.1007/s11625-013-0215-7.pdf
 - https://onlinelibrary.wiley.com/doi/pdf/10.1111/j.1654-1103.2010.01219.x
 
-
-# Set up
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-
-
-
-library(tidyverse)
-library(sf)
-library(here)
-library(janitor)
-
-source(here('workflow/R/common.R'))
-
-#file paths
-goal     <- 'cp'
-scenario <- 'v2020'
-dir_goal      <- file.path(here('prep',goal, scenario))
-dir_goal_anx  <- file.path(dir_anx, goal, scenario)
-dir_github    <- '~/github/tet-prep'
-
-```
-
-
-# Methods
-
-```{r}
-#read in habitat csvs from toolbox
-
-land_hab <- read.csv(file = "~/github/tet-scores/region/layers/lsp_status.csv")
-
-#coral hab here when you get it 
-
-
-
-```
-
-Multiply scores by weights, sum, and then rescale 0 - 1:
-
-
-
-
-Write out layers to toolbox: 
+The layers used to score this goal were created in the HAB data prep, which can be found. 

@@ -4,10 +4,10 @@
 
 Click on the layers to see data preparation:
 
-[Link to each of the html data prep files]
+[Tourism Sustainability](https://ohi-4site.github.io/tet-prep/prep/tr/v2020/tr_sus_prep.html)
 
 #### Layers Created
 
-- Layer_name [short description]
-- Layer_name [short description]
+- `tr_status.csv` Tourism sustainability status for 2020
+
 

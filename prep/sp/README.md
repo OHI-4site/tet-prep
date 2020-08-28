@@ -9,7 +9,7 @@ This folder contains the following sub-folders:
 - `ico` folder contains all data prep for the iconic species sub-goal
 - `lsp` folder contains all data prep for the lasting special places sub-goal
 
-Click [scores/metadata_documentation/ohi-model/goal_descriptions/ *specific_goal.rmd*] to learn more about how the [name of goal/sub-goal] is calculated
+Click [here](https://ohi-4site.github.io/tet-scores/documents/methods-results/Supplement.html#314_Sense_of_Place_(SP)) to learn more about how the Sense of Place goal is calculated
 
 
 
