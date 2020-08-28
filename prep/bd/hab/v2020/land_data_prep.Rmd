@@ -1,15 +1,20 @@
 ---
 title: "OHI Tetiaroa: Atoll Habitat and Vegetation"
-author: "Madeline Berger"
 output:
   html_document:
-    highlight: haddock
-    includes:
-      in_header: '~/github/tet-prep/workflow/templates/tet_hdr.html' 
-    number_sections: yes
+    code_folding: show
+    toc: true
+    toc_depth: 3 
+    toc_float: yes
+    number_sections: false
     theme: cerulean
-    toc: yes
+    highlight: haddock
+    includes: 
+      in_header: '~/github/tet-prep/workflow/templates/tet_hdr.html'
+  pdf_document:
+    toc: true
 ---
+
 # Summary
 
 This script calculates the land habitat extent, health and trned. Because a long term goal for Tetiaroa is to restore abandoned coconut plantation areas to native vegetation, the health score of the land habitat will be based on the extent of coconut grove versus native habitat. We will also include altered habitat (ie landscaped) since much of the habitat on Onetahi has been altered for construction of the Brando. 
@@ -133,8 +138,6 @@ Between the report and the species profiles on the Tetiaroa Society we can see t
 | Landscaped area | 0.3 |
 | Only coconut grove | 0 | 
 
-
-**INSERT HOW THESE SCORES WILL BE CALCULATED**
 
 ## Calulate the habitat health
 ```{r}

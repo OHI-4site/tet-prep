@@ -1,13 +1,18 @@
 ---
 title: "OHI Tetiaroa: Coral Reef Habitat"
-output:
+output: 
   html_document:
-    highlight: haddock
-    includes:
-      in_header: '~/github/tet-prep/workflow/templates/tet_hdr.html' 
-    number_sections: yes
+    code_folding: show
+    toc: true
+    toc_depth: 3 
+    toc_float: yes
+    number_sections: false
     theme: cerulean
-    toc: yes
+    highlight: haddock
+    includes: 
+     in_header: '~/github/tet-prep/workflow/templates/tet_hdr.html'
+  pdf_document:
+    toc: true
 ---
 
 ## Summary
