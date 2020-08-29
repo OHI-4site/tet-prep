@@ -1,6 +1,6 @@
 ---
-title: 'OHI Tetiaroa: Biosecurity Resilience'
-author: "Maddie Berger"
+title: 'OHI+ Tetiaroa: Biosecurity Resilience'
+author: "Madeline Berger"
 date: "8/13/2020"
 output:
   html_document:
@@ -10,6 +10,8 @@ output:
     number_sections: yes
     theme: cerulean
     toc: yes
+    toc_depth: 3
+    toc_float: yes
 ---
 
 # Summary
@@ -43,7 +45,7 @@ Notes on Tetiaroa's current biosecurity activities, from page 7 of the Tetiaroa 
 
 - Phytosanitary measures were appropriately applied during the construction phase but following
 completion, less precautions are being taken.  
-- In 2018, Air Tetiaroa introduced a new directive for baggage handlers focussing on the transport
+- In 2018, Air Tetiaroa introduced a new directive for baggage handlers focusing on the transport
 of cut flowers which specifies that only flower consignments sourced from approved suppliers (such Tahiti Fleurs) or accompanied by a phytosanitary certificate are allowed for transported. Other airfreight is not subject to any biosecurity control.  
 - Tetiaroa Maritime Transport (TMT), carries out rat and insect control on their vessels, every six months.
 - All new staff of The Brando are required to sign the charter for the protection of the environment on Tetiaroa. They receive training when they arrive on the island which includes a Green Tour. The tour covers sustainable development measures taken by The Brando, as well as, biosecurity issues such as food and plants they are not allowed to bring to the island, an introduction to the mosquito control project and how they can contribute to it, and what actions they need to take to help limit the proliferation of flies. In addition, these issues are often discussed with staff by the environment coordinator and the staff village manager. Despite this, staff have been known to bring fruit and vegetable, house plants and other plant material for planting. Such violations are not subject to any consequences.
@@ -51,7 +53,7 @@ of cut flowers which specifies that only flower consignments sourced from approv
 From this, is appears there are some potential risk pathways, i.e. risky products or items that are not undergoing quarantine or being prevented from coming to the island. 
 
 
-<u>Alien Species</u>: Tetiaroa has begun implementing a robust biosecurity plan in order to prevent more non-native species from being introduced to the island (cite). After reviewing this plan and the best biosecurity practices for small islands (Sherley, 2000), we score this regulation as 1 in the first criteria, a 1 in the second criteria, and a 0.5 in the last one since the full suite of preventative measures have yet to be implemented. 
+We score this regulation as 1 in the first criteria, a 1 in the second criteria, and a 0.5 in the last one since the full suite of preventative measures have yet to be implemented. 
 
 
 ```{r setup, include=FALSE}
@@ -59,6 +61,10 @@ knitr::opts_chunk$set(echo = TRUE)
 
 library(tidyverse)
 library(here)
+
+library(here)
+
+source(here('workflow/R/common.R'))
 ```
 
 

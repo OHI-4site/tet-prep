@@ -5,10 +5,12 @@ output:
   html_document:
     highlight: haddock
     includes:
-      in_header: '~/github/tet-prep/workflow/templates/ohi_hdr.html' 
+      in_header: '~/github/tet-prep/workflow/templates/tet_hdr.html' 
     number_sections: yes
     theme: cerulean
     toc: yes
+    toc_depth: 3
+    toc_float: yes
 ---
 ## Summary
 
