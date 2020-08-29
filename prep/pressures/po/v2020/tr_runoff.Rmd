@@ -1,8 +1,18 @@
 ---
-title: 'OHI Tetiaroa: Tourism Pressure'
-author: "Maddie Berger"
-date: "8/13/2020"
-output: html_document
+title: 'OHI+ Tetiaroa 2020: Tourism Runoff'
+author: "Madeline Berger"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 2 
+    toc_float: yes
+    number_sections: false
+    theme: cerulean
+    highlight: haddock
+    includes: 
+     in_header: '~/github/tet-prep/workflow/templates/tet_hdr.html' 
+  pdf_document:
+    toc: true
 ---
 
 # Summary 

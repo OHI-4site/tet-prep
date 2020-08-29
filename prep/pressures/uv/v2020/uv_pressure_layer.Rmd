@@ -1,9 +1,21 @@
 ---
-title: "uv_pressure_layer"
-output: html_document
+title: 'OHI+ Tetiaroa 2020: Ultraviolet Radiation'
+author: "Madeline Berger"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 2 
+    toc_float: yes
+    number_sections: false
+    theme: cerulean
+    highlight: haddock
+    includes: 
+     in_header: '~/github/tet-prep/workflow/templates/tet_hdr.html' 
+  pdf_document:
+    toc: true
 ---
 
-#Summary
+# Summary
 
 The Ultraviolet Radiation pressure layer is generated from daily data on Local Noon Erythemal UV Irradiance (mW/m2) derived from satellite observations. 
 
@@ -22,12 +34,13 @@ This script takes the global anomaly rasters, crops them to the Northeast region
 **Format**: HDF5
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, eval = FALSE)
 
 
 library(raster)
 library(doParallel)
 library(foreach)
+library(here)
 
 source(here('workflow/R/common.R'))
 
@@ -191,9 +204,9 @@ saveGIF({
 
 ***
 
-#Results
+# Results
 
-##Scores
+## Scores
 
 ```{r}
 

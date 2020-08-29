@@ -1,8 +1,18 @@
 ---
-title: "pressure_layer_slr_prep_2"
-author: "Maddie Berger"
-date: "8/7/2020"
-output: html_document
+title: 'OHI+ Tetiaroa 2020: Sea Level Rise'
+author: "Madeline Berger"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 2 
+    toc_float: yes
+    number_sections: false
+    theme: cerulean
+    highlight: haddock
+    includes: 
+     in_header: '~/github/tet-prep/workflow/templates/tet_hdr.html' 
+  pdf_document:
+    toc: true
 ---
 # Summary 
 
@@ -37,7 +47,7 @@ The source data are monthly mean sea level anomalies, in meters. These anomalies
 
 ```{r setup, message = F, warning = F}
 
-knitr::opts_chunk$set(fig.width = 10, fig.height = 8, fig.path = 'figs/', message = FALSE, warning = FALSE)
+knitr::opts_chunk$set(fig.width = 10, fig.height = 8, fig.path = 'figs/', message = FALSE, warning = FALSE, eval = FALSE)
 
 library(raster)
 library(tidyverse)
@@ -153,7 +163,7 @@ ref <- 1.1*max(vals)
 
 ```
 
-The reference point is `r ref` meters.
+The reference point is equal to ref in meters.
 
 ## Rescale
 

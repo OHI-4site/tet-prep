@@ -1,9 +1,21 @@
 ---
-title: "sst_pressures_layer"
-output: html_document
+title: 'OHI+ Tetiaroa 2020: Sea Surface Temperature'
+author: "Madeline Berger"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 2 
+    toc_float: yes
+    number_sections: false
+    theme: cerulean
+    highlight: haddock
+    includes: 
+     in_header: '~/github/tet-prep/workflow/templates/tet_hdr.html' 
+  pdf_document:
+    toc: true
 ---
 
-#Summary
+# Summary
 
 For OHI Global Assessments, we calculated a climatology from 1982-2017 per cell using weekly data from CorTAD. We then calculated the number of times a given cell's weekly SST was greater than the climatological mean for that week (an anomaly: greater than mean + one standard deviation) and summed the number of weekly anomalies in a single year. The maximum value a cell could have is 52 which would mean that cell had anomalous SST temperatures for each week of the year.
 
@@ -25,11 +37,12 @@ To account for annual variation, we look at Sea Surface Temperature anomalies in
 ***
 # Set Up
 ``` {r setup, echo = FALSE, message = FALSE, warning = FALSE, results = "hide"}
-knitr::opts_chunk$set(fig.width = 8, fig.height = 6, fig.path = 'figs/', message = FALSE, warning = FALSE)
+knitr::opts_chunk$set(fig.width = 8, fig.height = 6, fig.path = 'figs/', message = FALSE, warning = FALSE, eval = FALSE)
 
 library(raster)
 library(doParallel)
 library(foreach)
+library(here)
 
 source(here('workflow/R/common.R'))
 

@@ -1,15 +1,15 @@
-### Tetiaroa Ocean Health Index: [Name of Goal/Scenario Year]
+### Tetiaroa Ocean Health Index: Ocean Acidification
 
 #### Data Prep
 
 Click on the layers to see data preparation:
 
-[Link to each of the html data prep files]
+[Ocean Acidification](https://ohi-4site.github.io/tet-prep/prep/pressures/oa/v2020/oa_prep_clean_mb.html)
 
 #### Layers Created
 
-- Layer_name [short description]
-- Layer_name [short description]
+- `prs_oa` ocean acidification pressure
+
 
 Please see our [citation policy](https://ohi-science.org/citation-policy/) if you use OHI data or methods.
 

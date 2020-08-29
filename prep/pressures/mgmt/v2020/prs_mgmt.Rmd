@@ -10,13 +10,13 @@ output:
     theme: cerulean
     highlight: haddock
     includes: 
-     in_header: '../../../src/templates/ohi_hdr.html' 
+     in_header: '~/github/tet-prep/workflow/templates/tet_hdr.html' 
   pdf_document:
     toc: true
 ---
 # Summary
 
-This script creates the social pressure mangement layer. This layer is just the inverse of the management resilience layer. 
+This script creates the social pressure management layer. This layer is just the inverse of the management resilience layer. 
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)

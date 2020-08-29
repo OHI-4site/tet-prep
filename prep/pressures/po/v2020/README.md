@@ -1,15 +1,14 @@
-### Tetiaroa Ocean Health Index: [Name of Goal/Scenario Year]
+### Tetiaroa Ocean Health Index: Pollution
 
 #### Data Prep
 
 Click on the layers to see data preparation:
 
-[Link to each of the html data prep files]
+[Tourism Runoff](https://ohi-4site.github.io/tet-prep/prep/pressures/po/v2020/tr_runoff.html)
 
 #### Layers Created
 
-- Layer_name [short description]
-- Layer_name [short description]
+- `prs_po_tr.csv` inverse of waste management score for The Brando
 
 Please see our [citation policy](https://ohi-science.org/citation-policy/) if you use OHI data or methods.
 

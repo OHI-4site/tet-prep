@@ -1,8 +1,18 @@
 ---
-title: "oa_prep_mb"
-author: "Maddie Berger"
-date: "8/10/2020"
-output: html_document
+title: 'OHI+ Tetiaroa 2020: Ocean Acifidication Pressure Layer'
+author: "Madeline Berger"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 2 
+    toc_float: yes
+    number_sections: false
+    theme: cerulean
+    highlight: haddock
+    includes: 
+     in_header: '~/github/tet-prep/workflow/templates/tet_hdr.html' 
+  pdf_document:
+    toc: true
 ---
 # Summary 
 
@@ -39,7 +49,7 @@ This ocean acidification (OA) pressure layer preparation script does the followi
 ```{r setup, message = F, warning = F}
 
 # Set options for all chunks in code
-knitr::opts_chunk$set(warning=FALSE, message=FALSE, fig.width=6, fig.height=6)
+knitr::opts_chunk$set(warning=FALSE, message=FALSE, eval = FALSE,fig.width=6, fig.height=6)
 
 library(raster)
 library(ncdf4)

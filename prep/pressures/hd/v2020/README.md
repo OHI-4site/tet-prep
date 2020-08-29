@@ -4,7 +4,7 @@
 
 Click on the layers to see data preparation:
 
-[Trampling pressure](https://ohi-4site.github.io/tet-prep/prep/pressures/v2020/prs_hd_trampling.html)
+[Trampling pressure](https://ohi-4site.github.io/tet-prep/prep/pressures/hd/v2020/prs_hd_trampling.html)
 
 #### Layers Created
 

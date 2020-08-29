@@ -4,7 +4,7 @@
 
 Click on the layers to see data preparation:
 
-[Targeted Harvest](https://ohi-4site.github.io/tet-prep/prep/pressures/v2020/fp_targeted_harvest.html)
+[Targeted Harvest](https://ohi-4site.github.io/tet-prep/prep/pressures/fp/v2020/fp_targeted_harvest.html)
 
 #### Layers Created
 
