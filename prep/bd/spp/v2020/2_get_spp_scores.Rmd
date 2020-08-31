@@ -1,6 +1,6 @@
 ---
 title: "OHI+ Tetiaroa: Get species scores"
-authoer: "Madeline Berger"
+author: "Madeline Berger"
 output:
   html_document:
     code_folding: show

@@ -1,13 +1,12 @@
-### Tetiaroa Ocean Health Index: Resource Access Opportunities / 2020
+### Tetiaroa Ocean Health Index: Resource Access Opportunities 2020
 
 #### Data Prep
 
 Click on the layers to see data preparation:
 
-[Link to each of the html data prep files]
+[Resource Access Opportunities](https://ohi-4site.github.io/tet-prep/prep/rao/v2020/rao_data_prep.html)
 
 #### Layers Created
 
-- Layer_name [short description]
-- Layer_name [short description]
+- `rao_status_placeholder.csv` placeholder for 2020 RAO scores
 

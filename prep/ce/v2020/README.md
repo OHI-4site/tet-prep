@@ -11,3 +11,6 @@ Click on the layers to see data preparation:
 - `ce_status.csv` proportion of budget goal that has been reached for 2018, 2019, 2020
 
 
+Please see our [citation policy](https://ohi-science.org/citation-policy/) if you use OHI data or methods.
+
+Thank you!

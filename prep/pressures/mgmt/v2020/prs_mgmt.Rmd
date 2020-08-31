@@ -1,6 +1,6 @@
 ---
 title: 'OHI+ Tetiaroa 2020: Management Pressure Layer'
-author: "*Compiled on `r date()` by `r Sys.info()['user']`*"
+author: "Madeline Berger"
 output: 
   html_document:
     toc: true
@@ -22,6 +22,9 @@ This script creates the social pressure management layer. This layer is just the
 knitr::opts_chunk$set(echo = TRUE)
 
 library(tidyverse)
+library(here)
+
+source(here('workflow/R/common.R'))
 ```
 
 # Methods
@@ -29,7 +32,7 @@ library(tidyverse)
 ```{r}
 #read in res_mgmt layer
 
-prs_mgmt <- read_csv(file.path(dir_github, "/prep/resilience/social/management/res_mgmt.csv")) %>% 
+prs_mgmt <- read_csv(file.path(dir_github, "prep/resilience/social/mgmt/v2020/res_mgmt.csv")) %>% 
   mutate(
     pressure_score = 1 - res_score
   ) %>%

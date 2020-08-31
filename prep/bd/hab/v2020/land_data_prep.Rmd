@@ -1,5 +1,6 @@
 ---
-title: "OHI Tetiaroa: Atoll Habitat and Vegetation"
+title: "OHI+ Tetiaroa: Atoll Habitat and Vegetation"
+author: "Madeline Berger"
 output:
   html_document:
     code_folding: show

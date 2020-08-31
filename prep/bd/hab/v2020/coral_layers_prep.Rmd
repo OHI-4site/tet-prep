@@ -1,5 +1,6 @@
 ---
-title: "OHI Tetiaroa: Coral Reef Habitat"
+title: "OHI+ Tetiaroa: Coral Reef Habitat"
+author: "Madeline Berger"
 output: 
   html_document:
     code_folding: show

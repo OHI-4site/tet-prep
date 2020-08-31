@@ -1,5 +1,6 @@
 ---
 title: 'OHI+ Tetiaroa: Species Trend'
+author: 'Madeline Berger'
 output:
   html_document:
     code_folding: show
