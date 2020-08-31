@@ -4,11 +4,11 @@
 
 Click on the layers to see data preparation:
 
-[Management Resilience](https://ohi-4site.github.io/tet-prep/prep/resilience/social/local/v2020/res_local_emp.html)
+[Management Resilience](https://ohi-4site.github.io/tet-prep/prep/resilience/social/mgmt/v2020/res_management_prep.html)
 
 #### Layers Created
 
-- `res_mgmt.csv` resilience score for mangement, same score as LSP
+- `res_mgmt.csv` resilience score for management, same score as LSP
 
 Please see our [citation policy](https://ohi-science.org/citation-policy/) if you use OHI data or methods.
 
