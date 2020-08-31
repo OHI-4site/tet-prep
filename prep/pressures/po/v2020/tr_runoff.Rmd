@@ -21,7 +21,7 @@ This script aims to calculate the pressures generated from tourism on Tetiaroa. 
 
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 
 library(tidyverse)
 library(here)
