@@ -6,9 +6,8 @@ This folder contains sub-folders for all goals and sub-goals in the Palmyra Ocea
 | ----------------------- | ------ |
 | Biodiversity | bd     |
 | Conservation Economy | ce |
-| Coastal Protection | cp |
-| Carbon Storage |cs |
 | Clean Waters | cw |
+| Habitat Services | hs |
 | Resource Access Opportunities | rao |
 | Sense of Place | sp     |
 | Tourism and Recreation | tr     |

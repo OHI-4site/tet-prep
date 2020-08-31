@@ -1,8 +1,16 @@
 ---
 title: "OHI+ Tetiaroa: Carbon Storage"
-author: "Maddie Berger"
-date: "8/18/2020"
-output: html_document
+author: "Madeline Berger"
+output: 
+  html_document:
+    highlight: haddock
+    includes:
+      in_header: '~/github/tet-prep/workflow/templates/tet_hdr.html' 
+    number_sections: yes
+    theme: cerulean
+    toc: yes
+    toc_depth: 3
+    toc_float: yes
 ---
 # Summary 
 
@@ -12,17 +20,19 @@ Tetiaroa does not have any mangroves or seagrass, however the native rainforest 
 
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 
 library(tidyverse)
 library(here)
+
+
+source(here('workflow/R/common.R'))
+
 
 goal     <- 'cs'
 scenario <- 'v2020'
 dir_goal      <- file.path(here('prep',goal, scenario))
 dir_goal_anx  <- file.path(dir_anx, goal, scenario)
-
-
 
 cs_status_placeholder <- data.frame(
   region_id = 1,

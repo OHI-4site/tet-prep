@@ -4,7 +4,7 @@
 
 Click on the layers to see data preparation:
 
-[Coastal Protection Data Prep](https://ohi-4site.github.io/tet-prep/prep/cp/v2020/cp_data_prep.html)
+[Coastal Protection Data Prep](https://ohi-4site.github.io/tet-prep/prep/hs/cp/v2020/cp_data_prep.html)
 
 #### Layers Created
 
