@@ -5,10 +5,12 @@ output:
   html_document:
     highlight: haddock
     includes:
-      in_header: '~/github/tet-prep/workflow/templates/ohi_hdr.html' 
+      in_header: '~/github/tet-prep/workflow/templates/tet_hdr.html' 
     number_sections: yes
     theme: cerulean
     toc: yes
+    toc_depth: 3
+    toc_float: yes
 ---
 # Summary
 
@@ -17,10 +19,12 @@ This script creates a resilience layer based on the number of local employees on
 We think this is a measure of resilience because using local knowledge in resource management often results in positive environmental outcomes. Furthermore, it is important that local people are engaged as stakeholders in decisions about Tetiaroa's land and waters, even if it is owned privately. 
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 
 library(here)
 library(tidyverse)
+
+source(here('workflow/R/common.R'))
 
 dir_resilience <- file.path(dir_github,"prep/resilience")
 ```

@@ -1,8 +1,16 @@
 ---
-title: "resilience_mgmt_prep"
+title: "OHI+ Tetiaroa: Management Resilience"
 author: "Maddie Berger"
-date: "8/12/2020"
-output: html_document
+output:
+    html_document:
+      highlight: haddock
+      includes:
+        in_header: '~/github/tet-prep/workflow/templates/tet_hdr.html' 
+      number_sections: yes
+      theme: cerulean
+      toc: yes
+      toc_depth: 3
+      toc_float: yes
 ---
 
 # Summary
@@ -10,7 +18,7 @@ output: html_document
 This script creates the management resilience layer. The methods are identical to the process of calculated the LSP score in the toolbox. 
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 
 library(tidyverse)
 library(here)
